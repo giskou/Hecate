@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g 2010-06-20 14:58:36
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g 2010-06-20 17:14:32
 
   package gr.uoi.cs.dmod.hecate.parser ;
   import gr.uoi.cs.dmod.hecate.sql.* ;
@@ -499,7 +499,7 @@ public class DDLParser extends Parser {
 
 
             		tm.put((name1!=null?input.toString(name1.start,name1.stop):null), new Table((name1!=null?input.toString(name1.start,name1.stop):null), am, k)) ;
-            		System.out.println("New Table "+ (name1!=null?input.toString(name1.start,name1.stop):null) +" created");
+            		System.out.println("New Table "+ (name1!=null?input.toString(name1.start,name1.stop):null) +" created\n");
             	
 
             }

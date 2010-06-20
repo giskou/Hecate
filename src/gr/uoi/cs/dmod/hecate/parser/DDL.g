@@ -54,7 +54,7 @@ table
 	: TABLE ( IF NOT EXISTS )? name '(' definition ')' parameter?
 	{
 		tm.put($name.text, new Table($name.text, am, k)) ;
-		System.out.println("New Table "+ $name.text +" created");
+		System.out.println("New Table "+ $name.text +" created\n");
 	}
 	;
 	
