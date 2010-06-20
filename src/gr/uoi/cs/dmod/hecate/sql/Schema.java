@@ -19,7 +19,7 @@ public class Schema {
 		buff = "Shema: \n\n";
 		for (Map.Entry<String, Table> entry : this.tables.entrySet()) {
 			Table a = entry.getValue();
-			buff += a.toString() + "\n";
+			buff += "  " + a.toString() + "\n";
 		}
 		return buff;
 	}

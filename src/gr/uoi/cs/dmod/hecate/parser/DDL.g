@@ -6,6 +6,8 @@ options {
 
 @header {
   package gr.uoi.cs.dmod.hecate.parser ;
+  import gr.uoi.cs.dmod.hecate.sql.* ;
+  import java.util.TreeMap;
 }
 
 @lexer::header {
@@ -13,11 +15,18 @@ options {
 }
 
 @members{
-	
+	Schema s ;
+	TreeMap<String, Table> tm = new TreeMap<String, Table>();
+	TreeMap<String, Attribute> km = new TreeMap<String, Attribute>();
+	TreeMap<String, Attribute> am = new TreeMap<String, Attribute>();
+	Key k = null;
 }
 
-start
+start returns [Schema s]
 	:	( drop | create | namespace )+
+	{
+		s = new Schema(tm) ;
+	}
 	;
 	
 namespace
@@ -31,7 +40,6 @@ drop
 create
 	:	CREATE schema ';'
 	|	CREATE table ';'
-	{System.out.println("New Table created");}
 	|	CREATE index ';'
 	;
 	
@@ -40,7 +48,14 @@ schema
 	;
 	
 table
+	@init{
+		am.clear();
+	}
 	: TABLE ( IF NOT EXISTS )? name '(' definition ')' parameter?
+	{
+		tm.put($name.text, new Table($name.text, am, k)) ;
+		System.out.println("New Table "+ $name.text +" created");
+	}
 	;
 	
 definition
@@ -49,6 +64,10 @@ definition
 	
 column
 	:	name type option*
+	{
+		am.put($name.text, new Attribute($name.text, $type.text, false, null)) ;
+		System.out.println("New Attribute "+ $name.text +" created");
+	}
 	;
 	
 constraint

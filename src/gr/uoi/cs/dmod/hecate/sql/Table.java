@@ -12,7 +12,10 @@ public class Table {
 	// --Constructors--
 	public Table(String n, TreeMap<String, Attribute> a, Key p) {
 		this.name = n;
-		this.attrs = a;
+		this.attrs = new TreeMap<String, Attribute>();
+		for (Map.Entry<String, Attribute> entry : a.entrySet()) {
+			this.attrs.put(entry.getKey(), entry.getValue()) ;
+		}
 		this.pKey = p;
 		this.fKey = null;
 	}
@@ -46,7 +49,7 @@ public class Table {
 		buff = "Table: " + this.name + "\n";
 		for (Map.Entry<String, Attribute> entry : this.attrs.entrySet()) {
 			Attribute a = entry.getValue();
-			buff += a.toString() + "\n";
+			buff += "    " + a.toString() + "\n";
 		}
 		return buff;
 	}
