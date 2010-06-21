@@ -1,4 +1,4 @@
-package gr.uoi.cs.dmod.hecate.gui;
+package gr.uoi.cs.dmod.hecate.gui.swing;
 
 import java.awt.Dimension;
 import java.awt.Font;
