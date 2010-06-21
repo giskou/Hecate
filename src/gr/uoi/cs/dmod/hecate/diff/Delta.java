@@ -9,7 +9,7 @@ public class Delta {
 	private String oldAttrKey, newAttrKey ;
 	
 	public Delta(){
-		oldTableKey = newTableKey = oldAttrKey = newAttrKey =null ;
+		oldTableKey = newTableKey = oldAttrKey = newAttrKey = null ;
 	}
 	
 	public void minus(Schema A, Schema B) {

@@ -1,3 +1,4 @@
+package gr.uoi.cs.dmod.hecate;
 import gr.uoi.cs.dmod.hecate.gui.MainWindow;
 
 public class Hecate {
