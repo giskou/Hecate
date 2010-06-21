@@ -1,74 +1,147 @@
 package gr.uoi.cs.dmod.hecate.gui.swing;
 
+import gr.uoi.cs.dmod.hecate.parser.Test;
+
 import java.awt.Dimension;
-import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
+import javax.swing.GroupLayout;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
+import javax.swing.LayoutStyle;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import org.antlr.runtime.RecognitionException;
 
 @SuppressWarnings("serial")
 public class OpenDialog extends JDialog {
 	
+	private JLabel oldFileLable;
+	private JLabel newFileLabel;
+	private JTextField oldFileField;
+	private JTextField newFileField;
+	private JButton ok;
+	private JButton cancel;
+	private JButton openOldFile;
+	private JButton openNewFile;
+	private JFileChooser fileopen;
+	
 	public OpenDialog() {
-		setTitle("Open Files") ;
+		initialize();
 		
-		setSize(500, 120);
+		oldFileLable = new JLabel("Old Schema : ");
+		oldFileField = new JTextField();
+		openOldFile = new JButton("...");
+		openOldFile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				oldFileField.setText(openFile());
+			}
+		});
+		newFileLabel = new JLabel("New Schema : ");
+		newFileField = new JTextField();
+		openNewFile = new JButton("...");
+		openNewFile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				newFileField.setText(openFile());
+			}
+		});
+		cancel = new JButton("Cancel");
+		cancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				dispose();
+			}
+		});
+		ok = new JButton("OK");
+		ok.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				try {
+					submit();
+				} catch (RecognitionException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+
+		GroupLayout thisLayout = new GroupLayout((JComponent)getContentPane());
+		getContentPane().setLayout(thisLayout);
+		thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
+			.addContainerGap()
+			.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+			    .addComponent(openOldFile, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+			    .addComponent(oldFileLable, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+			    .addComponent(oldFileField, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+			.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+			.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+			    .addComponent(newFileField, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+			    .addComponent(openNewFile, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+			    .addComponent(newFileLabel, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+			.addGap(0, 67, Short.MAX_VALUE)
+			.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+			    .addComponent(cancel, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+			    .addComponent(ok, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+			.addContainerGap());
+		thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
+			.addContainerGap()
+			.addGroup(thisLayout.createParallelGroup()
+			    .addComponent(newFileLabel, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+			    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+			        .addComponent(oldFileLable, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+			        .addGap(12)))
+			.addGroup(thisLayout.createParallelGroup()
+			    .addGroup(thisLayout.createSequentialGroup()
+			        .addGroup(thisLayout.createParallelGroup()
+			            .addComponent(newFileField, GroupLayout.Alignment.LEADING, 0, 315, Short.MAX_VALUE)
+			            .addComponent(oldFileField, GroupLayout.Alignment.LEADING, 0, 315, Short.MAX_VALUE))
+			        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+			        .addGroup(thisLayout.createParallelGroup()
+			            .addComponent(openNewFile, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+			            .addComponent(openOldFile, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)))
+			    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+			        .addGap(0, 199, Short.MAX_VALUE)
+			        .addComponent(ok, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
+			        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED, 1, GroupLayout.PREFERRED_SIZE)
+			        .addComponent(cancel, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)))
+			.addContainerGap());
+
+		draw();
+	}
+	
+	private void initialize() {
+		setTitle("Open") ;
+		setModalityType(ModalityType.APPLICATION_MODAL);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+	}
+	
+	private void draw() {
+		pack();
 		// center on screen
 		Toolkit toolkit = getToolkit();
 		Dimension size = toolkit.getScreenSize();
 		setLocation(size.width/2 - getWidth()/2, 
 		            size.height/2 - getHeight()/2);
-		
-		JPanel mainPanel = new JPanel();
-		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-		mainPanel.setBorder(new EmptyBorder(new Insets(5, 5, 5, 5)));
-		add(mainPanel);
-		
-		JPanel oldFilePanel = new JPanel();
-		oldFilePanel.setLayout(new BoxLayout(oldFilePanel, BoxLayout.X_AXIS));
-		JLabel oldFileLabel = new JLabel("Old Schema :") ;
-		JTextField oldFileTextField = new JTextField() ;
-		oldFilePanel.add(oldFileLabel);
-		oldFilePanel.add(oldFileTextField);
-		mainPanel.add(oldFilePanel);
-		mainPanel.add(Box.createRigidArea(new Dimension(0, 5)));
-		
-		JPanel newFilePanel = new JPanel();
-		newFilePanel.setLayout(new BoxLayout(newFilePanel, BoxLayout.X_AXIS));
-		JLabel newFileLabel = new JLabel("New Schema :") ;
-		JTextField newFileTextField = new JTextField() ;
-		newFilePanel.add(newFileLabel);
-		newFilePanel.add(newFileTextField);
-		mainPanel.add(newFilePanel);
-		mainPanel.add(Box.createRigidArea(new Dimension(0, 5)));
-
-		JPanel bottomPanel = new JPanel();
-		bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.X_AXIS));
-		bottomPanel.add(Box.createHorizontalGlue());
-		JButton okButton = new JButton("OK");
-		// TODO button listener
-		bottomPanel.add(okButton);
-		bottomPanel.add(Box.createRigidArea(new Dimension(5, 0)));
-
-		JButton cancelButton = new JButton("Cancel");
-		cancelButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent event) {
-				dispose();
-			}
-		});
-		bottomPanel.add(cancelButton);
-		mainPanel.add(bottomPanel);
-
-		setModalityType(ModalityType.APPLICATION_MODAL);
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+	}
+	
+	private void submit() throws RecognitionException, IOException {
+		Test.main(null);
+	}
+	
+	private String openFile() {
+        fileopen = new JFileChooser();
+        fileopen.setFileFilter(new FileNameExtensionFilter("SQL files", "sql"));
+        fileopen.showDialog(this, "Open");
+        File f = fileopen.getSelectedFile();
+		return f.getPath();
 	}
 }

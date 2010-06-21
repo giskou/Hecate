@@ -9,16 +9,30 @@ import javax.swing.JFrame;
 public class MainWindow extends JFrame{
 	
 	public MainWindow(){
-		setSize(800,600);
+		initialize();
+		setJMenuBar(new MenuBar());
+		draw();
+	}
+	
+	private void initialize() {
+		// look and feel
+		try {
+			javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 		setTitle("Hecate");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
+	}
+	
+	private void draw() {
+		setSize(800, 600);
+		setMinimumSize(new Dimension(640, 480));
 		// center on screen
 		Toolkit toolkit = getToolkit();
 		Dimension size = toolkit.getScreenSize();
 		setLocation(size.width/2 - getWidth()/2, 
 		            size.height/2 - getHeight()/2);
-		
-		setJMenuBar(new MenuBar());
 	}
 }

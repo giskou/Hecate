@@ -12,6 +12,7 @@ import javax.swing.JMenuItem;
 public class MenuBar extends JMenuBar{
 	
 	public MenuBar(){
+		
 		// File
 		JMenu file = new JMenu("File");
 		file.setMnemonic(KeyEvent.VK_F);
@@ -57,9 +58,7 @@ public class MenuBar extends JMenuBar{
 				ad.setVisible(true);
 			}
 		});
-
 		help.add(helpAbout);
-
 		this.add(help);
 	}
 }

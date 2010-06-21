@@ -8,55 +8,71 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
 class AboutDialog extends JDialog {
+	
+	private JLabel name;
+	private JLabel author;
+	private JLabel mail;
+	private JButton close;
 
 	public AboutDialog() {
-		setSize(300, 200);
-		setTitle("About Hecate");
+		initialize();
+
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-		add(Box.createRigidArea(new Dimension(0, 10)));
 
-		ImageIcon icon = new ImageIcon("notes.png");
-		JLabel label = new JLabel(icon);
-		label.setAlignmentX(0.5f);
-		add(label);
+		add(Box.createRigidArea(new Dimension(0, 20)));
 
-		add(Box.createRigidArea(new Dimension(0, 10)));
-
-		JLabel name = new JLabel("Hecate, 0.1");
+		name = new JLabel("      Hecate, 0.1     ");
 		name.setFont(new Font("Serif", Font.BOLD, 15));
-		name.setAlignmentX(0.5f);
+		name.setAlignmentX(CENTER_ALIGNMENT);
 		add(name);
+		
+		add(Box.createRigidArea(new Dimension(0, 5)));
+		
+		author = new JLabel("      (c) Skoulis Ioannis      ");
+		author.setFont(new Font("Serif", Font.PLAIN, 13));
+		author.setAlignmentX(CENTER_ALIGNMENT);
+		add(author);
+		mail = new JLabel("      css03084@cs.uoi.gr      ");
+		mail.setFont(new Font("Serif", Font.PLAIN, 12));
+		mail.setAlignmentX(CENTER_ALIGNMENT);
+		add(mail);
 
-		add(Box.createRigidArea(new Dimension(0, 50)));
+		add(Box.createRigidArea(new Dimension(0, 25)));
 
-		JButton close = new JButton("Close");
+		close = new JButton("Close");
 		close.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				dispose();
 			}
 		});
-		close.setAlignmentX(0.5f);
+		close.setAlignmentX(CENTER_ALIGNMENT);
 		add(close);
-
-		setModalityType(ModalityType.APPLICATION_MODAL);
-
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
+		add(Box.createRigidArea(new Dimension(0, 10)));
+		
+		draw();
+	}
+	
+	private void initialize() {
+		setTitle("About");
+		setModalityType(ModalityType.APPLICATION_MODAL);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+	}
+	
+	private void draw() {
+		pack();
+		setResizable(false);
 		// center on screen
 		Toolkit toolkit = getToolkit();
 		Dimension size = toolkit.getScreenSize();
 		setLocation(size.width/2 - getWidth()/2, 
 		            size.height/2 - getHeight()/2);
-		
-
 	}
-
 }
 
