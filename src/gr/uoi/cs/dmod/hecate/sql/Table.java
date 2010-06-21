@@ -8,6 +8,7 @@ public class Table {
 	TreeMap<String, Attribute> attrs;
 	Key pKey;
 	Key fKey;
+	char mode;
 	
 	// --Constructors--
 	public Table(String n, TreeMap<String, Attribute> a, Key p) {
@@ -42,6 +43,10 @@ public class Table {
 	
 	public Key getfKey() {
 		return this.fKey;
+	}
+	
+	public void setMode(char m){
+		this.mode = m;
 	}
 	
 	public String toString() {

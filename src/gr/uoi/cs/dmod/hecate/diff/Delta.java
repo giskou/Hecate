@@ -24,22 +24,32 @@ public class Delta {
 			newTableKey = newTableKeys.next() ;
 			Table newTable = (Table) newTableValues.next() ;
 			while(true) {
+				System.out.println();
 				if (oldTableKey.compareTo(newTableKey) == 0) {
 					System.out.println(oldTableKey + " Matched") ;
+					oldTable.setMode('m');
 					// check attributes
 					Iterator<String> oldAttributeKeys = oldTable.getAttrs().keySet().iterator();
+					Iterator<Attribute> oldAttributeValues = oldTable.getAttrs().values().iterator() ;
 					Iterator<String> newAttributeKeys = newTable.getAttrs().keySet().iterator();
+					Iterator<Attribute> newAttributeValues = newTable.getAttrs().values().iterator() ;
 					
 					if (oldAttributeKeys.hasNext() && newAttributeKeys.hasNext()){
 						oldAttrKey = oldAttributeKeys.next() ;
+						Attribute oldAttr = oldAttributeValues.next();
 						newAttrKey = newAttributeKeys.next() ;
+						Attribute newAttr = newAttributeValues.next();
 						while (true) {
 							if (oldAttrKey.compareTo(newAttrKey) == 0) {
 								System.out.println(oldAttrKey + " Matched");
+								oldAttr.setMode('m');
+								newAttr.setMode('m');
 								// move both
 								if (oldAttributeKeys.hasNext() && newAttributeKeys.hasNext()) {
 									oldAttrKey = oldAttributeKeys.next() ;
+									oldAttr = oldAttributeValues.next();
 									newAttrKey = newAttributeKeys.next() ;
+									newAttr = newAttributeValues.next();
 								}
 								else {
 									break ;
@@ -47,9 +57,11 @@ public class Delta {
 							}
 							else if (oldAttrKey.compareTo(newAttrKey) < 0) {
 								System.out.println(oldAttrKey + " Deleted");
+								oldAttr.setMode('d');
 								// move old only
 								if (oldAttributeKeys.hasNext()) {
 									oldAttrKey = oldAttributeKeys.next() ;
+									oldAttr = oldAttributeValues.next();
 								}
 								else {
 									break ;
@@ -57,9 +69,11 @@ public class Delta {
 							}
 							else {
 								System.out.println(newAttrKey + " Inserted");
+								newAttr.setMode('i');
 								// move new only
 								if (newAttributeKeys.hasNext()) {
 									newAttrKey = newAttributeKeys.next() ;
+									newAttr = newAttributeValues.next();
 								}
 								else {
 									break ;
@@ -68,15 +82,17 @@ public class Delta {
 						}
 					}
 					// check remaining attributes
-					while (oldTableKeys.hasNext()) {
+					while (oldAttributeKeys.hasNext()) {
 						oldAttrKey = (String) oldAttributeKeys.next();
-//						Table newTable = (Table) newTableValues.next();
+						Attribute oldAttr = oldAttributeValues.next();
 						System.out.println(oldAttrKey + " Deleted");
+						oldAttr.setMode('d');
 					}
-					while (newTableKeys.hasNext()) {
+					while (newAttributeKeys.hasNext()) {
 						newAttrKey = (String) newAttributeKeys.next();
-//						Table newTable = (Table) newTableValues.next();
+						Attribute newAttr = newAttributeValues.next();
 						System.out.println(newAttrKey + " Inserted");
+						newAttr.setMode('i');
 					}
 					// move both
 					if (oldTableKeys.hasNext() && newTableKeys.hasNext()) {
@@ -91,6 +107,7 @@ public class Delta {
 				}
 				else if (oldTableKey.compareTo(newTableKey) < 0) {
 					System.out.println(oldTableKey + " Deleted") ;
+					oldTable.setMode('d');
 					// move old only
 					if (oldTableKeys.hasNext()) {
 						oldTableKey = oldTableKeys.next() ;
@@ -102,6 +119,7 @@ public class Delta {
 				}
 				else {
 					System.out.println(newTableKey + " Inserted") ;
+					newTable.setMode('i');
 					// move new only
 					if (newTableKeys.hasNext()) {
 						newTableKey = newTableKeys.next() ;
@@ -116,13 +134,15 @@ public class Delta {
 		// check remaining table keys
 		while (oldTableKeys.hasNext()) {
 			oldTableKey = (String) oldTableKeys.next();
-//			Table newTable = (Table) newTableValues.next();
+			Table oldTable = (Table) oldTableValues.next();
 			System.out.println(oldTableKey + " Deleted");
+			oldTable.setMode('d');
 		}
 		while (newTableKeys.hasNext()) {
 			newTableKey = (String) newTableKeys.next();
-//			Table newTable = (Table) newTableValues.next();
+			Table newTable = (Table) newTableValues.next();
 			System.out.println(newTableKey + " Inserted");
+			newTable.setMode('i');
 		}
 	}
 }

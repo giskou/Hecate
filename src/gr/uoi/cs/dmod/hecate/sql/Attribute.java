@@ -5,12 +5,14 @@ public class Attribute {
 	String type;
 	boolean isNull;
 	String def;
+	char mode;
 	
 	public Attribute(String n, String t, boolean in, String d) {
 		this.name = n;
 		this.type = t;
 		this.isNull = in;
 		this.def = d;
+		this.mode = 'u';
 	}
 	
 	// --Getters--
@@ -30,7 +32,11 @@ public class Attribute {
 		return this.def;
 	}
 	
+	public void setMode(char m){
+		this.mode = m;
+	}
+	
 	public String toString() {
-		return name + " " + type;
+		return name + " " + type + " (" + mode + ")";
 	}
 }
