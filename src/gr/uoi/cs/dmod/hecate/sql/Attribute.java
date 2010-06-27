@@ -37,6 +37,10 @@ public class Attribute {
 	}
 	
 	public String toString() {
+		return name;
+	}
+	
+	public String print() {
 		return name + " " + type + " (" + mode + ")";
 	}
 }

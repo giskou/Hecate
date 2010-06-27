@@ -50,11 +50,15 @@ public class Table {
 	}
 	
 	public String toString() {
+		return name;
+	}
+	
+	public String print() {
 		String buff = new String();
 		buff = "Table: " + this.name + "\n";
 		for (Map.Entry<String, Attribute> entry : this.attrs.entrySet()) {
 			Attribute a = entry.getValue();
-			buff += "    " + a.toString() + "\n";
+			buff += "    " + a.print() + "\n";
 		}
 		return buff;
 	}
