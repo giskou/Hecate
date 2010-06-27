@@ -1,5 +1,8 @@
 package gr.uoi.cs.dmod.hecate.graph.tree;
 
+import gr.uoi.cs.dmod.hecate.sql.Schema;
+
+import java.awt.ComponentOrientation;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +13,10 @@ import javax.swing.tree.TreePath;
 @SuppressWarnings("serial")
 public class HecateTree extends JTree {
 	
-	public HecateTree() {
-		
+	public HecateTree(Schema schema) {
+		setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		setShowsRootHandles(true);
+		expandAll();
 	}
 	
 	public void expandAll() {

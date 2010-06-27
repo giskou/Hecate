@@ -11,24 +11,31 @@ import javax.swing.JMenuItem;
 @SuppressWarnings("serial")
 public class MenuBar extends JMenuBar{
 	
-	public MenuBar(){
+	private JMenu file;
+	private JMenuItem fileOpen;
+	private JMenuItem fileClose;
+	private JMenu view;
+	private JMenu help;
+	private JMenuItem helpAbout;
+	private OpenDialog openDialog;
 		
+	public MenuBar(){
 		// File
-		JMenu file = new JMenu("File");
+		file = new JMenu("File");
 		file.setMnemonic(KeyEvent.VK_F);
 		// File->Open...
-		JMenuItem fileOpen = new JMenuItem("Open...");
+		fileOpen = new JMenuItem("Open...");
 		fileOpen.setMnemonic(KeyEvent.VK_O);
 		fileOpen.setToolTipText("Create new diff graph");
 		fileOpen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				OpenDialog od = new OpenDialog();
-				od.setVisible(true);
+				openDialog = new OpenDialog();
+				openDialog.setVisible(true);
 			}
 		});
 		file.add(fileOpen);
 		// File->Close
-		JMenuItem fileClose = new JMenuItem("Close");
+		fileClose = new JMenuItem("Close");
 		fileClose.setMnemonic(KeyEvent.VK_C);
 		
 		fileClose.setToolTipText("Exit application");
@@ -41,15 +48,15 @@ public class MenuBar extends JMenuBar{
 		this.add(file);
 
 		// View
-		JMenu view = new JMenu("View");
+		view = new JMenu("View");
 		view.setMnemonic(KeyEvent.VK_V);
 		this.add(view);
 
 		// Help
-		JMenu help = new JMenu("Help");
+		help = new JMenu("Help");
 		help.setMnemonic(KeyEvent.VK_H);
 		// Help->About
-		JMenuItem helpAbout = new JMenuItem("About");
+		helpAbout = new JMenuItem("About");
 		helpAbout.setMnemonic(KeyEvent.VK_A);
 		helpAbout.setToolTipText("About Hecate");
 		helpAbout.addActionListener(new ActionListener() {

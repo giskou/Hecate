@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class Schema {
+	String title;
 	TreeMap<String, Table> tables;
 	
 	public Schema(TreeMap<String, Table> t) {
@@ -22,5 +23,13 @@ public class Schema {
 			buff += "  " + a.toString() + "\n";
 		}
 		return buff;
+	}
+	
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	public String getTitle() {
+		return this.title;
 	}
 }

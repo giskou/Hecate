@@ -1,13 +1,10 @@
 package gr.uoi.cs.dmod.hecate.gui.swing;
 
-import gr.uoi.cs.dmod.hecate.parser.Test;
-
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -18,8 +15,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
-import org.antlr.runtime.RecognitionException;
 
 @SuppressWarnings("serial")
 public class OpenDialog extends JDialog {
@@ -33,6 +28,7 @@ public class OpenDialog extends JDialog {
 	private JButton openOldFile;
 	private JButton openNewFile;
 	private JFileChooser fileopen;
+	private int status;
 	
 	public OpenDialog() {
 		initialize();
@@ -42,7 +38,7 @@ public class OpenDialog extends JDialog {
 		openOldFile = new JButton("...");
 		openOldFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				oldFileField.setText(openFile());
+				oldFileField.setText(getFilePath());
 			}
 		});
 		newFileLabel = new JLabel("New Schema : ");
@@ -50,27 +46,21 @@ public class OpenDialog extends JDialog {
 		openNewFile = new JButton("...");
 		openNewFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				newFileField.setText(openFile());
+				newFileField.setText(getFilePath());
 			}
 		});
 		cancel = new JButton("Cancel");
 		cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				dispose();
+				setVisible(false);
+				status = 0;
 			}
 		});
 		ok = new JButton("OK");
 		ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				try {
-					submit();
-				} catch (RecognitionException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				setVisible(false);
+				status = 1;
 			}
 		});
 
@@ -121,7 +111,7 @@ public class OpenDialog extends JDialog {
 	private void initialize() {
 		setTitle("Open") ;
 		setModalityType(ModalityType.APPLICATION_MODAL);
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(HIDE_ON_CLOSE);
 	}
 	
 	private void draw() {
@@ -133,15 +123,23 @@ public class OpenDialog extends JDialog {
 		            size.height/2 - getHeight()/2);
 	}
 	
-	private void submit() throws RecognitionException, IOException {
-		Test.main(null);
+	public String getOldFile() {
+		return oldFileField.getText();
 	}
 	
-	private String openFile() {
+	public String getNewFile() {
+		return newFileField.getText();
+	}
+	
+	private String getFilePath() {
         fileopen = new JFileChooser();
         fileopen.setFileFilter(new FileNameExtensionFilter("SQL files", "sql"));
         fileopen.showDialog(this, "Open");
         File f = fileopen.getSelectedFile();
 		return f.getPath();
+	}
+	
+	public int getStatus() {
+		return this.status;
 	}
 }
