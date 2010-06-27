@@ -1,10 +1,18 @@
 package gr.uoi.cs.dmod.hecate.graph.tree;
 
+import gr.uoi.cs.dmod.hecate.sql.Schema;
+
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
 public class HecateTreeModel implements TreeModel {
+	
+	private Schema root;
+	
+	public HecateTreeModel(Schema root) {
+		this.root = root;
+	}
 
 	@Override
 	public void addTreeModelListener(TreeModelListener arg0) {
@@ -33,7 +41,7 @@ public class HecateTreeModel implements TreeModel {
 	@Override
 	public Object getRoot() {
 		// TODO Auto-generated method stub
-		return null;
+		return root;
 	}
 
 	@Override
@@ -45,13 +53,11 @@ public class HecateTreeModel implements TreeModel {
 	@Override
 	public void removeTreeModelListener(TreeModelListener arg0) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void valueForPathChanged(TreePath arg0, Object arg1) {
 		// TODO Auto-generated method stub
-
 	}
 
 }
