@@ -24,7 +24,6 @@ public class Delta {
 			newTableKey = newTableKeys.next() ;
 			Table newTable = (Table) newTableValues.next() ;
 			while(true) {
-				System.out.println();
 				if (oldTableKey.compareTo(newTableKey) == 0) {
 					// Matched
 					oldTable.setMode('m');
