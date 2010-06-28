@@ -12,11 +12,10 @@ import javax.swing.tree.TreePath;
 
 @SuppressWarnings("serial")
 public class HecateTree extends JTree {
-	HecateTreeModel model;
 	
 	public HecateTree(Schema schema) {
-		super(new HecateTreeModel(schema));
-		
+		super();
+
 		setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		setShowsRootHandles(true);
 		expandAll();

@@ -1,24 +1,29 @@
 package gr.uoi.cs.dmod.hecate.graph.tree;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 import gr.uoi.cs.dmod.hecate.sql.Schema;
 import gr.uoi.cs.dmod.hecate.sql.Table;
+import gr.uoi.cs.dmod.hecate.sql.Attribute;
 
+import javax.swing.event.EventListenerList;
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
 public class HecateTreeModel implements TreeModel {
 	
-	private Schema root;
+	protected Schema root;
+	protected EventListenerList listenerList = new EventListenerList();
 	
 	public HecateTreeModel(Schema root) {
 		this.root = root;
 	}
 
 	@Override
-	public void addTreeModelListener(TreeModelListener arg0) {
-		// TODO Auto-generated method stub
-
+	public void addTreeModelListener(TreeModelListener l) {
+		listenerList.add(TreeModelListener.class, l);
 	}
 
 	@Override
@@ -51,9 +56,28 @@ public class HecateTreeModel implements TreeModel {
 
 	@Override
 	public int getIndexOfChild(Object parent, Object child) {
-		// TODO Auto-generated method stub
+		int count = 0;
+		String type = parent.getClass().getName();
+		if (type == "gr.uoi.cs.dmod.hecate.sql.Schema") {
+			TreeMap<String, Table> tables = ((Schema)parent).getTables();
+			for (Map.Entry<String, Table> t : tables.entrySet()) {
+				if (t.getKey().compareTo(child.toString()) == 0) { return count; }
+				else { count++; } 
+			}
+			return -1;
+		}
+		else if (type == "gr.uoi.cs.dmod.hecate.sql.Table") {
+			TreeMap<String, Attribute> attrs = ((Table)parent).getAttrs();
+			for (Map.Entry<String, Attribute> a : attrs.entrySet()) {
+				if (a.getKey().compareTo(child.toString()) == 0) { return count; }
+				else { count++; } 
+			}
+		}
+		else if (type == "gr.uoi.cs.dmod.hecate.sql.Attribute") {
+			return -1;
+		}
 
-		return 0;
+		return -1;
 	}
 
 	@Override
@@ -71,13 +95,12 @@ public class HecateTreeModel implements TreeModel {
 	}
 
 	@Override
-	public void removeTreeModelListener(TreeModelListener arg0) {
-		// TODO Auto-generated method stub
+	public void removeTreeModelListener(TreeModelListener l) {
+		listenerList.remove(TreeModelListener.class, l);
 	}
 
 	@Override
 	public void valueForPathChanged(TreePath arg0, Object arg1) {
 		// TODO Auto-generated method stub
 	}
-
 }
