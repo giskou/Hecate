@@ -36,4 +36,17 @@ public class Schema {
 	public String getTitle() {
 		return this.title;
 	}
+	
+	public Table getTableAt(int i) {
+		int c = 0;
+		if (i >= 0 && i < tables.size()){
+			for (Map.Entry<String, Table> t : tables.entrySet()) {
+				if (c == i) {
+					return t.getValue();
+				}
+				c++;
+			}
+		}
+		return null;
+	}
 }
