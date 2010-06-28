@@ -26,8 +26,9 @@ public class Delta {
 			while(true) {
 				System.out.println();
 				if (oldTableKey.compareTo(newTableKey) == 0) {
-					System.out.println(oldTableKey + " Matched") ;
+					// Matched
 					oldTable.setMode('m');
+					newTable.setMode('m');
 					// check attributes
 					Iterator<String> oldAttributeKeys = oldTable.getAttrs().keySet().iterator();
 					Iterator<Attribute> oldAttributeValues = oldTable.getAttrs().values().iterator() ;
@@ -41,7 +42,7 @@ public class Delta {
 						Attribute newAttr = newAttributeValues.next();
 						while (true) {
 							if (oldAttrKey.compareTo(newAttrKey) == 0) {
-								System.out.println(oldAttrKey + " Matched");
+								// Matched
 								oldAttr.setMode('m');
 								newAttr.setMode('m');
 								// move both
@@ -56,8 +57,9 @@ public class Delta {
 								}
 							}
 							else if (oldAttrKey.compareTo(newAttrKey) < 0) {
-								System.out.println(oldAttrKey + " Deleted");
+								// Deleted
 								oldAttr.setMode('d');
+								oldTable.setMode('u');
 								// move old only
 								if (oldAttributeKeys.hasNext()) {
 									oldAttrKey = oldAttributeKeys.next() ;
@@ -68,8 +70,9 @@ public class Delta {
 								}
 							}
 							else {
-								System.out.println(newAttrKey + " Inserted");
+								// Inserted
 								newAttr.setMode('i');
+								newTable.setMode('u');
 								// move new only
 								if (newAttributeKeys.hasNext()) {
 									newAttrKey = newAttributeKeys.next() ;
@@ -85,14 +88,16 @@ public class Delta {
 					while (oldAttributeKeys.hasNext()) {
 						oldAttrKey = (String) oldAttributeKeys.next();
 						Attribute oldAttr = oldAttributeValues.next();
-						System.out.println(oldAttrKey + " Deleted");
+						// Deleted
 						oldAttr.setMode('d');
+						oldTable.setMode('u');
 					}
 					while (newAttributeKeys.hasNext()) {
 						newAttrKey = (String) newAttributeKeys.next();
 						Attribute newAttr = newAttributeValues.next();
-						System.out.println(newAttrKey + " Inserted");
+						// Inserted
 						newAttr.setMode('i');
+						newTable.setMode('u');
 					}
 					// move both
 					if (oldTableKeys.hasNext() && newTableKeys.hasNext()) {
@@ -106,7 +111,7 @@ public class Delta {
 					}
 				}
 				else if (oldTableKey.compareTo(newTableKey) < 0) {
-					System.out.println(oldTableKey + " Deleted") ;
+					// Deleted
 					oldTable.setMode('d');
 					// move old only
 					if (oldTableKeys.hasNext()) {
@@ -118,7 +123,7 @@ public class Delta {
 					}
 				}
 				else {
-					System.out.println(newTableKey + " Inserted") ;
+					// Inserted
 					newTable.setMode('i');
 					// move new only
 					if (newTableKeys.hasNext()) {
