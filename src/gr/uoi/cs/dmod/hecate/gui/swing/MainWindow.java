@@ -158,7 +158,6 @@ public class MainWindow extends JFrame{
 		draw();
 		
 		Delta d = new Delta();
-		System.out.println("---------------");
 		d.minus(oldSchema, newSchema);
 	}
 	
