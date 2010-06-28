@@ -2,6 +2,7 @@ package gr.uoi.cs.dmod.hecate.gui.swing;
 
 import gr.uoi.cs.dmod.hecate.graph.tree.HecateRowModel;
 import gr.uoi.cs.dmod.hecate.graph.tree.HecateTreeModel;
+import gr.uoi.cs.dmod.hecate.graph.tree.HecateTreeRenderer;
 import gr.uoi.cs.dmod.hecate.sql.Schema;
 
 import java.awt.GridLayout;
@@ -44,6 +45,7 @@ public class MainPanel extends JPanel {
 			                                                      true, "Name");
 			leftOutline = new Outline();
 			leftOutline.setModel(leftOutlineModel);
+			leftOutline.setRenderDataProvider(new HecateTreeRenderer());
 			leftScrollPane.add(leftOutline);
 			leftScrollPane.setViewportView(leftOutline);
 		}
@@ -53,6 +55,7 @@ public class MainPanel extends JPanel {
 			                                                      true, "Name");
 			rightOutline = new Outline();
 			rightOutline.setModel(rightOutlineModel);
+			rightOutline.setRenderDataProvider(new HecateTreeRenderer());
 			rightScrollPane.add(rightOutline);
 			rightScrollPane.setViewportView(rightOutline);
 		}
