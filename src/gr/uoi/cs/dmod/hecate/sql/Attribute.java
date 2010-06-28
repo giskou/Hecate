@@ -32,6 +32,10 @@ public class Attribute {
 		return this.def;
 	}
 	
+	public char getMode() {
+		return this.mode;
+	}
+	
 	public void setMode(char m){
 		this.mode = m;
 	}

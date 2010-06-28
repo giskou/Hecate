@@ -45,6 +45,10 @@ public class Table {
 		return this.fKey;
 	}
 	
+	public char getMode(){
+		return this.mode;
+	}
+	
 	public void setMode(char m){
 		this.mode = m;
 	}
