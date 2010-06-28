@@ -54,7 +54,6 @@ table
 	: TABLE ( IF NOT EXISTS )? name '(' definition ')' parameter?
 	{
 		tm.put($name.text, new Table($name.text, am, k)) ;
-		System.out.println("New Table "+ $name.text +" created\n");
 	}
 	;
 	
@@ -66,7 +65,6 @@ column
 	:	name type option*
 	{
 		am.put($name.text, new Attribute($name.text, $type.text, false, null)) ;
-		System.out.println("New Attribute "+ $name.text +" created");
 	}
 	;
 	
