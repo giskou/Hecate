@@ -1,6 +1,7 @@
 package gr.uoi.cs.dmod.hecate.graph.tree;
 
 import gr.uoi.cs.dmod.hecate.sql.Attribute;
+import gr.uoi.cs.dmod.hecate.sql.SqlItem;
 
 import org.netbeans.swing.outline.RowModel;
 
@@ -28,14 +29,14 @@ public class HecateRowModel implements RowModel{
 
 	@Override
 	public Object getValueFor(Object node, int column) {
-		String type = node.getClass().getName();
-		if (type == "gr.uoi.cs.dmod.hecate.sql.Schema") {
+		String type = ((SqlItem)node).whatAmI();
+		if (type == "Schema") {
 			return null;
 		}
-		else if (type == "gr.uoi.cs.dmod.hecate.sql.Table") {
+		else if (type == "Table") {
 			return null;
 		}
-		else if (type == "gr.uoi.cs.dmod.hecate.sql.Attribute") {
+		else if (type == "Attribute") {
 			switch (column) {
 				case 0: return ((Attribute)node).getType();
 				default: assert false;

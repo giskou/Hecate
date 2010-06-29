@@ -1,6 +1,6 @@
 package gr.uoi.cs.dmod.hecate.sql;
 
-public class Attribute {
+public class Attribute implements SqlItem{
 	String name;
 	String type;
 	boolean isNull;
@@ -31,20 +31,28 @@ public class Attribute {
 	public String getDefault() {
 		return this.def;
 	}
-	
+	@Override
 	public char getMode() {
 		return this.mode;
 	}
 	
+	@Override
 	public void setMode(char m){
 		this.mode = m;
 	}
 	
+	@Override
 	public String toString() {
 		return name;
 	}
 	
+	@Override
 	public String print() {
 		return name + " " + type + " (" + mode + ")";
+	}
+
+	@Override
+	public String whatAmI() {
+		return "Attribute";
 	}
 }

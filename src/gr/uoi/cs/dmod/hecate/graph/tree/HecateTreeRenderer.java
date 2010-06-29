@@ -1,7 +1,6 @@
 package gr.uoi.cs.dmod.hecate.graph.tree;
 
-import gr.uoi.cs.dmod.hecate.sql.Attribute;
-import gr.uoi.cs.dmod.hecate.sql.Table;
+import gr.uoi.cs.dmod.hecate.sql.SqlItem;
 
 import java.awt.Color;
 
@@ -13,33 +12,12 @@ public class HecateTreeRenderer implements RenderDataProvider {
 
 	@Override
 	public Color getBackground(Object o) {
-		String type = o.getClass().getName();
-		if (type == "gr.uoi.cs.dmod.hecate.sql.Schema") {
-			return null;
+		switch (((SqlItem)o).getMode()) {
+			case 'u': return Color.YELLOW;
+			case 'd': return Color.RED;
+			case 'i': return Color.GREEN;
+			default: return null;
 		}
-		else if (type == "gr.uoi.cs.dmod.hecate.sql.Table") {
-			if (((Table)o).getMode() == 'u') {
-				return Color.YELLOW;
-			}
-			else if (((Table)o).getMode() == 'd') {
-				return Color.RED;
-			}
-			else if (((Table)o).getMode() == 'i') {
-				return Color.GREEN;
-			}
-		}
-		else if (type == "gr.uoi.cs.dmod.hecate.sql.Attribute") {
-			if (((Attribute)o).getMode() == 'u') {
-				return Color.YELLOW;
-			}
-			else if (((Attribute)o).getMode() == 'd') {
-				return Color.RED;
-			}
-			else if (((Attribute)o).getMode() == 'i') {
-				return Color.GREEN;
-			}
-		}
-		return null;
 	}
 
 	@Override

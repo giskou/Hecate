@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import gr.uoi.cs.dmod.hecate.sql.Schema;
+import gr.uoi.cs.dmod.hecate.sql.SqlItem;
 import gr.uoi.cs.dmod.hecate.sql.Table;
 import gr.uoi.cs.dmod.hecate.sql.Attribute;
 
@@ -28,11 +29,11 @@ public class HecateTreeModel implements TreeModel {
 
 	@Override
 	public Object getChild(Object parent, int index) {
-		String type = parent.getClass().getName();
-		if (type == "gr.uoi.cs.dmod.hecate.sql.Schema") {
+		String type = ((SqlItem)parent).whatAmI();
+		if (type == "Schema") {
 			return ((Schema)parent).getTableAt(index);
 		}
-		else if (type == "gr.uoi.cs.dmod.hecate.sql.Table") {
+		else if (type == "Table") {
 			return ((Table)parent).getAttrAt(index);
 		}
 		return null;
@@ -40,15 +41,15 @@ public class HecateTreeModel implements TreeModel {
 
 	@Override
 	public int getChildCount(Object node) {
-		String type = node.getClass().getName();
+		String type = ((SqlItem)node).whatAmI();
 		int count = 0;
-		if (type == "gr.uoi.cs.dmod.hecate.sql.Schema") {
+		if (type == "Schema") {
 			count = ((Schema)node).getTables().size();
 		}
-		else if (type == "gr.uoi.cs.dmod.hecate.sql.Table") {
+		else if (type == "Table") {
 			count = ((Table)node).getAttrs().size();
 		}
-		else if (type == "gr.uoi.cs.dmod.hecate.sql.Attribute") {
+		else if (type == "Attribute") {
 			count = 0;
 		}
 		return count;
@@ -57,8 +58,8 @@ public class HecateTreeModel implements TreeModel {
 	@Override
 	public int getIndexOfChild(Object parent, Object child) {
 		int count = 0;
-		String type = parent.getClass().getName();
-		if (type == "gr.uoi.cs.dmod.hecate.sql.Schema") {
+		String type = ((SqlItem)parent).whatAmI();
+		if (type == "Schema") {
 			TreeMap<String, Table> tables = ((Schema)parent).getTables();
 			for (Map.Entry<String, Table> t : tables.entrySet()) {
 				if (t.getKey().compareTo(child.toString()) == 0) { return count; }
@@ -66,14 +67,14 @@ public class HecateTreeModel implements TreeModel {
 			}
 			return -1;
 		}
-		else if (type == "gr.uoi.cs.dmod.hecate.sql.Table") {
+		else if (type == "Table") {
 			TreeMap<String, Attribute> attrs = ((Table)parent).getAttrs();
 			for (Map.Entry<String, Attribute> a : attrs.entrySet()) {
 				if (a.getKey().compareTo(child.toString()) == 0) { return count; }
 				else { count++; } 
 			}
 		}
-		else if (type == "gr.uoi.cs.dmod.hecate.sql.Attribute") {
+		else if (type == "Attribute") {
 			return -1;
 		}
 
@@ -87,8 +88,8 @@ public class HecateTreeModel implements TreeModel {
 
 	@Override
 	public boolean isLeaf(Object node) {
-		String type = node.getClass().getName();
-		if (type == "gr.uoi.cs.dmod.hecate.sql.Attribute") {
+		String type = ((SqlItem)node).whatAmI();
+		if (type == "Attribute") {
 			return true;
 		}
 		return false;

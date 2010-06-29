@@ -3,7 +3,7 @@ package gr.uoi.cs.dmod.hecate.sql;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class Table {
+public class Table implements SqlItem{
 	String name;
 	TreeMap<String, Attribute> attrs;
 	Key pKey;
@@ -45,18 +45,22 @@ public class Table {
 		return this.fKey;
 	}
 	
+	@Override
 	public char getMode(){
 		return this.mode;
 	}
 	
+	@Override
 	public void setMode(char m){
 		this.mode = m;
 	}
 	
+	@Override
 	public String toString() {
 		return name;
 	}
 	
+	@Override
 	public String print() {
 		String buff = new String();
 		buff = "Table: " + this.name + "\n";
@@ -78,5 +82,10 @@ public class Table {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public String whatAmI() {
+		return "Table";
 	}
 }
