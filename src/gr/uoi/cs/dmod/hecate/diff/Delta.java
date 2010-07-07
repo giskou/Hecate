@@ -7,9 +7,11 @@ public class Delta {
 
 	private String oldTableKey, newTableKey ;
 	private String oldAttrKey, newAttrKey ;
+	private int insertions, deletions;
 	
 	public Delta(){
 		oldTableKey = newTableKey = oldAttrKey = newAttrKey = null ;
+		insertions = deletions = 0;
 	}
 	
 	public void minus(Schema A, Schema B) {
@@ -57,6 +59,7 @@ public class Delta {
 							}
 							else if (oldAttrKey.compareTo(newAttrKey) < 0) {
 								// Deleted
+								deletions++;
 								oldAttr.setMode('d');
 								oldTable.setMode('u');
 								// move old only
@@ -70,6 +73,7 @@ public class Delta {
 							}
 							else {
 								// Inserted
+								insertions++;
 								newAttr.setMode('i');
 								newTable.setMode('u');
 								// move new only
@@ -88,6 +92,7 @@ public class Delta {
 						oldAttrKey = (String) oldAttributeKeys.next();
 						Attribute oldAttr = oldAttributeValues.next();
 						// Deleted
+						deletions++;
 						oldAttr.setMode('d');
 						oldTable.setMode('u');
 					}
@@ -95,6 +100,7 @@ public class Delta {
 						newAttrKey = (String) newAttributeKeys.next();
 						Attribute newAttr = newAttributeValues.next();
 						// Inserted
+						insertions++;
 						newAttr.setMode('i');
 						newTable.setMode('u');
 					}
@@ -111,6 +117,7 @@ public class Delta {
 				}
 				else if (oldTableKey.compareTo(newTableKey) < 0) {
 					// Deleted
+					deletions++;
 					oldTable.setMode('d');
 					// move old only
 					if (oldTableKeys.hasNext()) {
@@ -123,6 +130,7 @@ public class Delta {
 				}
 				else {
 					// Inserted
+					insertions++;
 					newTable.setMode('i');
 					// move new only
 					if (newTableKeys.hasNext()) {
@@ -148,5 +156,13 @@ public class Delta {
 			System.out.println(newTableKey + " Inserted");
 			newTable.setMode('i');
 		}
+	}
+	
+	public int getInsertions(){
+		return this.insertions;
+	}
+	
+	public int getDeletions(){
+		return this.deletions;
 	}
 }
