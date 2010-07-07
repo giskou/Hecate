@@ -6,12 +6,14 @@ import gr.uoi.cs.dmod.hecate.parser.DDLParser;
 import gr.uoi.cs.dmod.hecate.sql.Schema;
 
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -39,7 +41,9 @@ public class MainWindow extends JFrame{
 	private JMenu view;
 	private JMenu help;
 	private JMenuItem helpAbout;
+	
 	private OpenDialog openDialog;
+	private Image hecateIcon;
 	
 	public MainWindow(){
 		initialize();
@@ -60,6 +64,9 @@ public class MainWindow extends JFrame{
 			e.printStackTrace();
 		}
 		setTitle("Hecate");
+		hecateIcon = new ImageIcon("art/icon.png").getImage();
+		this.setIconImage(hecateIcon);
+
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	

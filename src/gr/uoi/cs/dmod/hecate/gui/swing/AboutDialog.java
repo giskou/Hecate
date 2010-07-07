@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -19,6 +20,7 @@ class AboutDialog extends JDialog {
 	private JLabel author;
 	private JLabel mail;
 	private JButton close;
+	private ImageIcon hecateIcon;
 
 	public AboutDialog() {
 		initialize();
@@ -32,13 +34,20 @@ class AboutDialog extends JDialog {
 		name.setAlignmentX(CENTER_ALIGNMENT);
 		add(name);
 		
-		add(Box.createRigidArea(new Dimension(0, 5)));
+		add(Box.createRigidArea(new Dimension(0, 15)));
 		
-		author = new JLabel("      (c) Skoulis Ioannis      ");
+        hecateIcon = new ImageIcon("art/icon.png");
+        JLabel iconLabel = new JLabel(hecateIcon);
+        iconLabel.setAlignmentX(0.5f);
+        add(iconLabel);
+		
+		add(Box.createRigidArea(new Dimension(0, 15)));
+		
+		author = new JLabel("        (c) Skoulis Ioannis        ");
 		author.setFont(new Font("Serif", Font.PLAIN, 13));
 		author.setAlignmentX(CENTER_ALIGNMENT);
 		add(author);
-		mail = new JLabel("      css03084@cs.uoi.gr      ");
+		mail = new JLabel("        css03084@cs.uoi.gr        ");
 		mail.setFont(new Font("Serif", Font.PLAIN, 12));
 		mail.setAlignmentX(CENTER_ALIGNMENT);
 		add(mail);
