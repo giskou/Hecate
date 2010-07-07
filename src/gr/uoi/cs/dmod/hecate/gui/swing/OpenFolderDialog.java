@@ -14,39 +14,27 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 @SuppressWarnings("serial")
-public class OpenDialog extends JDialog {
+public class OpenFolderDialog extends JDialog{
 	
-	private JLabel oldFileLable;
-	private JLabel newFileLabel;
-	private JTextField oldFileField;
-	private JTextField newFileField;
+	private JLabel folderLabel;
+	private JTextField folderField;
 	private JButton ok;
 	private JButton cancel;
-	private JButton openOldFile;
-	private JButton openNewFile;
+	private JButton openFolder;
 	private JFileChooser fileopen;
 	private int status;
 	
-	public OpenDialog() {
+	OpenFolderDialog(){
 		initialize();
 		
-		oldFileLable = new JLabel("Old Schema : ");
-		oldFileField = new JTextField();
-		openOldFile = new JButton("...");
-		openOldFile.addActionListener(new ActionListener() {
+		folderLabel = new JLabel("Folder : ");
+		folderField = new JTextField();
+		openFolder = new JButton("...");
+		openFolder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				oldFileField.setText(getFilePath());
-			}
-		});
-		newFileLabel = new JLabel("New Schema : ");
-		newFileField = new JTextField();
-		openNewFile = new JButton("...");
-		openNewFile.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent event) {
-				newFileField.setText(getFilePath());
+				folderField.setText(getFolderPath());
 			}
 		});
 		cancel = new JButton("Cancel");
@@ -63,20 +51,16 @@ public class OpenDialog extends JDialog {
 				status = 1;
 			}
 		});
-
+		
 		GroupLayout thisLayout = new GroupLayout((JComponent)getContentPane());
 		getContentPane().setLayout(thisLayout);
 		thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
 			.addContainerGap()
 			.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-			    .addComponent(openOldFile, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-			    .addComponent(oldFileLable, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-			    .addComponent(oldFileField, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+			    .addComponent(openFolder, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+			    .addComponent(folderLabel, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+			    .addComponent(folderField, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
 			.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-			.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-			    .addComponent(newFileField, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-			    .addComponent(openNewFile, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-			    .addComponent(newFileLabel, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
 			.addGap(0, 67, Short.MAX_VALUE)
 			.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 			    .addComponent(cancel, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -85,26 +69,23 @@ public class OpenDialog extends JDialog {
 		thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
 			.addContainerGap()
 			.addGroup(thisLayout.createParallelGroup()
-			    .addComponent(newFileLabel, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
 			    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-			        .addComponent(oldFileLable, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+			        .addComponent(folderLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 			        .addGap(12)))
 			.addGroup(thisLayout.createParallelGroup()
 			    .addGroup(thisLayout.createSequentialGroup()
 			        .addGroup(thisLayout.createParallelGroup()
-			            .addComponent(newFileField, GroupLayout.Alignment.LEADING, 0, 315, Short.MAX_VALUE)
-			            .addComponent(oldFileField, GroupLayout.Alignment.LEADING, 0, 315, Short.MAX_VALUE))
+			            .addComponent(folderField, GroupLayout.Alignment.LEADING, 0, 315, Short.MAX_VALUE))
 			        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 			        .addGroup(thisLayout.createParallelGroup()
-			            .addComponent(openNewFile, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-			            .addComponent(openOldFile, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)))
+			            .addComponent(openFolder, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)))
 			    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
 			        .addGap(0, 199, Short.MAX_VALUE)
 			        .addComponent(ok, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
 			        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED, 1, GroupLayout.PREFERRED_SIZE)
 			        .addComponent(cancel, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)))
 			.addContainerGap());
-
+		
 		draw();
 	}
 	
@@ -123,17 +104,9 @@ public class OpenDialog extends JDialog {
 		            size.height/2 - getHeight()/2);
 	}
 	
-	public String getOldFile() {
-		return oldFileField.getText();
-	}
-	
-	public String getNewFile() {
-		return newFileField.getText();
-	}
-	
-	private String getFilePath() {
+	private String getFolderPath() {
 		fileopen = new JFileChooser();
-		fileopen.setFileFilter(new FileNameExtensionFilter("SQL files", "sql"));
+		fileopen.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		fileopen.showDialog(this, "Open");
 		File f = fileopen.getSelectedFile();
 		return f.getPath();
@@ -142,4 +115,8 @@ public class OpenDialog extends JDialog {
 	public int getStatus() {
 		return this.status;
 	}
+	public String getFolder() {
+		return folderField.getText();
+	}
+	
 }
