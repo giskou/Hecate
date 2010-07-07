@@ -41,8 +41,8 @@ public class MainPanel extends JPanel {
 	protected void drawSchema(Schema s, String side) {
 		if (side == "old") {
 			leftTreeModel = new HecateTreeModel(s);
-			leftOutlineModel = DefaultOutlineModel.createOutlineModel(leftTreeModel,new HecateRowModel(),
-			                                                      true, "Name");
+			leftOutlineModel = DefaultOutlineModel.createOutlineModel(leftTreeModel,
+			                     new HecateRowModel(), true, "Name");
 			leftOutline = new Outline();
 			leftOutline.setModel(leftOutlineModel);
 			leftOutline.setRenderDataProvider(new HecateTreeRenderer());
@@ -51,8 +51,8 @@ public class MainPanel extends JPanel {
 		}
 		else if (side == "new") {
 			rightTreeModel = new HecateTreeModel(s);
-			rightOutlineModel = DefaultOutlineModel.createOutlineModel(rightTreeModel,new HecateRowModel(),
-			                                                      true, "Name");
+			rightOutlineModel = DefaultOutlineModel.createOutlineModel(rightTreeModel,
+			                      new HecateRowModel(), true, "Name");
 			rightOutline = new Outline();
 			rightOutline.setModel(rightOutlineModel);
 			rightOutline.setRenderDataProvider(new HecateTreeRenderer());

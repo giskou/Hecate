@@ -5,16 +5,15 @@ import java.util.Iterator;
 
 public class Delta {
 
-	private String oldTableKey, newTableKey ;
-	private String oldAttrKey, newAttrKey ;
 	private int insertions, deletions;
 	
 	public Delta(){
-		oldTableKey = newTableKey = oldAttrKey = newAttrKey = null ;
 		insertions = deletions = 0;
 	}
 	
 	public void minus(Schema A, Schema B) {
+		String oldTableKey = null, newTableKey = null ;
+		String oldAttrKey = null, newAttrKey = null ;
 		Iterator<String> oldTableKeys = A.getTables().keySet().iterator() ;
 		Iterator<Table> oldTableValues = A.getTables().values().iterator() ;
 		Iterator<String> newTableKeys = B.getTables().keySet().iterator() ;
@@ -27,7 +26,7 @@ public class Delta {
 			Table newTable = (Table) newTableValues.next() ;
 			while(true) {
 				if (oldTableKey.compareTo(newTableKey) == 0) {
-					// Matched
+					// Matched tables
 					oldTable.setMode('m');
 					newTable.setMode('m');
 					// check attributes
@@ -43,10 +42,10 @@ public class Delta {
 						Attribute newAttr = newAttributeValues.next();
 						while (true) {
 							if (oldAttrKey.compareTo(newAttrKey) == 0) {
-								// Matched
+								// Matched attributes
 								oldAttr.setMode('m');
 								newAttr.setMode('m');
-								// move both
+								// move both attributes
 								if (oldAttributeKeys.hasNext() && newAttributeKeys.hasNext()) {
 									oldAttrKey = oldAttributeKeys.next() ;
 									oldAttr = oldAttributeValues.next();
@@ -58,11 +57,11 @@ public class Delta {
 								}
 							}
 							else if (oldAttrKey.compareTo(newAttrKey) < 0) {
-								// Deleted
+								// Deleted attributes
 								deletions++;
 								oldAttr.setMode('d');
 								oldTable.setMode('u');
-								// move old only
+								// move old only attributes
 								if (oldAttributeKeys.hasNext()) {
 									oldAttrKey = oldAttributeKeys.next() ;
 									oldAttr = oldAttributeValues.next();
@@ -72,7 +71,7 @@ public class Delta {
 								}
 							}
 							else {
-								// Inserted
+								// Inserted attributes
 								insertions++;
 								newAttr.setMode('i');
 								newTable.setMode('u');
@@ -158,11 +157,8 @@ public class Delta {
 		}
 	}
 	
-	public int getInsertions(){
-		return this.insertions;
-	}
-	
-	public int getDeletions(){
-		return this.deletions;
+	public int[] getMetrics(){
+		int i[] = {this.insertions, this.deletions};
+		return i;
 	}
 }

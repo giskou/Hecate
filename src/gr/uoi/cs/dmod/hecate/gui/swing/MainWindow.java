@@ -39,11 +39,15 @@ public class MainWindow extends JFrame{
 	private JMenuItem fileOpen;
 	private JMenuItem fileClose;
 	private JMenu view;
+	private JMenuItem viewMetrics;
 	private JMenu help;
 	private JMenuItem helpAbout;
 	
 	private OpenDialog openDialog;
+	private MetricsDialog metricsDialog;
 	private Image hecateIcon;
+	
+	private Delta delta;
 	
 	public MainWindow(){
 		initialize();
@@ -115,6 +119,17 @@ public class MainWindow extends JFrame{
 		// View
 		view = new JMenu("View");
 		view.setMnemonic(KeyEvent.VK_V);
+		// View->Metrics...
+		viewMetrics = new JMenuItem("Metrics...");
+		viewMetrics.setMnemonic(KeyEvent.VK_M);
+		viewMetrics.setToolTipText("View diff Metrics");
+		viewMetrics.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				metricsDialog = new MetricsDialog(delta);
+				metricsDialog.setVisible(true);
+			}
+		});
+		view.add(viewMetrics);
 		menuBar.add(view);
 
 		// Help
@@ -164,8 +179,8 @@ public class MainWindow extends JFrame{
 		mainPanel.drawSchema(newSchema, "new");
 		draw();
 		
-		Delta d = new Delta();
-		d.minus(oldSchema, newSchema);
+		delta = new Delta();
+		delta.minus(oldSchema, newSchema);
 	}
 	
 	private String getNameFromPath(String path) {
