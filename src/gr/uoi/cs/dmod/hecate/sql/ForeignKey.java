@@ -6,8 +6,8 @@ import java.util.TreeMap;
 public class ForeignKey extends Key {
 	String ref;
 
-	public ForeignKey(TreeMap<String, Attribute> k, String t) {
-		super(k);
+	public ForeignKey(String name, TreeMap<String, Attribute> k, String t) {
+		super(name, k);
 		this.ref = t;
 	}
 	
