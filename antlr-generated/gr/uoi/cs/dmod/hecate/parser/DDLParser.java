@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g 2010-06-28 12:38:27
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g 2010-06-30 20:23:43
 
   package gr.uoi.cs.dmod.hecate.parser ;
   import gr.uoi.cs.dmod.hecate.sql.* ;
@@ -87,19 +87,27 @@ public class DDLParser extends Parser {
     	TreeMap<String, Attribute> km = new TreeMap<String, Attribute>();
     	TreeMap<String, Attribute> am = new TreeMap<String, Attribute>();
     	Key k = null;
+    	
+    	String[] getArrayFromList(String list) {
+    		String[] array = list.split(",");
+    		for (int i = 0; i < array.length; i++) {
+    			array[i] = array[i].trim();
+    		}
+    		return array;
+    	}
 
 
 
     // $ANTLR start "start"
-    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:25:1: start returns [Schema s] : ( drop | create | namespace )+ ;
+    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:33:1: start returns [Schema s] : ( drop | create | namespace )+ ;
     public final Schema start() throws RecognitionException {
         Schema s = null;
 
         try {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:26:2: ( ( drop | create | namespace )+ )
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:26:4: ( drop | create | namespace )+
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:34:2: ( ( drop | create | namespace )+ )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:34:4: ( drop | create | namespace )+
             {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:26:4: ( drop | create | namespace )+
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:34:4: ( drop | create | namespace )+
             int cnt1=0;
             loop1:
             do {
@@ -125,7 +133,7 @@ public class DDLParser extends Parser {
 
                 switch (alt1) {
             	case 1 :
-            	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:26:6: drop
+            	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:34:6: drop
             	    {
             	    pushFollow(FOLLOW_drop_in_start51);
             	    drop();
@@ -136,7 +144,7 @@ public class DDLParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:26:13: create
+            	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:34:13: create
             	    {
             	    pushFollow(FOLLOW_create_in_start55);
             	    create();
@@ -147,7 +155,7 @@ public class DDLParser extends Parser {
             	    }
             	    break;
             	case 3 :
-            	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:26:22: namespace
+            	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:34:22: namespace
             	    {
             	    pushFollow(FOLLOW_namespace_in_start59);
             	    namespace();
@@ -186,11 +194,11 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "namespace"
-    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:32:1: namespace : USE name ';' ;
+    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:40:1: namespace : USE name ';' ;
     public final void namespace() throws RecognitionException {
         try {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:33:2: ( USE name ';' )
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:33:4: USE name ';'
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:41:2: ( USE name ';' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:41:4: USE name ';'
             {
             match(input,USE,FOLLOW_USE_in_namespace77); 
             pushFollow(FOLLOW_name_in_namespace79);
@@ -215,15 +223,15 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "drop"
-    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:36:1: drop : DROP TABLE ( IF EXISTS )? nameList ';' ;
+    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:44:1: drop : DROP TABLE ( IF EXISTS )? nameList ';' ;
     public final void drop() throws RecognitionException {
         try {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:37:2: ( DROP TABLE ( IF EXISTS )? nameList ';' )
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:37:4: DROP TABLE ( IF EXISTS )? nameList ';'
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:45:2: ( DROP TABLE ( IF EXISTS )? nameList ';' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:45:4: DROP TABLE ( IF EXISTS )? nameList ';'
             {
             match(input,DROP,FOLLOW_DROP_in_drop92); 
             match(input,TABLE,FOLLOW_TABLE_in_drop94); 
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:37:15: ( IF EXISTS )?
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:45:15: ( IF EXISTS )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -232,7 +240,7 @@ public class DDLParser extends Parser {
             }
             switch (alt2) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:37:17: IF EXISTS
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:45:17: IF EXISTS
                     {
                     match(input,IF,FOLLOW_IF_in_drop98); 
                     match(input,EXISTS,FOLLOW_EXISTS_in_drop100); 
@@ -264,10 +272,10 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "create"
-    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:40:1: create : ( CREATE schema ';' | CREATE table ';' | CREATE index ';' );
+    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:48:1: create : ( CREATE schema ';' | CREATE table ';' | CREATE index ';' );
     public final void create() throws RecognitionException {
         try {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:41:2: ( CREATE schema ';' | CREATE table ';' | CREATE index ';' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:49:2: ( CREATE schema ';' | CREATE table ';' | CREATE index ';' )
             int alt3=3;
             int LA3_0 = input.LA(1);
 
@@ -307,7 +315,7 @@ public class DDLParser extends Parser {
             }
             switch (alt3) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:41:4: CREATE schema ';'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:49:4: CREATE schema ';'
                     {
                     match(input,CREATE,FOLLOW_CREATE_in_create119); 
                     pushFollow(FOLLOW_schema_in_create121);
@@ -320,7 +328,7 @@ public class DDLParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:42:4: CREATE table ';'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:50:4: CREATE table ';'
                     {
                     match(input,CREATE,FOLLOW_CREATE_in_create128); 
                     pushFollow(FOLLOW_table_in_create130);
@@ -333,7 +341,7 @@ public class DDLParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:43:4: CREATE index ';'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:51:4: CREATE index ';'
                     {
                     match(input,CREATE,FOLLOW_CREATE_in_create137); 
                     pushFollow(FOLLOW_index_in_create139);
@@ -360,14 +368,14 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "schema"
-    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:46:1: schema : SCHEMA ( IF NOT EXISTS )? name ( parameter )? ;
+    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:54:1: schema : SCHEMA ( IF NOT EXISTS )? name ( parameter )? ;
     public final void schema() throws RecognitionException {
         try {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:47:2: ( SCHEMA ( IF NOT EXISTS )? name ( parameter )? )
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:47:4: SCHEMA ( IF NOT EXISTS )? name ( parameter )?
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:55:2: ( SCHEMA ( IF NOT EXISTS )? name ( parameter )? )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:55:4: SCHEMA ( IF NOT EXISTS )? name ( parameter )?
             {
             match(input,SCHEMA,FOLLOW_SCHEMA_in_schema153); 
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:47:11: ( IF NOT EXISTS )?
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:55:11: ( IF NOT EXISTS )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -376,7 +384,7 @@ public class DDLParser extends Parser {
             }
             switch (alt4) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:47:13: IF NOT EXISTS
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:55:13: IF NOT EXISTS
                     {
                     match(input,IF,FOLLOW_IF_in_schema157); 
                     match(input,NOT,FOLLOW_NOT_in_schema159); 
@@ -392,7 +400,7 @@ public class DDLParser extends Parser {
 
             state._fsp--;
 
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:47:35: ( parameter )?
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:55:35: ( parameter )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -401,7 +409,7 @@ public class DDLParser extends Parser {
             }
             switch (alt5) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:47:35: parameter
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:55:35: parameter
                     {
                     pushFollow(FOLLOW_parameter_in_schema168);
                     parameter();
@@ -430,7 +438,7 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "table"
-    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:50:1: table : TABLE ( IF NOT EXISTS )? name '(' definition ')' ( parameter )? ;
+    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:58:1: table : TABLE ( IF NOT EXISTS )? name '(' definition ')' ( parameter )? ;
     public final void table() throws RecognitionException {
         DDLParser.name_return name1 = null;
 
@@ -439,11 +447,11 @@ public class DDLParser extends Parser {
         		am.clear();
         	
         try {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:54:2: ( TABLE ( IF NOT EXISTS )? name '(' definition ')' ( parameter )? )
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:54:4: TABLE ( IF NOT EXISTS )? name '(' definition ')' ( parameter )?
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:62:2: ( TABLE ( IF NOT EXISTS )? name '(' definition ')' ( parameter )? )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:62:4: TABLE ( IF NOT EXISTS )? name '(' definition ')' ( parameter )?
             {
             match(input,TABLE,FOLLOW_TABLE_in_table186); 
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:54:10: ( IF NOT EXISTS )?
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:62:10: ( IF NOT EXISTS )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -452,7 +460,7 @@ public class DDLParser extends Parser {
             }
             switch (alt6) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:54:12: IF NOT EXISTS
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:62:12: IF NOT EXISTS
                     {
                     match(input,IF,FOLLOW_IF_in_table190); 
                     match(input,NOT,FOLLOW_NOT_in_table192); 
@@ -475,7 +483,7 @@ public class DDLParser extends Parser {
             state._fsp--;
 
             match(input,48,FOLLOW_48_in_table205); 
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:54:53: ( parameter )?
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:62:53: ( parameter )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -484,7 +492,7 @@ public class DDLParser extends Parser {
             }
             switch (alt7) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:54:53: parameter
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:62:53: parameter
                     {
                     pushFollow(FOLLOW_parameter_in_table207);
                     parameter();
@@ -516,13 +524,13 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "definition"
-    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:60:1: definition : ( column | constraint | index ) ( ',' ( column | constraint | index ) )* ;
+    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:68:1: definition : ( column | constraint | index ) ( ',' ( column | constraint | index ) )* ;
     public final void definition() throws RecognitionException {
         try {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:61:2: ( ( column | constraint | index ) ( ',' ( column | constraint | index ) )* )
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:61:4: ( column | constraint | index ) ( ',' ( column | constraint | index ) )*
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:69:2: ( ( column | constraint | index ) ( ',' ( column | constraint | index ) )* )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:69:4: ( column | constraint | index ) ( ',' ( column | constraint | index ) )*
             {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:61:4: ( column | constraint | index )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:69:4: ( column | constraint | index )
             int alt8=3;
             switch ( input.LA(1) ) {
             case ID:
@@ -571,7 +579,7 @@ public class DDLParser extends Parser {
 
             switch (alt8) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:61:6: column
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:69:6: column
                     {
                     pushFollow(FOLLOW_column_in_definition225);
                     column();
@@ -582,7 +590,7 @@ public class DDLParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:61:15: constraint
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:69:15: constraint
                     {
                     pushFollow(FOLLOW_constraint_in_definition229);
                     constraint();
@@ -593,7 +601,7 @@ public class DDLParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:61:28: index
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:69:28: index
                     {
                     pushFollow(FOLLOW_index_in_definition233);
                     index();
@@ -606,7 +614,7 @@ public class DDLParser extends Parser {
 
             }
 
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:61:36: ( ',' ( column | constraint | index ) )*
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:69:36: ( ',' ( column | constraint | index ) )*
             loop10:
             do {
                 int alt10=2;
@@ -619,10 +627,10 @@ public class DDLParser extends Parser {
 
                 switch (alt10) {
             	case 1 :
-            	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:61:38: ',' ( column | constraint | index )
+            	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:69:38: ',' ( column | constraint | index )
             	    {
             	    match(input,49,FOLLOW_49_in_definition239); 
-            	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:61:42: ( column | constraint | index )
+            	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:69:42: ( column | constraint | index )
             	    int alt9=3;
             	    switch ( input.LA(1) ) {
             	    case ID:
@@ -671,7 +679,7 @@ public class DDLParser extends Parser {
 
             	    switch (alt9) {
             	        case 1 :
-            	            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:61:44: column
+            	            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:69:44: column
             	            {
             	            pushFollow(FOLLOW_column_in_definition243);
             	            column();
@@ -682,7 +690,7 @@ public class DDLParser extends Parser {
             	            }
             	            break;
             	        case 2 :
-            	            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:61:53: constraint
+            	            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:69:53: constraint
             	            {
             	            pushFollow(FOLLOW_constraint_in_definition247);
             	            constraint();
@@ -693,7 +701,7 @@ public class DDLParser extends Parser {
             	            }
             	            break;
             	        case 3 :
-            	            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:61:66: index
+            	            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:69:66: index
             	            {
             	            pushFollow(FOLLOW_index_in_definition251);
             	            index();
@@ -731,7 +739,7 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "column"
-    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:64:1: column : name type ( option )* ;
+    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:72:1: column : name type ( option )* ;
     public final void column() throws RecognitionException {
         DDLParser.name_return name2 = null;
 
@@ -739,8 +747,8 @@ public class DDLParser extends Parser {
 
 
         try {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:65:2: ( name type ( option )* )
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:65:4: name type ( option )*
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:73:2: ( name type ( option )* )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:73:4: name type ( option )*
             {
             pushFollow(FOLLOW_name_in_column268);
             name2=name();
@@ -752,7 +760,7 @@ public class DDLParser extends Parser {
 
             state._fsp--;
 
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:65:14: ( option )*
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:73:14: ( option )*
             loop11:
             do {
                 int alt11=2;
@@ -765,7 +773,7 @@ public class DDLParser extends Parser {
 
                 switch (alt11) {
             	case 1 :
-            	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:65:14: option
+            	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:73:14: option
             	    {
             	    pushFollow(FOLLOW_option_in_column272);
             	    option();
@@ -800,11 +808,11 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "constraint"
-    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:71:1: constraint : key ;
+    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:79:1: constraint : key ;
     public final void constraint() throws RecognitionException {
         try {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:72:2: ( key )
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:72:4: key
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:80:2: ( key )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:80:4: key
             {
             pushFollow(FOLLOW_key_in_constraint288);
             key();
@@ -827,10 +835,10 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "index"
-    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:75:1: index : ( ( UNIQUE | PRIMARY )? INDEX ( name )? ( ON name )? '(' nameList ')' | FULLTEXT name '(' nameList ')' );
+    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:83:1: index : ( ( UNIQUE | PRIMARY )? INDEX ( name )? ( ON name )? '(' nameList ')' | FULLTEXT name '(' nameList ')' );
     public final void index() throws RecognitionException {
         try {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:76:2: ( ( UNIQUE | PRIMARY )? INDEX ( name )? ( ON name )? '(' nameList ')' | FULLTEXT name '(' nameList ')' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:84:2: ( ( UNIQUE | PRIMARY )? INDEX ( name )? ( ON name )? '(' nameList ')' | FULLTEXT name '(' nameList ')' )
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -848,9 +856,9 @@ public class DDLParser extends Parser {
             }
             switch (alt15) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:76:4: ( UNIQUE | PRIMARY )? INDEX ( name )? ( ON name )? '(' nameList ')'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:84:4: ( UNIQUE | PRIMARY )? INDEX ( name )? ( ON name )? '(' nameList ')'
                     {
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:76:4: ( UNIQUE | PRIMARY )?
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:84:4: ( UNIQUE | PRIMARY )?
                     int alt12=2;
                     int LA12_0 = input.LA(1);
 
@@ -877,7 +885,7 @@ public class DDLParser extends Parser {
                     }
 
                     match(input,INDEX,FOLLOW_INDEX_in_index311); 
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:76:32: ( name )?
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:84:32: ( name )?
                     int alt13=2;
                     int LA13_0 = input.LA(1);
 
@@ -886,7 +894,7 @@ public class DDLParser extends Parser {
                     }
                     switch (alt13) {
                         case 1 :
-                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:76:32: name
+                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:84:32: name
                             {
                             pushFollow(FOLLOW_name_in_index313);
                             name();
@@ -899,7 +907,7 @@ public class DDLParser extends Parser {
 
                     }
 
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:76:38: ( ON name )?
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:84:38: ( ON name )?
                     int alt14=2;
                     int LA14_0 = input.LA(1);
 
@@ -908,7 +916,7 @@ public class DDLParser extends Parser {
                     }
                     switch (alt14) {
                         case 1 :
-                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:76:40: ON name
+                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:84:40: ON name
                             {
                             match(input,ON,FOLLOW_ON_in_index318); 
                             pushFollow(FOLLOW_name_in_index320);
@@ -933,7 +941,7 @@ public class DDLParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:77:4: FULLTEXT name '(' nameList ')'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:85:4: FULLTEXT name '(' nameList ')'
                     {
                     match(input,FULLTEXT,FOLLOW_FULLTEXT_in_index334); 
                     pushFollow(FOLLOW_name_in_index336);
@@ -966,10 +974,18 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "key"
-    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:80:1: key : ( ( UNIQUE | PRIMARY )? KEY ( name )? ( '(' nameList ')' )? | FOREIGN KEY ( name )? ( '(' nameList ')' )? reference );
+    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:88:1: key : ( ( UNIQUE | PRIMARY )? KEY ( name )? ( '(' nameList ')' )? | FOREIGN KEY ( name )? ( '(' nameList ')' )? reference );
     public final void key() throws RecognitionException {
+        DDLParser.nameList_return nameList4 = null;
+
+        DDLParser.name_return name5 = null;
+
+
+
+        		km.clear();
+        	
         try {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:81:2: ( ( UNIQUE | PRIMARY )? KEY ( name )? ( '(' nameList ')' )? | FOREIGN KEY ( name )? ( '(' nameList ')' )? reference )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:92:2: ( ( UNIQUE | PRIMARY )? KEY ( name )? ( '(' nameList ')' )? | FOREIGN KEY ( name )? ( '(' nameList ')' )? reference )
             int alt21=2;
             int LA21_0 = input.LA(1);
 
@@ -987,9 +1003,9 @@ public class DDLParser extends Parser {
             }
             switch (alt21) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:81:4: ( UNIQUE | PRIMARY )? KEY ( name )? ( '(' nameList ')' )?
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:92:4: ( UNIQUE | PRIMARY )? KEY ( name )? ( '(' nameList ')' )?
                     {
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:81:4: ( UNIQUE | PRIMARY )?
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:92:4: ( UNIQUE | PRIMARY )?
                     int alt16=2;
                     int LA16_0 = input.LA(1);
 
@@ -1015,8 +1031,8 @@ public class DDLParser extends Parser {
 
                     }
 
-                    match(input,KEY,FOLLOW_KEY_in_key365); 
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:81:30: ( name )?
+                    match(input,KEY,FOLLOW_KEY_in_key370); 
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:92:30: ( name )?
                     int alt17=2;
                     int LA17_0 = input.LA(1);
 
@@ -1025,10 +1041,10 @@ public class DDLParser extends Parser {
                     }
                     switch (alt17) {
                         case 1 :
-                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:81:30: name
+                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:92:30: name
                             {
-                            pushFollow(FOLLOW_name_in_key367);
-                            name();
+                            pushFollow(FOLLOW_name_in_key372);
+                            name5=name();
 
                             state._fsp--;
 
@@ -1038,7 +1054,7 @@ public class DDLParser extends Parser {
 
                     }
 
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:81:36: ( '(' nameList ')' )?
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:92:36: ( '(' nameList ')' )?
                     int alt18=2;
                     int LA18_0 = input.LA(1);
 
@@ -1047,15 +1063,15 @@ public class DDLParser extends Parser {
                     }
                     switch (alt18) {
                         case 1 :
-                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:81:38: '(' nameList ')'
+                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:92:38: '(' nameList ')'
                             {
-                            match(input,47,FOLLOW_47_in_key372); 
-                            pushFollow(FOLLOW_nameList_in_key374);
-                            nameList();
+                            match(input,47,FOLLOW_47_in_key377); 
+                            pushFollow(FOLLOW_nameList_in_key379);
+                            nameList4=nameList();
 
                             state._fsp--;
 
-                            match(input,48,FOLLOW_48_in_key376); 
+                            match(input,48,FOLLOW_48_in_key381); 
 
                             }
                             break;
@@ -1063,14 +1079,22 @@ public class DDLParser extends Parser {
                     }
 
 
+                    		if ((nameList4!=null?input.toString(nameList4.start,nameList4.stop):null) != null) {
+                    			String[] list = getArrayFromList((nameList4!=null?input.toString(nameList4.start,nameList4.stop):null));
+                    			for (int i = 0; i < list.length; i++) {
+                    //				km.put((name5!=null?input.toString(name5.start,name5.stop):null), new Attribute((name5!=null?input.toString(name5.start,name5.stop):null), $type.text, false, null)) ;
+                    			}
+                    		}
+                    	
+
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:82:4: FOREIGN KEY ( name )? ( '(' nameList ')' )? reference
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:101:4: FOREIGN KEY ( name )? ( '(' nameList ')' )? reference
                     {
-                    match(input,FOREIGN,FOLLOW_FOREIGN_in_key384); 
-                    match(input,KEY,FOLLOW_KEY_in_key386); 
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:82:16: ( name )?
+                    match(input,FOREIGN,FOLLOW_FOREIGN_in_key392); 
+                    match(input,KEY,FOLLOW_KEY_in_key394); 
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:101:16: ( name )?
                     int alt19=2;
                     int LA19_0 = input.LA(1);
 
@@ -1079,9 +1103,9 @@ public class DDLParser extends Parser {
                     }
                     switch (alt19) {
                         case 1 :
-                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:82:16: name
+                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:101:16: name
                             {
-                            pushFollow(FOLLOW_name_in_key388);
+                            pushFollow(FOLLOW_name_in_key396);
                             name();
 
                             state._fsp--;
@@ -1092,7 +1116,7 @@ public class DDLParser extends Parser {
 
                     }
 
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:82:22: ( '(' nameList ')' )?
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:101:22: ( '(' nameList ')' )?
                     int alt20=2;
                     int LA20_0 = input.LA(1);
 
@@ -1101,22 +1125,22 @@ public class DDLParser extends Parser {
                     }
                     switch (alt20) {
                         case 1 :
-                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:82:24: '(' nameList ')'
+                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:101:24: '(' nameList ')'
                             {
-                            match(input,47,FOLLOW_47_in_key393); 
-                            pushFollow(FOLLOW_nameList_in_key395);
+                            match(input,47,FOLLOW_47_in_key401); 
+                            pushFollow(FOLLOW_nameList_in_key403);
                             nameList();
 
                             state._fsp--;
 
-                            match(input,48,FOLLOW_48_in_key397); 
+                            match(input,48,FOLLOW_48_in_key405); 
 
                             }
                             break;
 
                     }
 
-                    pushFollow(FOLLOW_reference_in_key402);
+                    pushFollow(FOLLOW_reference_in_key410);
                     reference();
 
                     state._fsp--;
@@ -1139,10 +1163,10 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "option"
-    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:85:1: option : ( key | reference | ( NOT )? NULL | AUTO_INC | DEFAULT ( value | NULL | '\\'\\'' ) );
+    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:104:1: option : ( key | reference | ( NOT )? NULL | AUTO_INC | DEFAULT ( value | NULL | '\\'\\'' ) );
     public final void option() throws RecognitionException {
         try {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:86:2: ( key | reference | ( NOT )? NULL | AUTO_INC | DEFAULT ( value | NULL | '\\'\\'' ) )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:105:2: ( key | reference | ( NOT )? NULL | AUTO_INC | DEFAULT ( value | NULL | '\\'\\'' ) )
             int alt24=5;
             switch ( input.LA(1) ) {
             case UNIQUE:
@@ -1183,9 +1207,9 @@ public class DDLParser extends Parser {
 
             switch (alt24) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:86:4: key
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:105:4: key
                     {
-                    pushFollow(FOLLOW_key_in_option414);
+                    pushFollow(FOLLOW_key_in_option422);
                     key();
 
                     state._fsp--;
@@ -1194,9 +1218,9 @@ public class DDLParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:87:4: reference
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:106:4: reference
                     {
-                    pushFollow(FOLLOW_reference_in_option419);
+                    pushFollow(FOLLOW_reference_in_option427);
                     reference();
 
                     state._fsp--;
@@ -1205,9 +1229,9 @@ public class DDLParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:88:4: ( NOT )? NULL
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:107:4: ( NOT )? NULL
                     {
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:88:4: ( NOT )?
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:107:4: ( NOT )?
                     int alt22=2;
                     int LA22_0 = input.LA(1);
 
@@ -1216,31 +1240,31 @@ public class DDLParser extends Parser {
                     }
                     switch (alt22) {
                         case 1 :
-                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:88:4: NOT
+                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:107:4: NOT
                             {
-                            match(input,NOT,FOLLOW_NOT_in_option424); 
+                            match(input,NOT,FOLLOW_NOT_in_option432); 
 
                             }
                             break;
 
                     }
 
-                    match(input,NULL,FOLLOW_NULL_in_option427); 
+                    match(input,NULL,FOLLOW_NULL_in_option435); 
 
                     }
                     break;
                 case 4 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:89:4: AUTO_INC
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:108:4: AUTO_INC
                     {
-                    match(input,AUTO_INC,FOLLOW_AUTO_INC_in_option432); 
+                    match(input,AUTO_INC,FOLLOW_AUTO_INC_in_option440); 
 
                     }
                     break;
                 case 5 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:90:4: DEFAULT ( value | NULL | '\\'\\'' )
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:109:4: DEFAULT ( value | NULL | '\\'\\'' )
                     {
-                    match(input,DEFAULT,FOLLOW_DEFAULT_in_option437); 
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:90:12: ( value | NULL | '\\'\\'' )
+                    match(input,DEFAULT,FOLLOW_DEFAULT_in_option445); 
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:109:12: ( value | NULL | '\\'\\'' )
                     int alt23=3;
                     switch ( input.LA(1) ) {
                     case INT:
@@ -1269,9 +1293,9 @@ public class DDLParser extends Parser {
 
                     switch (alt23) {
                         case 1 :
-                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:90:14: value
+                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:109:14: value
                             {
-                            pushFollow(FOLLOW_value_in_option441);
+                            pushFollow(FOLLOW_value_in_option449);
                             value();
 
                             state._fsp--;
@@ -1280,16 +1304,16 @@ public class DDLParser extends Parser {
                             }
                             break;
                         case 2 :
-                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:90:22: NULL
+                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:109:22: NULL
                             {
-                            match(input,NULL,FOLLOW_NULL_in_option445); 
+                            match(input,NULL,FOLLOW_NULL_in_option453); 
 
                             }
                             break;
                         case 3 :
-                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:90:29: '\\'\\''
+                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:109:29: '\\'\\''
                             {
-                            match(input,50,FOLLOW_50_in_option449); 
+                            match(input,50,FOLLOW_50_in_option457); 
 
                             }
                             break;
@@ -1314,14 +1338,14 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "reference"
-    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:93:1: reference : REFERENCES ( name )? ( '(' nameList ')' )? ( referenceOptions )* ;
+    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:112:1: reference : REFERENCES ( name )? ( '(' nameList ')' )? ( referenceOptions )* ;
     public final void reference() throws RecognitionException {
         try {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:94:2: ( REFERENCES ( name )? ( '(' nameList ')' )? ( referenceOptions )* )
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:94:4: REFERENCES ( name )? ( '(' nameList ')' )? ( referenceOptions )*
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:113:2: ( REFERENCES ( name )? ( '(' nameList ')' )? ( referenceOptions )* )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:113:4: REFERENCES ( name )? ( '(' nameList ')' )? ( referenceOptions )*
             {
-            match(input,REFERENCES,FOLLOW_REFERENCES_in_reference463); 
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:94:15: ( name )?
+            match(input,REFERENCES,FOLLOW_REFERENCES_in_reference471); 
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:113:15: ( name )?
             int alt25=2;
             int LA25_0 = input.LA(1);
 
@@ -1330,9 +1354,9 @@ public class DDLParser extends Parser {
             }
             switch (alt25) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:94:15: name
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:113:15: name
                     {
-                    pushFollow(FOLLOW_name_in_reference465);
+                    pushFollow(FOLLOW_name_in_reference473);
                     name();
 
                     state._fsp--;
@@ -1343,7 +1367,7 @@ public class DDLParser extends Parser {
 
             }
 
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:94:21: ( '(' nameList ')' )?
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:113:21: ( '(' nameList ')' )?
             int alt26=2;
             int LA26_0 = input.LA(1);
 
@@ -1352,22 +1376,22 @@ public class DDLParser extends Parser {
             }
             switch (alt26) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:94:23: '(' nameList ')'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:113:23: '(' nameList ')'
                     {
-                    match(input,47,FOLLOW_47_in_reference470); 
-                    pushFollow(FOLLOW_nameList_in_reference472);
+                    match(input,47,FOLLOW_47_in_reference478); 
+                    pushFollow(FOLLOW_nameList_in_reference480);
                     nameList();
 
                     state._fsp--;
 
-                    match(input,48,FOLLOW_48_in_reference474); 
+                    match(input,48,FOLLOW_48_in_reference482); 
 
                     }
                     break;
 
             }
 
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:94:43: ( referenceOptions )*
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:113:43: ( referenceOptions )*
             loop27:
             do {
                 int alt27=2;
@@ -1380,9 +1404,9 @@ public class DDLParser extends Parser {
 
                 switch (alt27) {
             	case 1 :
-            	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:94:43: referenceOptions
+            	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:113:43: referenceOptions
             	    {
-            	    pushFollow(FOLLOW_referenceOptions_in_reference479);
+            	    pushFollow(FOLLOW_referenceOptions_in_reference487);
             	    referenceOptions();
 
             	    state._fsp--;
@@ -1412,10 +1436,10 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "referenceOptions"
-    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:97:1: referenceOptions : ( ON DELETE ( CASCADE | RESTRICT | NO ACTION | SET ( DEFAULT | NULL ) ) | ON UPDATE ( CASCADE | SET ( DEFAULT | NULL ) ) );
+    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:116:1: referenceOptions : ( ON DELETE ( CASCADE | RESTRICT | NO ACTION | SET ( DEFAULT | NULL ) ) | ON UPDATE ( CASCADE | SET ( DEFAULT | NULL ) ) );
     public final void referenceOptions() throws RecognitionException {
         try {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:98:2: ( ON DELETE ( CASCADE | RESTRICT | NO ACTION | SET ( DEFAULT | NULL ) ) | ON UPDATE ( CASCADE | SET ( DEFAULT | NULL ) ) )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:117:2: ( ON DELETE ( CASCADE | RESTRICT | NO ACTION | SET ( DEFAULT | NULL ) ) | ON UPDATE ( CASCADE | SET ( DEFAULT | NULL ) ) )
             int alt30=2;
             int LA30_0 = input.LA(1);
 
@@ -1443,11 +1467,11 @@ public class DDLParser extends Parser {
             }
             switch (alt30) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:98:4: ON DELETE ( CASCADE | RESTRICT | NO ACTION | SET ( DEFAULT | NULL ) )
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:117:4: ON DELETE ( CASCADE | RESTRICT | NO ACTION | SET ( DEFAULT | NULL ) )
                     {
-                    match(input,ON,FOLLOW_ON_in_referenceOptions492); 
-                    match(input,DELETE,FOLLOW_DELETE_in_referenceOptions494); 
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:98:14: ( CASCADE | RESTRICT | NO ACTION | SET ( DEFAULT | NULL ) )
+                    match(input,ON,FOLLOW_ON_in_referenceOptions500); 
+                    match(input,DELETE,FOLLOW_DELETE_in_referenceOptions502); 
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:117:14: ( CASCADE | RESTRICT | NO ACTION | SET ( DEFAULT | NULL ) )
                     int alt28=4;
                     switch ( input.LA(1) ) {
                     case CASCADE:
@@ -1479,31 +1503,31 @@ public class DDLParser extends Parser {
 
                     switch (alt28) {
                         case 1 :
-                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:98:16: CASCADE
+                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:117:16: CASCADE
                             {
-                            match(input,CASCADE,FOLLOW_CASCADE_in_referenceOptions498); 
+                            match(input,CASCADE,FOLLOW_CASCADE_in_referenceOptions506); 
 
                             }
                             break;
                         case 2 :
-                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:98:26: RESTRICT
+                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:117:26: RESTRICT
                             {
-                            match(input,RESTRICT,FOLLOW_RESTRICT_in_referenceOptions502); 
+                            match(input,RESTRICT,FOLLOW_RESTRICT_in_referenceOptions510); 
 
                             }
                             break;
                         case 3 :
-                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:98:37: NO ACTION
+                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:117:37: NO ACTION
                             {
-                            match(input,NO,FOLLOW_NO_in_referenceOptions506); 
-                            match(input,ACTION,FOLLOW_ACTION_in_referenceOptions508); 
+                            match(input,NO,FOLLOW_NO_in_referenceOptions514); 
+                            match(input,ACTION,FOLLOW_ACTION_in_referenceOptions516); 
 
                             }
                             break;
                         case 4 :
-                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:98:49: SET ( DEFAULT | NULL )
+                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:117:49: SET ( DEFAULT | NULL )
                             {
-                            match(input,SET,FOLLOW_SET_in_referenceOptions512); 
+                            match(input,SET,FOLLOW_SET_in_referenceOptions520); 
                             if ( input.LA(1)==NULL||input.LA(1)==DEFAULT ) {
                                 input.consume();
                                 state.errorRecovery=false;
@@ -1523,11 +1547,11 @@ public class DDLParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:99:4: ON UPDATE ( CASCADE | SET ( DEFAULT | NULL ) )
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:118:4: ON UPDATE ( CASCADE | SET ( DEFAULT | NULL ) )
                     {
-                    match(input,ON,FOLLOW_ON_in_referenceOptions529); 
-                    match(input,UPDATE,FOLLOW_UPDATE_in_referenceOptions531); 
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:99:14: ( CASCADE | SET ( DEFAULT | NULL ) )
+                    match(input,ON,FOLLOW_ON_in_referenceOptions537); 
+                    match(input,UPDATE,FOLLOW_UPDATE_in_referenceOptions539); 
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:118:14: ( CASCADE | SET ( DEFAULT | NULL ) )
                     int alt29=2;
                     int LA29_0 = input.LA(1);
 
@@ -1545,16 +1569,16 @@ public class DDLParser extends Parser {
                     }
                     switch (alt29) {
                         case 1 :
-                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:99:16: CASCADE
+                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:118:16: CASCADE
                             {
-                            match(input,CASCADE,FOLLOW_CASCADE_in_referenceOptions535); 
+                            match(input,CASCADE,FOLLOW_CASCADE_in_referenceOptions543); 
 
                             }
                             break;
                         case 2 :
-                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:99:26: SET ( DEFAULT | NULL )
+                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:118:26: SET ( DEFAULT | NULL )
                             {
-                            match(input,SET,FOLLOW_SET_in_referenceOptions539); 
+                            match(input,SET,FOLLOW_SET_in_referenceOptions547); 
                             if ( input.LA(1)==NULL||input.LA(1)==DEFAULT ) {
                                 input.consume();
                                 state.errorRecovery=false;
@@ -1588,10 +1612,10 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "order"
-    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:101:1: order : ( ASC | DESC );
+    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:120:1: order : ( ASC | DESC );
     public final void order() throws RecognitionException {
         try {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:102:2: ( ASC | DESC )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:121:2: ( ASC | DESC )
             // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:
             {
             if ( (input.LA(1)>=ASC && input.LA(1)<=DESC) ) {
@@ -1619,10 +1643,10 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "parameter"
-    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:106:1: parameter : ( name '=' value ( ( ',' )? name '=' value )* | DEFAULT CHARACTER SET ( '=' )? value );
+    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:125:1: parameter : ( name '=' value ( ( ',' )? name '=' value )* | DEFAULT CHARACTER SET ( '=' )? value );
     public final void parameter() throws RecognitionException {
         try {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:107:2: ( name '=' value ( ( ',' )? name '=' value )* | DEFAULT CHARACTER SET ( '=' )? value )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:126:2: ( name '=' value ( ( ',' )? name '=' value )* | DEFAULT CHARACTER SET ( '=' )? value )
             int alt34=2;
             int LA34_0 = input.LA(1);
 
@@ -1640,20 +1664,20 @@ public class DDLParser extends Parser {
             }
             switch (alt34) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:107:4: name '=' value ( ( ',' )? name '=' value )*
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:126:4: name '=' value ( ( ',' )? name '=' value )*
                     {
-                    pushFollow(FOLLOW_name_in_parameter579);
+                    pushFollow(FOLLOW_name_in_parameter587);
                     name();
 
                     state._fsp--;
 
-                    match(input,51,FOLLOW_51_in_parameter581); 
-                    pushFollow(FOLLOW_value_in_parameter583);
+                    match(input,51,FOLLOW_51_in_parameter589); 
+                    pushFollow(FOLLOW_value_in_parameter591);
                     value();
 
                     state._fsp--;
 
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:107:19: ( ( ',' )? name '=' value )*
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:126:19: ( ( ',' )? name '=' value )*
                     loop32:
                     do {
                         int alt32=2;
@@ -1666,9 +1690,9 @@ public class DDLParser extends Parser {
 
                         switch (alt32) {
                     	case 1 :
-                    	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:107:21: ( ',' )? name '=' value
+                    	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:126:21: ( ',' )? name '=' value
                     	    {
-                    	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:107:21: ( ',' )?
+                    	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:126:21: ( ',' )?
                     	    int alt31=2;
                     	    int LA31_0 = input.LA(1);
 
@@ -1677,22 +1701,22 @@ public class DDLParser extends Parser {
                     	    }
                     	    switch (alt31) {
                     	        case 1 :
-                    	            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:107:21: ','
+                    	            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:126:21: ','
                     	            {
-                    	            match(input,49,FOLLOW_49_in_parameter587); 
+                    	            match(input,49,FOLLOW_49_in_parameter595); 
 
                     	            }
                     	            break;
 
                     	    }
 
-                    	    pushFollow(FOLLOW_name_in_parameter590);
+                    	    pushFollow(FOLLOW_name_in_parameter598);
                     	    name();
 
                     	    state._fsp--;
 
-                    	    match(input,51,FOLLOW_51_in_parameter592); 
-                    	    pushFollow(FOLLOW_value_in_parameter594);
+                    	    match(input,51,FOLLOW_51_in_parameter600); 
+                    	    pushFollow(FOLLOW_value_in_parameter602);
                     	    value();
 
                     	    state._fsp--;
@@ -1710,12 +1734,12 @@ public class DDLParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:108:4: DEFAULT CHARACTER SET ( '=' )? value
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:127:4: DEFAULT CHARACTER SET ( '=' )? value
                     {
-                    match(input,DEFAULT,FOLLOW_DEFAULT_in_parameter602); 
-                    match(input,CHARACTER,FOLLOW_CHARACTER_in_parameter604); 
-                    match(input,SET,FOLLOW_SET_in_parameter606); 
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:108:26: ( '=' )?
+                    match(input,DEFAULT,FOLLOW_DEFAULT_in_parameter610); 
+                    match(input,CHARACTER,FOLLOW_CHARACTER_in_parameter612); 
+                    match(input,SET,FOLLOW_SET_in_parameter614); 
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:127:26: ( '=' )?
                     int alt33=2;
                     int LA33_0 = input.LA(1);
 
@@ -1724,16 +1748,16 @@ public class DDLParser extends Parser {
                     }
                     switch (alt33) {
                         case 1 :
-                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:108:26: '='
+                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:127:26: '='
                             {
-                            match(input,51,FOLLOW_51_in_parameter608); 
+                            match(input,51,FOLLOW_51_in_parameter616); 
 
                             }
                             break;
 
                     }
 
-                    pushFollow(FOLLOW_value_in_parameter611);
+                    pushFollow(FOLLOW_value_in_parameter619);
                     value();
 
                     state._fsp--;
@@ -1758,13 +1782,13 @@ public class DDLParser extends Parser {
     };
 
     // $ANTLR start "type"
-    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:111:1: type : ( name ( '(' INT ( ',' INT )? ')' )? ( UNSIGNED | BINARY )? | ENUM '(' nameList ')' | BINARY ( '(' INT ')' ) );
+    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:130:1: type : ( name ( '(' INT ( ',' INT )? ')' )? ( UNSIGNED | BINARY )? | ENUM '(' nameList ')' | BINARY ( '(' INT ')' ) );
     public final DDLParser.type_return type() throws RecognitionException {
         DDLParser.type_return retval = new DDLParser.type_return();
         retval.start = input.LT(1);
 
         try {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:112:2: ( name ( '(' INT ( ',' INT )? ')' )? ( UNSIGNED | BINARY )? | ENUM '(' nameList ')' | BINARY ( '(' INT ')' ) )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:131:2: ( name ( '(' INT ( ',' INT )? ')' )? ( UNSIGNED | BINARY )? | ENUM '(' nameList ')' | BINARY ( '(' INT ')' ) )
             int alt38=3;
             switch ( input.LA(1) ) {
             case ID:
@@ -1792,14 +1816,14 @@ public class DDLParser extends Parser {
 
             switch (alt38) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:112:4: name ( '(' INT ( ',' INT )? ')' )? ( UNSIGNED | BINARY )?
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:131:4: name ( '(' INT ( ',' INT )? ')' )? ( UNSIGNED | BINARY )?
                     {
-                    pushFollow(FOLLOW_name_in_type623);
+                    pushFollow(FOLLOW_name_in_type631);
                     name();
 
                     state._fsp--;
 
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:112:9: ( '(' INT ( ',' INT )? ')' )?
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:131:9: ( '(' INT ( ',' INT )? ')' )?
                     int alt36=2;
                     int LA36_0 = input.LA(1);
 
@@ -1808,11 +1832,11 @@ public class DDLParser extends Parser {
                     }
                     switch (alt36) {
                         case 1 :
-                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:112:11: '(' INT ( ',' INT )? ')'
+                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:131:11: '(' INT ( ',' INT )? ')'
                             {
-                            match(input,47,FOLLOW_47_in_type627); 
-                            match(input,INT,FOLLOW_INT_in_type629); 
-                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:112:19: ( ',' INT )?
+                            match(input,47,FOLLOW_47_in_type635); 
+                            match(input,INT,FOLLOW_INT_in_type637); 
+                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:131:19: ( ',' INT )?
                             int alt35=2;
                             int LA35_0 = input.LA(1);
 
@@ -1821,24 +1845,24 @@ public class DDLParser extends Parser {
                             }
                             switch (alt35) {
                                 case 1 :
-                                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:112:21: ',' INT
+                                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:131:21: ',' INT
                                     {
-                                    match(input,49,FOLLOW_49_in_type633); 
-                                    match(input,INT,FOLLOW_INT_in_type635); 
+                                    match(input,49,FOLLOW_49_in_type641); 
+                                    match(input,INT,FOLLOW_INT_in_type643); 
 
                                     }
                                     break;
 
                             }
 
-                            match(input,48,FOLLOW_48_in_type640); 
+                            match(input,48,FOLLOW_48_in_type648); 
 
                             }
                             break;
 
                     }
 
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:112:39: ( UNSIGNED | BINARY )?
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:131:39: ( UNSIGNED | BINARY )?
                     int alt37=2;
                     int LA37_0 = input.LA(1);
 
@@ -1868,29 +1892,29 @@ public class DDLParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:113:4: ENUM '(' nameList ')'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:132:4: ENUM '(' nameList ')'
                     {
-                    match(input,ENUM,FOLLOW_ENUM_in_type659); 
-                    match(input,47,FOLLOW_47_in_type661); 
-                    pushFollow(FOLLOW_nameList_in_type663);
+                    match(input,ENUM,FOLLOW_ENUM_in_type667); 
+                    match(input,47,FOLLOW_47_in_type669); 
+                    pushFollow(FOLLOW_nameList_in_type671);
                     nameList();
 
                     state._fsp--;
 
-                    match(input,48,FOLLOW_48_in_type665); 
+                    match(input,48,FOLLOW_48_in_type673); 
 
                     }
                     break;
                 case 3 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:114:4: BINARY ( '(' INT ')' )
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:133:4: BINARY ( '(' INT ')' )
                     {
-                    match(input,BINARY,FOLLOW_BINARY_in_type670); 
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:114:11: ( '(' INT ')' )
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:114:13: '(' INT ')'
+                    match(input,BINARY,FOLLOW_BINARY_in_type678); 
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:133:11: ( '(' INT ')' )
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:133:13: '(' INT ')'
                     {
-                    match(input,47,FOLLOW_47_in_type674); 
-                    match(input,INT,FOLLOW_INT_in_type676); 
-                    match(input,48,FOLLOW_48_in_type678); 
+                    match(input,47,FOLLOW_47_in_type682); 
+                    match(input,INT,FOLLOW_INT_in_type684); 
+                    match(input,48,FOLLOW_48_in_type686); 
 
                     }
 
@@ -1912,20 +1936,25 @@ public class DDLParser extends Parser {
     }
     // $ANTLR end "type"
 
+    public static class nameList_return extends ParserRuleReturnScope {
+    };
 
     // $ANTLR start "nameList"
-    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:117:1: nameList : name ( '(' value ')' )? ( order )? ( ( ',' )? name ( '(' value ')' )? ( order )? )* ;
-    public final void nameList() throws RecognitionException {
+    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:136:1: nameList : name ( '(' value ')' )? ( order )? ( ( ',' )? name ( '(' value ')' )? ( order )? )* ;
+    public final DDLParser.nameList_return nameList() throws RecognitionException {
+        DDLParser.nameList_return retval = new DDLParser.nameList_return();
+        retval.start = input.LT(1);
+
         try {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:118:2: ( name ( '(' value ')' )? ( order )? ( ( ',' )? name ( '(' value ')' )? ( order )? )* )
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:118:4: name ( '(' value ')' )? ( order )? ( ( ',' )? name ( '(' value ')' )? ( order )? )*
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:137:2: ( name ( '(' value ')' )? ( order )? ( ( ',' )? name ( '(' value ')' )? ( order )? )* )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:137:4: name ( '(' value ')' )? ( order )? ( ( ',' )? name ( '(' value ')' )? ( order )? )*
             {
-            pushFollow(FOLLOW_name_in_nameList692);
+            pushFollow(FOLLOW_name_in_nameList700);
             name();
 
             state._fsp--;
 
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:118:9: ( '(' value ')' )?
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:137:9: ( '(' value ')' )?
             int alt39=2;
             int LA39_0 = input.LA(1);
 
@@ -1934,22 +1963,22 @@ public class DDLParser extends Parser {
             }
             switch (alt39) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:118:11: '(' value ')'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:137:11: '(' value ')'
                     {
-                    match(input,47,FOLLOW_47_in_nameList696); 
-                    pushFollow(FOLLOW_value_in_nameList698);
+                    match(input,47,FOLLOW_47_in_nameList704); 
+                    pushFollow(FOLLOW_value_in_nameList706);
                     value();
 
                     state._fsp--;
 
-                    match(input,48,FOLLOW_48_in_nameList700); 
+                    match(input,48,FOLLOW_48_in_nameList708); 
 
                     }
                     break;
 
             }
 
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:118:28: ( order )?
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:137:28: ( order )?
             int alt40=2;
             int LA40_0 = input.LA(1);
 
@@ -1958,9 +1987,9 @@ public class DDLParser extends Parser {
             }
             switch (alt40) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:118:28: order
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:137:28: order
                     {
-                    pushFollow(FOLLOW_order_in_nameList705);
+                    pushFollow(FOLLOW_order_in_nameList713);
                     order();
 
                     state._fsp--;
@@ -1971,7 +2000,7 @@ public class DDLParser extends Parser {
 
             }
 
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:118:35: ( ( ',' )? name ( '(' value ')' )? ( order )? )*
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:137:35: ( ( ',' )? name ( '(' value ')' )? ( order )? )*
             loop44:
             do {
                 int alt44=2;
@@ -1984,9 +2013,9 @@ public class DDLParser extends Parser {
 
                 switch (alt44) {
             	case 1 :
-            	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:118:37: ( ',' )? name ( '(' value ')' )? ( order )?
+            	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:137:37: ( ',' )? name ( '(' value ')' )? ( order )?
             	    {
-            	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:118:37: ( ',' )?
+            	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:137:37: ( ',' )?
             	    int alt41=2;
             	    int LA41_0 = input.LA(1);
 
@@ -1995,21 +2024,21 @@ public class DDLParser extends Parser {
             	    }
             	    switch (alt41) {
             	        case 1 :
-            	            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:118:37: ','
+            	            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:137:37: ','
             	            {
-            	            match(input,49,FOLLOW_49_in_nameList710); 
+            	            match(input,49,FOLLOW_49_in_nameList718); 
 
             	            }
             	            break;
 
             	    }
 
-            	    pushFollow(FOLLOW_name_in_nameList713);
+            	    pushFollow(FOLLOW_name_in_nameList721);
             	    name();
 
             	    state._fsp--;
 
-            	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:118:47: ( '(' value ')' )?
+            	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:137:47: ( '(' value ')' )?
             	    int alt42=2;
             	    int LA42_0 = input.LA(1);
 
@@ -2018,22 +2047,22 @@ public class DDLParser extends Parser {
             	    }
             	    switch (alt42) {
             	        case 1 :
-            	            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:118:49: '(' value ')'
+            	            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:137:49: '(' value ')'
             	            {
-            	            match(input,47,FOLLOW_47_in_nameList717); 
-            	            pushFollow(FOLLOW_value_in_nameList719);
+            	            match(input,47,FOLLOW_47_in_nameList725); 
+            	            pushFollow(FOLLOW_value_in_nameList727);
             	            value();
 
             	            state._fsp--;
 
-            	            match(input,48,FOLLOW_48_in_nameList721); 
+            	            match(input,48,FOLLOW_48_in_nameList729); 
 
             	            }
             	            break;
 
             	    }
 
-            	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:118:66: ( order )?
+            	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:137:66: ( order )?
             	    int alt43=2;
             	    int LA43_0 = input.LA(1);
 
@@ -2042,9 +2071,9 @@ public class DDLParser extends Parser {
             	    }
             	    switch (alt43) {
             	        case 1 :
-            	            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:118:66: order
+            	            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:137:66: order
             	            {
-            	            pushFollow(FOLLOW_order_in_nameList726);
+            	            pushFollow(FOLLOW_order_in_nameList734);
             	            order();
 
             	            state._fsp--;
@@ -2067,6 +2096,8 @@ public class DDLParser extends Parser {
 
             }
 
+            retval.stop = input.LT(-1);
+
         }
         catch (RecognitionException re) {
             reportError(re);
@@ -2074,16 +2105,16 @@ public class DDLParser extends Parser {
         }
         finally {
         }
-        return ;
+        return retval;
     }
     // $ANTLR end "nameList"
 
 
     // $ANTLR start "value"
-    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:121:1: value : ( name | INT );
+    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:140:1: value : ( name | INT );
     public final void value() throws RecognitionException {
         try {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:122:2: ( name | INT )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:141:2: ( name | INT )
             int alt45=2;
             int LA45_0 = input.LA(1);
 
@@ -2101,9 +2132,9 @@ public class DDLParser extends Parser {
             }
             switch (alt45) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:122:4: name
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:141:4: name
                     {
-                    pushFollow(FOLLOW_name_in_value742);
+                    pushFollow(FOLLOW_name_in_value750);
                     name();
 
                     state._fsp--;
@@ -2112,9 +2143,9 @@ public class DDLParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:123:4: INT
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:142:4: INT
                     {
-                    match(input,INT,FOLLOW_INT_in_value747); 
+                    match(input,INT,FOLLOW_INT_in_value755); 
 
                     }
                     break;
@@ -2135,13 +2166,13 @@ public class DDLParser extends Parser {
     };
 
     // $ANTLR start "name"
-    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:126:1: name : ( ID ( '.' ID )* | DEF ( '.' DEF )* );
+    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:145:1: name : ( ID ( '.' ID )* | DEF ( '.' DEF )* );
     public final DDLParser.name_return name() throws RecognitionException {
         DDLParser.name_return retval = new DDLParser.name_return();
         retval.start = input.LT(1);
 
         try {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:127:2: ( ID ( '.' ID )* | DEF ( '.' DEF )* )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:146:2: ( ID ( '.' ID )* | DEF ( '.' DEF )* )
             int alt48=2;
             int LA48_0 = input.LA(1);
 
@@ -2159,10 +2190,10 @@ public class DDLParser extends Parser {
             }
             switch (alt48) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:127:4: ID ( '.' ID )*
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:146:4: ID ( '.' ID )*
                     {
-                    match(input,ID,FOLLOW_ID_in_name759); 
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:127:7: ( '.' ID )*
+                    match(input,ID,FOLLOW_ID_in_name767); 
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:146:7: ( '.' ID )*
                     loop46:
                     do {
                         int alt46=2;
@@ -2175,10 +2206,10 @@ public class DDLParser extends Parser {
 
                         switch (alt46) {
                     	case 1 :
-                    	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:127:9: '.' ID
+                    	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:146:9: '.' ID
                     	    {
-                    	    match(input,52,FOLLOW_52_in_name763); 
-                    	    match(input,ID,FOLLOW_ID_in_name765); 
+                    	    match(input,52,FOLLOW_52_in_name771); 
+                    	    match(input,ID,FOLLOW_ID_in_name773); 
 
                     	    }
                     	    break;
@@ -2192,10 +2223,10 @@ public class DDLParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:128:4: DEF ( '.' DEF )*
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:147:4: DEF ( '.' DEF )*
                     {
-                    match(input,DEF,FOLLOW_DEF_in_name773); 
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:128:8: ( '.' DEF )*
+                    match(input,DEF,FOLLOW_DEF_in_name781); 
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:147:8: ( '.' DEF )*
                     loop47:
                     do {
                         int alt47=2;
@@ -2208,10 +2239,10 @@ public class DDLParser extends Parser {
 
                         switch (alt47) {
                     	case 1 :
-                    	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:128:10: '.' DEF
+                    	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:147:10: '.' DEF
                     	    {
-                    	    match(input,52,FOLLOW_52_in_name777); 
-                    	    match(input,DEF,FOLLOW_DEF_in_name779); 
+                    	    match(input,52,FOLLOW_52_in_name785); 
+                    	    match(input,DEF,FOLLOW_DEF_in_name787); 
 
                     	    }
                     	    break;
@@ -2304,93 +2335,93 @@ public class DDLParser extends Parser {
     public static final BitSet FOLLOW_47_in_index338 = new BitSet(new long[]{0x0000006000000080L});
     public static final BitSet FOLLOW_nameList_in_index340 = new BitSet(new long[]{0x0001000000000000L});
     public static final BitSet FOLLOW_48_in_index342 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_key354 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_KEY_in_key365 = new BitSet(new long[]{0x0000806000000002L});
-    public static final BitSet FOLLOW_name_in_key367 = new BitSet(new long[]{0x0000800000000002L});
-    public static final BitSet FOLLOW_47_in_key372 = new BitSet(new long[]{0x0000006000000080L});
-    public static final BitSet FOLLOW_nameList_in_key374 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_key376 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_FOREIGN_in_key384 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_KEY_in_key386 = new BitSet(new long[]{0x0000806000400000L});
-    public static final BitSet FOLLOW_name_in_key388 = new BitSet(new long[]{0x0000800000400000L});
-    public static final BitSet FOLLOW_47_in_key393 = new BitSet(new long[]{0x0000006000000080L});
-    public static final BitSet FOLLOW_nameList_in_key395 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_key397 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_reference_in_key402 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_key_in_option414 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_reference_in_option419 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NOT_in_option424 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_NULL_in_option427 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_AUTO_INC_in_option432 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DEFAULT_in_option437 = new BitSet(new long[]{0x0004006200080000L});
-    public static final BitSet FOLLOW_value_in_option441 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NULL_in_option445 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_50_in_option449 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_REFERENCES_in_reference463 = new BitSet(new long[]{0x0000806000008002L});
-    public static final BitSet FOLLOW_name_in_reference465 = new BitSet(new long[]{0x0000800000008002L});
-    public static final BitSet FOLLOW_47_in_reference470 = new BitSet(new long[]{0x0000006000000080L});
-    public static final BitSet FOLLOW_nameList_in_reference472 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_reference474 = new BitSet(new long[]{0x0000000000008002L});
-    public static final BitSet FOLLOW_referenceOptions_in_reference479 = new BitSet(new long[]{0x0000000000008002L});
-    public static final BitSet FOLLOW_ON_in_referenceOptions492 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_DELETE_in_referenceOptions494 = new BitSet(new long[]{0x0000000017000000L});
-    public static final BitSet FOLLOW_CASCADE_in_referenceOptions498 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RESTRICT_in_referenceOptions502 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NO_in_referenceOptions506 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_ACTION_in_referenceOptions508 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SET_in_referenceOptions512 = new BitSet(new long[]{0x0000000000280000L});
-    public static final BitSet FOLLOW_set_in_referenceOptions514 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ON_in_referenceOptions529 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_UPDATE_in_referenceOptions531 = new BitSet(new long[]{0x0000000011000000L});
-    public static final BitSet FOLLOW_CASCADE_in_referenceOptions535 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SET_in_referenceOptions539 = new BitSet(new long[]{0x0000000000280000L});
-    public static final BitSet FOLLOW_set_in_referenceOptions541 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_key359 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_KEY_in_key370 = new BitSet(new long[]{0x0000806000000002L});
+    public static final BitSet FOLLOW_name_in_key372 = new BitSet(new long[]{0x0000800000000002L});
+    public static final BitSet FOLLOW_47_in_key377 = new BitSet(new long[]{0x0000006000000080L});
+    public static final BitSet FOLLOW_nameList_in_key379 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_key381 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_FOREIGN_in_key392 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_KEY_in_key394 = new BitSet(new long[]{0x0000806000400000L});
+    public static final BitSet FOLLOW_name_in_key396 = new BitSet(new long[]{0x0000800000400000L});
+    public static final BitSet FOLLOW_47_in_key401 = new BitSet(new long[]{0x0000006000000080L});
+    public static final BitSet FOLLOW_nameList_in_key403 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_key405 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_reference_in_key410 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_key_in_option422 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_reference_in_option427 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NOT_in_option432 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_NULL_in_option435 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_AUTO_INC_in_option440 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DEFAULT_in_option445 = new BitSet(new long[]{0x0004006200080000L});
+    public static final BitSet FOLLOW_value_in_option449 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NULL_in_option453 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_50_in_option457 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_REFERENCES_in_reference471 = new BitSet(new long[]{0x0000806000008002L});
+    public static final BitSet FOLLOW_name_in_reference473 = new BitSet(new long[]{0x0000800000008002L});
+    public static final BitSet FOLLOW_47_in_reference478 = new BitSet(new long[]{0x0000006000000080L});
+    public static final BitSet FOLLOW_nameList_in_reference480 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_reference482 = new BitSet(new long[]{0x0000000000008002L});
+    public static final BitSet FOLLOW_referenceOptions_in_reference487 = new BitSet(new long[]{0x0000000000008002L});
+    public static final BitSet FOLLOW_ON_in_referenceOptions500 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_DELETE_in_referenceOptions502 = new BitSet(new long[]{0x0000000017000000L});
+    public static final BitSet FOLLOW_CASCADE_in_referenceOptions506 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RESTRICT_in_referenceOptions510 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NO_in_referenceOptions514 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_ACTION_in_referenceOptions516 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SET_in_referenceOptions520 = new BitSet(new long[]{0x0000000000280000L});
+    public static final BitSet FOLLOW_set_in_referenceOptions522 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ON_in_referenceOptions537 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_UPDATE_in_referenceOptions539 = new BitSet(new long[]{0x0000000011000000L});
+    public static final BitSet FOLLOW_CASCADE_in_referenceOptions543 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SET_in_referenceOptions547 = new BitSet(new long[]{0x0000000000280000L});
+    public static final BitSet FOLLOW_set_in_referenceOptions549 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_set_in_order0 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_name_in_parameter579 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_51_in_parameter581 = new BitSet(new long[]{0x0000006200000000L});
-    public static final BitSet FOLLOW_value_in_parameter583 = new BitSet(new long[]{0x0002006000000002L});
-    public static final BitSet FOLLOW_49_in_parameter587 = new BitSet(new long[]{0x0000006000000000L});
-    public static final BitSet FOLLOW_name_in_parameter590 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_51_in_parameter592 = new BitSet(new long[]{0x0000006200000000L});
-    public static final BitSet FOLLOW_value_in_parameter594 = new BitSet(new long[]{0x0002006000000002L});
-    public static final BitSet FOLLOW_DEFAULT_in_parameter602 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_CHARACTER_in_parameter604 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_SET_in_parameter606 = new BitSet(new long[]{0x0008006200000000L});
-    public static final BitSet FOLLOW_51_in_parameter608 = new BitSet(new long[]{0x0000006200000000L});
-    public static final BitSet FOLLOW_value_in_parameter611 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_name_in_type623 = new BitSet(new long[]{0x0000800C00000002L});
-    public static final BitSet FOLLOW_47_in_type627 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_INT_in_type629 = new BitSet(new long[]{0x0003000000000000L});
-    public static final BitSet FOLLOW_49_in_type633 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_INT_in_type635 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_type640 = new BitSet(new long[]{0x0000000C00000002L});
-    public static final BitSet FOLLOW_set_in_type645 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ENUM_in_type659 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_type661 = new BitSet(new long[]{0x0000006000000080L});
-    public static final BitSet FOLLOW_nameList_in_type663 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_type665 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_BINARY_in_type670 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_type674 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_INT_in_type676 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_type678 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_name_in_nameList692 = new BitSet(new long[]{0x00028060C0000002L});
-    public static final BitSet FOLLOW_47_in_nameList696 = new BitSet(new long[]{0x0000006200000000L});
-    public static final BitSet FOLLOW_value_in_nameList698 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_nameList700 = new BitSet(new long[]{0x00020060C0000002L});
-    public static final BitSet FOLLOW_order_in_nameList705 = new BitSet(new long[]{0x0002006000000002L});
-    public static final BitSet FOLLOW_49_in_nameList710 = new BitSet(new long[]{0x0000006000000000L});
-    public static final BitSet FOLLOW_name_in_nameList713 = new BitSet(new long[]{0x00028060C0000002L});
-    public static final BitSet FOLLOW_47_in_nameList717 = new BitSet(new long[]{0x0000006200000000L});
-    public static final BitSet FOLLOW_value_in_nameList719 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_nameList721 = new BitSet(new long[]{0x00020060C0000002L});
-    public static final BitSet FOLLOW_order_in_nameList726 = new BitSet(new long[]{0x0002006000000002L});
-    public static final BitSet FOLLOW_name_in_value742 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INT_in_value747 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_name759 = new BitSet(new long[]{0x0010000000000002L});
-    public static final BitSet FOLLOW_52_in_name763 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_ID_in_name765 = new BitSet(new long[]{0x0010000000000002L});
-    public static final BitSet FOLLOW_DEF_in_name773 = new BitSet(new long[]{0x0010000000000002L});
-    public static final BitSet FOLLOW_52_in_name777 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_DEF_in_name779 = new BitSet(new long[]{0x0010000000000002L});
+    public static final BitSet FOLLOW_name_in_parameter587 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_51_in_parameter589 = new BitSet(new long[]{0x0000006200000000L});
+    public static final BitSet FOLLOW_value_in_parameter591 = new BitSet(new long[]{0x0002006000000002L});
+    public static final BitSet FOLLOW_49_in_parameter595 = new BitSet(new long[]{0x0000006000000000L});
+    public static final BitSet FOLLOW_name_in_parameter598 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_51_in_parameter600 = new BitSet(new long[]{0x0000006200000000L});
+    public static final BitSet FOLLOW_value_in_parameter602 = new BitSet(new long[]{0x0002006000000002L});
+    public static final BitSet FOLLOW_DEFAULT_in_parameter610 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_CHARACTER_in_parameter612 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_SET_in_parameter614 = new BitSet(new long[]{0x0008006200000000L});
+    public static final BitSet FOLLOW_51_in_parameter616 = new BitSet(new long[]{0x0000006200000000L});
+    public static final BitSet FOLLOW_value_in_parameter619 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_name_in_type631 = new BitSet(new long[]{0x0000800C00000002L});
+    public static final BitSet FOLLOW_47_in_type635 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_INT_in_type637 = new BitSet(new long[]{0x0003000000000000L});
+    public static final BitSet FOLLOW_49_in_type641 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_INT_in_type643 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_type648 = new BitSet(new long[]{0x0000000C00000002L});
+    public static final BitSet FOLLOW_set_in_type653 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ENUM_in_type667 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_type669 = new BitSet(new long[]{0x0000006000000080L});
+    public static final BitSet FOLLOW_nameList_in_type671 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_type673 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_BINARY_in_type678 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_type682 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_INT_in_type684 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_type686 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_name_in_nameList700 = new BitSet(new long[]{0x00028060C0000002L});
+    public static final BitSet FOLLOW_47_in_nameList704 = new BitSet(new long[]{0x0000006200000000L});
+    public static final BitSet FOLLOW_value_in_nameList706 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_nameList708 = new BitSet(new long[]{0x00020060C0000002L});
+    public static final BitSet FOLLOW_order_in_nameList713 = new BitSet(new long[]{0x0002006000000002L});
+    public static final BitSet FOLLOW_49_in_nameList718 = new BitSet(new long[]{0x0000006000000000L});
+    public static final BitSet FOLLOW_name_in_nameList721 = new BitSet(new long[]{0x00028060C0000002L});
+    public static final BitSet FOLLOW_47_in_nameList725 = new BitSet(new long[]{0x0000006200000000L});
+    public static final BitSet FOLLOW_value_in_nameList727 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_nameList729 = new BitSet(new long[]{0x00020060C0000002L});
+    public static final BitSet FOLLOW_order_in_nameList734 = new BitSet(new long[]{0x0002006000000002L});
+    public static final BitSet FOLLOW_name_in_value750 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INT_in_value755 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_name767 = new BitSet(new long[]{0x0010000000000002L});
+    public static final BitSet FOLLOW_52_in_name771 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_ID_in_name773 = new BitSet(new long[]{0x0010000000000002L});
+    public static final BitSet FOLLOW_DEF_in_name781 = new BitSet(new long[]{0x0010000000000002L});
+    public static final BitSet FOLLOW_52_in_name785 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_DEF_in_name787 = new BitSet(new long[]{0x0010000000000002L});
 
 }

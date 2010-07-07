@@ -20,6 +20,14 @@ options {
 	TreeMap<String, Attribute> km = new TreeMap<String, Attribute>();
 	TreeMap<String, Attribute> am = new TreeMap<String, Attribute>();
 	Key k = null;
+	
+	String[] getArrayFromList(String list) {
+		String[] array = list.split(",");
+		for (int i = 0; i < array.length; i++) {
+			array[i] = array[i].trim();
+		}
+		return array;
+	}
 }
 
 start returns [Schema s]
@@ -78,7 +86,18 @@ index
 	;
 	
 key
+	@init{
+		km.clear();
+	}
 	:	( UNIQUE | PRIMARY )? KEY name? ( '(' nameList ')' )?
+	{
+		if ($nameList.text != null) {
+			String[] list = getArrayFromList($nameList.text);
+			for (int i = 0; i < list.length; i++) {
+//				km.put($name.text, new Attribute($name.text, $type.text, false, null)) ;
+			}
+		}
+	}
 	|	FOREIGN KEY name? ( '(' nameList ')' )? reference
 	;
 	
