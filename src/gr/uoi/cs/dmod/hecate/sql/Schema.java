@@ -4,8 +4,9 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class Schema implements SqlItem{
-	String name;
-	TreeMap<String, Table> tables;
+	
+	private String name;
+	private TreeMap<String, Table> tables;
 	
 	public Schema(TreeMap<String, Table> t) {
 		this.tables = t;
