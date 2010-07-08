@@ -13,6 +13,10 @@ import javax.swing.tree.TreePath;
 @SuppressWarnings("serial")
 public class HecateTree extends JTree {
 	
+	/**
+	 * Default Constructor
+	 * @param schema
+	 */
 	public HecateTree(Schema schema) {
 		super();
 
@@ -21,18 +25,29 @@ public class HecateTree extends JTree {
 		expandAll();
 	}
 	
+	/**
+	 * Expands all the rows of the tree
+	 */
 	public void expandAll() {
 		for (int i = 0; i < getRowCount(); i++) {
 			expandRow(i);
 		}
 	}
 	
+	/**
+	 * Collapses all the rows of the tree
+	 */
 	public void collapseAll() {
 		for (int i = getRowCount() - 1; i >=0; i--){
 			collapseRow(i);
 		}
 	}
 	
+	/**
+	 * 
+	 * @param treeNode A node of the tree
+	 * @return A {@link TreePath} describing the path of the treeNode
+	 */
 	public TreePath getPath(TreeNode treeNode) {
 		List<Object> nodes = new ArrayList<Object>();
 		if (treeNode != null) {

@@ -16,6 +16,11 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+/**
+ * A dialog to choose the original and modified file
+ * @author giskou
+ *
+ */
 @SuppressWarnings("serial")
 public class OpenDialog extends JDialog {
 	
@@ -30,6 +35,9 @@ public class OpenDialog extends JDialog {
 	private JFileChooser fileopen;
 	private int status;
 	
+	/**
+	 * Default Constuctor
+	 */
 	public OpenDialog() {
 		initialize();
 		
@@ -108,12 +116,18 @@ public class OpenDialog extends JDialog {
 		draw();
 	}
 	
+	/**
+	 * Sets the dialog's title, default close operation and modality type
+	 */
 	private void initialize() {
 		setTitle("Open") ;
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setDefaultCloseOperation(HIDE_ON_CLOSE);
 	}
 	
+	/**
+	 * Sets the size of the dialog and centers it to the screen
+	 */
 	private void draw() {
 		pack();
 		// center on screen
@@ -123,14 +137,27 @@ public class OpenDialog extends JDialog {
 		            size.height/2 - getHeight()/2);
 	}
 	
+	/**
+	 * 
+	 * @return The path of the original file.
+	 */
 	public String getOldFile() {
 		return oldFileField.getText();
 	}
 	
+	/**
+	 * 
+	 * @return The path of the modified file.
+	 */
 	public String getNewFile() {
 		return newFileField.getText();
 	}
 	
+	/**
+	 * Opens a {@link JFileChooser} and returns the path of the
+	 * chosen file
+	 * @return the path of the chosen file
+	 */
 	private String getFilePath() {
 		fileopen = new JFileChooser();
 		fileopen.setFileFilter(new FileNameExtensionFilter("SQL files", "sql"));
@@ -139,6 +166,12 @@ public class OpenDialog extends JDialog {
 		return f.getPath();
 	}
 	
+	/**
+	 * Indicates whether or not the dialog is capable of opening a file.
+	 * The <code>status</code> field becomes 1 when both text fields are
+	 * full.
+	 * @return The status of the dialog.
+	 */
 	public int getStatus() {
 		return this.status;
 	}

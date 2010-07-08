@@ -3,14 +3,44 @@ package gr.uoi.cs.dmod.hecate.diff;
 import gr.uoi.cs.dmod.hecate.sql.*;
 import java.util.Iterator;
 
+/**
+ * This class is responsible for performing the diff algorithm
+ * between two sql schemas. 
+ * @author giskou
+ *
+ */
 public class Delta {
 
 	private int insertions, deletions;
 	
+	/**
+	 * The default Constructor
+	 * Just initializes <code>insertions</code> and <code>deletions</code>
+	 */
 	public Delta(){
 		insertions = deletions = 0;
 	}
 	
+	/**
+	 * This function performs the main diff algorithm for
+	 * finding the differences between the schemas that are 
+	 * given as parameters. The algorithm is a modification of
+	 * the SortMergeJoin algorithm found at DBMS's for joining
+	 * two tables. The tables and attributes are stored on TreeMaps
+	 * thus sorted according their name. Starting from the top of
+	 * each Map we check the items for matches. If the original is
+	 * larger lexicographically then the item of the modified Map does
+	 * not exist in the original and so it's inserted and we move to
+	 * the next item on the modified Map. Likewise, if the modified
+	 * is larger lexicographically then the item on the original has been
+	 * deleted and we move to the next item on the original Map. If a
+	 * Map reaches at an end then the remaining items on the other Map
+	 * are marked as inserted or deleted accordingly.
+	 * @param A
+	 *   The original schema
+	 * @param B
+	 *   The modified version of the original schema
+	 */
 	public void minus(Schema A, Schema B) {
 		String oldTableKey = null, newTableKey = null ;
 		String oldAttrKey = null, newAttrKey = null ;
@@ -157,6 +187,11 @@ public class Delta {
 		}
 	}
 	
+	/**
+	 * Returns the metrics of the diff performed with {@link minus}
+	 * @return An integer array with insertions at 0
+	 * and deletions at 1.
+	 */
 	public int[] getMetrics(){
 		int i[] = {this.insertions, this.deletions};
 		return i;

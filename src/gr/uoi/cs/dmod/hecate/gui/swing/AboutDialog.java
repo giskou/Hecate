@@ -13,6 +13,11 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 
+/**
+ * A dialog displaying Hecates information
+ * @author giskou
+ *
+ */
 @SuppressWarnings("serial")
 class AboutDialog extends JDialog {
 	
@@ -36,10 +41,10 @@ class AboutDialog extends JDialog {
 		
 		add(Box.createRigidArea(new Dimension(0, 15)));
 		
-        hecateIcon = new ImageIcon("art/icon.png");
-        JLabel iconLabel = new JLabel(hecateIcon);
-        iconLabel.setAlignmentX(0.5f);
-        add(iconLabel);
+		hecateIcon = new ImageIcon("art/icon.png");
+		JLabel iconLabel = new JLabel(hecateIcon);
+		iconLabel.setAlignmentX(0.5f);
+		add(iconLabel);
 		
 		add(Box.createRigidArea(new Dimension(0, 15)));
 		

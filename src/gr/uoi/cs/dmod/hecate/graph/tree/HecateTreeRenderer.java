@@ -8,6 +8,11 @@ import javax.swing.Icon;
 
 import org.netbeans.swing.outline.RenderDataProvider;
 
+/**
+ * Implements {@link RenderDataProvider}
+ * @author giskou
+ *
+ */
 public class HecateTreeRenderer implements RenderDataProvider {
 
 	@Override

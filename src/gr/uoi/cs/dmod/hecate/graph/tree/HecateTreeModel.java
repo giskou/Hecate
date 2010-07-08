@@ -8,15 +8,18 @@ import gr.uoi.cs.dmod.hecate.sql.SqlItem;
 import gr.uoi.cs.dmod.hecate.sql.Table;
 import gr.uoi.cs.dmod.hecate.sql.Attribute;
 
-import javax.swing.event.EventListenerList;
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
+/**
+ * Implements {@link TreeModel}
+ * @author giskou
+ *
+ */
 public class HecateTreeModel implements TreeModel {
 	
-	protected Schema root;
-	protected EventListenerList listenerList = new EventListenerList();
+	private Schema root;
 	
 	public HecateTreeModel(Schema root) {
 		this.root = root;
@@ -24,7 +27,7 @@ public class HecateTreeModel implements TreeModel {
 
 	@Override
 	public void addTreeModelListener(TreeModelListener l) {
-		listenerList.add(TreeModelListener.class, l);
+		// TODO Auto-generated method stub
 	}
 
 	@Override
@@ -97,7 +100,7 @@ public class HecateTreeModel implements TreeModel {
 
 	@Override
 	public void removeTreeModelListener(TreeModelListener l) {
-		listenerList.remove(TreeModelListener.class, l);
+		// TODO Auto-generated method stub
 	}
 
 	@Override

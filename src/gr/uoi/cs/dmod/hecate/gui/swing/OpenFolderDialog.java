@@ -15,6 +15,11 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 
+/**
+ * A dialog for opening a folder for recursive diff-ing
+ * @author giskou
+ *
+ */
 @SuppressWarnings("serial")
 public class OpenFolderDialog extends JDialog{
 	
@@ -26,6 +31,9 @@ public class OpenFolderDialog extends JDialog{
 	private JFileChooser fileopen;
 	private int status;
 	
+	/**
+	 * Default Constructor
+	 */
 	OpenFolderDialog(){
 		initialize();
 		
@@ -89,12 +97,18 @@ public class OpenFolderDialog extends JDialog{
 		draw();
 	}
 	
+	/**
+	 * Sets the dialog's title, default close operation and modality type
+	 */
 	private void initialize() {
 		setTitle("Open") ;
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setDefaultCloseOperation(HIDE_ON_CLOSE);
 	}
 	
+	/**
+	 * Sets the size of the dialog and centers it to the screen
+	 */
 	private void draw() {
 		pack();
 		// center on screen
@@ -104,6 +118,11 @@ public class OpenFolderDialog extends JDialog{
 		            size.height/2 - getHeight()/2);
 	}
 	
+	/**
+	 * Opens a {@link JFileChooser} and returns the path of the
+	 * chosen folder
+	 * @return the path of the chosen folder
+	 */
 	private String getFolderPath() {
 		fileopen = new JFileChooser();
 		fileopen.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -112,9 +131,19 @@ public class OpenFolderDialog extends JDialog{
 		return f.getPath();
 	}
 	
+	/**
+	 * Indicates whether or not the dialog is capable of opening a folder.
+	 * The <code>status</code> field becomes 1 when the text field is full.
+	 * @return The status of the dialog.
+	 */
 	public int getStatus() {
 		return this.status;
 	}
+	
+	/**
+	 * 
+	 * @return The path of the chosen folder
+	 */
 	public String getFolder() {
 		return folderField.getText();
 	}

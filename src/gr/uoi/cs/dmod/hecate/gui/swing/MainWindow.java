@@ -21,14 +21,19 @@ import javax.swing.JMenuItem;
 
 import org.antlr.runtime.RecognitionException;
 
+/**
+ * The main window of Hecate
+ * @author giskou
+ *
+ */
 @SuppressWarnings("serial")
 public class MainWindow extends JFrame{
 	
 	private Schema oldSchema;
 	private Schema newSchema;
 	
-	protected MainPanel mainPanel;
-	protected JMenuBar menuBar;
+	private MainPanel mainPanel;
+	private JMenuBar menuBar;
 	
 	// menu items
 	private JMenu file;
@@ -43,10 +48,14 @@ public class MainWindow extends JFrame{
 	private OpenDialog openDialog;
 	private OpenFolderDialog openFolderDialog;
 	private MetricsDialog metricsDialog;
+	private AboutDialog aboutDialog;
 	private Image hecateIcon;
 	
 	private Delta delta;
 	
+	/**
+	 * Default Constructor
+	 */
 	public MainWindow(){
 		initialize();
 		
@@ -57,6 +66,13 @@ public class MainWindow extends JFrame{
 		draw();
 	}
 	
+	/**
+	 * Sets
+	 * <li>the look and feel of the application
+	 * <li>the window title
+	 * <li>the window icon
+	 * <li>the default close operation of the window
+	 */
 	private void initialize() {
 		// look and feel
 		try {
@@ -72,6 +88,9 @@ public class MainWindow extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
+	/**
+	 * Creates the windows menu
+	 */
 	private void createMenu() {
 		menuBar = new JMenuBar();
 		// File
@@ -118,7 +137,23 @@ public class MainWindow extends JFrame{
 					String[] list = dir.list();
 					java.util.Arrays.sort(list);
 					
-					for (int i = 0; i < list.length; i++)  {
+					for (int i = 0; i < list.length-1; i++)  {
+						try {
+							HecateParser parser = new HecateParser(path+"/"+list[i]);
+							HecateParser parser2 = new HecateParser(path+"/"+list[i+1]);
+							Schema schema = parser.getSchema();
+							Schema schema2 = parser2.getSchema();
+							Delta delta = new Delta();
+							delta.minus(schema, schema2);
+							System.out.println(delta.getMetrics()[0] + " " +
+							                   delta.getMetrics()[1]);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (RecognitionException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 				}
 			}
@@ -162,8 +197,8 @@ public class MainWindow extends JFrame{
 		helpAbout.setToolTipText("About Hecate");
 		helpAbout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				AboutDialog ad = new AboutDialog();
-				ad.setVisible(true);
+				aboutDialog = new AboutDialog();
+				aboutDialog.setVisible(true);
 			}
 		});
 		help.add(helpAbout);
@@ -172,6 +207,9 @@ public class MainWindow extends JFrame{
 		setJMenuBar(menuBar);
 	}
 	
+	/**
+	 * Sets the size of the window and centers it to the screen
+	 */
 	private void draw() {
 		setMinimumSize(new Dimension(400, 300));
 		pack();
@@ -182,6 +220,16 @@ public class MainWindow extends JFrame{
 		            size.height/2 - getHeight()/2);
 	}
 	
+	/**
+	 * Calls the parser on the files, initializes the {@link Delta}
+	 * class and draws the trees at the {@link MainPanel}
+	 * @param oldFilePath
+	 *   The {@ink String} of the path of the original schema file
+	 * @param newFilePath
+	 *   The {@ink String} of the path of the modified schema file
+	 * @throws IOException
+	 * @throws RecognitionException
+	 */
 	private void drawTree(String oldFilePath, String newFilePath) throws IOException, RecognitionException {
 		HecateParser parser = new HecateParser(oldFilePath);
 		HecateParser parser2 = new HecateParser(newFilePath);
@@ -198,6 +246,11 @@ public class MainWindow extends JFrame{
 		delta.minus(oldSchema, newSchema);
 	}
 	
+	/**
+	 * Returns only the name from a string with a full path.
+	 * @param path The file name with full path.
+	 * @return The file's name only.
+	 */
 	private String getNameFromPath(String path) {
 		if (path.lastIndexOf('/') != 0)
 			return path.substring(path.lastIndexOf('/') + 1);

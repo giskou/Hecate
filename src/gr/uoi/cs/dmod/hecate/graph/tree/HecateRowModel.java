@@ -5,7 +5,13 @@ import gr.uoi.cs.dmod.hecate.sql.SqlItem;
 
 import org.netbeans.swing.outline.RowModel;
 
+/**
+ * An implementation of {@link RowModel}
+ * @author giskou
+ *
+ */
 public class HecateRowModel implements RowModel{
+
 
 	@Override
 	public Class<?> getColumnClass(int arg0) {
