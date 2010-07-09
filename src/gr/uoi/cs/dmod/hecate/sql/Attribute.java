@@ -4,6 +4,7 @@ public class Attribute implements SqlItem{
 	String name;
 	String type;
 	boolean isNull;
+	boolean isKey;
 	String def;
 	char mode;
 	
@@ -11,6 +12,7 @@ public class Attribute implements SqlItem{
 		this.name = n;
 		this.type = t;
 		this.isNull = in;
+		this.isKey = false;
 		this.def = d;
 		this.mode = 'u';
 	}
@@ -30,6 +32,14 @@ public class Attribute implements SqlItem{
 	
 	public String getDefault() {
 		return this.def;
+	}
+	
+	public boolean isKey() {
+		return this.isKey;
+	}
+	
+	public void setToKey() {
+		this.isKey = true;
 	}
 	@Override
 	public char getMode() {

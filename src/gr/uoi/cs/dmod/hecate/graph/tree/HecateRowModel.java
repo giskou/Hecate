@@ -15,7 +15,6 @@ public class HecateRowModel implements RowModel{
 
 	@Override
 	public Class<?> getColumnClass(int arg0) {
-		// TODO Auto-generated method stub
 		return String.class;
 	}
 
@@ -35,25 +34,29 @@ public class HecateRowModel implements RowModel{
 
 	@Override
 	public Object getValueFor(Object node, int column) {
-		String type = ((SqlItem)node).whatAmI();
-		if (type == "Schema") {
-			return null;
-		}
-		else if (type == "Table") {
-			return null;
-		}
-		else if (type == "Attribute") {
-			switch (column) {
-				case 0: return ((Attribute)node).getType();
-				default: assert false;
-			}
+		switch (column) {
+			case 0: 
+				String type = ((SqlItem)node).whatAmI();
+				if (type == "Schema") {
+					return null;
+				}
+				else if (type == "Table") {
+					return null;
+				}
+				else if (type == "Attribute") {
+					switch (column) {
+						case 0: return ((Attribute)node).getType();
+						default: assert false;
+					}
+				}
+			break;
+			default: return null;
 		}
 		return null;
 	}
 
 	@Override
 	public boolean isCellEditable(Object arg0, int arg1) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

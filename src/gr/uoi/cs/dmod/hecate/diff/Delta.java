@@ -5,20 +5,25 @@ import java.util.Iterator;
 
 /**
  * This class is responsible for performing the diff algorithm
- * between two sql schemas. 
+ * between two SQL schemas. It then stores some metrics about the
+ * performed diff.
  * @author giskou
  *
  */
 public class Delta {
 
-	private int insertions, deletions;
-	
+	private int insertions, deletions, alterations;
+	private int tableIns, tableDel;
+	private int attrIns, attrDel;
+		
 	/**
 	 * The default Constructor
 	 * Just initializes <code>insertions</code> and <code>deletions</code>
 	 */
 	public Delta(){
-		insertions = deletions = 0;
+		insertions = deletions = alterations = 0;
+		tableIns = tableDel = 0;
+		attrIns = attrDel = 0;
 	}
 	
 	/**
@@ -72,9 +77,18 @@ public class Delta {
 						Attribute newAttr = newAttributeValues.next();
 						while (true) {
 							if (oldAttrKey.compareTo(newAttrKey) == 0) {
-								// Matched attributes
-								oldAttr.setMode('m');
-								newAttr.setMode('m');
+								// check attribute type
+								if (oldAttr.getType().compareTo(newAttr.getType()) == 0){
+									// Matched attributes
+									oldAttr.setMode('m');
+									newAttr.setMode('m');
+								}
+								else {
+									// attribute type altered
+									alterations++;
+									newTable.setMode('u');
+									newAttr.setMode('u');
+								}
 								// move both attributes
 								if (oldAttributeKeys.hasNext() && newAttributeKeys.hasNext()) {
 									oldAttrKey = oldAttributeKeys.next() ;
@@ -88,7 +102,7 @@ public class Delta {
 							}
 							else if (oldAttrKey.compareTo(newAttrKey) < 0) {
 								// Deleted attributes
-								deletions++;
+								attrDel++;
 								oldAttr.setMode('d');
 								oldTable.setMode('u');
 								// move old only attributes
@@ -102,7 +116,7 @@ public class Delta {
 							}
 							else {
 								// Inserted attributes
-								insertions++;
+								attrIns++;
 								newAttr.setMode('i');
 								newTable.setMode('u');
 								// move new only
@@ -121,7 +135,7 @@ public class Delta {
 						oldAttrKey = (String) oldAttributeKeys.next();
 						Attribute oldAttr = oldAttributeValues.next();
 						// Deleted
-						deletions++;
+						attrDel++;
 						oldAttr.setMode('d');
 						oldTable.setMode('u');
 					}
@@ -129,7 +143,7 @@ public class Delta {
 						newAttrKey = (String) newAttributeKeys.next();
 						Attribute newAttr = newAttributeValues.next();
 						// Inserted
-						insertions++;
+						attrIns++;
 						newAttr.setMode('i');
 						newTable.setMode('u');
 					}
@@ -146,7 +160,7 @@ public class Delta {
 				}
 				else if (oldTableKey.compareTo(newTableKey) < 0) {
 					// Deleted
-					deletions++;
+					tableDel++;
 					oldTable.setMode('d');
 					// move old only
 					if (oldTableKeys.hasNext()) {
@@ -159,7 +173,7 @@ public class Delta {
 				}
 				else {
 					// Inserted
-					insertions++;
+					tableIns++;
 					newTable.setMode('i');
 					// move new only
 					if (newTableKeys.hasNext()) {
@@ -176,13 +190,13 @@ public class Delta {
 		while (oldTableKeys.hasNext()) {
 			oldTableKey = (String) oldTableKeys.next();
 			Table oldTable = (Table) oldTableValues.next();
-			System.out.println(oldTableKey + " Deleted");
+			tableDel++;
 			oldTable.setMode('d');
 		}
 		while (newTableKeys.hasNext()) {
 			newTableKey = (String) newTableKeys.next();
 			Table newTable = (Table) newTableValues.next();
-			System.out.println(newTableKey + " Inserted");
+			tableIns++;
 			newTable.setMode('i');
 		}
 	}
@@ -193,6 +207,8 @@ public class Delta {
 	 * and deletions at 1.
 	 */
 	public int[] getMetrics(){
+		this.insertions = tableIns + attrIns;
+		this.deletions = tableDel + attrDel;
 		int i[] = {this.insertions, this.deletions};
 		return i;
 	}

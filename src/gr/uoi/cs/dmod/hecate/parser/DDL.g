@@ -94,7 +94,11 @@ key
 		if ($nameList.text != null) {
 			String[] list = getArrayFromList($nameList.text);
 			for (int i = 0; i < list.length; i++) {
-//				km.put($name.text, new Attribute($name.text, $type.text, false, null)) ;
+				if (am.containsKey(list[i])) {
+					Attribute a = am.get(list[i]);
+					a.setToKey();
+					km.put(list[i], a);
+				}
 			}
 		}
 	}

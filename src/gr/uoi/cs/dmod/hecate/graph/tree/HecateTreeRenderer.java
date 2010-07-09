@@ -1,5 +1,6 @@
 package gr.uoi.cs.dmod.hecate.graph.tree;
 
+import gr.uoi.cs.dmod.hecate.sql.Attribute;
 import gr.uoi.cs.dmod.hecate.sql.SqlItem;
 
 import java.awt.Color;
@@ -26,33 +27,35 @@ public class HecateTreeRenderer implements RenderDataProvider {
 	}
 
 	@Override
-	public String getDisplayName(Object arg0) {
+	public String getDisplayName(Object o) {
+		if (((SqlItem)o).whatAmI().compareTo("Attribute") == 0) {
+			if (((Attribute)o).isKey()) {
+				return "<u>" + ((SqlItem)o).getName() + "</u>";
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public Color getForeground(Object o) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Color getForeground(Object arg0) {
+	public Icon getIcon(Object o) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Icon getIcon(Object arg0) {
+	public String getTooltipText(Object o) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String getTooltipText(Object arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean isHtmlDisplayName(Object o) {
+		return true;
 	}
-
-	@Override
-	public boolean isHtmlDisplayName(Object arg0) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }
