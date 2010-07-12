@@ -1,5 +1,7 @@
 package gr.uoi.cs.dmod.hecate.gui.swing;
 
+import gr.uoi.cs.dmod.hecate.Hecate;
+
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -19,7 +21,7 @@ import javax.swing.JLabel;
  *
  */
 @SuppressWarnings("serial")
-class AboutDialog extends JDialog {
+public class AboutDialog extends JDialog {
 	
 	private JLabel name;
 	private JLabel author;
@@ -41,7 +43,7 @@ class AboutDialog extends JDialog {
 		
 		add(Box.createRigidArea(new Dimension(0, 15)));
 		
-		hecateIcon = new ImageIcon("art/icon.png");
+		hecateIcon = new ImageIcon(Hecate.class.getResource("art/icon.png"));
 		JLabel iconLabel = new JLabel(hecateIcon);
 		iconLabel.setAlignmentX(0.5f);
 		add(iconLabel);

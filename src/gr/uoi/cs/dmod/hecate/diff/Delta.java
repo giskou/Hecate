@@ -15,6 +15,8 @@ public class Delta {
 	private int insertions, deletions, alterations;
 	private int tableIns, tableDel;
 	private int attrIns, attrDel;
+	private int alterKey, alterAttribute, alterTable;
+	private int numOfTables, numOfAttributes;
 		
 	/**
 	 * The default Constructor
@@ -24,6 +26,8 @@ public class Delta {
 		insertions = deletions = alterations = 0;
 		tableIns = tableDel = 0;
 		attrIns = attrDel = 0;
+		numOfTables = numOfAttributes = 0;
+		alterKey = alterAttribute = alterTable =0;
 	}
 	
 	/**
@@ -55,7 +59,7 @@ public class Delta {
 		Iterator<Table> newTableValues = B.getTables().values().iterator() ;
 		
 		if (oldTableKeys.hasNext() && newTableKeys.hasNext()){
-			oldTableKey = oldTableKeys.next() ;
+			oldTableKey = oldTableKeys.next() ; numOfTables++;
 			Table oldTable = (Table) oldTableValues.next() ;
 			newTableKey = newTableKeys.next() ;
 			Table newTable = (Table) newTableValues.next() ;
@@ -71,7 +75,7 @@ public class Delta {
 					Iterator<Attribute> newAttributeValues = newTable.getAttrs().values().iterator() ;
 					
 					if (oldAttributeKeys.hasNext() && newAttributeKeys.hasNext()){
-						oldAttrKey = oldAttributeKeys.next() ;
+						oldAttrKey = oldAttributeKeys.next() ; numOfAttributes++;
 						Attribute oldAttr = oldAttributeValues.next();
 						newAttrKey = newAttributeKeys.next() ;
 						Attribute newAttr = newAttributeValues.next();
@@ -87,7 +91,7 @@ public class Delta {
 									}
 									else {
 										// attribute key changed
-										alterations++;
+										alterKey++;
 										oldTable.setMode('u');
 										newTable.setMode('u');
 										oldAttr.setMode('u');
@@ -96,7 +100,7 @@ public class Delta {
 								}
 								else {
 									// attribute type changed
-									alterations++;
+									alterAttribute++;
 									oldTable.setMode('u');
 									newTable.setMode('u');
 									oldAttr.setMode('u');
@@ -104,7 +108,7 @@ public class Delta {
 								}
 								// move both attributes
 								if (oldAttributeKeys.hasNext() && newAttributeKeys.hasNext()) {
-									oldAttrKey = oldAttributeKeys.next() ;
+									oldAttrKey = oldAttributeKeys.next() ; numOfAttributes++;
 									oldAttr = oldAttributeValues.next();
 									newAttrKey = newAttributeKeys.next() ;
 									newAttr = newAttributeValues.next();
@@ -121,7 +125,7 @@ public class Delta {
 								newTable.setMode('u');
 								// move old only attributes
 								if (oldAttributeKeys.hasNext()) {
-									oldAttrKey = oldAttributeKeys.next() ;
+									oldAttrKey = oldAttributeKeys.next() ; numOfAttributes++;
 									oldAttr = oldAttributeValues.next();
 								}
 								else {
@@ -147,7 +151,7 @@ public class Delta {
 					}
 					// check remaining attributes
 					while (oldAttributeKeys.hasNext()) {
-						oldAttrKey = (String) oldAttributeKeys.next();
+						oldAttrKey = (String) oldAttributeKeys.next(); numOfAttributes++;
 						Attribute oldAttr = oldAttributeValues.next();
 						// Deleted
 						attrDel++;
@@ -166,7 +170,7 @@ public class Delta {
 					}
 					// move both
 					if (oldTableKeys.hasNext() && newTableKeys.hasNext()) {
-						oldTableKey = oldTableKeys.next() ;
+						oldTableKey = oldTableKeys.next() ; numOfTables++;
 						oldTable = (Table) oldTableValues.next() ;
 						newTableKey = newTableKeys.next() ;
 						newTable = (Table) newTableValues.next() ;
@@ -183,7 +187,7 @@ public class Delta {
 					markAll(oldTable, 'd');
 					// move old only
 					if (oldTableKeys.hasNext()) {
-						oldTableKey = oldTableKeys.next() ;
+						oldTableKey = oldTableKeys.next() ;  numOfTables++;
 						oldTable = (Table) oldTableValues.next() ;
 					}
 					else {
@@ -209,7 +213,7 @@ public class Delta {
 		}
 		// check remaining table keys
 		while (oldTableKeys.hasNext()) {
-			oldTableKey = (String) oldTableKeys.next();
+			oldTableKey = (String) oldTableKeys.next();  numOfTables++;
 			Table oldTable = (Table) oldTableValues.next();
 			tableDel++;
 			oldTable.setMode('d');
@@ -230,8 +234,8 @@ public class Delta {
 		for (Iterator<Attribute> i = t.getAttrs().values().iterator(); i.hasNext(); ) {
 	        i.next().setMode(m);
 	        switch(m){
-	        	case 'i': attrIns++;
-	        	case 'd': attrDel++;
+	        	case 'i': attrIns++; break;
+	        	case 'd': attrDel++; break;
 	        	default:;
 	        }
 		}
@@ -242,10 +246,35 @@ public class Delta {
 	 * @return An integer array with insertions at 0
 	 * and deletions at 1.
 	 */
-	public int[] getMetrics(){
-		this.insertions = tableIns + attrIns;
-		this.deletions = tableDel + attrDel;
-		int i[] = {this.insertions, this.deletions};
+	public int[] getTotalMetrics() {
+		this.insertions = this.tableIns + this.attrIns;
+		this.deletions = this.tableDel + this.attrDel;
+		this.alterations = this.alterKey + this.alterAttribute ;
+		int i[] = {this.insertions, this.deletions, this.alterations};
+		return i;
+	}
+	
+	public int[] getTableMetrics() {
+		this.alterTable = this.alterAttribute + this.alterKey +
+		                  this.attrIns;
+		int i[] = {this.tableIns, this.tableDel, this.alterTable};
+		return i;
+	}
+	
+	public int[] getAttributeMetrics() {
+		int i[] = {this.attrIns, this.attrDel,
+				   this.alterAttribute + this.alterKey};
+		return i;
+	}
+	
+	public int[] getOldSizes() {
+		int i[] = {this.numOfTables, this.numOfAttributes};
+		return i;
+	}
+	
+	public int[] getNewSizes() {
+		int i[] = {this.numOfTables + this.tableIns - this.tableDel, 
+		           this.numOfAttributes + this.attrIns - this.attrDel};
 		return i;
 	}
 }

@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g 2010-07-09 15:24:13
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g 2010-07-12 20:50:25
 
   package gr.uoi.cs.dmod.hecate.parser ;
 
@@ -1840,24 +1840,42 @@ public class DDLLexer extends Lexer {
         try {
             int _type = INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:190:5: ( ( '0' .. '9' )+ )
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:190:7: ( '0' .. '9' )+
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:190:5: ( ( '-' )? ( '0' .. '9' )+ )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:190:7: ( '-' )? ( '0' .. '9' )+
             {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:190:7: ( '0' .. '9' )+
-            int cnt34=0;
-            loop34:
-            do {
-                int alt34=2;
-                int LA34_0 = input.LA(1);
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:190:7: ( '-' )?
+            int alt34=2;
+            int LA34_0 = input.LA(1);
 
-                if ( ((LA34_0>='0' && LA34_0<='9')) ) {
-                    alt34=1;
+            if ( (LA34_0=='-') ) {
+                alt34=1;
+            }
+            switch (alt34) {
+                case 1 :
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:190:7: '-'
+                    {
+                    match('-'); 
+
+                    }
+                    break;
+
+            }
+
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:190:12: ( '0' .. '9' )+
+            int cnt35=0;
+            loop35:
+            do {
+                int alt35=2;
+                int LA35_0 = input.LA(1);
+
+                if ( ((LA35_0>='0' && LA35_0<='9')) ) {
+                    alt35=1;
                 }
 
 
-                switch (alt34) {
+                switch (alt35) {
             	case 1 :
-            	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:190:7: '0' .. '9'
+            	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:190:12: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1865,12 +1883,12 @@ public class DDLLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt34 >= 1 ) break loop34;
+            	    if ( cnt35 >= 1 ) break loop35;
                         EarlyExitException eee =
-                            new EarlyExitException(34, input);
+                            new EarlyExitException(35, input);
                         throw eee;
                 }
-                cnt34++;
+                cnt35++;
             } while (true);
 
 
@@ -1890,52 +1908,52 @@ public class DDLLexer extends Lexer {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
             // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:193:2: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' | '--' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
-            int alt40=3;
-            int LA40_0 = input.LA(1);
+            int alt41=3;
+            int LA41_0 = input.LA(1);
 
-            if ( (LA40_0=='/') ) {
-                int LA40_1 = input.LA(2);
+            if ( (LA41_0=='/') ) {
+                int LA41_1 = input.LA(2);
 
-                if ( (LA40_1=='/') ) {
-                    alt40=1;
+                if ( (LA41_1=='/') ) {
+                    alt41=1;
                 }
-                else if ( (LA40_1=='*') ) {
-                    alt40=2;
+                else if ( (LA41_1=='*') ) {
+                    alt41=2;
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("", 40, 1, input);
+                        new NoViableAltException("", 41, 1, input);
 
                     throw nvae;
                 }
             }
-            else if ( (LA40_0=='-') ) {
-                alt40=3;
+            else if ( (LA41_0=='-') ) {
+                alt41=3;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 40, 0, input);
+                    new NoViableAltException("", 41, 0, input);
 
                 throw nvae;
             }
-            switch (alt40) {
+            switch (alt41) {
                 case 1 :
                     // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:193:4: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
                     {
                     match("//"); 
 
                     // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:193:9: (~ ( '\\n' | '\\r' ) )*
-                    loop35:
+                    loop36:
                     do {
-                        int alt35=2;
-                        int LA35_0 = input.LA(1);
+                        int alt36=2;
+                        int LA36_0 = input.LA(1);
 
-                        if ( ((LA35_0>='\u0000' && LA35_0<='\t')||(LA35_0>='\u000B' && LA35_0<='\f')||(LA35_0>='\u000E' && LA35_0<='\uFFFF')) ) {
-                            alt35=1;
+                        if ( ((LA36_0>='\u0000' && LA36_0<='\t')||(LA36_0>='\u000B' && LA36_0<='\f')||(LA36_0>='\u000E' && LA36_0<='\uFFFF')) ) {
+                            alt36=1;
                         }
 
 
-                        switch (alt35) {
+                        switch (alt36) {
                     	case 1 :
                     	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:193:9: ~ ( '\\n' | '\\r' )
                     	    {
@@ -1953,18 +1971,18 @@ public class DDLLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    break loop35;
+                    	    break loop36;
                         }
                     } while (true);
 
                     // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:193:23: ( '\\r' )?
-                    int alt36=2;
-                    int LA36_0 = input.LA(1);
+                    int alt37=2;
+                    int LA37_0 = input.LA(1);
 
-                    if ( (LA36_0=='\r') ) {
-                        alt36=1;
+                    if ( (LA37_0=='\r') ) {
+                        alt37=1;
                     }
-                    switch (alt36) {
+                    switch (alt37) {
                         case 1 :
                             // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:193:23: '\\r'
                             {
@@ -1986,29 +2004,29 @@ public class DDLLexer extends Lexer {
                     match("/*"); 
 
                     // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:194:9: ( options {greedy=false; } : . )*
-                    loop37:
+                    loop38:
                     do {
-                        int alt37=2;
-                        int LA37_0 = input.LA(1);
+                        int alt38=2;
+                        int LA38_0 = input.LA(1);
 
-                        if ( (LA37_0=='*') ) {
-                            int LA37_1 = input.LA(2);
+                        if ( (LA38_0=='*') ) {
+                            int LA38_1 = input.LA(2);
 
-                            if ( (LA37_1=='/') ) {
-                                alt37=2;
+                            if ( (LA38_1=='/') ) {
+                                alt38=2;
                             }
-                            else if ( ((LA37_1>='\u0000' && LA37_1<='.')||(LA37_1>='0' && LA37_1<='\uFFFF')) ) {
-                                alt37=1;
+                            else if ( ((LA38_1>='\u0000' && LA38_1<='.')||(LA38_1>='0' && LA38_1<='\uFFFF')) ) {
+                                alt38=1;
                             }
 
 
                         }
-                        else if ( ((LA37_0>='\u0000' && LA37_0<=')')||(LA37_0>='+' && LA37_0<='\uFFFF')) ) {
-                            alt37=1;
+                        else if ( ((LA38_0>='\u0000' && LA38_0<=')')||(LA38_0>='+' && LA38_0<='\uFFFF')) ) {
+                            alt38=1;
                         }
 
 
-                        switch (alt37) {
+                        switch (alt38) {
                     	case 1 :
                     	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:194:37: .
                     	    {
@@ -2018,7 +2036,7 @@ public class DDLLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    break loop37;
+                    	    break loop38;
                         }
                     } while (true);
 
@@ -2034,17 +2052,17 @@ public class DDLLexer extends Lexer {
                     match("--"); 
 
                     // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:195:9: (~ ( '\\n' | '\\r' ) )*
-                    loop38:
+                    loop39:
                     do {
-                        int alt38=2;
-                        int LA38_0 = input.LA(1);
+                        int alt39=2;
+                        int LA39_0 = input.LA(1);
 
-                        if ( ((LA38_0>='\u0000' && LA38_0<='\t')||(LA38_0>='\u000B' && LA38_0<='\f')||(LA38_0>='\u000E' && LA38_0<='\uFFFF')) ) {
-                            alt38=1;
+                        if ( ((LA39_0>='\u0000' && LA39_0<='\t')||(LA39_0>='\u000B' && LA39_0<='\f')||(LA39_0>='\u000E' && LA39_0<='\uFFFF')) ) {
+                            alt39=1;
                         }
 
 
-                        switch (alt38) {
+                        switch (alt39) {
                     	case 1 :
                     	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:195:9: ~ ( '\\n' | '\\r' )
                     	    {
@@ -2062,18 +2080,18 @@ public class DDLLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    break loop38;
+                    	    break loop39;
                         }
                     } while (true);
 
                     // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:195:23: ( '\\r' )?
-                    int alt39=2;
-                    int LA39_0 = input.LA(1);
+                    int alt40=2;
+                    int LA40_0 = input.LA(1);
 
-                    if ( (LA39_0=='\r') ) {
-                        alt39=1;
+                    if ( (LA40_0=='\r') ) {
+                        alt40=1;
                     }
-                    switch (alt39) {
+                    switch (alt40) {
                         case 1 :
                             // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:195:23: '\\r'
                             {
@@ -2134,31 +2152,31 @@ public class DDLLexer extends Lexer {
             int _type = DEF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
             // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:200:5: ( ( '\\'' ( ESC_SEQ | ~ ( '\\\\' | '\\'' ) )+ '\\'' ) | ( '\"' ( ESC_SEQ | ~ ( '\\\\' | '\"' ) )+ '\"' ) | ( '`' ( ESC_SEQ | ~ ( '\\\\' | '`' ) )+ '`' ) )
-            int alt44=3;
+            int alt45=3;
             switch ( input.LA(1) ) {
             case '\'':
                 {
-                alt44=1;
+                alt45=1;
                 }
                 break;
             case '\"':
                 {
-                alt44=2;
+                alt45=2;
                 }
                 break;
             case '`':
                 {
-                alt44=3;
+                alt45=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 44, 0, input);
+                    new NoViableAltException("", 45, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt44) {
+            switch (alt45) {
                 case 1 :
                     // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:200:7: ( '\\'' ( ESC_SEQ | ~ ( '\\\\' | '\\'' ) )+ '\\'' )
                     {
@@ -2167,21 +2185,21 @@ public class DDLLexer extends Lexer {
                     {
                     match('\''); 
                     // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:200:14: ( ESC_SEQ | ~ ( '\\\\' | '\\'' ) )+
-                    int cnt41=0;
-                    loop41:
+                    int cnt42=0;
+                    loop42:
                     do {
-                        int alt41=3;
-                        int LA41_0 = input.LA(1);
+                        int alt42=3;
+                        int LA42_0 = input.LA(1);
 
-                        if ( (LA41_0=='\\') ) {
-                            alt41=1;
+                        if ( (LA42_0=='\\') ) {
+                            alt42=1;
                         }
-                        else if ( ((LA41_0>='\u0000' && LA41_0<='&')||(LA41_0>='(' && LA41_0<='[')||(LA41_0>=']' && LA41_0<='\uFFFF')) ) {
-                            alt41=2;
+                        else if ( ((LA42_0>='\u0000' && LA42_0<='&')||(LA42_0>='(' && LA42_0<='[')||(LA42_0>=']' && LA42_0<='\uFFFF')) ) {
+                            alt42=2;
                         }
 
 
-                        switch (alt41) {
+                        switch (alt42) {
                     	case 1 :
                     	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:200:16: ESC_SEQ
                     	    {
@@ -2206,12 +2224,12 @@ public class DDLLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    if ( cnt41 >= 1 ) break loop41;
+                    	    if ( cnt42 >= 1 ) break loop42;
                                 EarlyExitException eee =
-                                    new EarlyExitException(41, input);
+                                    new EarlyExitException(42, input);
                                 throw eee;
                         }
-                        cnt41++;
+                        cnt42++;
                     } while (true);
 
                     match('\''); 
@@ -2229,21 +2247,21 @@ public class DDLLexer extends Lexer {
                     {
                     match('\"'); 
                     // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:201:10: ( ESC_SEQ | ~ ( '\\\\' | '\"' ) )+
-                    int cnt42=0;
-                    loop42:
+                    int cnt43=0;
+                    loop43:
                     do {
-                        int alt42=3;
-                        int LA42_0 = input.LA(1);
+                        int alt43=3;
+                        int LA43_0 = input.LA(1);
 
-                        if ( (LA42_0=='\\') ) {
-                            alt42=1;
+                        if ( (LA43_0=='\\') ) {
+                            alt43=1;
                         }
-                        else if ( ((LA42_0>='\u0000' && LA42_0<='!')||(LA42_0>='#' && LA42_0<='[')||(LA42_0>=']' && LA42_0<='\uFFFF')) ) {
-                            alt42=2;
+                        else if ( ((LA43_0>='\u0000' && LA43_0<='!')||(LA43_0>='#' && LA43_0<='[')||(LA43_0>=']' && LA43_0<='\uFFFF')) ) {
+                            alt43=2;
                         }
 
 
-                        switch (alt42) {
+                        switch (alt43) {
                     	case 1 :
                     	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:201:12: ESC_SEQ
                     	    {
@@ -2268,12 +2286,12 @@ public class DDLLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    if ( cnt42 >= 1 ) break loop42;
+                    	    if ( cnt43 >= 1 ) break loop43;
                                 EarlyExitException eee =
-                                    new EarlyExitException(42, input);
+                                    new EarlyExitException(43, input);
                                 throw eee;
                         }
-                        cnt42++;
+                        cnt43++;
                     } while (true);
 
                     match('\"'); 
@@ -2291,21 +2309,21 @@ public class DDLLexer extends Lexer {
                     {
                     match('`'); 
                     // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:202:10: ( ESC_SEQ | ~ ( '\\\\' | '`' ) )+
-                    int cnt43=0;
-                    loop43:
+                    int cnt44=0;
+                    loop44:
                     do {
-                        int alt43=3;
-                        int LA43_0 = input.LA(1);
+                        int alt44=3;
+                        int LA44_0 = input.LA(1);
 
-                        if ( (LA43_0=='\\') ) {
-                            alt43=1;
+                        if ( (LA44_0=='\\') ) {
+                            alt44=1;
                         }
-                        else if ( ((LA43_0>='\u0000' && LA43_0<='[')||(LA43_0>=']' && LA43_0<='_')||(LA43_0>='a' && LA43_0<='\uFFFF')) ) {
-                            alt43=2;
+                        else if ( ((LA44_0>='\u0000' && LA44_0<='[')||(LA44_0>=']' && LA44_0<='_')||(LA44_0>='a' && LA44_0<='\uFFFF')) ) {
+                            alt44=2;
                         }
 
 
-                        switch (alt43) {
+                        switch (alt44) {
                     	case 1 :
                     	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:202:12: ESC_SEQ
                     	    {
@@ -2330,12 +2348,12 @@ public class DDLLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    if ( cnt43 >= 1 ) break loop43;
+                    	    if ( cnt44 >= 1 ) break loop44;
                                 EarlyExitException eee =
-                                    new EarlyExitException(43, input);
+                                    new EarlyExitException(44, input);
                                 throw eee;
                         }
-                        cnt43++;
+                        cnt44++;
                     } while (true);
 
                     match('`'); 
@@ -2383,10 +2401,10 @@ public class DDLLexer extends Lexer {
     public final void mESC_SEQ() throws RecognitionException {
         try {
             // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:212:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
-            int alt45=3;
-            int LA45_0 = input.LA(1);
+            int alt46=3;
+            int LA46_0 = input.LA(1);
 
-            if ( (LA45_0=='\\') ) {
+            if ( (LA46_0=='\\') ) {
                 switch ( input.LA(2) ) {
                 case '\"':
                 case '\'':
@@ -2397,12 +2415,12 @@ public class DDLLexer extends Lexer {
                 case 'r':
                 case 't':
                     {
-                    alt45=1;
+                    alt46=1;
                     }
                     break;
                 case 'u':
                     {
-                    alt45=2;
+                    alt46=2;
                     }
                     break;
                 case '0':
@@ -2414,12 +2432,12 @@ public class DDLLexer extends Lexer {
                 case '6':
                 case '7':
                     {
-                    alt45=3;
+                    alt46=3;
                     }
                     break;
                 default:
                     NoViableAltException nvae =
-                        new NoViableAltException("", 45, 1, input);
+                        new NoViableAltException("", 46, 1, input);
 
                     throw nvae;
                 }
@@ -2427,11 +2445,11 @@ public class DDLLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 45, 0, input);
+                    new NoViableAltException("", 46, 0, input);
 
                 throw nvae;
             }
-            switch (alt45) {
+            switch (alt46) {
                 case 1 :
                     // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:212:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                     {
@@ -2474,50 +2492,50 @@ public class DDLLexer extends Lexer {
     public final void mOCTAL_ESC() throws RecognitionException {
         try {
             // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:219:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
-            int alt46=3;
-            int LA46_0 = input.LA(1);
+            int alt47=3;
+            int LA47_0 = input.LA(1);
 
-            if ( (LA46_0=='\\') ) {
-                int LA46_1 = input.LA(2);
+            if ( (LA47_0=='\\') ) {
+                int LA47_1 = input.LA(2);
 
-                if ( ((LA46_1>='0' && LA46_1<='3')) ) {
-                    int LA46_2 = input.LA(3);
+                if ( ((LA47_1>='0' && LA47_1<='3')) ) {
+                    int LA47_2 = input.LA(3);
 
-                    if ( ((LA46_2>='0' && LA46_2<='7')) ) {
-                        int LA46_4 = input.LA(4);
+                    if ( ((LA47_2>='0' && LA47_2<='7')) ) {
+                        int LA47_4 = input.LA(4);
 
-                        if ( ((LA46_4>='0' && LA46_4<='7')) ) {
-                            alt46=1;
+                        if ( ((LA47_4>='0' && LA47_4<='7')) ) {
+                            alt47=1;
                         }
                         else {
-                            alt46=2;}
+                            alt47=2;}
                     }
                     else {
-                        alt46=3;}
+                        alt47=3;}
                 }
-                else if ( ((LA46_1>='4' && LA46_1<='7')) ) {
-                    int LA46_3 = input.LA(3);
+                else if ( ((LA47_1>='4' && LA47_1<='7')) ) {
+                    int LA47_3 = input.LA(3);
 
-                    if ( ((LA46_3>='0' && LA46_3<='7')) ) {
-                        alt46=2;
+                    if ( ((LA47_3>='0' && LA47_3<='7')) ) {
+                        alt47=2;
                     }
                     else {
-                        alt46=3;}
+                        alt47=3;}
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("", 46, 1, input);
+                        new NoViableAltException("", 47, 1, input);
 
                     throw nvae;
                 }
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 46, 0, input);
+                    new NoViableAltException("", 47, 0, input);
 
                 throw nvae;
             }
-            switch (alt46) {
+            switch (alt47) {
                 case 1 :
                     // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:219:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
                     {
@@ -2612,9 +2630,9 @@ public class DDLLexer extends Lexer {
 
     public void mTokens() throws RecognitionException {
         // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:1:8: ( T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | DROP | CREATE | TABLE | IF | NOT | EXISTS | ENUM | NULL | DEFAULT | KEY | HASH | UNIQUE | PRIMARY | FOREIGN | INDEX | FULLTEXT | REFERENCES | ON | DELETE | CASCADE | RESTRICT | ACTION | NO | SET | UPDATE | UNSIGNED | BINARY | AUTO_INC | ASC | DESC | CHARACTER | USE | SCHEMA | ID | INT | COMMENT | WS | DEF )
-        int alt47=45;
-        alt47 = dfa47.predict(input);
-        switch (alt47) {
+        int alt48=45;
+        alt48 = dfa48.predict(input);
+        switch (alt48) {
             case 1 :
                 // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:1:10: T__46
                 {
@@ -2936,79 +2954,79 @@ public class DDLLexer extends Lexer {
     }
 
 
-    protected DFA47 dfa47 = new DFA47(this);
-    static final String DFA47_eotS =
-        "\1\24\7\uffff\14\50\1\uffff\23\50\6\uffff\14\50\1\165\1\50\1\165"+
-        "\1\50\1\171\1\50\1\171\26\50\2\u0096\34\50\1\uffff\2\50\1\u00b5"+
-        "\1\uffff\1\50\1\u00b5\5\50\2\u00bc\4\50\1\u00c1\3\50\1\u00c1\12"+
-        "\50\1\uffff\2\50\1\u00d1\2\50\1\u00d1\1\u00d4\1\50\1\u00d4\3\50"+
-        "\1\u00d9\2\50\1\u00dc\1\u00d9\2\50\1\u00dc\12\50\1\uffff\2\24\1"+
-        "\50\1\u00ea\1\50\1\u00ea\1\uffff\4\50\1\uffff\17\50\1\uffff\2\50"+
-        "\1\uffff\4\50\1\uffff\2\50\1\uffff\10\50\2\u010f\2\u0110\1\50\1"+
-        "\uffff\33\50\1\u012d\1\50\1\u012d\1\u012f\2\50\1\u012f\2\50\2\uffff"+
-        "\2\u0134\1\50\1\u0136\1\50\1\u0138\1\u0136\1\50\1\u0138\12\50\1"+
-        "\u0144\1\50\1\u0144\1\50\2\u0147\2\u0148\1\u0149\1\uffff\1\u0149"+
-        "\1\uffff\1\u014a\1\50\1\u014a\1\50\1\uffff\1\50\1\uffff\1\50\1\uffff"+
-        "\1\50\2\u0150\1\u0151\1\50\1\u0151\5\50\1\uffff\2\50\4\uffff\2\50"+
-        "\1\u015c\2\u015d\2\uffff\2\u015e\1\50\1\u0160\1\50\1\u0160\2\50"+
-        "\2\u0164\3\uffff\1\50\1\uffff\3\50\1\uffff\2\u0169\2\50\1\uffff"+
-        "\6\50\2\u0172\1\uffff";
-    static final String DFA47_eofS =
-        "\u0173\uffff";
-    static final String DFA47_minS =
+    protected DFA48 dfa48 = new DFA48(this);
+    static final String DFA48_eotS =
+        "\1\24\7\uffff\14\50\1\uffff\23\50\7\uffff\14\50\1\166\1\50\1\166"+
+        "\1\50\1\172\1\50\1\172\26\50\2\u0097\34\50\1\uffff\2\50\1\u00b6"+
+        "\1\uffff\1\50\1\u00b6\5\50\2\u00bd\4\50\1\u00c2\3\50\1\u00c2\12"+
+        "\50\1\uffff\2\50\1\u00d2\2\50\1\u00d2\1\u00d5\1\50\1\u00d5\3\50"+
+        "\1\u00da\2\50\1\u00dd\1\u00da\2\50\1\u00dd\12\50\1\uffff\2\24\1"+
+        "\50\1\u00eb\1\50\1\u00eb\1\uffff\4\50\1\uffff\17\50\1\uffff\2\50"+
+        "\1\uffff\4\50\1\uffff\2\50\1\uffff\10\50\2\u0110\2\u0111\1\50\1"+
+        "\uffff\33\50\1\u012e\1\50\1\u012e\1\u0130\2\50\1\u0130\2\50\2\uffff"+
+        "\2\u0135\1\50\1\u0137\1\50\1\u0139\1\u0137\1\50\1\u0139\12\50\1"+
+        "\u0145\1\50\1\u0145\1\50\2\u0148\2\u0149\1\u014a\1\uffff\1\u014a"+
+        "\1\uffff\1\u014b\1\50\1\u014b\1\50\1\uffff\1\50\1\uffff\1\50\1\uffff"+
+        "\1\50\2\u0151\1\u0152\1\50\1\u0152\5\50\1\uffff\2\50\4\uffff\2\50"+
+        "\1\u015d\2\u015e\2\uffff\2\u015f\1\50\1\u0161\1\50\1\u0161\2\50"+
+        "\2\u0165\3\uffff\1\50\1\uffff\3\50\1\uffff\2\u016a\2\50\1\uffff"+
+        "\6\50\2\u0173\1\uffff";
+    static final String DFA48_eofS =
+        "\u0174\uffff";
+    static final String DFA48_minS =
         "\1\11\4\uffff\1\0\2\uffff\1\105\1\145\1\101\1\141\1\101\1\141\1"+
         "\106\1\146\1\117\1\157\1\116\1\156\1\uffff\1\105\1\145\1\101\1\116"+
         "\1\156\1\122\1\162\1\117\1\157\1\105\1\145\1\116\1\156\1\103\1\143"+
-        "\1\103\1\143\1\111\1\151\6\uffff\1\117\1\106\1\157\1\146\1\105\1"+
-        "\123\1\101\1\145\1\163\1\141\1\102\1\142\1\60\1\104\1\60\1\144\1"+
-        "\60\1\114\1\60\1\154\1\111\1\125\1\151\1\165\1\131\1\171\1\123\1"+
-        "\111\1\104\1\105\1\151\1\144\1\145\1\111\1\151\1\122\1\114\1\162"+
-        "\1\154\1\106\1\146\2\60\2\124\1\103\2\164\1\143\1\124\1\110\1\164"+
-        "\1\150\1\116\1\156\1\120\1\101\1\105\1\103\1\160\1\141\1\145\1\143"+
-        "\1\101\1\103\1\122\1\141\1\143\1\162\1\114\1\154\1\uffff\1\105\1"+
-        "\145\1\60\1\uffff\1\114\1\60\1\154\1\123\1\115\1\163\1\155\2\60"+
-        "\1\110\1\121\1\111\1\101\1\60\1\161\1\151\1\141\1\60\1\115\1\155"+
-        "\1\105\1\114\1\145\1\154\1\105\1\124\1\145\1\164\1\uffff\1\111\1"+
-        "\117\1\60\1\151\1\157\2\60\1\105\1\60\1\145\1\101\1\141\1\60\1\125"+
-        "\1\124\2\60\1\165\1\164\1\60\1\124\2\101\1\164\2\141\1\105\1\145"+
-        "\1\130\1\170\1\uffff\2\60\1\124\1\60\1\164\1\60\1\uffff\1\150\1"+
-        "\125\1\107\1\124\1\uffff\1\165\1\147\1\164\1\101\1\141\1\111\1\124"+
-        "\1\151\1\164\2\122\2\162\1\117\1\137\1\uffff\1\157\1\137\1\uffff"+
-        "\1\115\1\155\1\122\1\162\1\uffff\1\114\1\105\1\uffff\1\154\1\145"+
-        "\1\105\1\104\1\103\1\145\1\144\1\143\4\60\1\123\1\uffff\1\163\1"+
-        "\141\1\105\1\116\1\105\1\145\1\156\1\145\1\122\1\162\1\107\1\105"+
-        "\1\147\1\145\1\105\1\111\1\145\1\151\1\116\1\111\1\156\1\151\1\101"+
-        "\1\141\1\131\1\171\1\124\1\60\1\164\2\60\1\105\1\124\1\60\1\145"+
-        "\1\164\2\uffff\2\60\1\163\1\60\1\105\2\60\1\145\1\60\1\131\1\171"+
-        "\1\116\1\130\1\156\1\170\1\116\1\103\1\156\1\143\1\60\1\116\1\60"+
-        "\1\156\5\60\1\uffff\1\60\1\uffff\1\60\1\105\1\60\1\145\1\uffff\1"+
-        "\150\1\uffff\1\104\1\uffff\1\144\3\60\1\124\1\60\1\164\1\103\1\124"+
-        "\1\143\1\164\1\uffff\1\103\1\143\4\uffff\1\122\1\162\3\60\2\uffff"+
-        "\2\60\1\105\1\60\1\145\1\60\1\122\1\162\2\60\3\uffff\1\123\1\uffff"+
-        "\1\163\1\105\1\145\1\uffff\2\60\1\115\1\155\1\uffff\1\105\1\145"+
-        "\1\116\1\156\1\124\1\164\2\60\1\uffff";
-    static final String DFA47_maxS =
-        "\1\172\4\uffff\1\uffff\2\uffff\1\122\1\162\1\122\1\162\1\101\1\141"+
-        "\1\116\1\156\1\125\1\165\1\130\1\170\1\uffff\1\105\1\145\1\101\1"+
-        "\123\1\163\1\122\1\162\1\125\1\165\1\105\1\145\1\116\1\156\1\125"+
-        "\1\165\1\105\1\145\1\111\1\151\6\uffff\1\117\1\123\1\157\1\163\1"+
-        "\105\1\123\1\101\1\145\1\163\1\141\1\102\1\142\1\172\1\104\1\172"+
-        "\1\144\1\172\1\114\1\172\1\154\1\111\1\125\1\151\1\165\1\131\1\171"+
-        "\2\123\1\104\1\105\1\163\1\144\1\145\1\111\1\151\1\122\1\114\1\162"+
-        "\1\154\1\123\1\163\2\172\2\124\1\103\2\164\1\143\1\124\1\110\1\164"+
-        "\1\150\1\116\1\156\1\120\1\101\1\105\1\103\1\160\1\141\1\145\1\143"+
-        "\1\101\1\103\1\122\1\141\1\143\1\162\1\114\1\154\1\uffff\1\105\1"+
-        "\145\1\172\1\uffff\1\114\1\172\1\154\1\123\1\115\1\163\1\155\2\172"+
-        "\1\110\1\121\1\111\1\101\1\172\1\161\1\151\1\141\1\172\1\115\1\155"+
-        "\1\105\1\114\1\145\1\154\1\105\1\124\1\145\1\164\1\uffff\1\111\1"+
-        "\117\1\172\1\151\1\157\2\172\1\105\1\172\1\145\1\101\1\141\1\172"+
-        "\1\125\1\124\2\172\1\165\1\164\1\172\1\124\2\101\1\164\2\141\1\105"+
-        "\1\145\1\130\1\170\1\uffff\2\172\1\124\1\172\1\164\1\172\1\uffff"+
+        "\1\103\1\143\1\111\1\151\1\uffff\1\55\5\uffff\1\117\1\106\1\157"+
+        "\1\146\1\105\1\123\1\101\1\145\1\163\1\141\1\102\1\142\1\60\1\104"+
+        "\1\60\1\144\1\60\1\114\1\60\1\154\1\111\1\125\1\151\1\165\1\131"+
+        "\1\171\1\123\1\111\1\104\1\105\1\151\1\144\1\145\1\111\1\151\1\122"+
+        "\1\114\1\162\1\154\1\106\1\146\2\60\2\124\1\103\2\164\1\143\1\124"+
+        "\1\110\1\164\1\150\1\116\1\156\1\120\1\101\1\105\1\103\1\160\1\141"+
+        "\1\145\1\143\1\101\1\103\1\122\1\141\1\143\1\162\1\114\1\154\1\uffff"+
+        "\1\105\1\145\1\60\1\uffff\1\114\1\60\1\154\1\123\1\115\1\163\1\155"+
+        "\2\60\1\110\1\121\1\111\1\101\1\60\1\161\1\151\1\141\1\60\1\115"+
+        "\1\155\1\105\1\114\1\145\1\154\1\105\1\124\1\145\1\164\1\uffff\1"+
+        "\111\1\117\1\60\1\151\1\157\2\60\1\105\1\60\1\145\1\101\1\141\1"+
+        "\60\1\125\1\124\2\60\1\165\1\164\1\60\1\124\2\101\1\164\2\141\1"+
+        "\105\1\145\1\130\1\170\1\uffff\2\60\1\124\1\60\1\164\1\60\1\uffff"+
         "\1\150\1\125\1\107\1\124\1\uffff\1\165\1\147\1\164\1\101\1\141\1"+
         "\111\1\124\1\151\1\164\2\122\2\162\1\117\1\137\1\uffff\1\157\1\137"+
         "\1\uffff\1\115\1\155\1\122\1\162\1\uffff\1\114\1\105\1\uffff\1\154"+
-        "\1\145\1\105\1\104\1\103\1\145\1\144\1\143\4\172\1\123\1\uffff\1"+
+        "\1\145\1\105\1\104\1\103\1\145\1\144\1\143\4\60\1\123\1\uffff\1"+
         "\163\1\141\1\105\1\116\1\105\1\145\1\156\1\145\1\122\1\162\1\107"+
+        "\1\105\1\147\1\145\1\105\1\111\1\145\1\151\1\116\1\111\1\156\1\151"+
+        "\1\101\1\141\1\131\1\171\1\124\1\60\1\164\2\60\1\105\1\124\1\60"+
+        "\1\145\1\164\2\uffff\2\60\1\163\1\60\1\105\2\60\1\145\1\60\1\131"+
+        "\1\171\1\116\1\130\1\156\1\170\1\116\1\103\1\156\1\143\1\60\1\116"+
+        "\1\60\1\156\5\60\1\uffff\1\60\1\uffff\1\60\1\105\1\60\1\145\1\uffff"+
+        "\1\150\1\uffff\1\104\1\uffff\1\144\3\60\1\124\1\60\1\164\1\103\1"+
+        "\124\1\143\1\164\1\uffff\1\103\1\143\4\uffff\1\122\1\162\3\60\2"+
+        "\uffff\2\60\1\105\1\60\1\145\1\60\1\122\1\162\2\60\3\uffff\1\123"+
+        "\1\uffff\1\163\1\105\1\145\1\uffff\2\60\1\115\1\155\1\uffff\1\105"+
+        "\1\145\1\116\1\156\1\124\1\164\2\60\1\uffff";
+    static final String DFA48_maxS =
+        "\1\172\4\uffff\1\uffff\2\uffff\1\122\1\162\1\122\1\162\1\101\1\141"+
+        "\1\116\1\156\1\125\1\165\1\130\1\170\1\uffff\1\105\1\145\1\101\1"+
+        "\123\1\163\1\122\1\162\1\125\1\165\1\105\1\145\1\116\1\156\1\125"+
+        "\1\165\1\105\1\145\1\111\1\151\1\uffff\1\71\5\uffff\1\117\1\123"+
+        "\1\157\1\163\1\105\1\123\1\101\1\145\1\163\1\141\1\102\1\142\1\172"+
+        "\1\104\1\172\1\144\1\172\1\114\1\172\1\154\1\111\1\125\1\151\1\165"+
+        "\1\131\1\171\2\123\1\104\1\105\1\163\1\144\1\145\1\111\1\151\1\122"+
+        "\1\114\1\162\1\154\1\123\1\163\2\172\2\124\1\103\2\164\1\143\1\124"+
+        "\1\110\1\164\1\150\1\116\1\156\1\120\1\101\1\105\1\103\1\160\1\141"+
+        "\1\145\1\143\1\101\1\103\1\122\1\141\1\143\1\162\1\114\1\154\1\uffff"+
+        "\1\105\1\145\1\172\1\uffff\1\114\1\172\1\154\1\123\1\115\1\163\1"+
+        "\155\2\172\1\110\1\121\1\111\1\101\1\172\1\161\1\151\1\141\1\172"+
+        "\1\115\1\155\1\105\1\114\1\145\1\154\1\105\1\124\1\145\1\164\1\uffff"+
+        "\1\111\1\117\1\172\1\151\1\157\2\172\1\105\1\172\1\145\1\101\1\141"+
+        "\1\172\1\125\1\124\2\172\1\165\1\164\1\172\1\124\2\101\1\164\2\141"+
+        "\1\105\1\145\1\130\1\170\1\uffff\2\172\1\124\1\172\1\164\1\172\1"+
+        "\uffff\1\150\1\125\1\107\1\124\1\uffff\1\165\1\147\1\164\1\101\1"+
+        "\141\1\111\1\124\1\151\1\164\2\122\2\162\1\117\1\137\1\uffff\1\157"+
+        "\1\137\1\uffff\1\115\1\155\1\122\1\162\1\uffff\1\114\1\105\1\uffff"+
+        "\1\154\1\145\1\105\1\104\1\103\1\145\1\144\1\143\4\172\1\123\1\uffff"+
+        "\1\163\1\141\1\105\1\116\1\105\1\145\1\156\1\145\1\122\1\162\1\107"+
         "\1\105\1\147\1\145\1\105\1\111\1\145\1\151\1\116\1\111\1\156\1\151"+
         "\1\101\1\141\1\131\1\171\1\124\1\172\1\164\2\172\1\105\1\124\1\172"+
         "\1\145\1\164\2\uffff\2\172\1\163\1\172\1\105\2\172\1\145\1\172\1"+
@@ -3019,74 +3037,74 @@ public class DDLLexer extends Lexer {
         "\1\162\3\172\2\uffff\2\172\1\105\1\172\1\145\1\172\1\122\1\162\2"+
         "\172\3\uffff\1\123\1\uffff\1\163\1\105\1\145\1\uffff\2\172\1\115"+
         "\1\155\1\uffff\1\105\1\145\1\116\1\156\1\124\1\164\2\172\1\uffff";
-    static final String DFA47_acceptS =
+    static final String DFA48_acceptS =
         "\1\uffff\1\1\1\2\1\3\1\4\1\uffff\1\6\1\7\14\uffff\1\17\23\uffff"+
-        "\1\51\1\52\1\53\1\54\1\55\1\5\107\uffff\1\13\3\uffff\1\36\34\uffff"+
-        "\1\31\36\uffff\1\14\6\uffff\1\21\4\uffff\1\47\17\uffff\1\44\2\uffff"+
-        "\1\37\4\uffff\1\10\2\uffff\1\45\15\uffff\1\16\44\uffff\1\12\1\26"+
-        "\34\uffff\1\32\1\uffff\1\11\4\uffff\1\15\1\uffff\1\23\1\uffff\1"+
-        "\40\13\uffff\1\35\2\uffff\1\50\1\42\1\20\1\33\5\uffff\1\24\1\25"+
-        "\12\uffff\1\22\1\41\1\27\1\uffff\1\34\3\uffff\1\46\4\uffff\1\30"+
-        "\10\uffff\1\43";
-    static final String DFA47_specialS =
-        "\5\uffff\1\0\u016d\uffff}>";
-    static final String[] DFA47_transitionS = {
-            "\2\53\2\uffff\1\53\22\uffff\1\53\1\uffff\1\54\4\uffff\1\5\1"+
-            "\2\1\3\2\uffff\1\4\1\52\1\7\1\52\12\51\1\uffff\1\1\1\uffff\1"+
+        "\1\51\1\uffff\1\52\1\53\1\54\1\55\1\5\107\uffff\1\13\3\uffff\1\36"+
+        "\34\uffff\1\31\36\uffff\1\14\6\uffff\1\21\4\uffff\1\47\17\uffff"+
+        "\1\44\2\uffff\1\37\4\uffff\1\10\2\uffff\1\45\15\uffff\1\16\44\uffff"+
+        "\1\12\1\26\34\uffff\1\32\1\uffff\1\11\4\uffff\1\15\1\uffff\1\23"+
+        "\1\uffff\1\40\13\uffff\1\35\2\uffff\1\50\1\42\1\20\1\33\5\uffff"+
+        "\1\24\1\25\12\uffff\1\22\1\41\1\27\1\uffff\1\34\3\uffff\1\46\4\uffff"+
+        "\1\30\10\uffff\1\43";
+    static final String DFA48_specialS =
+        "\5\uffff\1\0\u016e\uffff}>";
+    static final String[] DFA48_transitionS = {
+            "\2\54\2\uffff\1\54\22\uffff\1\54\1\uffff\1\55\4\uffff\1\5\1"+
+            "\2\1\3\2\uffff\1\4\1\51\1\7\1\53\12\52\1\uffff\1\1\1\uffff\1"+
             "\6\3\uffff\1\42\1\46\1\12\1\10\1\22\1\34\1\50\1\27\1\16\1\50"+
             "\1\25\2\50\1\20\1\40\1\32\1\50\1\36\1\44\1\14\1\30\5\50\4\uffff"+
-            "\1\50\1\54\1\43\1\47\1\13\1\11\1\23\1\35\2\50\1\17\1\50\1\26"+
+            "\1\50\1\55\1\43\1\47\1\13\1\11\1\23\1\35\2\50\1\17\1\50\1\26"+
             "\2\50\1\21\1\41\1\33\1\50\1\37\1\45\1\15\1\31\5\50",
             "",
             "",
             "",
             "",
-            "\47\54\1\55\uffd8\54",
+            "\47\55\1\56\uffd8\55",
             "",
             "",
-            "\1\57\14\uffff\1\56",
-            "\1\61\14\uffff\1\60",
-            "\1\63\6\uffff\1\64\11\uffff\1\62",
-            "\1\66\6\uffff\1\67\11\uffff\1\65",
-            "\1\70",
+            "\1\60\14\uffff\1\57",
+            "\1\62\14\uffff\1\61",
+            "\1\64\6\uffff\1\65\11\uffff\1\63",
+            "\1\67\6\uffff\1\70\11\uffff\1\66",
             "\1\71",
-            "\1\72\7\uffff\1\73",
-            "\1\74\7\uffff\1\75",
-            "\1\76\5\uffff\1\77",
-            "\1\100\5\uffff\1\101",
-            "\1\103\11\uffff\1\102",
-            "\1\105\11\uffff\1\104",
+            "\1\72",
+            "\1\73\7\uffff\1\74",
+            "\1\75\7\uffff\1\76",
+            "\1\77\5\uffff\1\100",
+            "\1\101\5\uffff\1\102",
+            "\1\104\11\uffff\1\103",
+            "\1\106\11\uffff\1\105",
             "",
-            "\1\106",
             "\1\107",
             "\1\110",
-            "\1\111\1\uffff\1\112\2\uffff\1\113",
-            "\1\114\1\uffff\1\115\2\uffff\1\116",
-            "\1\117",
+            "\1\111",
+            "\1\112\1\uffff\1\113\2\uffff\1\114",
+            "\1\115\1\uffff\1\116\2\uffff\1\117",
             "\1\120",
-            "\1\121\5\uffff\1\122",
-            "\1\123\5\uffff\1\124",
-            "\1\125",
+            "\1\121",
+            "\1\122\5\uffff\1\123",
+            "\1\124\5\uffff\1\125",
             "\1\126",
             "\1\127",
             "\1\130",
-            "\1\131\17\uffff\1\133\1\uffff\1\132",
-            "\1\134\17\uffff\1\136\1\uffff\1\135",
-            "\1\140\1\uffff\1\137",
-            "\1\142\1\uffff\1\141",
-            "\1\143",
+            "\1\131",
+            "\1\132\17\uffff\1\134\1\uffff\1\133",
+            "\1\135\17\uffff\1\137\1\uffff\1\136",
+            "\1\141\1\uffff\1\140",
+            "\1\143\1\uffff\1\142",
             "\1\144",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
             "\1\145",
-            "\1\146\5\uffff\1\147\6\uffff\1\150",
-            "\1\151",
-            "\1\152\5\uffff\1\153\6\uffff\1\154",
-            "\1\155",
+            "",
+            "\1\53\2\uffff\12\52",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\146",
+            "\1\147\5\uffff\1\150\6\uffff\1\151",
+            "\1\152",
+            "\1\153\5\uffff\1\154\6\uffff\1\155",
             "\1\156",
             "\1\157",
             "\1\160",
@@ -3094,14 +3112,14 @@ public class DDLLexer extends Lexer {
             "\1\162",
             "\1\163",
             "\1\164",
-            "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
-            "\1\166",
+            "\1\165",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\1\167",
-            "\12\50\7\uffff\23\50\1\170\6\50\4\uffff\1\50\1\uffff\32\50",
-            "\1\172",
-            "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\23\50\1\173\6\50",
-            "\1\174",
+            "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
+            "\1\170",
+            "\12\50\7\uffff\23\50\1\171\6\50\4\uffff\1\50\1\uffff\32\50",
+            "\1\173",
+            "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\23\50\1\174\6\50",
             "\1\175",
             "\1\176",
             "\1\177",
@@ -3109,11 +3127,11 @@ public class DDLLexer extends Lexer {
             "\1\u0081",
             "\1\u0082",
             "\1\u0083",
-            "\1\u0084\11\uffff\1\u0085",
-            "\1\u0086",
+            "\1\u0084",
+            "\1\u0085\11\uffff\1\u0086",
             "\1\u0087",
-            "\1\u0088\11\uffff\1\u0089",
-            "\1\u008a",
+            "\1\u0088",
+            "\1\u0089\11\uffff\1\u008a",
             "\1\u008b",
             "\1\u008c",
             "\1\u008d",
@@ -3121,11 +3139,11 @@ public class DDLLexer extends Lexer {
             "\1\u008f",
             "\1\u0090",
             "\1\u0091",
-            "\1\u0092\14\uffff\1\u0093",
-            "\1\u0094\14\uffff\1\u0095",
+            "\1\u0092",
+            "\1\u0093\14\uffff\1\u0094",
+            "\1\u0095\14\uffff\1\u0096",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
-            "\1\u0097",
             "\1\u0098",
             "\1\u0099",
             "\1\u009a",
@@ -3153,30 +3171,30 @@ public class DDLLexer extends Lexer {
             "\1\u00b0",
             "\1\u00b1",
             "\1\u00b2",
-            "",
             "\1\u00b3",
+            "",
             "\1\u00b4",
+            "\1\u00b5",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "",
-            "\1\u00b6",
-            "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\1\u00b7",
+            "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\1\u00b8",
             "\1\u00b9",
             "\1\u00ba",
             "\1\u00bb",
+            "\1\u00bc",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
-            "\1\u00bd",
             "\1\u00be",
             "\1\u00bf",
             "\1\u00c0",
+            "\1\u00c1",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
-            "\1\u00c2",
             "\1\u00c3",
             "\1\u00c4",
-            "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\1\u00c5",
+            "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\1\u00c6",
             "\1\u00c7",
             "\1\u00c8",
@@ -3186,28 +3204,28 @@ public class DDLLexer extends Lexer {
             "\1\u00cc",
             "\1\u00cd",
             "\1\u00ce",
-            "",
             "\1\u00cf",
+            "",
             "\1\u00d0",
+            "\1\u00d1",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
-            "\1\u00d2",
             "\1\u00d3",
+            "\1\u00d4",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
-            "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
-            "\1\u00d5",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\1\u00d6",
+            "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\1\u00d7",
             "\1\u00d8",
+            "\1\u00d9",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
-            "\1\u00da",
             "\1\u00db",
+            "\1\u00dc",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
-            "\1\u00dd",
             "\1\u00de",
-            "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\1\u00df",
+            "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\1\u00e0",
             "\1\u00e1",
             "\1\u00e2",
@@ -3217,20 +3235,20 @@ public class DDLLexer extends Lexer {
             "\1\u00e6",
             "\1\u00e7",
             "\1\u00e8",
-            "",
-            "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
-            "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\1\u00e9",
+            "",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
-            "\1\u00eb",
+            "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
+            "\1\u00ea",
+            "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
+            "\1\u00ec",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "",
-            "\1\u00ec",
             "\1\u00ed",
             "\1\u00ee",
             "\1\u00ef",
-            "",
             "\1\u00f0",
+            "",
             "\1\u00f1",
             "\1\u00f2",
             "\1\u00f3",
@@ -3245,19 +3263,19 @@ public class DDLLexer extends Lexer {
             "\1\u00fc",
             "\1\u00fd",
             "\1\u00fe",
-            "",
             "\1\u00ff",
-            "\1\u0100",
             "",
+            "\1\u0100",
             "\1\u0101",
+            "",
             "\1\u0102",
             "\1\u0103",
             "\1\u0104",
-            "",
             "\1\u0105",
-            "\1\u0106",
             "",
+            "\1\u0106",
             "\1\u0107",
+            "",
             "\1\u0108",
             "\1\u0109",
             "\1\u010a",
@@ -3265,13 +3283,13 @@ public class DDLLexer extends Lexer {
             "\1\u010c",
             "\1\u010d",
             "\1\u010e",
+            "\1\u010f",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
-            "\1\u0111",
-            "",
             "\1\u0112",
+            "",
             "\1\u0113",
             "\1\u0114",
             "\1\u0115",
@@ -3298,27 +3316,27 @@ public class DDLLexer extends Lexer {
             "\1\u012a",
             "\1\u012b",
             "\1\u012c",
+            "\1\u012d",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
-            "\1\u012e",
+            "\1\u012f",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
-            "\1\u0130",
             "\1\u0131",
-            "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\1\u0132",
+            "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\1\u0133",
+            "\1\u0134",
             "",
             "",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
-            "\1\u0135",
+            "\1\u0136",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
-            "\1\u0137",
+            "\1\u0138",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
-            "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
-            "\1\u0139",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\1\u013a",
+            "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\1\u013b",
             "\1\u013c",
             "\1\u013d",
@@ -3328,11 +3346,12 @@ public class DDLLexer extends Lexer {
             "\1\u0141",
             "\1\u0142",
             "\1\u0143",
-            "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
-            "\1\u0145",
+            "\1\u0144",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\1\u0146",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
+            "\1\u0147",
+            "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
@@ -3340,35 +3359,35 @@ public class DDLLexer extends Lexer {
             "",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "",
-            "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
-            "\1\u014b",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\1\u014c",
-            "",
+            "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\1\u014d",
             "",
             "\1\u014e",
             "",
             "\1\u014f",
+            "",
+            "\1\u0150",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
-            "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
-            "\1\u0152",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\1\u0153",
+            "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\1\u0154",
             "\1\u0155",
             "\1\u0156",
             "\1\u0157",
-            "",
             "\1\u0158",
+            "",
             "\1\u0159",
-            "",
-            "",
-            "",
-            "",
             "\1\u015a",
+            "",
+            "",
+            "",
+            "",
             "\1\u015b",
+            "\1\u015c",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
@@ -3376,67 +3395,67 @@ public class DDLLexer extends Lexer {
             "",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
-            "\1\u015f",
-            "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
-            "\1\u0161",
+            "\1\u0160",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\1\u0162",
+            "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\1\u0163",
+            "\1\u0164",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "",
             "",
-            "",
-            "\1\u0165",
             "",
             "\1\u0166",
+            "",
             "\1\u0167",
             "\1\u0168",
+            "\1\u0169",
             "",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
-            "\1\u016a",
             "\1\u016b",
-            "",
             "\1\u016c",
+            "",
             "\1\u016d",
             "\1\u016e",
             "\1\u016f",
             "\1\u0170",
             "\1\u0171",
+            "\1\u0172",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             "\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
             ""
     };
 
-    static final short[] DFA47_eot = DFA.unpackEncodedString(DFA47_eotS);
-    static final short[] DFA47_eof = DFA.unpackEncodedString(DFA47_eofS);
-    static final char[] DFA47_min = DFA.unpackEncodedStringToUnsignedChars(DFA47_minS);
-    static final char[] DFA47_max = DFA.unpackEncodedStringToUnsignedChars(DFA47_maxS);
-    static final short[] DFA47_accept = DFA.unpackEncodedString(DFA47_acceptS);
-    static final short[] DFA47_special = DFA.unpackEncodedString(DFA47_specialS);
-    static final short[][] DFA47_transition;
+    static final short[] DFA48_eot = DFA.unpackEncodedString(DFA48_eotS);
+    static final short[] DFA48_eof = DFA.unpackEncodedString(DFA48_eofS);
+    static final char[] DFA48_min = DFA.unpackEncodedStringToUnsignedChars(DFA48_minS);
+    static final char[] DFA48_max = DFA.unpackEncodedStringToUnsignedChars(DFA48_maxS);
+    static final short[] DFA48_accept = DFA.unpackEncodedString(DFA48_acceptS);
+    static final short[] DFA48_special = DFA.unpackEncodedString(DFA48_specialS);
+    static final short[][] DFA48_transition;
 
     static {
-        int numStates = DFA47_transitionS.length;
-        DFA47_transition = new short[numStates][];
+        int numStates = DFA48_transitionS.length;
+        DFA48_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA47_transition[i] = DFA.unpackEncodedString(DFA47_transitionS[i]);
+            DFA48_transition[i] = DFA.unpackEncodedString(DFA48_transitionS[i]);
         }
     }
 
-    class DFA47 extends DFA {
+    class DFA48 extends DFA {
 
-        public DFA47(BaseRecognizer recognizer) {
+        public DFA48(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 47;
-            this.eot = DFA47_eot;
-            this.eof = DFA47_eof;
-            this.min = DFA47_min;
-            this.max = DFA47_max;
-            this.accept = DFA47_accept;
-            this.special = DFA47_special;
-            this.transition = DFA47_transition;
+            this.decisionNumber = 48;
+            this.eot = DFA48_eot;
+            this.eof = DFA48_eof;
+            this.min = DFA48_min;
+            this.max = DFA48_max;
+            this.accept = DFA48_accept;
+            this.special = DFA48_special;
+            this.transition = DFA48_transition;
         }
         public String getDescription() {
             return "1:1: Tokens : ( T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | DROP | CREATE | TABLE | IF | NOT | EXISTS | ENUM | NULL | DEFAULT | KEY | HASH | UNIQUE | PRIMARY | FOREIGN | INDEX | FULLTEXT | REFERENCES | ON | DELETE | CASCADE | RESTRICT | ACTION | NO | SET | UPDATE | UNSIGNED | BINARY | AUTO_INC | ASC | DESC | CHARACTER | USE | SCHEMA | ID | INT | COMMENT | WS | DEF );";
@@ -3446,18 +3465,18 @@ public class DDLLexer extends Lexer {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA47_5 = input.LA(1);
+                        int LA48_5 = input.LA(1);
 
                         s = -1;
-                        if ( (LA47_5=='\'') ) {s = 45;}
+                        if ( (LA48_5=='\'') ) {s = 46;}
 
-                        else if ( ((LA47_5>='\u0000' && LA47_5<='&')||(LA47_5>='(' && LA47_5<='\uFFFF')) ) {s = 44;}
+                        else if ( ((LA48_5>='\u0000' && LA48_5<='&')||(LA48_5>='(' && LA48_5<='\uFFFF')) ) {s = 45;}
 
                         if ( s>=0 ) return s;
                         break;
             }
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 47, _s, input);
+                new NoViableAltException(getDescription(), 48, _s, input);
             error(nvae);
             throw nvae;
         }

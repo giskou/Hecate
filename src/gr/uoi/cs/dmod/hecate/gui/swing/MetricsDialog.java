@@ -28,12 +28,25 @@ public class MetricsDialog extends JDialog {
 		
 		mainText = new JTextPane();
 		if (d != null){
-			int metrics[] = d.getMetrics();
-			text = " Insertions: " + metrics[0] + " \n" +
-			       " Deletions: " + metrics[1] + " \n";
+			text =
+			    " Total Insertions: " + d.getTotalMetrics()[0] + " \n" +
+			    " of which ... \n" +
+			    "   Tables inserted: " + d.getTableMetrics()[0] + " \n" +
+			    "   Attributes inserted: " + d.getAttributeMetrics()[0] + " \n" +
+			    " Total Deletions: " + d.getTotalMetrics()[1] + " \n" +
+			    " of which ... \n" +
+			    "   Tables deleted: " + d.getTableMetrics()[1] + " \n" +
+			    "   Attributes deleted: " + d.getAttributeMetrics()[1] + " \n\n" +
+			    " Attributes altered: " + d.getAttributeMetrics()[2] + " \n\n" +
+			    " First version had: \n" +
+			    "   Tables: " + d.getOldSizes()[0] + " \n" +
+			    "   Attributes: " + d.getOldSizes()[1] + " \n" +
+			    " Second version has: \n" +
+			    "   Tables: " + d.getNewSizes()[0] + " \n" +
+			    "   Attributes: " + d.getNewSizes()[1] ;
 		}
 		else {
-			text = "No Schemas loaded.\n";
+			text = "No Schemas loaded.";
 		}
 		mainText.setText(text);
 		this.add(mainText);

@@ -1,5 +1,6 @@
 package gr.uoi.cs.dmod.hecate.gui.swing;
 
+import gr.uoi.cs.dmod.hecate.Hecate;
 import gr.uoi.cs.dmod.hecate.diff.Delta;
 import gr.uoi.cs.dmod.hecate.parser.HecateParser;
 import gr.uoi.cs.dmod.hecate.sql.Schema;
@@ -10,7 +11,9 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.ImageIcon;
@@ -82,7 +85,7 @@ public class MainWindow extends JFrame{
 			e.printStackTrace();
 		}
 		setTitle("Hecate");
-		hecateIcon = new ImageIcon("art/icon.png").getImage();
+		hecateIcon = new ImageIcon(Hecate.class.getResource("art/icon.png")).getImage();
 		this.setIconImage(hecateIcon);
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -137,23 +140,47 @@ public class MainWindow extends JFrame{
 					String[] list = dir.list();
 					java.util.Arrays.sort(list);
 					
-					for (int i = 0; i < list.length-1; i++)  {
-						try {
-							HecateParser parser = new HecateParser(path+"/"+list[i]);
-							HecateParser parser2 = new HecateParser(path+"/"+list[i+1]);
-							Schema schema = parser.getSchema();
-							Schema schema2 = parser2.getSchema();
-							Delta delta = new Delta();
-							delta.minus(schema, schema2);
-							System.out.println(delta.getMetrics()[0] + " " +
-							                   delta.getMetrics()[1]);
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} catch (RecognitionException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+					try {
+						BufferedWriter out = new BufferedWriter(new FileWriter("metrics"));
+						
+						for (int i = 0; i < list.length-1; i++)  {
+							try {
+								HecateParser parser = new HecateParser(path + File.separator + list[i]);
+								HecateParser parser2 = new HecateParser(path + File.separator + list[i+1]);
+								Schema schema = parser.getSchema();
+								Schema schema2 = parser2.getSchema();
+								Delta delta = new Delta();
+								delta.minus(schema, schema2);
+								System.out.println(list[i] + "-" + list[i+1]);
+								if (i == 0) {
+									out.write("version-to-version\toldT\tnewT\toldA\tnewA\ttIns\ttDel\taIns\taDel\ttotAl\n");
+								}
+								out.write(
+									list[i] + "-" + list[i+1] + "\t" +
+									delta.getOldSizes()[0] + "\t" +
+									delta.getNewSizes()[0] + "\t" +
+									delta.getOldSizes()[1] + "\t" +
+									delta.getNewSizes()[1] + "\t" +
+									delta.getTableMetrics()[0] + "\t" +
+									delta.getTableMetrics()[1] + "\t" +
+									delta.getAttributeMetrics()[0] + "\t" +
+									delta.getAttributeMetrics()[1] + "\t" +
+									delta.getTotalMetrics()[2] +
+									"\n"
+								);
+
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (RecognitionException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						}
+						out.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 				}
 			}

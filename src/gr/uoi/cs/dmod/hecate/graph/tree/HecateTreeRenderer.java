@@ -1,5 +1,6 @@
 package gr.uoi.cs.dmod.hecate.graph.tree;
 
+import gr.uoi.cs.dmod.hecate.Hecate;
 import gr.uoi.cs.dmod.hecate.sql.Attribute;
 import gr.uoi.cs.dmod.hecate.sql.SqlItem;
 
@@ -46,13 +47,13 @@ public class HecateTreeRenderer implements RenderDataProvider {
 	@Override
 	public Icon getIcon(Object o) {
 		if (((SqlItem)o).whatAmI().compareTo("Attribute") == 0) {
-			return new ImageIcon("art/attribute.png");
+			return new ImageIcon(Hecate.class.getResource("art/attribute.png"));
 		}
 		if ((((SqlItem)o).whatAmI().compareTo("Table") == 0)) {
-			return new ImageIcon("art/table.png");
+			return new ImageIcon(Hecate.class.getResource("art/table.png"));
 		}
 		if ((((SqlItem)o).whatAmI().compareTo("Schema") == 0)) {
-			return new ImageIcon("art/schema.png");
+			return new ImageIcon(Hecate.class.getResource("art/schema.png"));
 		}
 		return null;
 	}
