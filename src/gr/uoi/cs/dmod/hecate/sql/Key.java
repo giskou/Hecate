@@ -4,8 +4,8 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class Key implements SqlItem{
-	String name;
-	TreeMap<String, Attribute> key;
+	private String name;
+	protected TreeMap<String, Attribute> key;
 	private char mode;
 	
 	public Key(String name, TreeMap<String, Attribute> k) {

@@ -33,10 +33,12 @@ public class OpenDialog extends JDialog {
 	private JButton openOldFile;
 	private JButton openNewFile;
 	private JFileChooser fileopen;
+	private File oldFile;
+	private File newFile;
 	private int status;
 	
 	/**
-	 * Default Constuctor
+	 * Default Constructor
 	 */
 	public OpenDialog() {
 		initialize();
@@ -141,16 +143,18 @@ public class OpenDialog extends JDialog {
 	 * 
 	 * @return The path of the original file.
 	 */
-	public String getOldFile() {
-		return oldFileField.getText();
+	public File getOldFile() {
+		oldFile = new File(oldFileField.getText());
+		return oldFile;
 	}
 	
 	/**
 	 * 
 	 * @return The path of the modified file.
 	 */
-	public String getNewFile() {
-		return newFileField.getText();
+	public File getNewFile() {
+		newFile = new File(newFileField.getText());
+		return newFile;
 	}
 	
 	/**

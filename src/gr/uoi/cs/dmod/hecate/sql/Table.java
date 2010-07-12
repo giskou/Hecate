@@ -4,11 +4,11 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class Table implements SqlItem{
-	String name;
-	TreeMap<String, Attribute> attrs;
-	Key pKey;
-	Key fKey;
-	char mode;
+	private String name;
+	private TreeMap<String, Attribute> attrs;
+	private Key pKey;
+	private Key fKey;
+	private char mode;
 	
 	// --Constructors--
 	public Table(String n, TreeMap<String, Attribute> a, Key p) {

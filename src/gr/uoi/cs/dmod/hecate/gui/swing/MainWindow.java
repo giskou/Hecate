@@ -230,13 +230,13 @@ public class MainWindow extends JFrame{
 	 * @throws IOException
 	 * @throws RecognitionException
 	 */
-	private void drawTree(String oldFilePath, String newFilePath) throws IOException, RecognitionException {
-		HecateParser parser = new HecateParser(oldFilePath);
-		HecateParser parser2 = new HecateParser(newFilePath);
+	private void drawTree(File oldFile, File newFile) throws IOException, RecognitionException {
+		HecateParser parser = new HecateParser(oldFile.getAbsolutePath());
+		HecateParser parser2 = new HecateParser(newFile.getAbsolutePath());
 		oldSchema = parser.getSchema();
-		oldSchema.setTitle(getNameFromPath(oldFilePath));
+		oldSchema.setTitle(oldFile.getName());
 		newSchema = parser2.getSchema();
-		newSchema.setTitle(getNameFromPath(newFilePath));
+		newSchema.setTitle(newFile.getName());
 		
 		mainPanel.drawSchema(oldSchema, "old");
 		mainPanel.drawSchema(newSchema, "new");
@@ -244,17 +244,5 @@ public class MainWindow extends JFrame{
 		
 		delta = new Delta();
 		delta.minus(oldSchema, newSchema);
-	}
-	
-	/**
-	 * Returns only the name from a string with a full path.
-	 * @param path The file name with full path.
-	 * @return The file's name only.
-	 */
-	private String getNameFromPath(String path) {
-		if (path.lastIndexOf('/') != 0)
-			return path.substring(path.lastIndexOf('/') + 1);
-		else
-			return path.substring(path.lastIndexOf('\\') + 1);
 	}
 }

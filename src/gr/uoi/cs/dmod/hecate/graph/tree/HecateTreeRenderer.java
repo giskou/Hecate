@@ -6,6 +6,7 @@ import gr.uoi.cs.dmod.hecate.sql.SqlItem;
 import java.awt.Color;
 
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 import org.netbeans.swing.outline.RenderDataProvider;
 
@@ -44,7 +45,15 @@ public class HecateTreeRenderer implements RenderDataProvider {
 
 	@Override
 	public Icon getIcon(Object o) {
-		// TODO Auto-generated method stub
+		if (((SqlItem)o).whatAmI().compareTo("Attribute") == 0) {
+			return new ImageIcon("art/attribute.png");
+		}
+		if ((((SqlItem)o).whatAmI().compareTo("Table") == 0)) {
+			return new ImageIcon("art/table.png");
+		}
+		if ((((SqlItem)o).whatAmI().compareTo("Schema") == 0)) {
+			return new ImageIcon("art/schema.png");
+		}
 		return null;
 	}
 

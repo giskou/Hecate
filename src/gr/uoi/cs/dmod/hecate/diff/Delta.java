@@ -79,14 +79,27 @@ public class Delta {
 							if (oldAttrKey.compareTo(newAttrKey) == 0) {
 								// check attribute type
 								if (oldAttr.getType().compareTo(newAttr.getType()) == 0){
-									// Matched attributes
-									oldAttr.setMode('m');
-									newAttr.setMode('m');
+									// check key
+									if (oldAttr.isKey() == newAttr.isKey()) {
+										// Matched attributes
+										oldAttr.setMode('m');
+										newAttr.setMode('m');
+									}
+									else {
+										// attribute key changed
+										alterations++;
+										oldTable.setMode('u');
+										newTable.setMode('u');
+										oldAttr.setMode('u');
+										newAttr.setMode('u');
+									}
 								}
 								else {
-									// attribute type altered
+									// attribute type changed
 									alterations++;
+									oldTable.setMode('u');
 									newTable.setMode('u');
+									oldAttr.setMode('u');
 									newAttr.setMode('u');
 								}
 								// move both attributes
@@ -105,6 +118,7 @@ public class Delta {
 								attrDel++;
 								oldAttr.setMode('d');
 								oldTable.setMode('u');
+								newTable.setMode('u');
 								// move old only attributes
 								if (oldAttributeKeys.hasNext()) {
 									oldAttrKey = oldAttributeKeys.next() ;
@@ -118,6 +132,7 @@ public class Delta {
 								// Inserted attributes
 								attrIns++;
 								newAttr.setMode('i');
+								oldTable.setMode('u');
 								newTable.setMode('u');
 								// move new only
 								if (newAttributeKeys.hasNext()) {
@@ -138,6 +153,7 @@ public class Delta {
 						attrDel++;
 						oldAttr.setMode('d');
 						oldTable.setMode('u');
+						newTable.setMode('u');
 					}
 					while (newAttributeKeys.hasNext()) {
 						newAttrKey = (String) newAttributeKeys.next();
@@ -145,6 +161,7 @@ public class Delta {
 						// Inserted
 						attrIns++;
 						newAttr.setMode('i');
+						oldTable.setMode('u');
 						newTable.setMode('u');
 					}
 					// move both
@@ -162,6 +179,8 @@ public class Delta {
 					// Deleted
 					tableDel++;
 					oldTable.setMode('d');
+					// mark attributes deleted
+					markAll(oldTable, 'd');
 					// move old only
 					if (oldTableKeys.hasNext()) {
 						oldTableKey = oldTableKeys.next() ;
@@ -175,6 +194,8 @@ public class Delta {
 					// Inserted
 					tableIns++;
 					newTable.setMode('i');
+					// mark attributes inserted
+					markAll(newTable, 'i');
 					// move new only
 					if (newTableKeys.hasNext()) {
 						newTableKey = newTableKeys.next() ;
@@ -192,12 +213,27 @@ public class Delta {
 			Table oldTable = (Table) oldTableValues.next();
 			tableDel++;
 			oldTable.setMode('d');
+			// mark attributes deleted
+			markAll(oldTable, 'd');
 		}
 		while (newTableKeys.hasNext()) {
 			newTableKey = (String) newTableKeys.next();
 			Table newTable = (Table) newTableValues.next();
 			tableIns++;
 			newTable.setMode('i');
+			// mark attributes inserted
+			markAll(newTable, 'i');
+		}
+	}
+
+	private void markAll(Table t, char m) {
+		for (Iterator<Attribute> i = t.getAttrs().values().iterator(); i.hasNext(); ) {
+	        i.next().setMode(m);
+	        switch(m){
+	        	case 'i': attrIns++;
+	        	case 'd': attrDel++;
+	        	default:;
+	        }
 		}
 	}
 	

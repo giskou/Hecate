@@ -1,12 +1,12 @@
 package gr.uoi.cs.dmod.hecate.sql;
 
 public class Attribute implements SqlItem{
-	String name;
-	String type;
-	boolean isNull;
-	boolean isKey;
-	String def;
-	char mode;
+	private String name;
+	private String type;
+	private boolean isNull;
+	private boolean isKey;
+	private String def;
+	private char mode;
 	
 	public Attribute(String n, String t, boolean in, String d) {
 		this.name = n;

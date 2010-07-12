@@ -4,9 +4,9 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class ForeignKey extends Key {
-	String ref;
+	private Table ref;
 
-	public ForeignKey(String name, TreeMap<String, Attribute> k, String t) {
+	public ForeignKey(String name, TreeMap<String, Attribute> k, Table t) {
 		super(name, k);
 		this.ref = t;
 	}
@@ -20,5 +20,9 @@ public class ForeignKey extends Key {
 		}
 		buff += "\n";
 		return buff;
+	}
+	
+	public Table getRef() {
+		return this.ref;
 	}
 }
