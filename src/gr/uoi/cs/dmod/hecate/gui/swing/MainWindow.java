@@ -178,6 +178,12 @@ public class MainWindow extends JFrame{
 							}
 						}
 						out.close();
+						try {
+							drawTree(new File(path + File.separator + list[0]), new File(path + File.separator + list[list.length-1]));
+						} catch (RecognitionException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
