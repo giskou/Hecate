@@ -78,6 +78,7 @@ column
 	
 constraint
 	:	key
+	| UNIQUE name? ( '(' nameList ')' )?
 	;
 	
 index
@@ -193,6 +194,7 @@ COMMENT
 	:	'//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
 	|	'/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
 	|	'--' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
+	|  '#' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
 	;
 
 WS  :	( ' ' | '\t' | '\r' | '\n' ) {$channel=HIDDEN;} ;
