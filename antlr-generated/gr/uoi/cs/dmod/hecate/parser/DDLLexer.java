@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g 2012-10-11 17:36:41
+// $ANTLR 3.4 /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g 2012-10-22 19:55:22
 
   package gr.uoi.cs.dmod.hecate.parser ;
 
@@ -230,7 +230,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = DROP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:155:6: ( 'DROP' | 'drop' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:156:6: ( 'DROP' | 'drop' )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -249,7 +249,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:155:8: 'DROP'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:156:8: 'DROP'
                     {
                     match("DROP"); 
 
@@ -258,7 +258,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:155:17: 'drop'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:156:17: 'drop'
                     {
                     match("drop"); 
 
@@ -282,7 +282,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = CREATE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:156:8: ( 'CREATE' | 'create' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:157:8: ( 'CREATE' | 'create' )
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -301,7 +301,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:156:10: 'CREATE'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:157:10: 'CREATE'
                     {
                     match("CREATE"); 
 
@@ -310,7 +310,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:156:21: 'create'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:157:21: 'create'
                     {
                     match("create"); 
 
@@ -334,7 +334,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = TABLE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:157:7: ( 'TABLE' | 'table' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:158:7: ( 'TABLE' | 'table' )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -353,7 +353,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:157:9: 'TABLE'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:158:9: 'TABLE'
                     {
                     match("TABLE"); 
 
@@ -362,7 +362,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:157:19: 'table'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:158:19: 'table'
                     {
                     match("table"); 
 
@@ -386,7 +386,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = IF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:158:4: ( 'IF' | 'if' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:159:4: ( 'IF' | 'if' )
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -405,7 +405,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt4) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:158:6: 'IF'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:159:6: 'IF'
                     {
                     match("IF"); 
 
@@ -414,7 +414,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:158:13: 'if'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:159:13: 'if'
                     {
                     match("if"); 
 
@@ -438,7 +438,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = NOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:159:5: ( 'NOT' | 'not' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:160:5: ( 'NOT' | 'not' )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -457,7 +457,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:159:7: 'NOT'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:160:7: 'NOT'
                     {
                     match("NOT"); 
 
@@ -466,7 +466,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:159:15: 'not'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:160:15: 'not'
                     {
                     match("not"); 
 
@@ -490,7 +490,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = EXISTS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:160:8: ( 'EXISTS' | 'exists' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:161:8: ( 'EXISTS' | 'exists' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -509,7 +509,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:160:10: 'EXISTS'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:161:10: 'EXISTS'
                     {
                     match("EXISTS"); 
 
@@ -518,7 +518,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:160:21: 'exists'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:161:21: 'exists'
                     {
                     match("exists"); 
 
@@ -542,7 +542,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = ENUM;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:161:6: ( 'ENUM' | 'enum' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:162:6: ( 'ENUM' | 'enum' )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -561,7 +561,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:161:8: 'ENUM'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:162:8: 'ENUM'
                     {
                     match("ENUM"); 
 
@@ -570,7 +570,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:161:17: 'enum'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:162:17: 'enum'
                     {
                     match("enum"); 
 
@@ -594,10 +594,10 @@ public class DDLLexer extends Lexer {
         try {
             int _type = NULL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:162:6: ( ( 'NULL' | 'null' )? )
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:162:8: ( 'NULL' | 'null' )?
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:163:6: ( ( 'NULL' | 'null' )? )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:163:8: ( 'NULL' | 'null' )?
             {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:162:8: ( 'NULL' | 'null' )?
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:163:8: ( 'NULL' | 'null' )?
             int alt8=3;
             int LA8_0 = input.LA(1);
 
@@ -609,7 +609,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt8) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:162:9: 'NULL'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:163:9: 'NULL'
                     {
                     match("NULL"); 
 
@@ -618,7 +618,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:162:18: 'null'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:163:18: 'null'
                     {
                     match("null"); 
 
@@ -646,7 +646,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = DEFAULT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:163:9: ( 'DEFAULT' | 'default' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:164:9: ( 'DEFAULT' | 'default' )
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -665,7 +665,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:163:11: 'DEFAULT'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:164:11: 'DEFAULT'
                     {
                     match("DEFAULT"); 
 
@@ -674,7 +674,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:163:23: 'default'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:164:23: 'default'
                     {
                     match("default"); 
 
@@ -698,7 +698,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = KEY;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:164:5: ( 'KEY' | 'key' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:165:5: ( 'KEY' | 'key' )
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -717,7 +717,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:164:7: 'KEY'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:165:7: 'KEY'
                     {
                     match("KEY"); 
 
@@ -726,7 +726,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:164:15: 'key'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:165:15: 'key'
                     {
                     match("key"); 
 
@@ -750,8 +750,8 @@ public class DDLLexer extends Lexer {
         try {
             int _type = HASH;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:165:6: ( 'HASH' 'hash' )
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:165:8: 'HASH' 'hash'
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:166:6: ( 'HASH' 'hash' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:166:8: 'HASH' 'hash'
             {
             match("HASH"); 
 
@@ -777,7 +777,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = UNIQUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:166:8: ( 'UNIQUE' | 'unique' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:167:8: ( 'UNIQUE' | 'unique' )
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -796,7 +796,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt11) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:166:10: 'UNIQUE'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:167:10: 'UNIQUE'
                     {
                     match("UNIQUE"); 
 
@@ -805,7 +805,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:166:21: 'unique'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:167:21: 'unique'
                     {
                     match("unique"); 
 
@@ -829,7 +829,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = PRIMARY;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:167:9: ( 'PRIMARY' | 'primary' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:168:9: ( 'PRIMARY' | 'primary' )
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -848,7 +848,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt12) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:167:11: 'PRIMARY'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:168:11: 'PRIMARY'
                     {
                     match("PRIMARY"); 
 
@@ -857,7 +857,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:167:23: 'primary'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:168:23: 'primary'
                     {
                     match("primary"); 
 
@@ -881,7 +881,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = FOREIGN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:168:9: ( 'FOREIGN' | 'foreign' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:169:9: ( 'FOREIGN' | 'foreign' )
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -900,7 +900,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt13) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:168:11: 'FOREIGN'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:169:11: 'FOREIGN'
                     {
                     match("FOREIGN"); 
 
@@ -909,7 +909,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:168:23: 'foreign'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:169:23: 'foreign'
                     {
                     match("foreign"); 
 
@@ -933,7 +933,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = INDEX;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:169:7: ( 'INDEX' | 'index' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:170:7: ( 'INDEX' | 'index' )
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -952,7 +952,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt14) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:169:9: 'INDEX'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:170:9: 'INDEX'
                     {
                     match("INDEX"); 
 
@@ -961,7 +961,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:169:19: 'index'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:170:19: 'index'
                     {
                     match("index"); 
 
@@ -985,7 +985,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = FULLTEXT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:170:10: ( 'FULLTEXT' | 'fulltext' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:171:10: ( 'FULLTEXT' | 'fulltext' )
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -1004,7 +1004,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt15) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:170:12: 'FULLTEXT'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:171:12: 'FULLTEXT'
                     {
                     match("FULLTEXT"); 
 
@@ -1013,7 +1013,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:170:25: 'fulltext'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:171:25: 'fulltext'
                     {
                     match("fulltext"); 
 
@@ -1037,7 +1037,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = REFERENCES;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:171:12: ( 'REFERENCES' | 'references' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:172:12: ( 'REFERENCES' | 'references' )
             int alt16=2;
             int LA16_0 = input.LA(1);
 
@@ -1056,7 +1056,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt16) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:171:14: 'REFERENCES'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:172:14: 'REFERENCES'
                     {
                     match("REFERENCES"); 
 
@@ -1065,7 +1065,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:171:29: 'references'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:172:29: 'references'
                     {
                     match("references"); 
 
@@ -1089,7 +1089,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = ON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:172:4: ( 'ON' | 'on' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:173:4: ( 'ON' | 'on' )
             int alt17=2;
             int LA17_0 = input.LA(1);
 
@@ -1108,7 +1108,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt17) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:172:6: 'ON'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:173:6: 'ON'
                     {
                     match("ON"); 
 
@@ -1117,7 +1117,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:172:13: 'on'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:173:13: 'on'
                     {
                     match("on"); 
 
@@ -1141,7 +1141,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = DELETE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:173:8: ( 'DELETE' | 'delete' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:174:8: ( 'DELETE' | 'delete' )
             int alt18=2;
             int LA18_0 = input.LA(1);
 
@@ -1160,7 +1160,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt18) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:173:10: 'DELETE'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:174:10: 'DELETE'
                     {
                     match("DELETE"); 
 
@@ -1169,7 +1169,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:173:21: 'delete'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:174:21: 'delete'
                     {
                     match("delete"); 
 
@@ -1193,7 +1193,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = CASCADE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:174:9: ( 'CASCADE' | 'cascade' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:175:9: ( 'CASCADE' | 'cascade' )
             int alt19=2;
             int LA19_0 = input.LA(1);
 
@@ -1212,7 +1212,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt19) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:174:11: 'CASCADE'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:175:11: 'CASCADE'
                     {
                     match("CASCADE"); 
 
@@ -1221,7 +1221,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:174:23: 'cascade'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:175:23: 'cascade'
                     {
                     match("cascade"); 
 
@@ -1245,7 +1245,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = RESTRICT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:175:10: ( 'RESTRICT' | 'restrict' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:176:10: ( 'RESTRICT' | 'restrict' )
             int alt20=2;
             int LA20_0 = input.LA(1);
 
@@ -1264,7 +1264,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt20) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:175:12: 'RESTRICT'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:176:12: 'RESTRICT'
                     {
                     match("RESTRICT"); 
 
@@ -1273,7 +1273,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:175:25: 'restrict'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:176:25: 'restrict'
                     {
                     match("restrict"); 
 
@@ -1297,7 +1297,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = ACTION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:176:8: ( 'ACTION' | 'action' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:177:8: ( 'ACTION' | 'action' )
             int alt21=2;
             int LA21_0 = input.LA(1);
 
@@ -1316,7 +1316,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt21) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:176:10: 'ACTION'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:177:10: 'ACTION'
                     {
                     match("ACTION"); 
 
@@ -1325,7 +1325,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:176:21: 'action'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:177:21: 'action'
                     {
                     match("action"); 
 
@@ -1349,7 +1349,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = NO;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:177:4: ( 'NO' | 'no' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:178:4: ( 'NO' | 'no' )
             int alt22=2;
             int LA22_0 = input.LA(1);
 
@@ -1368,7 +1368,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt22) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:177:6: 'NO'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:178:6: 'NO'
                     {
                     match("NO"); 
 
@@ -1377,7 +1377,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:177:13: 'no'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:178:13: 'no'
                     {
                     match("no"); 
 
@@ -1401,7 +1401,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = SET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:178:5: ( 'SET' | 'set' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:179:5: ( 'SET' | 'set' )
             int alt23=2;
             int LA23_0 = input.LA(1);
 
@@ -1420,7 +1420,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt23) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:178:7: 'SET'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:179:7: 'SET'
                     {
                     match("SET"); 
 
@@ -1429,7 +1429,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:178:15: 'set'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:179:15: 'set'
                     {
                     match("set"); 
 
@@ -1453,7 +1453,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = UPDATE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:179:8: ( 'UPDATE' | 'update' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:180:8: ( 'UPDATE' | 'update' )
             int alt24=2;
             int LA24_0 = input.LA(1);
 
@@ -1472,7 +1472,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt24) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:179:10: 'UPDATE'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:180:10: 'UPDATE'
                     {
                     match("UPDATE"); 
 
@@ -1481,7 +1481,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:179:21: 'update'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:180:21: 'update'
                     {
                     match("update"); 
 
@@ -1505,7 +1505,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = UNSIGNED;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:180:10: ( 'UNSIGNED' | 'unsigned' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:181:10: ( 'UNSIGNED' | 'unsigned' )
             int alt25=2;
             int LA25_0 = input.LA(1);
 
@@ -1524,7 +1524,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt25) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:180:12: 'UNSIGNED'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:181:12: 'UNSIGNED'
                     {
                     match("UNSIGNED"); 
 
@@ -1533,7 +1533,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:180:25: 'unsigned'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:181:25: 'unsigned'
                     {
                     match("unsigned"); 
 
@@ -1557,7 +1557,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = BINARY;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:181:8: ( 'BINARY' | 'binary' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:182:8: ( 'BINARY' | 'binary' )
             int alt26=2;
             int LA26_0 = input.LA(1);
 
@@ -1576,7 +1576,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt26) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:181:10: 'BINARY'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:182:10: 'BINARY'
                     {
                     match("BINARY"); 
 
@@ -1585,7 +1585,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:181:21: 'binary'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:182:21: 'binary'
                     {
                     match("binary"); 
 
@@ -1609,7 +1609,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = AUTO_INC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:182:10: ( 'AUTO_INCREMENT' | 'auto_increment' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:183:10: ( 'AUTO_INCREMENT' | 'auto_increment' )
             int alt27=2;
             int LA27_0 = input.LA(1);
 
@@ -1628,7 +1628,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt27) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:182:12: 'AUTO_INCREMENT'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:183:12: 'AUTO_INCREMENT'
                     {
                     match("AUTO_INCREMENT"); 
 
@@ -1637,7 +1637,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:182:31: 'auto_increment'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:183:31: 'auto_increment'
                     {
                     match("auto_increment"); 
 
@@ -1661,7 +1661,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = ASC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:183:5: ( 'ASC' | 'asc' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:184:5: ( 'ASC' | 'asc' )
             int alt28=2;
             int LA28_0 = input.LA(1);
 
@@ -1680,7 +1680,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt28) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:183:7: 'ASC'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:184:7: 'ASC'
                     {
                     match("ASC"); 
 
@@ -1689,7 +1689,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:183:15: 'asc'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:184:15: 'asc'
                     {
                     match("asc"); 
 
@@ -1713,7 +1713,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = DESC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:184:6: ( 'DESC' | 'desc' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:185:6: ( 'DESC' | 'desc' )
             int alt29=2;
             int LA29_0 = input.LA(1);
 
@@ -1732,7 +1732,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt29) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:184:8: 'DESC'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:185:8: 'DESC'
                     {
                     match("DESC"); 
 
@@ -1741,7 +1741,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:184:17: 'desc'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:185:17: 'desc'
                     {
                     match("desc"); 
 
@@ -1765,7 +1765,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = CHARACTER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:185:11: ( 'CHARACTER' | 'character' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:186:11: ( 'CHARACTER' | 'character' )
             int alt30=2;
             int LA30_0 = input.LA(1);
 
@@ -1784,7 +1784,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt30) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:185:13: 'CHARACTER'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:186:13: 'CHARACTER'
                     {
                     match("CHARACTER"); 
 
@@ -1793,7 +1793,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:185:27: 'character'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:186:27: 'character'
                     {
                     match("character"); 
 
@@ -1817,7 +1817,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = USE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:186:5: ( 'USE' | 'use' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:187:5: ( 'USE' | 'use' )
             int alt31=2;
             int LA31_0 = input.LA(1);
 
@@ -1836,7 +1836,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt31) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:186:7: 'USE'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:187:7: 'USE'
                     {
                     match("USE"); 
 
@@ -1845,7 +1845,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:186:15: 'use'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:187:15: 'use'
                     {
                     match("use"); 
 
@@ -1869,7 +1869,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = SCHEMA;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:187:8: ( 'SCHEMA' | 'schema' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:188:8: ( 'SCHEMA' | 'schema' )
             int alt32=2;
             int LA32_0 = input.LA(1);
 
@@ -1888,7 +1888,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt32) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:187:10: 'SCHEMA'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:188:10: 'SCHEMA'
                     {
                     match("SCHEMA"); 
 
@@ -1897,7 +1897,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:187:21: 'schema'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:188:21: 'schema'
                     {
                     match("schema"); 
 
@@ -1921,8 +1921,8 @@ public class DDLLexer extends Lexer {
         try {
             int _type = ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:189:4: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:189:6: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:190:4: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:190:6: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             {
             if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
                 input.consume();
@@ -1934,7 +1934,7 @@ public class DDLLexer extends Lexer {
             }
 
 
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:189:30: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:190:30: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             loop33:
             do {
                 int alt33=2;
@@ -1984,10 +1984,10 @@ public class DDLLexer extends Lexer {
         try {
             int _type = INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:191:5: ( ( '-' )? ( '0' .. '9' )+ )
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:191:7: ( '-' )? ( '0' .. '9' )+
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:192:5: ( ( '-' )? ( '0' .. '9' )+ )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:192:7: ( '-' )? ( '0' .. '9' )+
             {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:191:7: ( '-' )?
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:192:7: ( '-' )?
             int alt34=2;
             int LA34_0 = input.LA(1);
 
@@ -1996,7 +1996,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt34) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:191:7: '-'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:192:7: '-'
                     {
                     match('-'); 
 
@@ -2006,7 +2006,7 @@ public class DDLLexer extends Lexer {
             }
 
 
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:191:12: ( '0' .. '9' )+
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:192:12: ( '0' .. '9' )+
             int cnt35=0;
             loop35:
             do {
@@ -2061,7 +2061,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:194:2: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' | '--' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '#' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:195:2: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' | '--' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '#' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
             int alt43=4;
             switch ( input.LA(1) ) {
             case '/':
@@ -2103,13 +2103,13 @@ public class DDLLexer extends Lexer {
 
             switch (alt43) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:194:4: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:195:4: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
                     {
                     match("//"); 
 
 
 
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:194:9: (~ ( '\\n' | '\\r' ) )*
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:195:9: (~ ( '\\n' | '\\r' ) )*
                     loop36:
                     do {
                         int alt36=2;
@@ -2143,7 +2143,7 @@ public class DDLLexer extends Lexer {
                     } while (true);
 
 
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:194:23: ( '\\r' )?
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:195:23: ( '\\r' )?
                     int alt37=2;
                     int LA37_0 = input.LA(1);
 
@@ -2152,7 +2152,7 @@ public class DDLLexer extends Lexer {
                     }
                     switch (alt37) {
                         case 1 :
-                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:194:23: '\\r'
+                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:195:23: '\\r'
                             {
                             match('\r'); 
 
@@ -2169,13 +2169,13 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:195:4: '/*' ( options {greedy=false; } : . )* '*/'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:196:4: '/*' ( options {greedy=false; } : . )* '*/'
                     {
                     match("/*"); 
 
 
 
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:195:9: ( options {greedy=false; } : . )*
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:196:9: ( options {greedy=false; } : . )*
                     loop38:
                     do {
                         int alt38=2;
@@ -2200,7 +2200,7 @@ public class DDLLexer extends Lexer {
 
                         switch (alt38) {
                     	case 1 :
-                    	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:195:37: .
+                    	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:196:37: .
                     	    {
                     	    matchAny(); 
 
@@ -2222,13 +2222,13 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:196:4: '--' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:197:4: '--' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
                     {
                     match("--"); 
 
 
 
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:196:9: (~ ( '\\n' | '\\r' ) )*
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:197:9: (~ ( '\\n' | '\\r' ) )*
                     loop39:
                     do {
                         int alt39=2;
@@ -2262,7 +2262,7 @@ public class DDLLexer extends Lexer {
                     } while (true);
 
 
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:196:23: ( '\\r' )?
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:197:23: ( '\\r' )?
                     int alt40=2;
                     int LA40_0 = input.LA(1);
 
@@ -2271,7 +2271,7 @@ public class DDLLexer extends Lexer {
                     }
                     switch (alt40) {
                         case 1 :
-                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:196:23: '\\r'
+                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:197:23: '\\r'
                             {
                             match('\r'); 
 
@@ -2288,11 +2288,11 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:197:5: '#' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:198:5: '#' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
                     {
                     match('#'); 
 
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:197:9: (~ ( '\\n' | '\\r' ) )*
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:198:9: (~ ( '\\n' | '\\r' ) )*
                     loop41:
                     do {
                         int alt41=2;
@@ -2326,7 +2326,7 @@ public class DDLLexer extends Lexer {
                     } while (true);
 
 
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:197:23: ( '\\r' )?
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:198:23: ( '\\r' )?
                     int alt42=2;
                     int LA42_0 = input.LA(1);
 
@@ -2335,7 +2335,7 @@ public class DDLLexer extends Lexer {
                     }
                     switch (alt42) {
                         case 1 :
-                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:197:23: '\\r'
+                            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:198:23: '\\r'
                             {
                             match('\r'); 
 
@@ -2367,8 +2367,8 @@ public class DDLLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:200:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:200:7: ( ' ' | '\\t' | '\\r' | '\\n' )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:201:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:201:7: ( ' ' | '\\t' | '\\r' | '\\n' )
             {
             if ( (input.LA(1) >= '\t' && input.LA(1) <= '\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
                 input.consume();
@@ -2398,7 +2398,7 @@ public class DDLLexer extends Lexer {
         try {
             int _type = DEF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:202:5: ( ( '\\'' ( ESC_SEQ |~ ( '\\\\' | '\\'' ) )+ '\\'' ) | ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )+ '\"' ) | ( '`' ( ESC_SEQ |~ ( '\\\\' | '`' ) )+ '`' ) )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:203:5: ( ( '\\'' ( ESC_SEQ |~ ( '\\\\' | '\\'' ) )+ '\\'' ) | ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )+ '\"' ) | ( '`' ( ESC_SEQ |~ ( '\\\\' | '`' ) )+ '`' ) )
             int alt47=3;
             switch ( input.LA(1) ) {
             case '\'':
@@ -2426,14 +2426,14 @@ public class DDLLexer extends Lexer {
 
             switch (alt47) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:202:7: ( '\\'' ( ESC_SEQ |~ ( '\\\\' | '\\'' ) )+ '\\'' )
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:203:7: ( '\\'' ( ESC_SEQ |~ ( '\\\\' | '\\'' ) )+ '\\'' )
                     {
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:202:7: ( '\\'' ( ESC_SEQ |~ ( '\\\\' | '\\'' ) )+ '\\'' )
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:202:9: '\\'' ( ESC_SEQ |~ ( '\\\\' | '\\'' ) )+ '\\''
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:203:7: ( '\\'' ( ESC_SEQ |~ ( '\\\\' | '\\'' ) )+ '\\'' )
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:203:9: '\\'' ( ESC_SEQ |~ ( '\\\\' | '\\'' ) )+ '\\''
                     {
                     match('\''); 
 
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:202:14: ( ESC_SEQ |~ ( '\\\\' | '\\'' ) )+
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:203:14: ( ESC_SEQ |~ ( '\\\\' | '\\'' ) )+
                     int cnt44=0;
                     loop44:
                     do {
@@ -2450,7 +2450,7 @@ public class DDLLexer extends Lexer {
 
                         switch (alt44) {
                     	case 1 :
-                    	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:202:16: ESC_SEQ
+                    	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:203:16: ESC_SEQ
                     	    {
                     	    mESC_SEQ(); 
 
@@ -2458,7 +2458,7 @@ public class DDLLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:202:26: ~ ( '\\\\' | '\\'' )
+                    	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:203:26: ~ ( '\\\\' | '\\'' )
                     	    {
                     	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '&')||(input.LA(1) >= '(' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
                     	        input.consume();
@@ -2491,14 +2491,14 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:203:4: ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )+ '\"' )
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:204:4: ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )+ '\"' )
                     {
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:203:4: ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )+ '\"' )
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:203:6: '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )+ '\"'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:204:4: ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )+ '\"' )
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:204:6: '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )+ '\"'
                     {
                     match('\"'); 
 
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:203:10: ( ESC_SEQ |~ ( '\\\\' | '\"' ) )+
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:204:10: ( ESC_SEQ |~ ( '\\\\' | '\"' ) )+
                     int cnt45=0;
                     loop45:
                     do {
@@ -2515,7 +2515,7 @@ public class DDLLexer extends Lexer {
 
                         switch (alt45) {
                     	case 1 :
-                    	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:203:12: ESC_SEQ
+                    	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:204:12: ESC_SEQ
                     	    {
                     	    mESC_SEQ(); 
 
@@ -2523,7 +2523,7 @@ public class DDLLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:203:22: ~ ( '\\\\' | '\"' )
+                    	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:204:22: ~ ( '\\\\' | '\"' )
                     	    {
                     	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
                     	        input.consume();
@@ -2556,14 +2556,14 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:204:4: ( '`' ( ESC_SEQ |~ ( '\\\\' | '`' ) )+ '`' )
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:205:4: ( '`' ( ESC_SEQ |~ ( '\\\\' | '`' ) )+ '`' )
                     {
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:204:4: ( '`' ( ESC_SEQ |~ ( '\\\\' | '`' ) )+ '`' )
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:204:6: '`' ( ESC_SEQ |~ ( '\\\\' | '`' ) )+ '`'
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:205:4: ( '`' ( ESC_SEQ |~ ( '\\\\' | '`' ) )+ '`' )
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:205:6: '`' ( ESC_SEQ |~ ( '\\\\' | '`' ) )+ '`'
                     {
                     match('`'); 
 
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:204:10: ( ESC_SEQ |~ ( '\\\\' | '`' ) )+
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:205:10: ( ESC_SEQ |~ ( '\\\\' | '`' ) )+
                     int cnt46=0;
                     loop46:
                     do {
@@ -2580,7 +2580,7 @@ public class DDLLexer extends Lexer {
 
                         switch (alt46) {
                     	case 1 :
-                    	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:204:12: ESC_SEQ
+                    	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:205:12: ESC_SEQ
                     	    {
                     	    mESC_SEQ(); 
 
@@ -2588,7 +2588,7 @@ public class DDLLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:204:22: ~ ( '\\\\' | '`' )
+                    	    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:205:22: ~ ( '\\\\' | '`' )
                     	    {
                     	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '_')||(input.LA(1) >= 'a' && input.LA(1) <= '\uFFFF') ) {
                     	        input.consume();
@@ -2634,7 +2634,7 @@ public class DDLLexer extends Lexer {
     // $ANTLR start "HEX_DIGIT"
     public final void mHEX_DIGIT() throws RecognitionException {
         try {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:210:2: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:211:2: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
             // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'F')||(input.LA(1) >= 'a' && input.LA(1) <= 'f') ) {
@@ -2660,7 +2660,7 @@ public class DDLLexer extends Lexer {
     // $ANTLR start "ESC_SEQ"
     public final void mESC_SEQ() throws RecognitionException {
         try {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:215:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:216:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
             int alt48=3;
             int LA48_0 = input.LA(1);
 
@@ -2713,7 +2713,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt48) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:215:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:216:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                     {
                     match('\\'); 
 
@@ -2730,7 +2730,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:216:9: UNICODE_ESC
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:217:9: UNICODE_ESC
                     {
                     mUNICODE_ESC(); 
 
@@ -2738,7 +2738,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:217:9: OCTAL_ESC
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:218:9: OCTAL_ESC
                     {
                     mOCTAL_ESC(); 
 
@@ -2758,7 +2758,7 @@ public class DDLLexer extends Lexer {
     // $ANTLR start "OCTAL_ESC"
     public final void mOCTAL_ESC() throws RecognitionException {
         try {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:222:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:223:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
             int alt49=3;
             int LA49_0 = input.LA(1);
 
@@ -2809,7 +2809,7 @@ public class DDLLexer extends Lexer {
             }
             switch (alt49) {
                 case 1 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:222:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:223:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
 
@@ -2846,7 +2846,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:223:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:224:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
 
@@ -2873,7 +2873,7 @@ public class DDLLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:224:9: '\\\\' ( '0' .. '7' )
+                    // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:225:9: '\\\\' ( '0' .. '7' )
                     {
                     match('\\'); 
 
@@ -2902,8 +2902,8 @@ public class DDLLexer extends Lexer {
     // $ANTLR start "UNICODE_ESC"
     public final void mUNICODE_ESC() throws RecognitionException {
         try {
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:229:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
-            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:229:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:230:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
+            // /home/lensman/Projects/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g:230:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
             {
             match('\\'); 
 

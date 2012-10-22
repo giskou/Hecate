@@ -72,7 +72,8 @@ definition
 column
 	:	name type option*
 	{
-		am.put($name.text, new Attribute($name.text, $type.text, false, null)) ;
+		String t = $type.text;
+		am.put($name.text, new Attribute($name.text, t.toUpperCase(), false, null)) ;
 	}
 	;
 	
