@@ -11,13 +11,20 @@ public class Table implements SqlItem{
 	private char mode;
 	
 	// --Constructors--
-	public Table(String n, TreeMap<String, Attribute> a, Key p) {
-		this.name = n;
+	public Table() {
+		this.name = null;
 		this.attrs = new TreeMap<String, Attribute>();
-		for (Map.Entry<String, Attribute> entry : a.entrySet()) {
+		this.pKey = null;
+		this.fKey = null;
+	}
+	
+	public Table(String name, TreeMap<String, Attribute> attributes, Key pKey) {
+		this.name = name;
+		this.attrs = new TreeMap<String, Attribute>();
+		for (Map.Entry<String, Attribute> entry : attributes.entrySet()) {
 			this.attrs.put(entry.getKey(), entry.getValue()) ;
 		}
-		this.pKey = p;
+		this.pKey = pKey;
 		this.fKey = null;
 	}
 	
