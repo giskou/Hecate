@@ -11,6 +11,10 @@ import gr.uoi.cs.dmod.hecate.sql.Attribute;
  */
 public class InsertAttribute extends Insersion {
 	
+	public InsertAttribute() {
+		super();
+	}
+	
 	public InsertAttribute(Attribute newAttribute) {
 		super();
 		super.affectedTable = newAttribute.getTable();

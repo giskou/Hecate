@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /home/iskoulis/Dev/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g 2012-11-20 18:06:13
+// $ANTLR 3.4 /home/iskoulis/Dev/Hecate/src/gr/uoi/cs/dmod/hecate/parser/DDL.g 2012-11-26 17:45:15
 
   package gr.uoi.cs.dmod.hecate.parser ;
 

@@ -37,7 +37,7 @@ public class Testing {
 			JAXBContext jaxbContext = JAXBContext.newInstance(Insersion.class, TransitionList.class);
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			jaxbMarshaller.marshal(tl.get(5), System.out);
+			jaxbMarshaller.marshal(tl, System.out);
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
