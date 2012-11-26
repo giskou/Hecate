@@ -1,6 +1,9 @@
 package gr.uoi.cs.dmod.hecate.diff;
 
 import gr.uoi.cs.dmod.hecate.sql.*;
+import gr.uoi.cs.dmod.hecate.transitions.InsertAttribute;
+import gr.uoi.cs.dmod.hecate.transitions.TransitionList;
+
 import java.util.Iterator;
 
 /**
@@ -50,7 +53,8 @@ public class Delta {
 	 * @param B
 	 *   The modified version of the original schema
 	 */
-	public void minus(Schema A, Schema B) {
+	public TransitionList minus(Schema A, Schema B) {
+		TransitionList tl = new TransitionList(A.toString(), B.toString());
 		String oldTableKey = null, newTableKey = null ;
 		String oldAttrKey = null, newAttrKey = null ;
 		Iterator<String> oldTableKeys = A.getTables().keySet().iterator() ;
@@ -135,6 +139,7 @@ public class Delta {
 							else {
 								// Inserted attributes
 								attrIns++;
+								tl.add(new InsertAttribute(newAttr));
 								newAttr.setMode('i');
 								oldTable.setMode('u');
 								newTable.setMode('u');
@@ -228,6 +233,7 @@ public class Delta {
 			// mark attributes inserted
 			markAll(newTable, 'i');
 		}
+		return tl;
 	}
 
 	private void markAll(Table t, char m) {
