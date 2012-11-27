@@ -32,6 +32,7 @@ public class Table implements SqlItem{
 		}
 		this.pKey = pKey;
 		this.fKey = null;
+		this.updateAttributes();
 	}
 	
 	public Table(String n, TreeMap<String, Attribute> a, Key p, Key f) {
@@ -39,6 +40,7 @@ public class Table implements SqlItem{
 		this.attrs = a;
 		this.pKey = p;
 		this.fKey = f;
+		this.updateAttributes();
 	}
 	
 	// --Getters--
@@ -100,5 +102,11 @@ public class Table implements SqlItem{
 	@Override
 	public String whatAmI() {
 		return "Table";
+	}
+	
+	private void updateAttributes() {
+		for (Map.Entry<String, Attribute> entry : attrs.entrySet()) {
+			entry.getValue().setTable(this);
+		}
 	}
 }

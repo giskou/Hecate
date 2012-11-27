@@ -25,8 +25,7 @@ public class Attribute implements SqlItem{
 		this.mode = 'x';
 	}
 	
-	public Attribute(Table tab, String name, String type, boolean isNull, String d) {
-		this.table = tab;
+	public Attribute(String name, String type, boolean isNull, String d) {
 		this.name = name;
 		this.type = type;
 		this.isNull = isNull;
@@ -71,6 +70,10 @@ public class Attribute implements SqlItem{
 	@Override
 	public void setMode(char m){
 		this.mode = m;
+	}
+	
+	public void setTable(Table t) {
+		this.table = t;
 	}
 	
 	@Override
