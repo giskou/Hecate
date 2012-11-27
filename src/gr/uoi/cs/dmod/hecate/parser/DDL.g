@@ -16,7 +16,6 @@ options {
 
 @members{
 	Schema s ;
-	Table lastTable;
 	TreeMap<String, Table> tm = new TreeMap<String, Table>();
 	TreeMap<String, Attribute> km = new TreeMap<String, Attribute>();
 	TreeMap<String, Attribute> am = new TreeMap<String, Attribute>();
@@ -62,8 +61,7 @@ table
 	}
 	: TABLE ( IF NOT EXISTS )? name '(' definition ')' parameter?
 	{
-		lastTable = new Table($name.text, am, k);
-		tm.put($name.text, lastTable) ;
+		tm.put($name.text.replace("`",""), new Table($name.text.replace("`",""), am, k)) ;
 	}
 	;
 	
@@ -75,7 +73,7 @@ column
 	:	name type option*
 	{
 		String t = $type.text;
-		am.put($name.text, new Attribute(lastTable, $name.text, t.toUpperCase(), false, null)) ;
+		am.put($name.text.replace("`",""), new Attribute($name.text.replace("`",""), t.toUpperCase(), false, null)) ;
 	}
 	;
 	
