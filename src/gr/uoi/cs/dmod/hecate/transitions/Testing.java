@@ -28,13 +28,16 @@ public class Testing {
 		
 		
 		Delta delta = new Delta();
-		TransitionList tl = delta.minus(oldSchema, newSchema);
-		Testing.test(tl);
+		Transitions trs = new Transitions();
+		TransitionList tl1 = delta.minus(oldSchema, newSchema); trs.add(tl1);
+		TransitionList tl2 = delta.minus(oldSchema, newSchema); trs.add(tl2);
+		TransitionList tl3 = delta.minus(oldSchema, newSchema); trs.add(tl3);
+		test(trs);
 	}
 	
-	public static void test(TransitionList tl) {
+	public static void test(Transitions tl) {
 		try {
-			JAXBContext jaxbContext = JAXBContext.newInstance(Insersion.class, TransitionList.class);
+			JAXBContext jaxbContext = JAXBContext.newInstance(Deletion.class, Insersion.class, TransitionList.class, Transitions.class);
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 			jaxbMarshaller.marshal(tl, System.out);

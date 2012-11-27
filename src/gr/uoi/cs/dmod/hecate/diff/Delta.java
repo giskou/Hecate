@@ -1,8 +1,7 @@
 package gr.uoi.cs.dmod.hecate.diff;
 
 import gr.uoi.cs.dmod.hecate.sql.*;
-import gr.uoi.cs.dmod.hecate.transitions.InsertAttribute;
-import gr.uoi.cs.dmod.hecate.transitions.TransitionList;
+import gr.uoi.cs.dmod.hecate.transitions.*;
 
 import java.util.Iterator;
 
@@ -20,6 +19,9 @@ public class Delta {
 	private int attrIns, attrDel;
 	private int alterKey, alterAttribute, alterTable;
 	private int numOfTables, numOfAttributes;
+	private Insersion in;
+	private Deletion out;
+	private TransitionList tl;
 		
 	/**
 	 * The default Constructor
@@ -54,7 +56,7 @@ public class Delta {
 	 *   The modified version of the original schema
 	 */
 	public TransitionList minus(Schema A, Schema B) {
-		TransitionList tl = new TransitionList(A.toString(), B.toString());
+		tl = new TransitionList(A.toString(), B.toString());
 		String oldTableKey = null, newTableKey = null ;
 		String oldAttrKey = null, newAttrKey = null ;
 		Iterator<String> oldTableKeys = A.getTables().keySet().iterator() ;
@@ -68,6 +70,8 @@ public class Delta {
 			newTableKey = newTableKeys.next() ;
 			Table newTable = (Table) newTableValues.next() ;
 			while(true) {
+				in = null;
+				out = null;
 				if (oldTableKey.compareTo(newTableKey) == 0) {
 					// Matched tables
 					oldTable.setMode('m');
@@ -85,6 +89,7 @@ public class Delta {
 						Attribute newAttr = newAttributeValues.next();
 						while (true) {
 							if (oldAttrKey.compareTo(newAttrKey) == 0) {
+							// possible attribute match
 								// check attribute type
 								if (oldAttr.getType().compareTo(newAttr.getType()) == 0){
 									// check key
@@ -124,6 +129,7 @@ public class Delta {
 							else if (oldAttrKey.compareTo(newAttrKey) < 0) {
 								// Deleted attributes
 								attrDel++;
+								delete(oldAttr);
 								oldAttr.setMode('d');
 								oldTable.setMode('u');
 								newTable.setMode('u');
@@ -139,7 +145,7 @@ public class Delta {
 							else {
 								// Inserted attributes
 								attrIns++;
-								tl.add(new InsertAttribute(newAttr));
+								insert(newAttr);
 								newAttr.setMode('i');
 								oldTable.setMode('u');
 								newTable.setMode('u');
@@ -159,6 +165,7 @@ public class Delta {
 						oldAttrKey = (String) oldAttributeKeys.next(); numOfAttributes++;
 						Attribute oldAttr = oldAttributeValues.next();
 						// Deleted
+						delete(oldAttr);
 						attrDel++;
 						oldAttr.setMode('d');
 						oldTable.setMode('u');
@@ -168,6 +175,7 @@ public class Delta {
 						newAttrKey = (String) newAttributeKeys.next();
 						Attribute newAttr = newAttributeValues.next();
 						// Inserted
+						insert(newAttr);
 						attrIns++;
 						newAttr.setMode('i');
 						oldTable.setMode('u');
@@ -186,6 +194,7 @@ public class Delta {
 				}
 				else if (oldTableKey.compareTo(newTableKey) < 0) {
 					// Deleted
+					delete(oldTable);
 					tableDel++;
 					oldTable.setMode('d');
 					// mark attributes deleted
@@ -201,6 +210,7 @@ public class Delta {
 				}
 				else {
 					// Inserted
+					insert(newTable);
 					tableIns++;
 					newTable.setMode('i');
 					// mark attributes inserted
@@ -221,6 +231,7 @@ public class Delta {
 			oldTableKey = (String) oldTableKeys.next();  numOfTables++;
 			Table oldTable = (Table) oldTableValues.next();
 			tableDel++;
+			delete(oldTable);
 			oldTable.setMode('d');
 			// mark attributes deleted
 			markAll(oldTable, 'd');
@@ -229,6 +240,7 @@ public class Delta {
 			newTableKey = (String) newTableKeys.next();
 			Table newTable = (Table) newTableValues.next();
 			tableIns++;
+			insert(newTable);
 			newTable.setMode('i');
 			// mark attributes inserted
 			markAll(newTable, 'i');
@@ -245,6 +257,42 @@ public class Delta {
 	        	default:;
 	        }
 		}
+	}
+	
+	private void insert(Attribute newAttr) {
+		if (in == null) {
+			in = new Insersion();
+			tl.add(in);
+		}
+		try {
+			in.insertAttribute(newAttr);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void insert(Table newTable) {
+		in = new Insersion();
+		tl.add(in);
+		in.insertTable(newTable);
+	}
+	
+	private void delete(Attribute newAttr) {
+		if (out == null) {
+			out = new Deletion();
+			tl.add(out);
+		}
+		try {
+			out.deleteAttribute(newAttr);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void delete(Table newTable) {
+		out = new Deletion();
+		tl.add(out);
+		out.deleteTable(newTable);
 	}
 	
 	/**

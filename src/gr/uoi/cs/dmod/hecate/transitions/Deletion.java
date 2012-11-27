@@ -13,25 +13,24 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-
 /**
  * @author iskoulis
  *
  */
 @XmlRootElement
-public class Insersion implements Transition {
+public class Deletion implements Transition {
 
 	@XmlElement(name="table")
 	Table affectedTable;
 	@XmlElement(name="attribute")
-	Collection<Attribute> insertedAtributes;
+	Collection<Attribute> deletedAtributes;
 	@XmlAttribute(name="type")
 	String type;
 	
-	public Insersion() {
+	public Deletion() {
 		affectedTable = null;
 		type = null;
-		insertedAtributes = new ArrayList<Attribute>();
+		deletedAtributes = new ArrayList<Attribute>();
 	}
 	
 	public Table getAffTable(){
@@ -39,14 +38,14 @@ public class Insersion implements Transition {
 	}
 	
 	public int getNumOfAffAttributes() {
-		return insertedAtributes.size();
+		return deletedAtributes.size();
 	}
 	
 	public Collection<Attribute> getAffAttributes() {
-		return insertedAtributes;
+		return deletedAtributes;
 	}
 	
-	public void insertAttribute(Attribute newAttribute) throws Exception {
+	public void deleteAttribute(Attribute newAttribute) throws Exception {
 		if (type == null) {
 			type = "UpdateTable";
 		}
@@ -55,12 +54,12 @@ public class Insersion implements Transition {
 		} else if (affectedTable != newAttribute.getTable()){
 			throw new Exception("ta ekanes salata!");
 		}
-		this.insertedAtributes.add(newAttribute);
+		this.deletedAtributes.add(newAttribute);
 	}
 	
-	public void insertTable(Table newTable) {
-		this.type = "NewTable";
+	public void deleteTable(Table newTable) {
+		this.type = "DeleteTable";
 		this.affectedTable = newTable;
-		this.insertedAtributes = newTable.getAttrs().values();
+		this.deletedAtributes = newTable.getAttrs().values();
 	}
 }
