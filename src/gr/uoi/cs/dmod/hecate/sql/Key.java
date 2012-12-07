@@ -8,6 +8,11 @@ public class Key implements SqlItem{
 	protected TreeMap<String, Attribute> key;
 	private char mode;
 	
+	public Key() {
+		this.name = null;
+		this.key = new TreeMap<String, Attribute>();
+	}
+	
 	public Key(String name, TreeMap<String, Attribute> k) {
 		this.key = k;
 		this.name = name;

@@ -21,6 +21,7 @@ public class Delta {
 	private int numOfTables, numOfAttributes;
 	private Insersion in;
 	private Deletion out;
+	private Update up;
 	private TransitionList tl;
 		
 	/**
@@ -72,6 +73,7 @@ public class Delta {
 			while(true) {
 				in = null;
 				out = null;
+				up = null;
 				if (oldTableKey.compareTo(newTableKey) == 0) {
 					// Matched tables
 					oldTable.setMode('m');
@@ -101,6 +103,7 @@ public class Delta {
 									else {
 										// attribute key changed
 										alterKey++;
+										update(newAttr, "KeyChange");
 										oldTable.setMode('u');
 										newTable.setMode('u');
 										oldAttr.setMode('u');
@@ -110,6 +113,7 @@ public class Delta {
 								else {
 									// attribute type changed
 									alterAttribute++;
+									update(newAttr, "TypeChange");
 									oldTable.setMode('u');
 									newTable.setMode('u');
 									oldAttr.setMode('u');
@@ -250,49 +254,61 @@ public class Delta {
 
 	private void markAll(Table t, char m) {
 		for (Iterator<Attribute> i = t.getAttrs().values().iterator(); i.hasNext(); ) {
-	        i.next().setMode(m);
-	        switch(m){
-	        	case 'i': attrIns++; break;
-	        	case 'd': attrDel++; break;
-	        	default:;
-	        }
+			i.next().setMode(m);
+			switch(m){
+				case 'i': attrIns++; break;
+				case 'd': attrDel++; break;
+				default:;
+			}
 		}
 	}
 	
-	private void insert(Attribute newAttr) {
-		if (in == null) {
+	private void insert(SqlItem item) {
+		if (item.getClass() == Attribute.class) {
+			if (in == null) {
+				in = new Insersion();
+				tl.add(in);
+			}
+			try {
+				in.attribute( (Attribute) item);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (item.getClass() == Table.class) {
 			in = new Insersion();
 			tl.add(in);
-		}
-		try {
-			in.insertAttribute(newAttr);
-		} catch (Exception e) {
-			e.printStackTrace();
+			in.table( (Table) item);
 		}
 	}
 	
-	private void insert(Table newTable) {
-		in = new Insersion();
-		tl.add(in);
-		in.insertTable(newTable);
-	}
-	
-	private void delete(Attribute newAttr) {
-		if (out == null) {
+	private void delete(SqlItem item) {
+		if (item.getClass() == Attribute.class) {
+			if (out == null) {
+				out = new Deletion();
+				tl.add(out);
+			}
+			try {
+				out.attribute( (Attribute) item);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (item.getClass() == Table.class) {
 			out = new Deletion();
 			tl.add(out);
-		}
-		try {
-			out.deleteAttribute(newAttr);
-		} catch (Exception e) {
-			e.printStackTrace();
+			out.table( (Table) item);
 		}
 	}
 	
-	private void delete(Table newTable) {
-		out = new Deletion();
-		tl.add(out);
-		out.deleteTable(newTable);
+	private void update(Attribute item, String type) {
+		if (up == null) {
+			up = new Update();
+			tl.add(up);
+		}
+		try {
+			up.updateAttribute((Attribute)item, type);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**

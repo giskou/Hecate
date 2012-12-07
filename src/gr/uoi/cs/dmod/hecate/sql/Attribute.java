@@ -2,15 +2,17 @@ package gr.uoi.cs.dmod.hecate.sql;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlValue;
+import javax.xml.bind.annotation.XmlElement;
 
 @XmlAccessorType(XmlAccessType.NONE)
 public class Attribute implements SqlItem{
 	private Table table;
-	@XmlValue
+	@XmlElement
 	private String name;
+	@XmlElement
 	private String type;
 	private boolean isNull;
+	@XmlElement
 	private boolean isKey;
 	private String def;
 	private char mode;

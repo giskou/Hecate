@@ -3,64 +3,23 @@
  */
 package gr.uoi.cs.dmod.hecate.transitions;
 
-import gr.uoi.cs.dmod.hecate.sql.Attribute;
 import gr.uoi.cs.dmod.hecate.sql.Table;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-
 
 /**
  * @author iskoulis
  *
  */
 @XmlRootElement
-public class Insersion implements Transition {
+public class Insersion extends Transition {
 
-	@XmlElement(name="table")
-	Table affectedTable;
-	@XmlElement(name="attribute")
-	Collection<Attribute> insertedAtributes;
-	@XmlAttribute(name="type")
-	String type;
-	
 	public Insersion() {
-		affectedTable = null;
-		type = null;
-		insertedAtributes = new ArrayList<Attribute>();
+		super();
 	}
 	
-	public Table getAffTable(){
-		return affectedTable;
-	}
-	
-	public int getNumOfAffAttributes() {
-		return insertedAtributes.size();
-	}
-	
-	public Collection<Attribute> getAffAttributes() {
-		return insertedAtributes;
-	}
-	
-	public void insertAttribute(Attribute newAttribute) throws Exception {
-		if (type == null) {
-			type = "UpdateTable";
-		}
-		if (affectedTable == null) {
-			this.affectedTable = newAttribute.getTable();
-		} else if (affectedTable != newAttribute.getTable()){
-			throw new Exception("ta ekanes salata!");
-		}
-		this.insertedAtributes.add(newAttribute);
-	}
-	
-	public void insertTable(Table newTable) {
+	public void table(Table newTable) {
+		super.table(newTable);
 		this.type = "NewTable";
-		this.affectedTable = newTable;
-		this.insertedAtributes = newTable.getAttrs().values();
 	}
 }

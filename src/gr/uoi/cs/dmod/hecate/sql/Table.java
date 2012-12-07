@@ -5,13 +5,14 @@ import java.util.TreeMap;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlValue;
+import javax.xml.bind.annotation.XmlElement;
 
 @XmlAccessorType(XmlAccessType.NONE)
 public class Table implements SqlItem{
-	@XmlValue
+	@XmlElement
 	private String name;
 	private TreeMap<String, Attribute> attrs;
+	@XmlElement
 	private Key pKey;
 	private Key fKey;
 	private char mode;
