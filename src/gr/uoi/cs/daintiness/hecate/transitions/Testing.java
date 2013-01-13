@@ -23,17 +23,17 @@ public class Testing {
 
 	public static void main(String[] args) throws Exception{
 		
-		HecateParser parser = new HecateParser("AppData/schemas/CMS's/wikimedia/v04571.sql");
-		HecateParser parser2 = new HecateParser("AppData/schemas/CMS's/wikimedia/v08798.sql");
-		HecateParser parser3 = new HecateParser("AppData/schemas/CMS's/wikimedia/v19569.sql");
+		HecateParser parser = new HecateParser("AppData/schemas/CMS's/wikimedia/schemata/schema_004571.sql");
+		HecateParser parser2 = new HecateParser("AppData/schemas/CMS's/wikimedia/schemata/schema_008798.sql");
+		HecateParser parser3 = new HecateParser("AppData/schemas/CMS's/wikimedia/schemata/schema_019569.sql");
 
 
 		Schema schema1 = parser.getSchema();
-		schema1.setTitle("1");
+		schema1.setTitle("004571");
 		Schema schema2 = parser2.getSchema();
-		schema2.setTitle("2");
+		schema2.setTitle("008798");
 		Schema schema3 = parser3.getSchema();
-		schema3.setTitle("3");
+		schema3.setTitle("019569");
 		
 		
 		Delta delta = new Delta();
