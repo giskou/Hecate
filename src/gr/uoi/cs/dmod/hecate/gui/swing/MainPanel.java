@@ -56,7 +56,7 @@ public class MainPanel extends JPanel {
 	 * <code>"new"</code> for the right side.
 	 */
 	protected void drawSchema(Schema s, String side) {
-		if (side == "old") {
+		if (side.compareTo("old") == 0) {
 			leftTreeModel = new HecateTreeModel(s);
 			leftOutlineModel = DefaultOutlineModel.createOutlineModel(leftTreeModel,
 			                     new HecateRowModel(), true, "Name");
@@ -66,7 +66,7 @@ public class MainPanel extends JPanel {
 			leftScrollPane.add(leftOutline);
 			leftScrollPane.setViewportView(leftOutline);
 		}
-		else if (side == "new") {
+		else if (side.compareTo("new") == 0) {
 			rightTreeModel = new HecateTreeModel(s);
 			rightOutlineModel = DefaultOutlineModel.createOutlineModel(rightTreeModel,
 			                      new HecateRowModel(), true, "Name");
