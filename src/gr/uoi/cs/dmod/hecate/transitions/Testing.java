@@ -23,9 +23,9 @@ public class Testing {
 
 	public static void main(String[] args) throws Exception{
 		
-		HecateParser parser = new HecateParser("/home/iskoulis/Dev/Hecate/AppData/schemas/CMS's/wikimedia/v04571.sql");
-		HecateParser parser2 = new HecateParser("/home/iskoulis/Dev/Hecate/AppData/schemas/CMS's/wikimedia/v08798.sql");
-		HecateParser parser3 = new HecateParser("/home/iskoulis/Dev/Hecate/AppData/schemas/CMS's/wikimedia/v19569.sql");
+		HecateParser parser = new HecateParser("AppData/schemas/CMS's/wikimedia/v04571.sql");
+		HecateParser parser2 = new HecateParser("AppData/schemas/CMS's/wikimedia/v08798.sql");
+		HecateParser parser3 = new HecateParser("AppData/schemas/CMS's/wikimedia/v19569.sql");
 
 
 		Schema schema1 = parser.getSchema();
