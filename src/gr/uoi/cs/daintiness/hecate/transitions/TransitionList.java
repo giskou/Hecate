@@ -13,7 +13,7 @@ public class TransitionList {
 	private String oldVersion;
 	@XmlAttribute(name="newVersion")
 	private String newVersion;
-	@XmlAnyElement
+	@XmlAnyElement(lax=true)
 	private ArrayList<Transition> list;
 	
 	public TransitionList() {
