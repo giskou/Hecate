@@ -1,4 +1,4 @@
-// $ANTLR 3.4 DDL.g 2013-01-13 15:06:45
+// $ANTLR 3.4 DDL.g 2013-01-24 17:05:58
 
   package gr.uoi.cs.daintiness.hecate.parser ;
   import gr.uoi.cs.daintiness.hecate.sql.* ;
@@ -13,59 +13,63 @@ import java.util.ArrayList;
 @SuppressWarnings({"all", "warnings", "unchecked"})
 public class DDLParser extends Parser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "ACTION", "ASC", "AUTO_INC", "BINARY", "CASCADE", "CHARACTER", "COMMENT", "CREATE", "DEF", "DEFAULT", "DELETE", "DESC", "DROP", "ENUM", "ESC_SEQ", "EXISTS", "FOREIGN", "FULLTEXT", "HASH", "HEX_DIGIT", "ID", "IF", "INDEX", "INT", "KEY", "NO", "NOT", "NULL", "OCTAL_ESC", "ON", "PRIMARY", "REFERENCES", "RESTRICT", "SCHEMA", "SET", "TABLE", "UNICODE_ESC", "UNIQUE", "UNSIGNED", "UPDATE", "USE", "WS", "'('", "')'", "','", "'.'", "';'", "'='", "'\\'\\''"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "ACTION", "ASC", "AUTO_INC", "BINARY", "CASCADE", "CHARACTER", "COLLATE", "COMMENT", "CREATE", "DEF", "DEFAULT", "DELETE", "DESC", "DROP", "ENUM", "ESC_SEQ", "EXISTS", "FOREIGN", "FULLTEXT", "HASH", "HEX_DIGIT", "ID", "IF", "INDEX", "INSERT", "INT", "INTO", "KEY", "NO", "NOT", "NULL", "OCTAL_ESC", "ON", "PRIMARY", "REFERENCES", "RESTRICT", "SCHEMA", "SET", "TABLE", "UNICODE_ESC", "UNIQUE", "UNSIGNED", "UPDATE", "USE", "VALUES", "WS", "'('", "')'", "','", "'.'", "';'", "'='", "'\\'\\''"
     };
 
     public static final int EOF=-1;
-    public static final int T__46=46;
-    public static final int T__47=47;
-    public static final int T__48=48;
-    public static final int T__49=49;
     public static final int T__50=50;
     public static final int T__51=51;
     public static final int T__52=52;
+    public static final int T__53=53;
+    public static final int T__54=54;
+    public static final int T__55=55;
+    public static final int T__56=56;
     public static final int ACTION=4;
     public static final int ASC=5;
     public static final int AUTO_INC=6;
     public static final int BINARY=7;
     public static final int CASCADE=8;
     public static final int CHARACTER=9;
-    public static final int COMMENT=10;
-    public static final int CREATE=11;
-    public static final int DEF=12;
-    public static final int DEFAULT=13;
-    public static final int DELETE=14;
-    public static final int DESC=15;
-    public static final int DROP=16;
-    public static final int ENUM=17;
-    public static final int ESC_SEQ=18;
-    public static final int EXISTS=19;
-    public static final int FOREIGN=20;
-    public static final int FULLTEXT=21;
-    public static final int HASH=22;
-    public static final int HEX_DIGIT=23;
-    public static final int ID=24;
-    public static final int IF=25;
-    public static final int INDEX=26;
-    public static final int INT=27;
-    public static final int KEY=28;
-    public static final int NO=29;
-    public static final int NOT=30;
-    public static final int NULL=31;
-    public static final int OCTAL_ESC=32;
-    public static final int ON=33;
-    public static final int PRIMARY=34;
-    public static final int REFERENCES=35;
-    public static final int RESTRICT=36;
-    public static final int SCHEMA=37;
-    public static final int SET=38;
-    public static final int TABLE=39;
-    public static final int UNICODE_ESC=40;
-    public static final int UNIQUE=41;
-    public static final int UNSIGNED=42;
-    public static final int UPDATE=43;
-    public static final int USE=44;
-    public static final int WS=45;
+    public static final int COLLATE=10;
+    public static final int COMMENT=11;
+    public static final int CREATE=12;
+    public static final int DEF=13;
+    public static final int DEFAULT=14;
+    public static final int DELETE=15;
+    public static final int DESC=16;
+    public static final int DROP=17;
+    public static final int ENUM=18;
+    public static final int ESC_SEQ=19;
+    public static final int EXISTS=20;
+    public static final int FOREIGN=21;
+    public static final int FULLTEXT=22;
+    public static final int HASH=23;
+    public static final int HEX_DIGIT=24;
+    public static final int ID=25;
+    public static final int IF=26;
+    public static final int INDEX=27;
+    public static final int INSERT=28;
+    public static final int INT=29;
+    public static final int INTO=30;
+    public static final int KEY=31;
+    public static final int NO=32;
+    public static final int NOT=33;
+    public static final int NULL=34;
+    public static final int OCTAL_ESC=35;
+    public static final int ON=36;
+    public static final int PRIMARY=37;
+    public static final int REFERENCES=38;
+    public static final int RESTRICT=39;
+    public static final int SCHEMA=40;
+    public static final int SET=41;
+    public static final int TABLE=42;
+    public static final int UNICODE_ESC=43;
+    public static final int UNIQUE=44;
+    public static final int UNSIGNED=45;
+    public static final int UPDATE=46;
+    public static final int USE=47;
+    public static final int VALUES=48;
+    public static final int WS=49;
 
     // delegates
     public Parser[] getDelegates() {
@@ -103,20 +107,20 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "start"
-    // DDL.g:33:1: start returns [Schema s] : ( drop | create | namespace )+ ;
+    // DDL.g:33:1: start returns [Schema s] : ( drop | create | namespace | insert )+ ;
     public final Schema start() throws RecognitionException {
         Schema s = null;
 
 
         try {
-            // DDL.g:34:2: ( ( drop | create | namespace )+ )
-            // DDL.g:34:4: ( drop | create | namespace )+
+            // DDL.g:34:2: ( ( drop | create | namespace | insert )+ )
+            // DDL.g:34:4: ( drop | create | namespace | insert )+
             {
-            // DDL.g:34:4: ( drop | create | namespace )+
+            // DDL.g:34:4: ( drop | create | namespace | insert )+
             int cnt1=0;
             loop1:
             do {
-                int alt1=4;
+                int alt1=5;
                 switch ( input.LA(1) ) {
                 case DROP:
                     {
@@ -131,6 +135,11 @@ public class DDLParser extends Parser {
                 case USE:
                     {
                     alt1=3;
+                    }
+                    break;
+                case INSERT:
+                    {
+                    alt1=4;
                     }
                     break;
 
@@ -164,6 +173,17 @@ public class DDLParser extends Parser {
             	    {
             	    pushFollow(FOLLOW_namespace_in_start59);
             	    namespace();
+
+            	    state._fsp--;
+
+
+            	    }
+            	    break;
+            	case 4 :
+            	    // DDL.g:34:34: insert
+            	    {
+            	    pushFollow(FOLLOW_insert_in_start63);
+            	    insert();
 
             	    state._fsp--;
 
@@ -209,15 +229,15 @@ public class DDLParser extends Parser {
             // DDL.g:41:2: ( USE name ';' )
             // DDL.g:41:4: USE name ';'
             {
-            match(input,USE,FOLLOW_USE_in_namespace77); 
+            match(input,USE,FOLLOW_USE_in_namespace81); 
 
-            pushFollow(FOLLOW_name_in_namespace79);
+            pushFollow(FOLLOW_name_in_namespace83);
             name();
 
             state._fsp--;
 
 
-            match(input,50,FOLLOW_50_in_namespace81); 
+            match(input,54,FOLLOW_54_in_namespace85); 
 
             }
 
@@ -243,9 +263,9 @@ public class DDLParser extends Parser {
             // DDL.g:45:2: ( DROP TABLE ( IF EXISTS )? nameList ';' )
             // DDL.g:45:4: DROP TABLE ( IF EXISTS )? nameList ';'
             {
-            match(input,DROP,FOLLOW_DROP_in_drop92); 
+            match(input,DROP,FOLLOW_DROP_in_drop96); 
 
-            match(input,TABLE,FOLLOW_TABLE_in_drop94); 
+            match(input,TABLE,FOLLOW_TABLE_in_drop98); 
 
             // DDL.g:45:15: ( IF EXISTS )?
             int alt2=2;
@@ -258,9 +278,9 @@ public class DDLParser extends Parser {
                 case 1 :
                     // DDL.g:45:17: IF EXISTS
                     {
-                    match(input,IF,FOLLOW_IF_in_drop98); 
+                    match(input,IF,FOLLOW_IF_in_drop102); 
 
-                    match(input,EXISTS,FOLLOW_EXISTS_in_drop100); 
+                    match(input,EXISTS,FOLLOW_EXISTS_in_drop104); 
 
                     }
                     break;
@@ -268,13 +288,13 @@ public class DDLParser extends Parser {
             }
 
 
-            pushFollow(FOLLOW_nameList_in_drop105);
+            pushFollow(FOLLOW_nameList_in_drop109);
             nameList();
 
             state._fsp--;
 
 
-            match(input,50,FOLLOW_50_in_drop107); 
+            match(input,54,FOLLOW_54_in_drop111); 
 
             }
 
@@ -341,45 +361,45 @@ public class DDLParser extends Parser {
                 case 1 :
                     // DDL.g:49:4: CREATE schema ';'
                     {
-                    match(input,CREATE,FOLLOW_CREATE_in_create119); 
+                    match(input,CREATE,FOLLOW_CREATE_in_create123); 
 
-                    pushFollow(FOLLOW_schema_in_create121);
+                    pushFollow(FOLLOW_schema_in_create125);
                     schema();
 
                     state._fsp--;
 
 
-                    match(input,50,FOLLOW_50_in_create123); 
+                    match(input,54,FOLLOW_54_in_create127); 
 
                     }
                     break;
                 case 2 :
                     // DDL.g:50:4: CREATE table ';'
                     {
-                    match(input,CREATE,FOLLOW_CREATE_in_create128); 
+                    match(input,CREATE,FOLLOW_CREATE_in_create132); 
 
-                    pushFollow(FOLLOW_table_in_create130);
+                    pushFollow(FOLLOW_table_in_create134);
                     table();
 
                     state._fsp--;
 
 
-                    match(input,50,FOLLOW_50_in_create132); 
+                    match(input,54,FOLLOW_54_in_create136); 
 
                     }
                     break;
                 case 3 :
                     // DDL.g:51:4: CREATE index ';'
                     {
-                    match(input,CREATE,FOLLOW_CREATE_in_create137); 
+                    match(input,CREATE,FOLLOW_CREATE_in_create141); 
 
-                    pushFollow(FOLLOW_index_in_create139);
+                    pushFollow(FOLLOW_index_in_create143);
                     index();
 
                     state._fsp--;
 
 
-                    match(input,50,FOLLOW_50_in_create141); 
+                    match(input,54,FOLLOW_54_in_create145); 
 
                     }
                     break;
@@ -400,16 +420,64 @@ public class DDLParser extends Parser {
 
 
 
+    // $ANTLR start "insert"
+    // DDL.g:54:1: insert : INSERT INTO name VALUES '(' valueList ')' ';' ;
+    public final void insert() throws RecognitionException {
+        try {
+            // DDL.g:55:2: ( INSERT INTO name VALUES '(' valueList ')' ';' )
+            // DDL.g:55:4: INSERT INTO name VALUES '(' valueList ')' ';'
+            {
+            match(input,INSERT,FOLLOW_INSERT_in_insert157); 
+
+            match(input,INTO,FOLLOW_INTO_in_insert159); 
+
+            pushFollow(FOLLOW_name_in_insert161);
+            name();
+
+            state._fsp--;
+
+
+            match(input,VALUES,FOLLOW_VALUES_in_insert163); 
+
+            match(input,50,FOLLOW_50_in_insert165); 
+
+            pushFollow(FOLLOW_valueList_in_insert167);
+            valueList();
+
+            state._fsp--;
+
+
+            match(input,51,FOLLOW_51_in_insert169); 
+
+            match(input,54,FOLLOW_54_in_insert171); 
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+
+        finally {
+        	// do for sure before leaving
+        }
+        return ;
+    }
+    // $ANTLR end "insert"
+
+
+
     // $ANTLR start "schema"
-    // DDL.g:54:1: schema : SCHEMA ( IF NOT EXISTS )? name ( parameter )? ;
+    // DDL.g:58:1: schema : SCHEMA ( IF NOT EXISTS )? name ( parameter )? ;
     public final void schema() throws RecognitionException {
         try {
-            // DDL.g:55:2: ( SCHEMA ( IF NOT EXISTS )? name ( parameter )? )
-            // DDL.g:55:4: SCHEMA ( IF NOT EXISTS )? name ( parameter )?
+            // DDL.g:59:2: ( SCHEMA ( IF NOT EXISTS )? name ( parameter )? )
+            // DDL.g:59:4: SCHEMA ( IF NOT EXISTS )? name ( parameter )?
             {
-            match(input,SCHEMA,FOLLOW_SCHEMA_in_schema153); 
+            match(input,SCHEMA,FOLLOW_SCHEMA_in_schema183); 
 
-            // DDL.g:55:11: ( IF NOT EXISTS )?
+            // DDL.g:59:11: ( IF NOT EXISTS )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -418,13 +486,13 @@ public class DDLParser extends Parser {
             }
             switch (alt4) {
                 case 1 :
-                    // DDL.g:55:13: IF NOT EXISTS
+                    // DDL.g:59:13: IF NOT EXISTS
                     {
-                    match(input,IF,FOLLOW_IF_in_schema157); 
+                    match(input,IF,FOLLOW_IF_in_schema187); 
 
-                    match(input,NOT,FOLLOW_NOT_in_schema159); 
+                    match(input,NOT,FOLLOW_NOT_in_schema189); 
 
-                    match(input,EXISTS,FOLLOW_EXISTS_in_schema161); 
+                    match(input,EXISTS,FOLLOW_EXISTS_in_schema191); 
 
                     }
                     break;
@@ -432,24 +500,24 @@ public class DDLParser extends Parser {
             }
 
 
-            pushFollow(FOLLOW_name_in_schema166);
+            pushFollow(FOLLOW_name_in_schema196);
             name();
 
             state._fsp--;
 
 
-            // DDL.g:55:35: ( parameter )?
+            // DDL.g:59:35: ( parameter )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
-            if ( ((LA5_0 >= DEF && LA5_0 <= DEFAULT)||LA5_0==ID) ) {
+            if ( (LA5_0==AUTO_INC||(LA5_0 >= CHARACTER && LA5_0 <= COLLATE)||(LA5_0 >= DEF && LA5_0 <= DEFAULT)||LA5_0==ID) ) {
                 alt5=1;
             }
             switch (alt5) {
                 case 1 :
-                    // DDL.g:55:35: parameter
+                    // DDL.g:59:35: parameter
                     {
-                    pushFollow(FOLLOW_parameter_in_schema168);
+                    pushFollow(FOLLOW_parameter_in_schema198);
                     parameter();
 
                     state._fsp--;
@@ -479,7 +547,7 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "table"
-    // DDL.g:58:1: table : TABLE ( IF NOT EXISTS )? name '(' definition ')' ( parameter )? ;
+    // DDL.g:62:1: table : TABLE ( IF NOT EXISTS )? name '(' definition ')' ( parameter )* ;
     public final void table() throws RecognitionException {
         DDLParser.name_return name1 =null;
 
@@ -488,12 +556,12 @@ public class DDLParser extends Parser {
         		am.clear();
         	
         try {
-            // DDL.g:62:2: ( TABLE ( IF NOT EXISTS )? name '(' definition ')' ( parameter )? )
-            // DDL.g:62:4: TABLE ( IF NOT EXISTS )? name '(' definition ')' ( parameter )?
+            // DDL.g:66:2: ( TABLE ( IF NOT EXISTS )? name '(' definition ')' ( parameter )* )
+            // DDL.g:66:4: TABLE ( IF NOT EXISTS )? name '(' definition ')' ( parameter )*
             {
-            match(input,TABLE,FOLLOW_TABLE_in_table186); 
+            match(input,TABLE,FOLLOW_TABLE_in_table216); 
 
-            // DDL.g:62:10: ( IF NOT EXISTS )?
+            // DDL.g:66:10: ( IF NOT EXISTS )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -502,13 +570,13 @@ public class DDLParser extends Parser {
             }
             switch (alt6) {
                 case 1 :
-                    // DDL.g:62:12: IF NOT EXISTS
+                    // DDL.g:66:12: IF NOT EXISTS
                     {
-                    match(input,IF,FOLLOW_IF_in_table190); 
+                    match(input,IF,FOLLOW_IF_in_table220); 
 
-                    match(input,NOT,FOLLOW_NOT_in_table192); 
+                    match(input,NOT,FOLLOW_NOT_in_table222); 
 
-                    match(input,EXISTS,FOLLOW_EXISTS_in_table194); 
+                    match(input,EXISTS,FOLLOW_EXISTS_in_table224); 
 
                     }
                     break;
@@ -516,43 +584,50 @@ public class DDLParser extends Parser {
             }
 
 
-            pushFollow(FOLLOW_name_in_table199);
+            pushFollow(FOLLOW_name_in_table229);
             name1=name();
 
             state._fsp--;
 
 
-            match(input,46,FOLLOW_46_in_table201); 
+            match(input,50,FOLLOW_50_in_table231); 
 
-            pushFollow(FOLLOW_definition_in_table203);
+            pushFollow(FOLLOW_definition_in_table233);
             definition();
 
             state._fsp--;
 
 
-            match(input,47,FOLLOW_47_in_table205); 
+            match(input,51,FOLLOW_51_in_table235); 
 
-            // DDL.g:62:53: ( parameter )?
-            int alt7=2;
-            int LA7_0 = input.LA(1);
+            // DDL.g:66:53: ( parameter )*
+            loop7:
+            do {
+                int alt7=2;
+                int LA7_0 = input.LA(1);
 
-            if ( ((LA7_0 >= DEF && LA7_0 <= DEFAULT)||LA7_0==ID) ) {
-                alt7=1;
-            }
-            switch (alt7) {
-                case 1 :
-                    // DDL.g:62:53: parameter
-                    {
-                    pushFollow(FOLLOW_parameter_in_table207);
-                    parameter();
-
-                    state._fsp--;
+                if ( (LA7_0==AUTO_INC||(LA7_0 >= CHARACTER && LA7_0 <= COLLATE)||(LA7_0 >= DEF && LA7_0 <= DEFAULT)||LA7_0==ID) ) {
+                    alt7=1;
+                }
 
 
-                    }
-                    break;
+                switch (alt7) {
+            	case 1 :
+            	    // DDL.g:66:53: parameter
+            	    {
+            	    pushFollow(FOLLOW_parameter_in_table237);
+            	    parameter();
 
-            }
+            	    state._fsp--;
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop7;
+                }
+            } while (true);
 
 
 
@@ -577,13 +652,13 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "definition"
-    // DDL.g:68:1: definition : ( column | constraint | index ) ( ',' ( column | constraint | index ) )* ;
+    // DDL.g:72:1: definition : ( column | constraint | index ) ( ',' ( column | constraint | index ) )* ;
     public final void definition() throws RecognitionException {
         try {
-            // DDL.g:69:2: ( ( column | constraint | index ) ( ',' ( column | constraint | index ) )* )
-            // DDL.g:69:4: ( column | constraint | index ) ( ',' ( column | constraint | index ) )*
+            // DDL.g:73:2: ( ( column | constraint | index ) ( ',' ( column | constraint | index ) )* )
+            // DDL.g:73:4: ( column | constraint | index ) ( ',' ( column | constraint | index ) )*
             {
-            // DDL.g:69:4: ( column | constraint | index )
+            // DDL.g:73:4: ( column | constraint | index )
             int alt8=3;
             switch ( input.LA(1) ) {
             case DEF:
@@ -592,19 +667,38 @@ public class DDLParser extends Parser {
                 alt8=1;
                 }
                 break;
-            case UNIQUE:
+            case FULLTEXT:
                 {
                 int LA8_2 = input.LA(2);
 
-                if ( (LA8_2==DEF||LA8_2==ID||LA8_2==KEY||(LA8_2 >= 46 && LA8_2 <= 48)) ) {
+                if ( (LA8_2==FOREIGN||LA8_2==KEY||LA8_2==PRIMARY||LA8_2==UNIQUE) ) {
                     alt8=2;
                 }
-                else if ( (LA8_2==INDEX) ) {
+                else if ( (LA8_2==DEF||LA8_2==ID) ) {
                     alt8=3;
                 }
                 else {
                     NoViableAltException nvae =
                         new NoViableAltException("", 8, 2, input);
+
+                    throw nvae;
+
+                }
+                }
+                break;
+            case UNIQUE:
+                {
+                int LA8_3 = input.LA(2);
+
+                if ( (LA8_3==DEF||LA8_3==ID||LA8_3==KEY||(LA8_3 >= 50 && LA8_3 <= 52)) ) {
+                    alt8=2;
+                }
+                else if ( (LA8_3==INDEX) ) {
+                    alt8=3;
+                }
+                else {
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 8, 3, input);
 
                     throw nvae;
 
@@ -619,24 +713,23 @@ public class DDLParser extends Parser {
                 break;
             case PRIMARY:
                 {
-                int LA8_4 = input.LA(2);
+                int LA8_5 = input.LA(2);
 
-                if ( (LA8_4==KEY) ) {
+                if ( (LA8_5==KEY) ) {
                     alt8=2;
                 }
-                else if ( (LA8_4==INDEX) ) {
+                else if ( (LA8_5==INDEX) ) {
                     alt8=3;
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("", 8, 4, input);
+                        new NoViableAltException("", 8, 5, input);
 
                     throw nvae;
 
                 }
                 }
                 break;
-            case FULLTEXT:
             case INDEX:
                 {
                 alt8=3;
@@ -652,9 +745,9 @@ public class DDLParser extends Parser {
 
             switch (alt8) {
                 case 1 :
-                    // DDL.g:69:6: column
+                    // DDL.g:73:6: column
                     {
-                    pushFollow(FOLLOW_column_in_definition225);
+                    pushFollow(FOLLOW_column_in_definition255);
                     column();
 
                     state._fsp--;
@@ -663,9 +756,9 @@ public class DDLParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // DDL.g:69:15: constraint
+                    // DDL.g:73:15: constraint
                     {
-                    pushFollow(FOLLOW_constraint_in_definition229);
+                    pushFollow(FOLLOW_constraint_in_definition259);
                     constraint();
 
                     state._fsp--;
@@ -674,9 +767,9 @@ public class DDLParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // DDL.g:69:28: index
+                    // DDL.g:73:28: index
                     {
-                    pushFollow(FOLLOW_index_in_definition233);
+                    pushFollow(FOLLOW_index_in_definition263);
                     index();
 
                     state._fsp--;
@@ -688,24 +781,24 @@ public class DDLParser extends Parser {
             }
 
 
-            // DDL.g:69:36: ( ',' ( column | constraint | index ) )*
+            // DDL.g:73:36: ( ',' ( column | constraint | index ) )*
             loop10:
             do {
                 int alt10=2;
                 int LA10_0 = input.LA(1);
 
-                if ( (LA10_0==48) ) {
+                if ( (LA10_0==52) ) {
                     alt10=1;
                 }
 
 
                 switch (alt10) {
             	case 1 :
-            	    // DDL.g:69:38: ',' ( column | constraint | index )
+            	    // DDL.g:73:38: ',' ( column | constraint | index )
             	    {
-            	    match(input,48,FOLLOW_48_in_definition239); 
+            	    match(input,52,FOLLOW_52_in_definition269); 
 
-            	    // DDL.g:69:42: ( column | constraint | index )
+            	    // DDL.g:73:42: ( column | constraint | index )
             	    int alt9=3;
             	    switch ( input.LA(1) ) {
             	    case DEF:
@@ -714,19 +807,38 @@ public class DDLParser extends Parser {
             	        alt9=1;
             	        }
             	        break;
-            	    case UNIQUE:
+            	    case FULLTEXT:
             	        {
             	        int LA9_2 = input.LA(2);
 
-            	        if ( (LA9_2==DEF||LA9_2==ID||LA9_2==KEY||(LA9_2 >= 46 && LA9_2 <= 48)) ) {
+            	        if ( (LA9_2==FOREIGN||LA9_2==KEY||LA9_2==PRIMARY||LA9_2==UNIQUE) ) {
             	            alt9=2;
             	        }
-            	        else if ( (LA9_2==INDEX) ) {
+            	        else if ( (LA9_2==DEF||LA9_2==ID) ) {
             	            alt9=3;
             	        }
             	        else {
             	            NoViableAltException nvae =
             	                new NoViableAltException("", 9, 2, input);
+
+            	            throw nvae;
+
+            	        }
+            	        }
+            	        break;
+            	    case UNIQUE:
+            	        {
+            	        int LA9_3 = input.LA(2);
+
+            	        if ( (LA9_3==DEF||LA9_3==ID||LA9_3==KEY||(LA9_3 >= 50 && LA9_3 <= 52)) ) {
+            	            alt9=2;
+            	        }
+            	        else if ( (LA9_3==INDEX) ) {
+            	            alt9=3;
+            	        }
+            	        else {
+            	            NoViableAltException nvae =
+            	                new NoViableAltException("", 9, 3, input);
 
             	            throw nvae;
 
@@ -741,24 +853,23 @@ public class DDLParser extends Parser {
             	        break;
             	    case PRIMARY:
             	        {
-            	        int LA9_4 = input.LA(2);
+            	        int LA9_5 = input.LA(2);
 
-            	        if ( (LA9_4==KEY) ) {
+            	        if ( (LA9_5==KEY) ) {
             	            alt9=2;
             	        }
-            	        else if ( (LA9_4==INDEX) ) {
+            	        else if ( (LA9_5==INDEX) ) {
             	            alt9=3;
             	        }
             	        else {
             	            NoViableAltException nvae =
-            	                new NoViableAltException("", 9, 4, input);
+            	                new NoViableAltException("", 9, 5, input);
 
             	            throw nvae;
 
             	        }
             	        }
             	        break;
-            	    case FULLTEXT:
             	    case INDEX:
             	        {
             	        alt9=3;
@@ -774,9 +885,9 @@ public class DDLParser extends Parser {
 
             	    switch (alt9) {
             	        case 1 :
-            	            // DDL.g:69:44: column
+            	            // DDL.g:73:44: column
             	            {
-            	            pushFollow(FOLLOW_column_in_definition243);
+            	            pushFollow(FOLLOW_column_in_definition273);
             	            column();
 
             	            state._fsp--;
@@ -785,9 +896,9 @@ public class DDLParser extends Parser {
             	            }
             	            break;
             	        case 2 :
-            	            // DDL.g:69:53: constraint
+            	            // DDL.g:73:53: constraint
             	            {
-            	            pushFollow(FOLLOW_constraint_in_definition247);
+            	            pushFollow(FOLLOW_constraint_in_definition277);
             	            constraint();
 
             	            state._fsp--;
@@ -796,9 +907,9 @@ public class DDLParser extends Parser {
             	            }
             	            break;
             	        case 3 :
-            	            // DDL.g:69:66: index
+            	            // DDL.g:73:66: index
             	            {
-            	            pushFollow(FOLLOW_index_in_definition251);
+            	            pushFollow(FOLLOW_index_in_definition281);
             	            index();
 
             	            state._fsp--;
@@ -837,7 +948,7 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "column"
-    // DDL.g:72:1: column : name type ( option )* ;
+    // DDL.g:76:1: column : name type ( option )* ;
     public final void column() throws RecognitionException {
         DDLParser.type_return type2 =null;
 
@@ -845,22 +956,22 @@ public class DDLParser extends Parser {
 
 
         try {
-            // DDL.g:73:2: ( name type ( option )* )
-            // DDL.g:73:4: name type ( option )*
+            // DDL.g:77:2: ( name type ( option )* )
+            // DDL.g:77:4: name type ( option )*
             {
-            pushFollow(FOLLOW_name_in_column268);
+            pushFollow(FOLLOW_name_in_column298);
             name3=name();
 
             state._fsp--;
 
 
-            pushFollow(FOLLOW_type_in_column270);
+            pushFollow(FOLLOW_type_in_column300);
             type2=type();
 
             state._fsp--;
 
 
-            // DDL.g:73:14: ( option )*
+            // DDL.g:77:14: ( option )*
             loop11:
             do {
                 int alt11=2;
@@ -873,9 +984,9 @@ public class DDLParser extends Parser {
 
                 switch (alt11) {
             	case 1 :
-            	    // DDL.g:73:14: option
+            	    // DDL.g:77:14: option
             	    {
-            	    pushFollow(FOLLOW_option_in_column272);
+            	    pushFollow(FOLLOW_option_in_column302);
             	    option();
 
             	    state._fsp--;
@@ -913,45 +1024,64 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "constraint"
-    // DDL.g:80:1: constraint : ( key | UNIQUE ( name )? ( '(' nameList ')' )? );
+    // DDL.g:84:1: constraint : ( ( FULLTEXT )? key | UNIQUE ( name )? ( '(' nameList ')' )? );
     public final void constraint() throws RecognitionException {
         try {
-            // DDL.g:81:2: ( key | UNIQUE ( name )? ( '(' nameList ')' )? )
-            int alt14=2;
-            int LA14_0 = input.LA(1);
+            // DDL.g:85:2: ( ( FULLTEXT )? key | UNIQUE ( name )? ( '(' nameList ')' )? )
+            int alt15=2;
+            int LA15_0 = input.LA(1);
 
-            if ( (LA14_0==UNIQUE) ) {
-                int LA14_1 = input.LA(2);
+            if ( ((LA15_0 >= FOREIGN && LA15_0 <= FULLTEXT)||LA15_0==KEY||LA15_0==PRIMARY) ) {
+                alt15=1;
+            }
+            else if ( (LA15_0==UNIQUE) ) {
+                int LA15_2 = input.LA(2);
 
-                if ( (LA14_1==KEY) ) {
-                    alt14=1;
+                if ( (LA15_2==KEY) ) {
+                    alt15=1;
                 }
-                else if ( (LA14_1==DEF||LA14_1==ID||(LA14_1 >= 46 && LA14_1 <= 48)) ) {
-                    alt14=2;
+                else if ( (LA15_2==DEF||LA15_2==ID||(LA15_2 >= 50 && LA15_2 <= 52)) ) {
+                    alt15=2;
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("", 14, 1, input);
+                        new NoViableAltException("", 15, 2, input);
 
                     throw nvae;
 
                 }
             }
-            else if ( (LA14_0==FOREIGN||LA14_0==KEY||LA14_0==PRIMARY) ) {
-                alt14=1;
-            }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 14, 0, input);
+                    new NoViableAltException("", 15, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt14) {
+            switch (alt15) {
                 case 1 :
-                    // DDL.g:81:4: key
+                    // DDL.g:85:4: ( FULLTEXT )? key
                     {
-                    pushFollow(FOLLOW_key_in_constraint288);
+                    // DDL.g:85:4: ( FULLTEXT )?
+                    int alt12=2;
+                    int LA12_0 = input.LA(1);
+
+                    if ( (LA12_0==FULLTEXT) ) {
+                        alt12=1;
+                    }
+                    switch (alt12) {
+                        case 1 :
+                            // DDL.g:85:4: FULLTEXT
+                            {
+                            match(input,FULLTEXT,FOLLOW_FULLTEXT_in_constraint318); 
+
+                            }
+                            break;
+
+                    }
+
+
+                    pushFollow(FOLLOW_key_in_constraint321);
                     key();
 
                     state._fsp--;
@@ -960,22 +1090,22 @@ public class DDLParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // DDL.g:82:4: UNIQUE ( name )? ( '(' nameList ')' )?
+                    // DDL.g:86:4: UNIQUE ( name )? ( '(' nameList ')' )?
                     {
-                    match(input,UNIQUE,FOLLOW_UNIQUE_in_constraint293); 
+                    match(input,UNIQUE,FOLLOW_UNIQUE_in_constraint326); 
 
-                    // DDL.g:82:11: ( name )?
-                    int alt12=2;
-                    int LA12_0 = input.LA(1);
+                    // DDL.g:86:11: ( name )?
+                    int alt13=2;
+                    int LA13_0 = input.LA(1);
 
-                    if ( (LA12_0==DEF||LA12_0==ID) ) {
-                        alt12=1;
+                    if ( (LA13_0==DEF||LA13_0==ID) ) {
+                        alt13=1;
                     }
-                    switch (alt12) {
+                    switch (alt13) {
                         case 1 :
-                            // DDL.g:82:11: name
+                            // DDL.g:86:11: name
                             {
-                            pushFollow(FOLLOW_name_in_constraint295);
+                            pushFollow(FOLLOW_name_in_constraint328);
                             name();
 
                             state._fsp--;
@@ -987,26 +1117,26 @@ public class DDLParser extends Parser {
                     }
 
 
-                    // DDL.g:82:17: ( '(' nameList ')' )?
-                    int alt13=2;
-                    int LA13_0 = input.LA(1);
+                    // DDL.g:86:17: ( '(' nameList ')' )?
+                    int alt14=2;
+                    int LA14_0 = input.LA(1);
 
-                    if ( (LA13_0==46) ) {
-                        alt13=1;
+                    if ( (LA14_0==50) ) {
+                        alt14=1;
                     }
-                    switch (alt13) {
+                    switch (alt14) {
                         case 1 :
-                            // DDL.g:82:19: '(' nameList ')'
+                            // DDL.g:86:19: '(' nameList ')'
                             {
-                            match(input,46,FOLLOW_46_in_constraint300); 
+                            match(input,50,FOLLOW_50_in_constraint333); 
 
-                            pushFollow(FOLLOW_nameList_in_constraint302);
+                            pushFollow(FOLLOW_nameList_in_constraint335);
                             nameList();
 
                             state._fsp--;
 
 
-                            match(input,47,FOLLOW_47_in_constraint304); 
+                            match(input,51,FOLLOW_51_in_constraint337); 
 
                             }
                             break;
@@ -1034,38 +1164,38 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "index"
-    // DDL.g:85:1: index : ( ( UNIQUE | PRIMARY )? INDEX ( name )? ( ON name )? '(' nameList ')' | FULLTEXT name '(' nameList ')' );
+    // DDL.g:89:1: index : ( ( UNIQUE | PRIMARY )? INDEX ( name )? ( ON name )? '(' nameList ')' | FULLTEXT name '(' nameList ')' );
     public final void index() throws RecognitionException {
         try {
-            // DDL.g:86:2: ( ( UNIQUE | PRIMARY )? INDEX ( name )? ( ON name )? '(' nameList ')' | FULLTEXT name '(' nameList ')' )
-            int alt18=2;
-            int LA18_0 = input.LA(1);
+            // DDL.g:90:2: ( ( UNIQUE | PRIMARY )? INDEX ( name )? ( ON name )? '(' nameList ')' | FULLTEXT name '(' nameList ')' )
+            int alt19=2;
+            int LA19_0 = input.LA(1);
 
-            if ( (LA18_0==INDEX||LA18_0==PRIMARY||LA18_0==UNIQUE) ) {
-                alt18=1;
+            if ( (LA19_0==INDEX||LA19_0==PRIMARY||LA19_0==UNIQUE) ) {
+                alt19=1;
             }
-            else if ( (LA18_0==FULLTEXT) ) {
-                alt18=2;
+            else if ( (LA19_0==FULLTEXT) ) {
+                alt19=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 18, 0, input);
+                    new NoViableAltException("", 19, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt18) {
+            switch (alt19) {
                 case 1 :
-                    // DDL.g:86:4: ( UNIQUE | PRIMARY )? INDEX ( name )? ( ON name )? '(' nameList ')'
+                    // DDL.g:90:4: ( UNIQUE | PRIMARY )? INDEX ( name )? ( ON name )? '(' nameList ')'
                     {
-                    // DDL.g:86:4: ( UNIQUE | PRIMARY )?
-                    int alt15=2;
-                    int LA15_0 = input.LA(1);
+                    // DDL.g:90:4: ( UNIQUE | PRIMARY )?
+                    int alt16=2;
+                    int LA16_0 = input.LA(1);
 
-                    if ( (LA15_0==PRIMARY||LA15_0==UNIQUE) ) {
-                        alt15=1;
+                    if ( (LA16_0==PRIMARY||LA16_0==UNIQUE) ) {
+                        alt16=1;
                     }
-                    switch (alt15) {
+                    switch (alt16) {
                         case 1 :
                             // DDL.g:
                             {
@@ -1085,45 +1215,20 @@ public class DDLParser extends Parser {
                     }
 
 
-                    match(input,INDEX,FOLLOW_INDEX_in_index330); 
+                    match(input,INDEX,FOLLOW_INDEX_in_index363); 
 
-                    // DDL.g:86:32: ( name )?
-                    int alt16=2;
-                    int LA16_0 = input.LA(1);
-
-                    if ( (LA16_0==DEF||LA16_0==ID) ) {
-                        alt16=1;
-                    }
-                    switch (alt16) {
-                        case 1 :
-                            // DDL.g:86:32: name
-                            {
-                            pushFollow(FOLLOW_name_in_index332);
-                            name();
-
-                            state._fsp--;
-
-
-                            }
-                            break;
-
-                    }
-
-
-                    // DDL.g:86:38: ( ON name )?
+                    // DDL.g:90:32: ( name )?
                     int alt17=2;
                     int LA17_0 = input.LA(1);
 
-                    if ( (LA17_0==ON) ) {
+                    if ( (LA17_0==DEF||LA17_0==ID) ) {
                         alt17=1;
                     }
                     switch (alt17) {
                         case 1 :
-                            // DDL.g:86:40: ON name
+                            // DDL.g:90:32: name
                             {
-                            match(input,ON,FOLLOW_ON_in_index337); 
-
-                            pushFollow(FOLLOW_name_in_index339);
+                            pushFollow(FOLLOW_name_in_index365);
                             name();
 
                             state._fsp--;
@@ -1135,38 +1240,63 @@ public class DDLParser extends Parser {
                     }
 
 
-                    match(input,46,FOLLOW_46_in_index344); 
+                    // DDL.g:90:38: ( ON name )?
+                    int alt18=2;
+                    int LA18_0 = input.LA(1);
 
-                    pushFollow(FOLLOW_nameList_in_index346);
+                    if ( (LA18_0==ON) ) {
+                        alt18=1;
+                    }
+                    switch (alt18) {
+                        case 1 :
+                            // DDL.g:90:40: ON name
+                            {
+                            match(input,ON,FOLLOW_ON_in_index370); 
+
+                            pushFollow(FOLLOW_name_in_index372);
+                            name();
+
+                            state._fsp--;
+
+
+                            }
+                            break;
+
+                    }
+
+
+                    match(input,50,FOLLOW_50_in_index377); 
+
+                    pushFollow(FOLLOW_nameList_in_index379);
                     nameList();
 
                     state._fsp--;
 
 
-                    match(input,47,FOLLOW_47_in_index348); 
+                    match(input,51,FOLLOW_51_in_index381); 
 
                     }
                     break;
                 case 2 :
-                    // DDL.g:87:4: FULLTEXT name '(' nameList ')'
+                    // DDL.g:91:4: FULLTEXT name '(' nameList ')'
                     {
-                    match(input,FULLTEXT,FOLLOW_FULLTEXT_in_index353); 
+                    match(input,FULLTEXT,FOLLOW_FULLTEXT_in_index386); 
 
-                    pushFollow(FOLLOW_name_in_index355);
+                    pushFollow(FOLLOW_name_in_index388);
                     name();
 
                     state._fsp--;
 
 
-                    match(input,46,FOLLOW_46_in_index357); 
+                    match(input,50,FOLLOW_50_in_index390); 
 
-                    pushFollow(FOLLOW_nameList_in_index359);
+                    pushFollow(FOLLOW_nameList_in_index392);
                     nameList();
 
                     state._fsp--;
 
 
-                    match(input,47,FOLLOW_47_in_index361); 
+                    match(input,51,FOLLOW_51_in_index394); 
 
                     }
                     break;
@@ -1188,7 +1318,7 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "key"
-    // DDL.g:90:1: key : ( ( UNIQUE | PRIMARY )? KEY ( name )? ( '(' nameList ')' )? | FOREIGN KEY ( name )? ( '(' nameList ')' )? reference );
+    // DDL.g:94:1: key : ( ( UNIQUE | PRIMARY )? KEY ( name )? ( '(' nameList ')' )? | FOREIGN KEY ( name )? ( '(' nameList ')' )? reference );
     public final void key() throws RecognitionException {
         DDLParser.nameList_return nameList4 =null;
 
@@ -1197,35 +1327,35 @@ public class DDLParser extends Parser {
         		km.clear();
         	
         try {
-            // DDL.g:94:2: ( ( UNIQUE | PRIMARY )? KEY ( name )? ( '(' nameList ')' )? | FOREIGN KEY ( name )? ( '(' nameList ')' )? reference )
-            int alt24=2;
-            int LA24_0 = input.LA(1);
+            // DDL.g:98:2: ( ( UNIQUE | PRIMARY )? KEY ( name )? ( '(' nameList ')' )? | FOREIGN KEY ( name )? ( '(' nameList ')' )? reference )
+            int alt25=2;
+            int LA25_0 = input.LA(1);
 
-            if ( (LA24_0==KEY||LA24_0==PRIMARY||LA24_0==UNIQUE) ) {
-                alt24=1;
+            if ( (LA25_0==KEY||LA25_0==PRIMARY||LA25_0==UNIQUE) ) {
+                alt25=1;
             }
-            else if ( (LA24_0==FOREIGN) ) {
-                alt24=2;
+            else if ( (LA25_0==FOREIGN) ) {
+                alt25=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 24, 0, input);
+                    new NoViableAltException("", 25, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt24) {
+            switch (alt25) {
                 case 1 :
-                    // DDL.g:94:4: ( UNIQUE | PRIMARY )? KEY ( name )? ( '(' nameList ')' )?
+                    // DDL.g:98:4: ( UNIQUE | PRIMARY )? KEY ( name )? ( '(' nameList ')' )?
                     {
-                    // DDL.g:94:4: ( UNIQUE | PRIMARY )?
-                    int alt19=2;
-                    int LA19_0 = input.LA(1);
+                    // DDL.g:98:4: ( UNIQUE | PRIMARY )?
+                    int alt20=2;
+                    int LA20_0 = input.LA(1);
 
-                    if ( (LA19_0==PRIMARY||LA19_0==UNIQUE) ) {
-                        alt19=1;
+                    if ( (LA20_0==PRIMARY||LA20_0==UNIQUE) ) {
+                        alt20=1;
                     }
-                    switch (alt19) {
+                    switch (alt20) {
                         case 1 :
                             // DDL.g:
                             {
@@ -1245,20 +1375,20 @@ public class DDLParser extends Parser {
                     }
 
 
-                    match(input,KEY,FOLLOW_KEY_in_key389); 
+                    match(input,KEY,FOLLOW_KEY_in_key422); 
 
-                    // DDL.g:94:30: ( name )?
-                    int alt20=2;
-                    int LA20_0 = input.LA(1);
+                    // DDL.g:98:30: ( name )?
+                    int alt21=2;
+                    int LA21_0 = input.LA(1);
 
-                    if ( (LA20_0==DEF||LA20_0==ID) ) {
-                        alt20=1;
+                    if ( (LA21_0==DEF||LA21_0==ID) ) {
+                        alt21=1;
                     }
-                    switch (alt20) {
+                    switch (alt21) {
                         case 1 :
-                            // DDL.g:94:30: name
+                            // DDL.g:98:30: name
                             {
-                            pushFollow(FOLLOW_name_in_key391);
+                            pushFollow(FOLLOW_name_in_key424);
                             name();
 
                             state._fsp--;
@@ -1270,26 +1400,26 @@ public class DDLParser extends Parser {
                     }
 
 
-                    // DDL.g:94:36: ( '(' nameList ')' )?
-                    int alt21=2;
-                    int LA21_0 = input.LA(1);
+                    // DDL.g:98:36: ( '(' nameList ')' )?
+                    int alt22=2;
+                    int LA22_0 = input.LA(1);
 
-                    if ( (LA21_0==46) ) {
-                        alt21=1;
+                    if ( (LA22_0==50) ) {
+                        alt22=1;
                     }
-                    switch (alt21) {
+                    switch (alt22) {
                         case 1 :
-                            // DDL.g:94:38: '(' nameList ')'
+                            // DDL.g:98:38: '(' nameList ')'
                             {
-                            match(input,46,FOLLOW_46_in_key396); 
+                            match(input,50,FOLLOW_50_in_key429); 
 
-                            pushFollow(FOLLOW_nameList_in_key398);
+                            pushFollow(FOLLOW_nameList_in_key431);
                             nameList4=nameList();
 
                             state._fsp--;
 
 
-                            match(input,47,FOLLOW_47_in_key400); 
+                            match(input,51,FOLLOW_51_in_key433); 
 
                             }
                             break;
@@ -1313,24 +1443,24 @@ public class DDLParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // DDL.g:107:4: FOREIGN KEY ( name )? ( '(' nameList ')' )? reference
+                    // DDL.g:111:4: FOREIGN KEY ( name )? ( '(' nameList ')' )? reference
                     {
-                    match(input,FOREIGN,FOLLOW_FOREIGN_in_key411); 
+                    match(input,FOREIGN,FOLLOW_FOREIGN_in_key444); 
 
-                    match(input,KEY,FOLLOW_KEY_in_key413); 
+                    match(input,KEY,FOLLOW_KEY_in_key446); 
 
-                    // DDL.g:107:16: ( name )?
-                    int alt22=2;
-                    int LA22_0 = input.LA(1);
+                    // DDL.g:111:16: ( name )?
+                    int alt23=2;
+                    int LA23_0 = input.LA(1);
 
-                    if ( (LA22_0==DEF||LA22_0==ID) ) {
-                        alt22=1;
+                    if ( (LA23_0==DEF||LA23_0==ID) ) {
+                        alt23=1;
                     }
-                    switch (alt22) {
+                    switch (alt23) {
                         case 1 :
-                            // DDL.g:107:16: name
+                            // DDL.g:111:16: name
                             {
-                            pushFollow(FOLLOW_name_in_key415);
+                            pushFollow(FOLLOW_name_in_key448);
                             name();
 
                             state._fsp--;
@@ -1342,26 +1472,26 @@ public class DDLParser extends Parser {
                     }
 
 
-                    // DDL.g:107:22: ( '(' nameList ')' )?
-                    int alt23=2;
-                    int LA23_0 = input.LA(1);
+                    // DDL.g:111:22: ( '(' nameList ')' )?
+                    int alt24=2;
+                    int LA24_0 = input.LA(1);
 
-                    if ( (LA23_0==46) ) {
-                        alt23=1;
+                    if ( (LA24_0==50) ) {
+                        alt24=1;
                     }
-                    switch (alt23) {
+                    switch (alt24) {
                         case 1 :
-                            // DDL.g:107:24: '(' nameList ')'
+                            // DDL.g:111:24: '(' nameList ')'
                             {
-                            match(input,46,FOLLOW_46_in_key420); 
+                            match(input,50,FOLLOW_50_in_key453); 
 
-                            pushFollow(FOLLOW_nameList_in_key422);
+                            pushFollow(FOLLOW_nameList_in_key455);
                             nameList();
 
                             state._fsp--;
 
 
-                            match(input,47,FOLLOW_47_in_key424); 
+                            match(input,51,FOLLOW_51_in_key457); 
 
                             }
                             break;
@@ -1369,7 +1499,7 @@ public class DDLParser extends Parser {
                     }
 
 
-                    pushFollow(FOLLOW_reference_in_key429);
+                    pushFollow(FOLLOW_reference_in_key462);
                     reference();
 
                     state._fsp--;
@@ -1395,54 +1525,54 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "option"
-    // DDL.g:110:1: option : ( key | reference | ( NOT )? NULL | AUTO_INC | DEFAULT ( value | NULL | '\\'\\'' ) );
+    // DDL.g:114:1: option : ( key | reference | ( NOT )? NULL | AUTO_INC | DEFAULT ( value | NULL | empty ) );
     public final void option() throws RecognitionException {
         try {
-            // DDL.g:111:2: ( key | reference | ( NOT )? NULL | AUTO_INC | DEFAULT ( value | NULL | '\\'\\'' ) )
-            int alt27=5;
+            // DDL.g:115:2: ( key | reference | ( NOT )? NULL | AUTO_INC | DEFAULT ( value | NULL | empty ) )
+            int alt28=5;
             switch ( input.LA(1) ) {
             case FOREIGN:
             case KEY:
             case PRIMARY:
             case UNIQUE:
                 {
-                alt27=1;
+                alt28=1;
                 }
                 break;
             case REFERENCES:
                 {
-                alt27=2;
+                alt28=2;
                 }
                 break;
             case NOT:
             case NULL:
                 {
-                alt27=3;
+                alt28=3;
                 }
                 break;
             case AUTO_INC:
                 {
-                alt27=4;
+                alt28=4;
                 }
                 break;
             case DEFAULT:
                 {
-                alt27=5;
+                alt28=5;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 27, 0, input);
+                    new NoViableAltException("", 28, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt27) {
+            switch (alt28) {
                 case 1 :
-                    // DDL.g:111:4: key
+                    // DDL.g:115:4: key
                     {
-                    pushFollow(FOLLOW_key_in_option441);
+                    pushFollow(FOLLOW_key_in_option474);
                     key();
 
                     state._fsp--;
@@ -1451,9 +1581,9 @@ public class DDLParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // DDL.g:112:4: reference
+                    // DDL.g:116:4: reference
                     {
-                    pushFollow(FOLLOW_reference_in_option446);
+                    pushFollow(FOLLOW_reference_in_option479);
                     reference();
 
                     state._fsp--;
@@ -1462,20 +1592,20 @@ public class DDLParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // DDL.g:113:4: ( NOT )? NULL
+                    // DDL.g:117:4: ( NOT )? NULL
                     {
-                    // DDL.g:113:4: ( NOT )?
-                    int alt25=2;
-                    int LA25_0 = input.LA(1);
+                    // DDL.g:117:4: ( NOT )?
+                    int alt26=2;
+                    int LA26_0 = input.LA(1);
 
-                    if ( (LA25_0==NOT) ) {
-                        alt25=1;
+                    if ( (LA26_0==NOT) ) {
+                        alt26=1;
                     }
-                    switch (alt25) {
+                    switch (alt26) {
                         case 1 :
-                            // DDL.g:113:4: NOT
+                            // DDL.g:117:4: NOT
                             {
-                            match(input,NOT,FOLLOW_NOT_in_option451); 
+                            match(input,NOT,FOLLOW_NOT_in_option484); 
 
                             }
                             break;
@@ -1483,55 +1613,55 @@ public class DDLParser extends Parser {
                     }
 
 
-                    match(input,NULL,FOLLOW_NULL_in_option454); 
+                    match(input,NULL,FOLLOW_NULL_in_option487); 
 
                     }
                     break;
                 case 4 :
-                    // DDL.g:114:4: AUTO_INC
+                    // DDL.g:118:4: AUTO_INC
                     {
-                    match(input,AUTO_INC,FOLLOW_AUTO_INC_in_option459); 
+                    match(input,AUTO_INC,FOLLOW_AUTO_INC_in_option492); 
 
                     }
                     break;
                 case 5 :
-                    // DDL.g:115:4: DEFAULT ( value | NULL | '\\'\\'' )
+                    // DDL.g:119:4: DEFAULT ( value | NULL | empty )
                     {
-                    match(input,DEFAULT,FOLLOW_DEFAULT_in_option464); 
+                    match(input,DEFAULT,FOLLOW_DEFAULT_in_option497); 
 
-                    // DDL.g:115:12: ( value | NULL | '\\'\\'' )
-                    int alt26=3;
+                    // DDL.g:119:12: ( value | NULL | empty )
+                    int alt27=3;
                     switch ( input.LA(1) ) {
                     case DEF:
                     case ID:
                     case INT:
                         {
-                        alt26=1;
+                        alt27=1;
                         }
                         break;
                     case NULL:
                         {
-                        alt26=2;
+                        alt27=2;
                         }
                         break;
-                    case 52:
+                    case 56:
                         {
-                        alt26=3;
+                        alt27=3;
                         }
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("", 26, 0, input);
+                            new NoViableAltException("", 27, 0, input);
 
                         throw nvae;
 
                     }
 
-                    switch (alt26) {
+                    switch (alt27) {
                         case 1 :
-                            // DDL.g:115:14: value
+                            // DDL.g:119:14: value
                             {
-                            pushFollow(FOLLOW_value_in_option468);
+                            pushFollow(FOLLOW_value_in_option501);
                             value();
 
                             state._fsp--;
@@ -1540,16 +1670,20 @@ public class DDLParser extends Parser {
                             }
                             break;
                         case 2 :
-                            // DDL.g:115:22: NULL
+                            // DDL.g:119:22: NULL
                             {
-                            match(input,NULL,FOLLOW_NULL_in_option472); 
+                            match(input,NULL,FOLLOW_NULL_in_option505); 
 
                             }
                             break;
                         case 3 :
-                            // DDL.g:115:29: '\\'\\''
+                            // DDL.g:119:29: empty
                             {
-                            match(input,52,FOLLOW_52_in_option476); 
+                            pushFollow(FOLLOW_empty_in_option509);
+                            empty();
+
+                            state._fsp--;
+
 
                             }
                             break;
@@ -1577,26 +1711,26 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "reference"
-    // DDL.g:118:1: reference : REFERENCES ( name )? ( '(' nameList ')' )? ( referenceOptions )* ;
+    // DDL.g:122:1: reference : REFERENCES ( name )? ( '(' nameList ')' )? ( referenceOptions )* ;
     public final void reference() throws RecognitionException {
         try {
-            // DDL.g:119:2: ( REFERENCES ( name )? ( '(' nameList ')' )? ( referenceOptions )* )
-            // DDL.g:119:4: REFERENCES ( name )? ( '(' nameList ')' )? ( referenceOptions )*
+            // DDL.g:123:2: ( REFERENCES ( name )? ( '(' nameList ')' )? ( referenceOptions )* )
+            // DDL.g:123:4: REFERENCES ( name )? ( '(' nameList ')' )? ( referenceOptions )*
             {
-            match(input,REFERENCES,FOLLOW_REFERENCES_in_reference490); 
+            match(input,REFERENCES,FOLLOW_REFERENCES_in_reference523); 
 
-            // DDL.g:119:15: ( name )?
-            int alt28=2;
-            int LA28_0 = input.LA(1);
+            // DDL.g:123:15: ( name )?
+            int alt29=2;
+            int LA29_0 = input.LA(1);
 
-            if ( (LA28_0==DEF||LA28_0==ID) ) {
-                alt28=1;
+            if ( (LA29_0==DEF||LA29_0==ID) ) {
+                alt29=1;
             }
-            switch (alt28) {
+            switch (alt29) {
                 case 1 :
-                    // DDL.g:119:15: name
+                    // DDL.g:123:15: name
                     {
-                    pushFollow(FOLLOW_name_in_reference492);
+                    pushFollow(FOLLOW_name_in_reference525);
                     name();
 
                     state._fsp--;
@@ -1608,26 +1742,26 @@ public class DDLParser extends Parser {
             }
 
 
-            // DDL.g:119:21: ( '(' nameList ')' )?
-            int alt29=2;
-            int LA29_0 = input.LA(1);
+            // DDL.g:123:21: ( '(' nameList ')' )?
+            int alt30=2;
+            int LA30_0 = input.LA(1);
 
-            if ( (LA29_0==46) ) {
-                alt29=1;
+            if ( (LA30_0==50) ) {
+                alt30=1;
             }
-            switch (alt29) {
+            switch (alt30) {
                 case 1 :
-                    // DDL.g:119:23: '(' nameList ')'
+                    // DDL.g:123:23: '(' nameList ')'
                     {
-                    match(input,46,FOLLOW_46_in_reference497); 
+                    match(input,50,FOLLOW_50_in_reference530); 
 
-                    pushFollow(FOLLOW_nameList_in_reference499);
+                    pushFollow(FOLLOW_nameList_in_reference532);
                     nameList();
 
                     state._fsp--;
 
 
-                    match(input,47,FOLLOW_47_in_reference501); 
+                    match(input,51,FOLLOW_51_in_reference534); 
 
                     }
                     break;
@@ -1635,22 +1769,22 @@ public class DDLParser extends Parser {
             }
 
 
-            // DDL.g:119:43: ( referenceOptions )*
-            loop30:
+            // DDL.g:123:43: ( referenceOptions )*
+            loop31:
             do {
-                int alt30=2;
-                int LA30_0 = input.LA(1);
+                int alt31=2;
+                int LA31_0 = input.LA(1);
 
-                if ( (LA30_0==ON) ) {
-                    alt30=1;
+                if ( (LA31_0==ON) ) {
+                    alt31=1;
                 }
 
 
-                switch (alt30) {
+                switch (alt31) {
             	case 1 :
-            	    // DDL.g:119:43: referenceOptions
+            	    // DDL.g:123:43: referenceOptions
             	    {
-            	    pushFollow(FOLLOW_referenceOptions_in_reference506);
+            	    pushFollow(FOLLOW_referenceOptions_in_reference539);
             	    referenceOptions();
 
             	    state._fsp--;
@@ -1660,7 +1794,7 @@ public class DDLParser extends Parser {
             	    break;
 
             	default :
-            	    break loop30;
+            	    break loop31;
                 }
             } while (true);
 
@@ -1683,25 +1817,25 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "referenceOptions"
-    // DDL.g:122:1: referenceOptions : ( ON DELETE ( CASCADE | RESTRICT | NO ACTION | SET ( DEFAULT | NULL ) ) | ON UPDATE ( CASCADE | SET ( DEFAULT | NULL ) ) );
+    // DDL.g:126:1: referenceOptions : ( ON DELETE ( CASCADE | RESTRICT | NO ACTION | SET ( DEFAULT | NULL ) ) | ON UPDATE ( CASCADE | SET ( DEFAULT | NULL ) ) );
     public final void referenceOptions() throws RecognitionException {
         try {
-            // DDL.g:123:2: ( ON DELETE ( CASCADE | RESTRICT | NO ACTION | SET ( DEFAULT | NULL ) ) | ON UPDATE ( CASCADE | SET ( DEFAULT | NULL ) ) )
-            int alt33=2;
-            int LA33_0 = input.LA(1);
+            // DDL.g:127:2: ( ON DELETE ( CASCADE | RESTRICT | NO ACTION | SET ( DEFAULT | NULL ) ) | ON UPDATE ( CASCADE | SET ( DEFAULT | NULL ) ) )
+            int alt34=2;
+            int LA34_0 = input.LA(1);
 
-            if ( (LA33_0==ON) ) {
-                int LA33_1 = input.LA(2);
+            if ( (LA34_0==ON) ) {
+                int LA34_1 = input.LA(2);
 
-                if ( (LA33_1==DELETE) ) {
-                    alt33=1;
+                if ( (LA34_1==DELETE) ) {
+                    alt34=1;
                 }
-                else if ( (LA33_1==UPDATE) ) {
-                    alt33=2;
+                else if ( (LA34_1==UPDATE) ) {
+                    alt34=2;
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("", 33, 1, input);
+                        new NoViableAltException("", 34, 1, input);
 
                     throw nvae;
 
@@ -1709,78 +1843,78 @@ public class DDLParser extends Parser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 33, 0, input);
+                    new NoViableAltException("", 34, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt33) {
+            switch (alt34) {
                 case 1 :
-                    // DDL.g:123:4: ON DELETE ( CASCADE | RESTRICT | NO ACTION | SET ( DEFAULT | NULL ) )
+                    // DDL.g:127:4: ON DELETE ( CASCADE | RESTRICT | NO ACTION | SET ( DEFAULT | NULL ) )
                     {
-                    match(input,ON,FOLLOW_ON_in_referenceOptions519); 
+                    match(input,ON,FOLLOW_ON_in_referenceOptions552); 
 
-                    match(input,DELETE,FOLLOW_DELETE_in_referenceOptions521); 
+                    match(input,DELETE,FOLLOW_DELETE_in_referenceOptions554); 
 
-                    // DDL.g:123:14: ( CASCADE | RESTRICT | NO ACTION | SET ( DEFAULT | NULL ) )
-                    int alt31=4;
+                    // DDL.g:127:14: ( CASCADE | RESTRICT | NO ACTION | SET ( DEFAULT | NULL ) )
+                    int alt32=4;
                     switch ( input.LA(1) ) {
                     case CASCADE:
                         {
-                        alt31=1;
+                        alt32=1;
                         }
                         break;
                     case RESTRICT:
                         {
-                        alt31=2;
+                        alt32=2;
                         }
                         break;
                     case NO:
                         {
-                        alt31=3;
+                        alt32=3;
                         }
                         break;
                     case SET:
                         {
-                        alt31=4;
+                        alt32=4;
                         }
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("", 31, 0, input);
+                            new NoViableAltException("", 32, 0, input);
 
                         throw nvae;
 
                     }
 
-                    switch (alt31) {
+                    switch (alt32) {
                         case 1 :
-                            // DDL.g:123:16: CASCADE
+                            // DDL.g:127:16: CASCADE
                             {
-                            match(input,CASCADE,FOLLOW_CASCADE_in_referenceOptions525); 
+                            match(input,CASCADE,FOLLOW_CASCADE_in_referenceOptions558); 
 
                             }
                             break;
                         case 2 :
-                            // DDL.g:123:26: RESTRICT
+                            // DDL.g:127:26: RESTRICT
                             {
-                            match(input,RESTRICT,FOLLOW_RESTRICT_in_referenceOptions529); 
+                            match(input,RESTRICT,FOLLOW_RESTRICT_in_referenceOptions562); 
 
                             }
                             break;
                         case 3 :
-                            // DDL.g:123:37: NO ACTION
+                            // DDL.g:127:37: NO ACTION
                             {
-                            match(input,NO,FOLLOW_NO_in_referenceOptions533); 
+                            match(input,NO,FOLLOW_NO_in_referenceOptions566); 
 
-                            match(input,ACTION,FOLLOW_ACTION_in_referenceOptions535); 
+                            match(input,ACTION,FOLLOW_ACTION_in_referenceOptions568); 
 
                             }
                             break;
                         case 4 :
-                            // DDL.g:123:49: SET ( DEFAULT | NULL )
+                            // DDL.g:127:49: SET ( DEFAULT | NULL )
                             {
-                            match(input,SET,FOLLOW_SET_in_referenceOptions539); 
+                            match(input,SET,FOLLOW_SET_in_referenceOptions572); 
 
                             if ( input.LA(1)==DEFAULT||input.LA(1)==NULL ) {
                                 input.consume();
@@ -1801,41 +1935,41 @@ public class DDLParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // DDL.g:124:4: ON UPDATE ( CASCADE | SET ( DEFAULT | NULL ) )
+                    // DDL.g:128:4: ON UPDATE ( CASCADE | SET ( DEFAULT | NULL ) )
                     {
-                    match(input,ON,FOLLOW_ON_in_referenceOptions556); 
+                    match(input,ON,FOLLOW_ON_in_referenceOptions589); 
 
-                    match(input,UPDATE,FOLLOW_UPDATE_in_referenceOptions558); 
+                    match(input,UPDATE,FOLLOW_UPDATE_in_referenceOptions591); 
 
-                    // DDL.g:124:14: ( CASCADE | SET ( DEFAULT | NULL ) )
-                    int alt32=2;
-                    int LA32_0 = input.LA(1);
+                    // DDL.g:128:14: ( CASCADE | SET ( DEFAULT | NULL ) )
+                    int alt33=2;
+                    int LA33_0 = input.LA(1);
 
-                    if ( (LA32_0==CASCADE) ) {
-                        alt32=1;
+                    if ( (LA33_0==CASCADE) ) {
+                        alt33=1;
                     }
-                    else if ( (LA32_0==SET) ) {
-                        alt32=2;
+                    else if ( (LA33_0==SET) ) {
+                        alt33=2;
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("", 32, 0, input);
+                            new NoViableAltException("", 33, 0, input);
 
                         throw nvae;
 
                     }
-                    switch (alt32) {
+                    switch (alt33) {
                         case 1 :
-                            // DDL.g:124:16: CASCADE
+                            // DDL.g:128:16: CASCADE
                             {
-                            match(input,CASCADE,FOLLOW_CASCADE_in_referenceOptions562); 
+                            match(input,CASCADE,FOLLOW_CASCADE_in_referenceOptions595); 
 
                             }
                             break;
                         case 2 :
-                            // DDL.g:124:26: SET ( DEFAULT | NULL )
+                            // DDL.g:128:26: SET ( DEFAULT | NULL )
                             {
-                            match(input,SET,FOLLOW_SET_in_referenceOptions566); 
+                            match(input,SET,FOLLOW_SET_in_referenceOptions599); 
 
                             if ( input.LA(1)==DEFAULT||input.LA(1)==NULL ) {
                                 input.consume();
@@ -1873,10 +2007,10 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "order"
-    // DDL.g:126:1: order : ( ASC | DESC );
+    // DDL.g:130:1: order : ( ASC | DESC );
     public final void order() throws RecognitionException {
         try {
-            // DDL.g:127:2: ( ASC | DESC )
+            // DDL.g:131:2: ( ASC | DESC )
             // DDL.g:
             {
             if ( input.LA(1)==ASC||input.LA(1)==DESC ) {
@@ -1907,124 +2041,90 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "parameter"
-    // DDL.g:131:1: parameter : ( name '=' value ( ( ',' )? name '=' value )* | DEFAULT CHARACTER SET ( '=' )? value );
+    // DDL.g:135:1: parameter : ( name '=' value ( ',' )? | ( DEFAULT )? CHARACTER SET ( '=' )? value ( ',' )? | ( DEFAULT )? COLLATE ( '=' )? value ( ',' )? | AUTO_INC ( '=' )? INT );
     public final void parameter() throws RecognitionException {
         try {
-            // DDL.g:132:2: ( name '=' value ( ( ',' )? name '=' value )* | DEFAULT CHARACTER SET ( '=' )? value )
-            int alt37=2;
-            int LA37_0 = input.LA(1);
+            // DDL.g:136:2: ( name '=' value ( ',' )? | ( DEFAULT )? CHARACTER SET ( '=' )? value ( ',' )? | ( DEFAULT )? COLLATE ( '=' )? value ( ',' )? | AUTO_INC ( '=' )? INT )
+            int alt43=4;
+            switch ( input.LA(1) ) {
+            case DEF:
+            case ID:
+                {
+                alt43=1;
+                }
+                break;
+            case DEFAULT:
+                {
+                int LA43_2 = input.LA(2);
 
-            if ( (LA37_0==DEF||LA37_0==ID) ) {
-                alt37=1;
-            }
-            else if ( (LA37_0==DEFAULT) ) {
-                alt37=2;
-            }
-            else {
+                if ( (LA43_2==CHARACTER) ) {
+                    alt43=2;
+                }
+                else if ( (LA43_2==COLLATE) ) {
+                    alt43=3;
+                }
+                else {
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 43, 2, input);
+
+                    throw nvae;
+
+                }
+                }
+                break;
+            case CHARACTER:
+                {
+                alt43=2;
+                }
+                break;
+            case COLLATE:
+                {
+                alt43=3;
+                }
+                break;
+            case AUTO_INC:
+                {
+                alt43=4;
+                }
+                break;
+            default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 37, 0, input);
+                    new NoViableAltException("", 43, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt37) {
+
+            switch (alt43) {
                 case 1 :
-                    // DDL.g:132:4: name '=' value ( ( ',' )? name '=' value )*
+                    // DDL.g:136:4: name '=' value ( ',' )?
                     {
-                    pushFollow(FOLLOW_name_in_parameter606);
+                    pushFollow(FOLLOW_name_in_parameter639);
                     name();
 
                     state._fsp--;
 
 
-                    match(input,51,FOLLOW_51_in_parameter608); 
+                    match(input,55,FOLLOW_55_in_parameter641); 
 
-                    pushFollow(FOLLOW_value_in_parameter610);
+                    pushFollow(FOLLOW_value_in_parameter643);
                     value();
 
                     state._fsp--;
 
 
-                    // DDL.g:132:19: ( ( ',' )? name '=' value )*
-                    loop35:
-                    do {
-                        int alt35=2;
-                        int LA35_0 = input.LA(1);
+                    // DDL.g:136:19: ( ',' )?
+                    int alt35=2;
+                    int LA35_0 = input.LA(1);
 
-                        if ( (LA35_0==DEF||LA35_0==ID||LA35_0==48) ) {
-                            alt35=1;
-                        }
-
-
-                        switch (alt35) {
-                    	case 1 :
-                    	    // DDL.g:132:21: ( ',' )? name '=' value
-                    	    {
-                    	    // DDL.g:132:21: ( ',' )?
-                    	    int alt34=2;
-                    	    int LA34_0 = input.LA(1);
-
-                    	    if ( (LA34_0==48) ) {
-                    	        alt34=1;
-                    	    }
-                    	    switch (alt34) {
-                    	        case 1 :
-                    	            // DDL.g:132:21: ','
-                    	            {
-                    	            match(input,48,FOLLOW_48_in_parameter614); 
-
-                    	            }
-                    	            break;
-
-                    	    }
-
-
-                    	    pushFollow(FOLLOW_name_in_parameter617);
-                    	    name();
-
-                    	    state._fsp--;
-
-
-                    	    match(input,51,FOLLOW_51_in_parameter619); 
-
-                    	    pushFollow(FOLLOW_value_in_parameter621);
-                    	    value();
-
-                    	    state._fsp--;
-
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop35;
-                        }
-                    } while (true);
-
-
+                    if ( (LA35_0==52) ) {
+                        alt35=1;
                     }
-                    break;
-                case 2 :
-                    // DDL.g:133:4: DEFAULT CHARACTER SET ( '=' )? value
-                    {
-                    match(input,DEFAULT,FOLLOW_DEFAULT_in_parameter629); 
-
-                    match(input,CHARACTER,FOLLOW_CHARACTER_in_parameter631); 
-
-                    match(input,SET,FOLLOW_SET_in_parameter633); 
-
-                    // DDL.g:133:26: ( '=' )?
-                    int alt36=2;
-                    int LA36_0 = input.LA(1);
-
-                    if ( (LA36_0==51) ) {
-                        alt36=1;
-                    }
-                    switch (alt36) {
+                    switch (alt35) {
                         case 1 :
-                            // DDL.g:133:26: '='
+                            // DDL.g:136:19: ','
                             {
-                            match(input,51,FOLLOW_51_in_parameter635); 
+                            match(input,52,FOLLOW_52_in_parameter645); 
 
                             }
                             break;
@@ -2032,11 +2132,175 @@ public class DDLParser extends Parser {
                     }
 
 
-                    pushFollow(FOLLOW_value_in_parameter638);
+                    }
+                    break;
+                case 2 :
+                    // DDL.g:137:4: ( DEFAULT )? CHARACTER SET ( '=' )? value ( ',' )?
+                    {
+                    // DDL.g:137:4: ( DEFAULT )?
+                    int alt36=2;
+                    int LA36_0 = input.LA(1);
+
+                    if ( (LA36_0==DEFAULT) ) {
+                        alt36=1;
+                    }
+                    switch (alt36) {
+                        case 1 :
+                            // DDL.g:137:6: DEFAULT
+                            {
+                            match(input,DEFAULT,FOLLOW_DEFAULT_in_parameter653); 
+
+                            }
+                            break;
+
+                    }
+
+
+                    match(input,CHARACTER,FOLLOW_CHARACTER_in_parameter658); 
+
+                    match(input,SET,FOLLOW_SET_in_parameter660); 
+
+                    // DDL.g:137:31: ( '=' )?
+                    int alt37=2;
+                    int LA37_0 = input.LA(1);
+
+                    if ( (LA37_0==55) ) {
+                        alt37=1;
+                    }
+                    switch (alt37) {
+                        case 1 :
+                            // DDL.g:137:31: '='
+                            {
+                            match(input,55,FOLLOW_55_in_parameter662); 
+
+                            }
+                            break;
+
+                    }
+
+
+                    pushFollow(FOLLOW_value_in_parameter665);
                     value();
 
                     state._fsp--;
 
+
+                    // DDL.g:137:42: ( ',' )?
+                    int alt38=2;
+                    int LA38_0 = input.LA(1);
+
+                    if ( (LA38_0==52) ) {
+                        alt38=1;
+                    }
+                    switch (alt38) {
+                        case 1 :
+                            // DDL.g:137:42: ','
+                            {
+                            match(input,52,FOLLOW_52_in_parameter667); 
+
+                            }
+                            break;
+
+                    }
+
+
+                    }
+                    break;
+                case 3 :
+                    // DDL.g:138:4: ( DEFAULT )? COLLATE ( '=' )? value ( ',' )?
+                    {
+                    // DDL.g:138:4: ( DEFAULT )?
+                    int alt39=2;
+                    int LA39_0 = input.LA(1);
+
+                    if ( (LA39_0==DEFAULT) ) {
+                        alt39=1;
+                    }
+                    switch (alt39) {
+                        case 1 :
+                            // DDL.g:138:6: DEFAULT
+                            {
+                            match(input,DEFAULT,FOLLOW_DEFAULT_in_parameter675); 
+
+                            }
+                            break;
+
+                    }
+
+
+                    match(input,COLLATE,FOLLOW_COLLATE_in_parameter680); 
+
+                    // DDL.g:138:25: ( '=' )?
+                    int alt40=2;
+                    int LA40_0 = input.LA(1);
+
+                    if ( (LA40_0==55) ) {
+                        alt40=1;
+                    }
+                    switch (alt40) {
+                        case 1 :
+                            // DDL.g:138:25: '='
+                            {
+                            match(input,55,FOLLOW_55_in_parameter682); 
+
+                            }
+                            break;
+
+                    }
+
+
+                    pushFollow(FOLLOW_value_in_parameter685);
+                    value();
+
+                    state._fsp--;
+
+
+                    // DDL.g:138:36: ( ',' )?
+                    int alt41=2;
+                    int LA41_0 = input.LA(1);
+
+                    if ( (LA41_0==52) ) {
+                        alt41=1;
+                    }
+                    switch (alt41) {
+                        case 1 :
+                            // DDL.g:138:36: ','
+                            {
+                            match(input,52,FOLLOW_52_in_parameter687); 
+
+                            }
+                            break;
+
+                    }
+
+
+                    }
+                    break;
+                case 4 :
+                    // DDL.g:139:4: AUTO_INC ( '=' )? INT
+                    {
+                    match(input,AUTO_INC,FOLLOW_AUTO_INC_in_parameter693); 
+
+                    // DDL.g:139:13: ( '=' )?
+                    int alt42=2;
+                    int LA42_0 = input.LA(1);
+
+                    if ( (LA42_0==55) ) {
+                        alt42=1;
+                    }
+                    switch (alt42) {
+                        case 1 :
+                            // DDL.g:139:13: '='
+                            {
+                            match(input,55,FOLLOW_55_in_parameter695); 
+
+                            }
+                            break;
+
+                    }
+
+
+                    match(input,INT,FOLLOW_INT_in_parameter698); 
 
                     }
                     break;
@@ -2061,79 +2325,79 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "type"
-    // DDL.g:136:1: type : ( name ( '(' INT ( ',' INT )? ')' )? ( UNSIGNED | BINARY )? | ENUM '(' nameList ')' | BINARY ( '(' INT ')' ) );
+    // DDL.g:142:1: type : ( name ( '(' INT ( ',' INT )? ')' )? ( UNSIGNED | BINARY )? | ENUM '(' nameList ')' | BINARY ( '(' INT ')' ) );
     public final DDLParser.type_return type() throws RecognitionException {
         DDLParser.type_return retval = new DDLParser.type_return();
         retval.start = input.LT(1);
 
 
         try {
-            // DDL.g:137:2: ( name ( '(' INT ( ',' INT )? ')' )? ( UNSIGNED | BINARY )? | ENUM '(' nameList ')' | BINARY ( '(' INT ')' ) )
-            int alt41=3;
+            // DDL.g:143:2: ( name ( '(' INT ( ',' INT )? ')' )? ( UNSIGNED | BINARY )? | ENUM '(' nameList ')' | BINARY ( '(' INT ')' ) )
+            int alt47=3;
             switch ( input.LA(1) ) {
             case DEF:
             case ID:
                 {
-                alt41=1;
+                alt47=1;
                 }
                 break;
             case ENUM:
                 {
-                alt41=2;
+                alt47=2;
                 }
                 break;
             case BINARY:
                 {
-                alt41=3;
+                alt47=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 41, 0, input);
+                    new NoViableAltException("", 47, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt41) {
+            switch (alt47) {
                 case 1 :
-                    // DDL.g:137:4: name ( '(' INT ( ',' INT )? ')' )? ( UNSIGNED | BINARY )?
+                    // DDL.g:143:4: name ( '(' INT ( ',' INT )? ')' )? ( UNSIGNED | BINARY )?
                     {
-                    pushFollow(FOLLOW_name_in_type650);
+                    pushFollow(FOLLOW_name_in_type710);
                     name();
 
                     state._fsp--;
 
 
-                    // DDL.g:137:9: ( '(' INT ( ',' INT )? ')' )?
-                    int alt39=2;
-                    int LA39_0 = input.LA(1);
+                    // DDL.g:143:9: ( '(' INT ( ',' INT )? ')' )?
+                    int alt45=2;
+                    int LA45_0 = input.LA(1);
 
-                    if ( (LA39_0==46) ) {
-                        alt39=1;
+                    if ( (LA45_0==50) ) {
+                        alt45=1;
                     }
-                    switch (alt39) {
+                    switch (alt45) {
                         case 1 :
-                            // DDL.g:137:11: '(' INT ( ',' INT )? ')'
+                            // DDL.g:143:11: '(' INT ( ',' INT )? ')'
                             {
-                            match(input,46,FOLLOW_46_in_type654); 
+                            match(input,50,FOLLOW_50_in_type714); 
 
-                            match(input,INT,FOLLOW_INT_in_type656); 
+                            match(input,INT,FOLLOW_INT_in_type716); 
 
-                            // DDL.g:137:19: ( ',' INT )?
-                            int alt38=2;
-                            int LA38_0 = input.LA(1);
+                            // DDL.g:143:19: ( ',' INT )?
+                            int alt44=2;
+                            int LA44_0 = input.LA(1);
 
-                            if ( (LA38_0==48) ) {
-                                alt38=1;
+                            if ( (LA44_0==52) ) {
+                                alt44=1;
                             }
-                            switch (alt38) {
+                            switch (alt44) {
                                 case 1 :
-                                    // DDL.g:137:21: ',' INT
+                                    // DDL.g:143:21: ',' INT
                                     {
-                                    match(input,48,FOLLOW_48_in_type660); 
+                                    match(input,52,FOLLOW_52_in_type720); 
 
-                                    match(input,INT,FOLLOW_INT_in_type662); 
+                                    match(input,INT,FOLLOW_INT_in_type722); 
 
                                     }
                                     break;
@@ -2141,7 +2405,7 @@ public class DDLParser extends Parser {
                             }
 
 
-                            match(input,47,FOLLOW_47_in_type667); 
+                            match(input,51,FOLLOW_51_in_type727); 
 
                             }
                             break;
@@ -2149,14 +2413,14 @@ public class DDLParser extends Parser {
                     }
 
 
-                    // DDL.g:137:39: ( UNSIGNED | BINARY )?
-                    int alt40=2;
-                    int LA40_0 = input.LA(1);
+                    // DDL.g:143:39: ( UNSIGNED | BINARY )?
+                    int alt46=2;
+                    int LA46_0 = input.LA(1);
 
-                    if ( (LA40_0==BINARY||LA40_0==UNSIGNED) ) {
-                        alt40=1;
+                    if ( (LA46_0==BINARY||LA46_0==UNSIGNED) ) {
+                        alt46=1;
                     }
-                    switch (alt40) {
+                    switch (alt46) {
                         case 1 :
                             // DDL.g:
                             {
@@ -2179,35 +2443,35 @@ public class DDLParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // DDL.g:138:4: ENUM '(' nameList ')'
+                    // DDL.g:144:4: ENUM '(' nameList ')'
                     {
-                    match(input,ENUM,FOLLOW_ENUM_in_type686); 
+                    match(input,ENUM,FOLLOW_ENUM_in_type746); 
 
-                    match(input,46,FOLLOW_46_in_type688); 
+                    match(input,50,FOLLOW_50_in_type748); 
 
-                    pushFollow(FOLLOW_nameList_in_type690);
+                    pushFollow(FOLLOW_nameList_in_type750);
                     nameList();
 
                     state._fsp--;
 
 
-                    match(input,47,FOLLOW_47_in_type692); 
+                    match(input,51,FOLLOW_51_in_type752); 
 
                     }
                     break;
                 case 3 :
-                    // DDL.g:139:4: BINARY ( '(' INT ')' )
+                    // DDL.g:145:4: BINARY ( '(' INT ')' )
                     {
-                    match(input,BINARY,FOLLOW_BINARY_in_type697); 
+                    match(input,BINARY,FOLLOW_BINARY_in_type757); 
 
-                    // DDL.g:139:11: ( '(' INT ')' )
-                    // DDL.g:139:13: '(' INT ')'
+                    // DDL.g:145:11: ( '(' INT ')' )
+                    // DDL.g:145:13: '(' INT ')'
                     {
-                    match(input,46,FOLLOW_46_in_type701); 
+                    match(input,50,FOLLOW_50_in_type761); 
 
-                    match(input,INT,FOLLOW_INT_in_type703); 
+                    match(input,INT,FOLLOW_INT_in_type763); 
 
-                    match(input,47,FOLLOW_47_in_type705); 
+                    match(input,51,FOLLOW_51_in_type765); 
 
                     }
 
@@ -2238,42 +2502,42 @@ public class DDLParser extends Parser {
 
 
     // $ANTLR start "nameList"
-    // DDL.g:142:1: nameList : name ( '(' value ')' )? ( order )? ( ( ',' )? name ( '(' value ')' )? ( order )? )* ;
+    // DDL.g:148:1: nameList : name ( '(' value ')' )? ( order )? ( ( ',' )? name ( '(' value ')' )? ( order )? )* ;
     public final DDLParser.nameList_return nameList() throws RecognitionException {
         DDLParser.nameList_return retval = new DDLParser.nameList_return();
         retval.start = input.LT(1);
 
 
         try {
-            // DDL.g:143:2: ( name ( '(' value ')' )? ( order )? ( ( ',' )? name ( '(' value ')' )? ( order )? )* )
-            // DDL.g:143:4: name ( '(' value ')' )? ( order )? ( ( ',' )? name ( '(' value ')' )? ( order )? )*
+            // DDL.g:149:2: ( name ( '(' value ')' )? ( order )? ( ( ',' )? name ( '(' value ')' )? ( order )? )* )
+            // DDL.g:149:4: name ( '(' value ')' )? ( order )? ( ( ',' )? name ( '(' value ')' )? ( order )? )*
             {
-            pushFollow(FOLLOW_name_in_nameList719);
+            pushFollow(FOLLOW_name_in_nameList779);
             name();
 
             state._fsp--;
 
 
-            // DDL.g:143:9: ( '(' value ')' )?
-            int alt42=2;
-            int LA42_0 = input.LA(1);
+            // DDL.g:149:9: ( '(' value ')' )?
+            int alt48=2;
+            int LA48_0 = input.LA(1);
 
-            if ( (LA42_0==46) ) {
-                alt42=1;
+            if ( (LA48_0==50) ) {
+                alt48=1;
             }
-            switch (alt42) {
+            switch (alt48) {
                 case 1 :
-                    // DDL.g:143:11: '(' value ')'
+                    // DDL.g:149:11: '(' value ')'
                     {
-                    match(input,46,FOLLOW_46_in_nameList723); 
+                    match(input,50,FOLLOW_50_in_nameList783); 
 
-                    pushFollow(FOLLOW_value_in_nameList725);
+                    pushFollow(FOLLOW_value_in_nameList785);
                     value();
 
                     state._fsp--;
 
 
-                    match(input,47,FOLLOW_47_in_nameList727); 
+                    match(input,51,FOLLOW_51_in_nameList787); 
 
                     }
                     break;
@@ -2281,18 +2545,18 @@ public class DDLParser extends Parser {
             }
 
 
-            // DDL.g:143:28: ( order )?
-            int alt43=2;
-            int LA43_0 = input.LA(1);
+            // DDL.g:149:28: ( order )?
+            int alt49=2;
+            int LA49_0 = input.LA(1);
 
-            if ( (LA43_0==ASC||LA43_0==DESC) ) {
-                alt43=1;
+            if ( (LA49_0==ASC||LA49_0==DESC) ) {
+                alt49=1;
             }
-            switch (alt43) {
+            switch (alt49) {
                 case 1 :
-                    // DDL.g:143:28: order
+                    // DDL.g:149:28: order
                     {
-                    pushFollow(FOLLOW_order_in_nameList732);
+                    pushFollow(FOLLOW_order_in_nameList792);
                     order();
 
                     state._fsp--;
@@ -2304,33 +2568,33 @@ public class DDLParser extends Parser {
             }
 
 
-            // DDL.g:143:35: ( ( ',' )? name ( '(' value ')' )? ( order )? )*
-            loop47:
+            // DDL.g:149:35: ( ( ',' )? name ( '(' value ')' )? ( order )? )*
+            loop53:
             do {
-                int alt47=2;
-                int LA47_0 = input.LA(1);
+                int alt53=2;
+                int LA53_0 = input.LA(1);
 
-                if ( (LA47_0==DEF||LA47_0==ID||LA47_0==48) ) {
-                    alt47=1;
+                if ( (LA53_0==DEF||LA53_0==ID||LA53_0==52) ) {
+                    alt53=1;
                 }
 
 
-                switch (alt47) {
+                switch (alt53) {
             	case 1 :
-            	    // DDL.g:143:37: ( ',' )? name ( '(' value ')' )? ( order )?
+            	    // DDL.g:149:37: ( ',' )? name ( '(' value ')' )? ( order )?
             	    {
-            	    // DDL.g:143:37: ( ',' )?
-            	    int alt44=2;
-            	    int LA44_0 = input.LA(1);
+            	    // DDL.g:149:37: ( ',' )?
+            	    int alt50=2;
+            	    int LA50_0 = input.LA(1);
 
-            	    if ( (LA44_0==48) ) {
-            	        alt44=1;
+            	    if ( (LA50_0==52) ) {
+            	        alt50=1;
             	    }
-            	    switch (alt44) {
+            	    switch (alt50) {
             	        case 1 :
-            	            // DDL.g:143:37: ','
+            	            // DDL.g:149:37: ','
             	            {
-            	            match(input,48,FOLLOW_48_in_nameList737); 
+            	            match(input,52,FOLLOW_52_in_nameList797); 
 
             	            }
             	            break;
@@ -2338,32 +2602,32 @@ public class DDLParser extends Parser {
             	    }
 
 
-            	    pushFollow(FOLLOW_name_in_nameList740);
+            	    pushFollow(FOLLOW_name_in_nameList800);
             	    name();
 
             	    state._fsp--;
 
 
-            	    // DDL.g:143:47: ( '(' value ')' )?
-            	    int alt45=2;
-            	    int LA45_0 = input.LA(1);
+            	    // DDL.g:149:47: ( '(' value ')' )?
+            	    int alt51=2;
+            	    int LA51_0 = input.LA(1);
 
-            	    if ( (LA45_0==46) ) {
-            	        alt45=1;
+            	    if ( (LA51_0==50) ) {
+            	        alt51=1;
             	    }
-            	    switch (alt45) {
+            	    switch (alt51) {
             	        case 1 :
-            	            // DDL.g:143:49: '(' value ')'
+            	            // DDL.g:149:49: '(' value ')'
             	            {
-            	            match(input,46,FOLLOW_46_in_nameList744); 
+            	            match(input,50,FOLLOW_50_in_nameList804); 
 
-            	            pushFollow(FOLLOW_value_in_nameList746);
+            	            pushFollow(FOLLOW_value_in_nameList806);
             	            value();
 
             	            state._fsp--;
 
 
-            	            match(input,47,FOLLOW_47_in_nameList748); 
+            	            match(input,51,FOLLOW_51_in_nameList808); 
 
             	            }
             	            break;
@@ -2371,18 +2635,18 @@ public class DDLParser extends Parser {
             	    }
 
 
-            	    // DDL.g:143:66: ( order )?
-            	    int alt46=2;
-            	    int LA46_0 = input.LA(1);
+            	    // DDL.g:149:66: ( order )?
+            	    int alt52=2;
+            	    int LA52_0 = input.LA(1);
 
-            	    if ( (LA46_0==ASC||LA46_0==DESC) ) {
-            	        alt46=1;
+            	    if ( (LA52_0==ASC||LA52_0==DESC) ) {
+            	        alt52=1;
             	    }
-            	    switch (alt46) {
+            	    switch (alt52) {
             	        case 1 :
-            	            // DDL.g:143:66: order
+            	            // DDL.g:149:66: order
             	            {
-            	            pushFollow(FOLLOW_order_in_nameList753);
+            	            pushFollow(FOLLOW_order_in_nameList813);
             	            order();
 
             	            state._fsp--;
@@ -2398,7 +2662,7 @@ public class DDLParser extends Parser {
             	    break;
 
             	default :
-            	    break loop47;
+            	    break loop53;
                 }
             } while (true);
 
@@ -2423,32 +2687,170 @@ public class DDLParser extends Parser {
 
 
 
-    // $ANTLR start "value"
-    // DDL.g:146:1: value : ( name | INT );
-    public final void value() throws RecognitionException {
+    // $ANTLR start "valueList"
+    // DDL.g:152:1: valueList : ( value | empty ) ( ',' ( value | empty ) )* ;
+    public final void valueList() throws RecognitionException {
         try {
-            // DDL.g:147:2: ( name | INT )
-            int alt48=2;
-            int LA48_0 = input.LA(1);
+            // DDL.g:153:2: ( ( value | empty ) ( ',' ( value | empty ) )* )
+            // DDL.g:153:4: ( value | empty ) ( ',' ( value | empty ) )*
+            {
+            // DDL.g:153:4: ( value | empty )
+            int alt54=2;
+            int LA54_0 = input.LA(1);
 
-            if ( (LA48_0==DEF||LA48_0==ID) ) {
-                alt48=1;
+            if ( (LA54_0==DEF||LA54_0==ID||LA54_0==INT) ) {
+                alt54=1;
             }
-            else if ( (LA48_0==INT) ) {
-                alt48=2;
+            else if ( (LA54_0==56) ) {
+                alt54=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 48, 0, input);
+                    new NoViableAltException("", 54, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt48) {
+            switch (alt54) {
                 case 1 :
-                    // DDL.g:147:4: name
+                    // DDL.g:153:6: value
                     {
-                    pushFollow(FOLLOW_name_in_value769);
+                    pushFollow(FOLLOW_value_in_valueList831);
+                    value();
+
+                    state._fsp--;
+
+
+                    }
+                    break;
+                case 2 :
+                    // DDL.g:153:14: empty
+                    {
+                    pushFollow(FOLLOW_empty_in_valueList835);
+                    empty();
+
+                    state._fsp--;
+
+
+                    }
+                    break;
+
+            }
+
+
+            // DDL.g:153:22: ( ',' ( value | empty ) )*
+            loop56:
+            do {
+                int alt56=2;
+                int LA56_0 = input.LA(1);
+
+                if ( (LA56_0==52) ) {
+                    alt56=1;
+                }
+
+
+                switch (alt56) {
+            	case 1 :
+            	    // DDL.g:153:23: ',' ( value | empty )
+            	    {
+            	    match(input,52,FOLLOW_52_in_valueList840); 
+
+            	    // DDL.g:153:27: ( value | empty )
+            	    int alt55=2;
+            	    int LA55_0 = input.LA(1);
+
+            	    if ( (LA55_0==DEF||LA55_0==ID||LA55_0==INT) ) {
+            	        alt55=1;
+            	    }
+            	    else if ( (LA55_0==56) ) {
+            	        alt55=2;
+            	    }
+            	    else {
+            	        NoViableAltException nvae =
+            	            new NoViableAltException("", 55, 0, input);
+
+            	        throw nvae;
+
+            	    }
+            	    switch (alt55) {
+            	        case 1 :
+            	            // DDL.g:153:29: value
+            	            {
+            	            pushFollow(FOLLOW_value_in_valueList844);
+            	            value();
+
+            	            state._fsp--;
+
+
+            	            }
+            	            break;
+            	        case 2 :
+            	            // DDL.g:153:37: empty
+            	            {
+            	            pushFollow(FOLLOW_empty_in_valueList848);
+            	            empty();
+
+            	            state._fsp--;
+
+
+            	            }
+            	            break;
+
+            	    }
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop56;
+                }
+            } while (true);
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+
+        finally {
+        	// do for sure before leaving
+        }
+        return ;
+    }
+    // $ANTLR end "valueList"
+
+
+
+    // $ANTLR start "value"
+    // DDL.g:156:1: value : ( name | INT );
+    public final void value() throws RecognitionException {
+        try {
+            // DDL.g:157:2: ( name | INT )
+            int alt57=2;
+            int LA57_0 = input.LA(1);
+
+            if ( (LA57_0==DEF||LA57_0==ID) ) {
+                alt57=1;
+            }
+            else if ( (LA57_0==INT) ) {
+                alt57=2;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 57, 0, input);
+
+                throw nvae;
+
+            }
+            switch (alt57) {
+                case 1 :
+                    // DDL.g:157:4: name
+                    {
+                    pushFollow(FOLLOW_name_in_value864);
                     name();
 
                     state._fsp--;
@@ -2457,9 +2859,9 @@ public class DDLParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // DDL.g:148:4: INT
+                    // DDL.g:158:4: INT
                     {
-                    match(input,INT,FOLLOW_INT_in_value774); 
+                    match(input,INT,FOLLOW_INT_in_value869); 
 
                     }
                     break;
@@ -2479,65 +2881,91 @@ public class DDLParser extends Parser {
     // $ANTLR end "value"
 
 
+
+    // $ANTLR start "empty"
+    // DDL.g:161:2: empty : '\\'\\'' ;
+    public final void empty() throws RecognitionException {
+        try {
+            // DDL.g:162:2: ( '\\'\\'' )
+            // DDL.g:162:4: '\\'\\''
+            {
+            match(input,56,FOLLOW_56_in_empty882); 
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+
+        finally {
+        	// do for sure before leaving
+        }
+        return ;
+    }
+    // $ANTLR end "empty"
+
+
     public static class name_return extends ParserRuleReturnScope {
     };
 
 
     // $ANTLR start "name"
-    // DDL.g:151:1: name : ( ID ( '.' ID )* | DEF ( '.' DEF )* );
+    // DDL.g:165:1: name : ( ID ( '.' ID )* | DEF ( '.' DEF )* );
     public final DDLParser.name_return name() throws RecognitionException {
         DDLParser.name_return retval = new DDLParser.name_return();
         retval.start = input.LT(1);
 
 
         try {
-            // DDL.g:152:2: ( ID ( '.' ID )* | DEF ( '.' DEF )* )
-            int alt51=2;
-            int LA51_0 = input.LA(1);
+            // DDL.g:166:2: ( ID ( '.' ID )* | DEF ( '.' DEF )* )
+            int alt60=2;
+            int LA60_0 = input.LA(1);
 
-            if ( (LA51_0==ID) ) {
-                alt51=1;
+            if ( (LA60_0==ID) ) {
+                alt60=1;
             }
-            else if ( (LA51_0==DEF) ) {
-                alt51=2;
+            else if ( (LA60_0==DEF) ) {
+                alt60=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 51, 0, input);
+                    new NoViableAltException("", 60, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt51) {
+            switch (alt60) {
                 case 1 :
-                    // DDL.g:152:4: ID ( '.' ID )*
+                    // DDL.g:166:4: ID ( '.' ID )*
                     {
-                    match(input,ID,FOLLOW_ID_in_name786); 
+                    match(input,ID,FOLLOW_ID_in_name894); 
 
-                    // DDL.g:152:7: ( '.' ID )*
-                    loop49:
+                    // DDL.g:166:7: ( '.' ID )*
+                    loop58:
                     do {
-                        int alt49=2;
-                        int LA49_0 = input.LA(1);
+                        int alt58=2;
+                        int LA58_0 = input.LA(1);
 
-                        if ( (LA49_0==49) ) {
-                            alt49=1;
+                        if ( (LA58_0==53) ) {
+                            alt58=1;
                         }
 
 
-                        switch (alt49) {
+                        switch (alt58) {
                     	case 1 :
-                    	    // DDL.g:152:9: '.' ID
+                    	    // DDL.g:166:9: '.' ID
                     	    {
-                    	    match(input,49,FOLLOW_49_in_name790); 
+                    	    match(input,53,FOLLOW_53_in_name898); 
 
-                    	    match(input,ID,FOLLOW_ID_in_name792); 
+                    	    match(input,ID,FOLLOW_ID_in_name900); 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop49;
+                    	    break loop58;
                         }
                     } while (true);
 
@@ -2545,34 +2973,34 @@ public class DDLParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // DDL.g:153:4: DEF ( '.' DEF )*
+                    // DDL.g:167:4: DEF ( '.' DEF )*
                     {
-                    match(input,DEF,FOLLOW_DEF_in_name800); 
+                    match(input,DEF,FOLLOW_DEF_in_name908); 
 
-                    // DDL.g:153:8: ( '.' DEF )*
-                    loop50:
+                    // DDL.g:167:8: ( '.' DEF )*
+                    loop59:
                     do {
-                        int alt50=2;
-                        int LA50_0 = input.LA(1);
+                        int alt59=2;
+                        int LA59_0 = input.LA(1);
 
-                        if ( (LA50_0==49) ) {
-                            alt50=1;
+                        if ( (LA59_0==53) ) {
+                            alt59=1;
                         }
 
 
-                        switch (alt50) {
+                        switch (alt59) {
                     	case 1 :
-                    	    // DDL.g:153:10: '.' DEF
+                    	    // DDL.g:167:10: '.' DEF
                     	    {
-                    	    match(input,49,FOLLOW_49_in_name804); 
+                    	    match(input,53,FOLLOW_53_in_name912); 
 
-                    	    match(input,DEF,FOLLOW_DEF_in_name806); 
+                    	    match(input,DEF,FOLLOW_DEF_in_name914); 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop50;
+                    	    break loop59;
                         }
                     } while (true);
 
@@ -2602,154 +3030,176 @@ public class DDLParser extends Parser {
 
  
 
-    public static final BitSet FOLLOW_drop_in_start51 = new BitSet(new long[]{0x0000100000010802L});
-    public static final BitSet FOLLOW_create_in_start55 = new BitSet(new long[]{0x0000100000010802L});
-    public static final BitSet FOLLOW_namespace_in_start59 = new BitSet(new long[]{0x0000100000010802L});
-    public static final BitSet FOLLOW_USE_in_namespace77 = new BitSet(new long[]{0x0000000001001000L});
-    public static final BitSet FOLLOW_name_in_namespace79 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_50_in_namespace81 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DROP_in_drop92 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_TABLE_in_drop94 = new BitSet(new long[]{0x0000000003001000L});
-    public static final BitSet FOLLOW_IF_in_drop98 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_EXISTS_in_drop100 = new BitSet(new long[]{0x0000000001001000L});
-    public static final BitSet FOLLOW_nameList_in_drop105 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_50_in_drop107 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CREATE_in_create119 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_schema_in_create121 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_50_in_create123 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CREATE_in_create128 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_table_in_create130 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_50_in_create132 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CREATE_in_create137 = new BitSet(new long[]{0x0000020404200000L});
-    public static final BitSet FOLLOW_index_in_create139 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_50_in_create141 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SCHEMA_in_schema153 = new BitSet(new long[]{0x0000000003001000L});
-    public static final BitSet FOLLOW_IF_in_schema157 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_NOT_in_schema159 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_EXISTS_in_schema161 = new BitSet(new long[]{0x0000000001001000L});
-    public static final BitSet FOLLOW_name_in_schema166 = new BitSet(new long[]{0x0000000001003002L});
-    public static final BitSet FOLLOW_parameter_in_schema168 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_TABLE_in_table186 = new BitSet(new long[]{0x0000000003001000L});
-    public static final BitSet FOLLOW_IF_in_table190 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_NOT_in_table192 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_EXISTS_in_table194 = new BitSet(new long[]{0x0000000001001000L});
-    public static final BitSet FOLLOW_name_in_table199 = new BitSet(new long[]{0x0000400000000000L});
-    public static final BitSet FOLLOW_46_in_table201 = new BitSet(new long[]{0x0000020415301000L});
-    public static final BitSet FOLLOW_definition_in_table203 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_table205 = new BitSet(new long[]{0x0000000001003002L});
-    public static final BitSet FOLLOW_parameter_in_table207 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_column_in_definition225 = new BitSet(new long[]{0x0001000000000002L});
-    public static final BitSet FOLLOW_constraint_in_definition229 = new BitSet(new long[]{0x0001000000000002L});
-    public static final BitSet FOLLOW_index_in_definition233 = new BitSet(new long[]{0x0001000000000002L});
-    public static final BitSet FOLLOW_48_in_definition239 = new BitSet(new long[]{0x0000020415301000L});
-    public static final BitSet FOLLOW_column_in_definition243 = new BitSet(new long[]{0x0001000000000002L});
-    public static final BitSet FOLLOW_constraint_in_definition247 = new BitSet(new long[]{0x0001000000000002L});
-    public static final BitSet FOLLOW_index_in_definition251 = new BitSet(new long[]{0x0001000000000002L});
-    public static final BitSet FOLLOW_name_in_column268 = new BitSet(new long[]{0x0000000001021080L});
-    public static final BitSet FOLLOW_type_in_column270 = new BitSet(new long[]{0x0000020CD0102042L});
-    public static final BitSet FOLLOW_option_in_column272 = new BitSet(new long[]{0x0000020CD0102042L});
-    public static final BitSet FOLLOW_key_in_constraint288 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_UNIQUE_in_constraint293 = new BitSet(new long[]{0x0000400001001002L});
-    public static final BitSet FOLLOW_name_in_constraint295 = new BitSet(new long[]{0x0000400000000002L});
-    public static final BitSet FOLLOW_46_in_constraint300 = new BitSet(new long[]{0x0000000001001000L});
-    public static final BitSet FOLLOW_nameList_in_constraint302 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_constraint304 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INDEX_in_index330 = new BitSet(new long[]{0x0000400201001000L});
-    public static final BitSet FOLLOW_name_in_index332 = new BitSet(new long[]{0x0000400200000000L});
-    public static final BitSet FOLLOW_ON_in_index337 = new BitSet(new long[]{0x0000000001001000L});
-    public static final BitSet FOLLOW_name_in_index339 = new BitSet(new long[]{0x0000400000000000L});
-    public static final BitSet FOLLOW_46_in_index344 = new BitSet(new long[]{0x0000000001001000L});
-    public static final BitSet FOLLOW_nameList_in_index346 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_index348 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_FULLTEXT_in_index353 = new BitSet(new long[]{0x0000000001001000L});
-    public static final BitSet FOLLOW_name_in_index355 = new BitSet(new long[]{0x0000400000000000L});
-    public static final BitSet FOLLOW_46_in_index357 = new BitSet(new long[]{0x0000000001001000L});
-    public static final BitSet FOLLOW_nameList_in_index359 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_index361 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_KEY_in_key389 = new BitSet(new long[]{0x0000400001001002L});
-    public static final BitSet FOLLOW_name_in_key391 = new BitSet(new long[]{0x0000400000000002L});
-    public static final BitSet FOLLOW_46_in_key396 = new BitSet(new long[]{0x0000000001001000L});
-    public static final BitSet FOLLOW_nameList_in_key398 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_key400 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_FOREIGN_in_key411 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_KEY_in_key413 = new BitSet(new long[]{0x0000400801001000L});
-    public static final BitSet FOLLOW_name_in_key415 = new BitSet(new long[]{0x0000400800000000L});
-    public static final BitSet FOLLOW_46_in_key420 = new BitSet(new long[]{0x0000000001001000L});
-    public static final BitSet FOLLOW_nameList_in_key422 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_key424 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_reference_in_key429 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_key_in_option441 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_reference_in_option446 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NOT_in_option451 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_NULL_in_option454 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_AUTO_INC_in_option459 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DEFAULT_in_option464 = new BitSet(new long[]{0x0010000089001000L});
-    public static final BitSet FOLLOW_value_in_option468 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NULL_in_option472 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_52_in_option476 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_REFERENCES_in_reference490 = new BitSet(new long[]{0x0000400201001002L});
-    public static final BitSet FOLLOW_name_in_reference492 = new BitSet(new long[]{0x0000400200000002L});
-    public static final BitSet FOLLOW_46_in_reference497 = new BitSet(new long[]{0x0000000001001000L});
-    public static final BitSet FOLLOW_nameList_in_reference499 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_reference501 = new BitSet(new long[]{0x0000000200000002L});
-    public static final BitSet FOLLOW_referenceOptions_in_reference506 = new BitSet(new long[]{0x0000000200000002L});
-    public static final BitSet FOLLOW_ON_in_referenceOptions519 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_DELETE_in_referenceOptions521 = new BitSet(new long[]{0x0000005020000100L});
-    public static final BitSet FOLLOW_CASCADE_in_referenceOptions525 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RESTRICT_in_referenceOptions529 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NO_in_referenceOptions533 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ACTION_in_referenceOptions535 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SET_in_referenceOptions539 = new BitSet(new long[]{0x0000000080002000L});
-    public static final BitSet FOLLOW_set_in_referenceOptions541 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ON_in_referenceOptions556 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_UPDATE_in_referenceOptions558 = new BitSet(new long[]{0x0000004000000100L});
-    public static final BitSet FOLLOW_CASCADE_in_referenceOptions562 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SET_in_referenceOptions566 = new BitSet(new long[]{0x0000000080002000L});
-    public static final BitSet FOLLOW_set_in_referenceOptions568 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_name_in_parameter606 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_51_in_parameter608 = new BitSet(new long[]{0x0000000009001000L});
-    public static final BitSet FOLLOW_value_in_parameter610 = new BitSet(new long[]{0x0001000001001002L});
-    public static final BitSet FOLLOW_48_in_parameter614 = new BitSet(new long[]{0x0000000001001000L});
-    public static final BitSet FOLLOW_name_in_parameter617 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_51_in_parameter619 = new BitSet(new long[]{0x0000000009001000L});
-    public static final BitSet FOLLOW_value_in_parameter621 = new BitSet(new long[]{0x0001000001001002L});
-    public static final BitSet FOLLOW_DEFAULT_in_parameter629 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_CHARACTER_in_parameter631 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_SET_in_parameter633 = new BitSet(new long[]{0x0008000009001000L});
-    public static final BitSet FOLLOW_51_in_parameter635 = new BitSet(new long[]{0x0000000009001000L});
-    public static final BitSet FOLLOW_value_in_parameter638 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_name_in_type650 = new BitSet(new long[]{0x0000440000000082L});
-    public static final BitSet FOLLOW_46_in_type654 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_INT_in_type656 = new BitSet(new long[]{0x0001800000000000L});
-    public static final BitSet FOLLOW_48_in_type660 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_INT_in_type662 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_type667 = new BitSet(new long[]{0x0000040000000082L});
-    public static final BitSet FOLLOW_ENUM_in_type686 = new BitSet(new long[]{0x0000400000000000L});
-    public static final BitSet FOLLOW_46_in_type688 = new BitSet(new long[]{0x0000000001001000L});
-    public static final BitSet FOLLOW_nameList_in_type690 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_type692 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_BINARY_in_type697 = new BitSet(new long[]{0x0000400000000000L});
-    public static final BitSet FOLLOW_46_in_type701 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_INT_in_type703 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_type705 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_name_in_nameList719 = new BitSet(new long[]{0x0001400001009022L});
-    public static final BitSet FOLLOW_46_in_nameList723 = new BitSet(new long[]{0x0000000009001000L});
-    public static final BitSet FOLLOW_value_in_nameList725 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_nameList727 = new BitSet(new long[]{0x0001000001009022L});
-    public static final BitSet FOLLOW_order_in_nameList732 = new BitSet(new long[]{0x0001000001001002L});
-    public static final BitSet FOLLOW_48_in_nameList737 = new BitSet(new long[]{0x0000000001001000L});
-    public static final BitSet FOLLOW_name_in_nameList740 = new BitSet(new long[]{0x0001400001009022L});
-    public static final BitSet FOLLOW_46_in_nameList744 = new BitSet(new long[]{0x0000000009001000L});
-    public static final BitSet FOLLOW_value_in_nameList746 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_nameList748 = new BitSet(new long[]{0x0001000001009022L});
-    public static final BitSet FOLLOW_order_in_nameList753 = new BitSet(new long[]{0x0001000001001002L});
-    public static final BitSet FOLLOW_name_in_value769 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INT_in_value774 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_name786 = new BitSet(new long[]{0x0002000000000002L});
-    public static final BitSet FOLLOW_49_in_name790 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_ID_in_name792 = new BitSet(new long[]{0x0002000000000002L});
-    public static final BitSet FOLLOW_DEF_in_name800 = new BitSet(new long[]{0x0002000000000002L});
-    public static final BitSet FOLLOW_49_in_name804 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_DEF_in_name806 = new BitSet(new long[]{0x0002000000000002L});
+    public static final BitSet FOLLOW_drop_in_start51 = new BitSet(new long[]{0x0000800010021002L});
+    public static final BitSet FOLLOW_create_in_start55 = new BitSet(new long[]{0x0000800010021002L});
+    public static final BitSet FOLLOW_namespace_in_start59 = new BitSet(new long[]{0x0000800010021002L});
+    public static final BitSet FOLLOW_insert_in_start63 = new BitSet(new long[]{0x0000800010021002L});
+    public static final BitSet FOLLOW_USE_in_namespace81 = new BitSet(new long[]{0x0000000002002000L});
+    public static final BitSet FOLLOW_name_in_namespace83 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_54_in_namespace85 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DROP_in_drop96 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_TABLE_in_drop98 = new BitSet(new long[]{0x0000000006002000L});
+    public static final BitSet FOLLOW_IF_in_drop102 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_EXISTS_in_drop104 = new BitSet(new long[]{0x0000000002002000L});
+    public static final BitSet FOLLOW_nameList_in_drop109 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_54_in_drop111 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CREATE_in_create123 = new BitSet(new long[]{0x0000010000000000L});
+    public static final BitSet FOLLOW_schema_in_create125 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_54_in_create127 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CREATE_in_create132 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_table_in_create134 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_54_in_create136 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CREATE_in_create141 = new BitSet(new long[]{0x0000102008400000L});
+    public static final BitSet FOLLOW_index_in_create143 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_54_in_create145 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INSERT_in_insert157 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_INTO_in_insert159 = new BitSet(new long[]{0x0000000002002000L});
+    public static final BitSet FOLLOW_name_in_insert161 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_VALUES_in_insert163 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_50_in_insert165 = new BitSet(new long[]{0x0100000022002000L});
+    public static final BitSet FOLLOW_valueList_in_insert167 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_51_in_insert169 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_54_in_insert171 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SCHEMA_in_schema183 = new BitSet(new long[]{0x0000000006002000L});
+    public static final BitSet FOLLOW_IF_in_schema187 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_NOT_in_schema189 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_EXISTS_in_schema191 = new BitSet(new long[]{0x0000000002002000L});
+    public static final BitSet FOLLOW_name_in_schema196 = new BitSet(new long[]{0x0000000002006642L});
+    public static final BitSet FOLLOW_parameter_in_schema198 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_TABLE_in_table216 = new BitSet(new long[]{0x0000000006002000L});
+    public static final BitSet FOLLOW_IF_in_table220 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_NOT_in_table222 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_EXISTS_in_table224 = new BitSet(new long[]{0x0000000002002000L});
+    public static final BitSet FOLLOW_name_in_table229 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_50_in_table231 = new BitSet(new long[]{0x000010208A602000L});
+    public static final BitSet FOLLOW_definition_in_table233 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_51_in_table235 = new BitSet(new long[]{0x0000000002006642L});
+    public static final BitSet FOLLOW_parameter_in_table237 = new BitSet(new long[]{0x0000000002006642L});
+    public static final BitSet FOLLOW_column_in_definition255 = new BitSet(new long[]{0x0010000000000002L});
+    public static final BitSet FOLLOW_constraint_in_definition259 = new BitSet(new long[]{0x0010000000000002L});
+    public static final BitSet FOLLOW_index_in_definition263 = new BitSet(new long[]{0x0010000000000002L});
+    public static final BitSet FOLLOW_52_in_definition269 = new BitSet(new long[]{0x000010208A602000L});
+    public static final BitSet FOLLOW_column_in_definition273 = new BitSet(new long[]{0x0010000000000002L});
+    public static final BitSet FOLLOW_constraint_in_definition277 = new BitSet(new long[]{0x0010000000000002L});
+    public static final BitSet FOLLOW_index_in_definition281 = new BitSet(new long[]{0x0010000000000002L});
+    public static final BitSet FOLLOW_name_in_column298 = new BitSet(new long[]{0x0000000002042080L});
+    public static final BitSet FOLLOW_type_in_column300 = new BitSet(new long[]{0x0000106680204042L});
+    public static final BitSet FOLLOW_option_in_column302 = new BitSet(new long[]{0x0000106680204042L});
+    public static final BitSet FOLLOW_FULLTEXT_in_constraint318 = new BitSet(new long[]{0x0000102080200000L});
+    public static final BitSet FOLLOW_key_in_constraint321 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_UNIQUE_in_constraint326 = new BitSet(new long[]{0x0004000002002002L});
+    public static final BitSet FOLLOW_name_in_constraint328 = new BitSet(new long[]{0x0004000000000002L});
+    public static final BitSet FOLLOW_50_in_constraint333 = new BitSet(new long[]{0x0000000002002000L});
+    public static final BitSet FOLLOW_nameList_in_constraint335 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_51_in_constraint337 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INDEX_in_index363 = new BitSet(new long[]{0x0004001002002000L});
+    public static final BitSet FOLLOW_name_in_index365 = new BitSet(new long[]{0x0004001000000000L});
+    public static final BitSet FOLLOW_ON_in_index370 = new BitSet(new long[]{0x0000000002002000L});
+    public static final BitSet FOLLOW_name_in_index372 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_50_in_index377 = new BitSet(new long[]{0x0000000002002000L});
+    public static final BitSet FOLLOW_nameList_in_index379 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_51_in_index381 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_FULLTEXT_in_index386 = new BitSet(new long[]{0x0000000002002000L});
+    public static final BitSet FOLLOW_name_in_index388 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_50_in_index390 = new BitSet(new long[]{0x0000000002002000L});
+    public static final BitSet FOLLOW_nameList_in_index392 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_51_in_index394 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_KEY_in_key422 = new BitSet(new long[]{0x0004000002002002L});
+    public static final BitSet FOLLOW_name_in_key424 = new BitSet(new long[]{0x0004000000000002L});
+    public static final BitSet FOLLOW_50_in_key429 = new BitSet(new long[]{0x0000000002002000L});
+    public static final BitSet FOLLOW_nameList_in_key431 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_51_in_key433 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_FOREIGN_in_key444 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_KEY_in_key446 = new BitSet(new long[]{0x0004004002002000L});
+    public static final BitSet FOLLOW_name_in_key448 = new BitSet(new long[]{0x0004004000000000L});
+    public static final BitSet FOLLOW_50_in_key453 = new BitSet(new long[]{0x0000000002002000L});
+    public static final BitSet FOLLOW_nameList_in_key455 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_51_in_key457 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_reference_in_key462 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_key_in_option474 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_reference_in_option479 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NOT_in_option484 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_NULL_in_option487 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_AUTO_INC_in_option492 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DEFAULT_in_option497 = new BitSet(new long[]{0x0100000422002000L});
+    public static final BitSet FOLLOW_value_in_option501 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NULL_in_option505 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_empty_in_option509 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_REFERENCES_in_reference523 = new BitSet(new long[]{0x0004001002002002L});
+    public static final BitSet FOLLOW_name_in_reference525 = new BitSet(new long[]{0x0004001000000002L});
+    public static final BitSet FOLLOW_50_in_reference530 = new BitSet(new long[]{0x0000000002002000L});
+    public static final BitSet FOLLOW_nameList_in_reference532 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_51_in_reference534 = new BitSet(new long[]{0x0000001000000002L});
+    public static final BitSet FOLLOW_referenceOptions_in_reference539 = new BitSet(new long[]{0x0000001000000002L});
+    public static final BitSet FOLLOW_ON_in_referenceOptions552 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_DELETE_in_referenceOptions554 = new BitSet(new long[]{0x0000028100000100L});
+    public static final BitSet FOLLOW_CASCADE_in_referenceOptions558 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RESTRICT_in_referenceOptions562 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NO_in_referenceOptions566 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ACTION_in_referenceOptions568 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SET_in_referenceOptions572 = new BitSet(new long[]{0x0000000400004000L});
+    public static final BitSet FOLLOW_set_in_referenceOptions574 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ON_in_referenceOptions589 = new BitSet(new long[]{0x0000400000000000L});
+    public static final BitSet FOLLOW_UPDATE_in_referenceOptions591 = new BitSet(new long[]{0x0000020000000100L});
+    public static final BitSet FOLLOW_CASCADE_in_referenceOptions595 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SET_in_referenceOptions599 = new BitSet(new long[]{0x0000000400004000L});
+    public static final BitSet FOLLOW_set_in_referenceOptions601 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_name_in_parameter639 = new BitSet(new long[]{0x0080000000000000L});
+    public static final BitSet FOLLOW_55_in_parameter641 = new BitSet(new long[]{0x0000000022002000L});
+    public static final BitSet FOLLOW_value_in_parameter643 = new BitSet(new long[]{0x0010000000000002L});
+    public static final BitSet FOLLOW_52_in_parameter645 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DEFAULT_in_parameter653 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_CHARACTER_in_parameter658 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_SET_in_parameter660 = new BitSet(new long[]{0x0080000022002000L});
+    public static final BitSet FOLLOW_55_in_parameter662 = new BitSet(new long[]{0x0000000022002000L});
+    public static final BitSet FOLLOW_value_in_parameter665 = new BitSet(new long[]{0x0010000000000002L});
+    public static final BitSet FOLLOW_52_in_parameter667 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DEFAULT_in_parameter675 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_COLLATE_in_parameter680 = new BitSet(new long[]{0x0080000022002000L});
+    public static final BitSet FOLLOW_55_in_parameter682 = new BitSet(new long[]{0x0000000022002000L});
+    public static final BitSet FOLLOW_value_in_parameter685 = new BitSet(new long[]{0x0010000000000002L});
+    public static final BitSet FOLLOW_52_in_parameter687 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_AUTO_INC_in_parameter693 = new BitSet(new long[]{0x0080000020000000L});
+    public static final BitSet FOLLOW_55_in_parameter695 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_INT_in_parameter698 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_name_in_type710 = new BitSet(new long[]{0x0004200000000082L});
+    public static final BitSet FOLLOW_50_in_type714 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_INT_in_type716 = new BitSet(new long[]{0x0018000000000000L});
+    public static final BitSet FOLLOW_52_in_type720 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_INT_in_type722 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_51_in_type727 = new BitSet(new long[]{0x0000200000000082L});
+    public static final BitSet FOLLOW_ENUM_in_type746 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_50_in_type748 = new BitSet(new long[]{0x0000000002002000L});
+    public static final BitSet FOLLOW_nameList_in_type750 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_51_in_type752 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_BINARY_in_type757 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_50_in_type761 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_INT_in_type763 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_51_in_type765 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_name_in_nameList779 = new BitSet(new long[]{0x0014000002012022L});
+    public static final BitSet FOLLOW_50_in_nameList783 = new BitSet(new long[]{0x0000000022002000L});
+    public static final BitSet FOLLOW_value_in_nameList785 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_51_in_nameList787 = new BitSet(new long[]{0x0010000002012022L});
+    public static final BitSet FOLLOW_order_in_nameList792 = new BitSet(new long[]{0x0010000002002002L});
+    public static final BitSet FOLLOW_52_in_nameList797 = new BitSet(new long[]{0x0000000002002000L});
+    public static final BitSet FOLLOW_name_in_nameList800 = new BitSet(new long[]{0x0014000002012022L});
+    public static final BitSet FOLLOW_50_in_nameList804 = new BitSet(new long[]{0x0000000022002000L});
+    public static final BitSet FOLLOW_value_in_nameList806 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_51_in_nameList808 = new BitSet(new long[]{0x0010000002012022L});
+    public static final BitSet FOLLOW_order_in_nameList813 = new BitSet(new long[]{0x0010000002002002L});
+    public static final BitSet FOLLOW_value_in_valueList831 = new BitSet(new long[]{0x0010000000000002L});
+    public static final BitSet FOLLOW_empty_in_valueList835 = new BitSet(new long[]{0x0010000000000002L});
+    public static final BitSet FOLLOW_52_in_valueList840 = new BitSet(new long[]{0x0100000022002000L});
+    public static final BitSet FOLLOW_value_in_valueList844 = new BitSet(new long[]{0x0010000000000002L});
+    public static final BitSet FOLLOW_empty_in_valueList848 = new BitSet(new long[]{0x0010000000000002L});
+    public static final BitSet FOLLOW_name_in_value864 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INT_in_value869 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_56_in_empty882 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_name894 = new BitSet(new long[]{0x0020000000000002L});
+    public static final BitSet FOLLOW_53_in_name898 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_ID_in_name900 = new BitSet(new long[]{0x0020000000000002L});
+    public static final BitSet FOLLOW_DEF_in_name908 = new BitSet(new long[]{0x0020000000000002L});
+    public static final BitSet FOLLOW_53_in_name912 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_DEF_in_name914 = new BitSet(new long[]{0x0020000000000002L});
 
 }

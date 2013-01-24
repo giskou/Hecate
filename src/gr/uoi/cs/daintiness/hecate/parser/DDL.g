@@ -31,7 +31,7 @@ options {
 }
 
 start returns [Schema s]
-	:	( drop | create | namespace )+
+	:	( drop | create | namespace | insert )+
 	{
 		s = new Schema(tm) ;
 	}
@@ -51,6 +51,10 @@ create
 	|	CREATE index ';'
 	;
 	
+insert
+	:	INSERT INTO name VALUES '(' valueList ')' ';'
+	;
+	
 schema
 	: SCHEMA ( IF NOT EXISTS )? name parameter?
 	;
@@ -59,7 +63,7 @@ table
 	@init{
 		am.clear();
 	}
-	: TABLE ( IF NOT EXISTS )? name '(' definition ')' parameter?
+	: TABLE ( IF NOT EXISTS )? name '(' definition ')' parameter*
 	{
 		tm.put($name.text.replace("`",""), new Table($name.text.replace("`",""), am, k)) ;
 	}
@@ -78,7 +82,7 @@ column
 	;
 	
 constraint
-	:	key
+	:	FULLTEXT? key
 	| UNIQUE name? ( '(' nameList ')' )?
 	;
 	
@@ -112,7 +116,7 @@ option
 	|	reference
 	|	NOT? NULL
 	|	AUTO_INC
-	|	DEFAULT ( value | NULL | '\'\'' )
+	|	DEFAULT ( value | NULL | empty )
 	;
 	
 reference
@@ -129,8 +133,10 @@ order
 	;
 	
 parameter
-	:	name '=' value ( ','? name '=' value )*
-	|	DEFAULT CHARACTER SET '='? value
+	:	name '=' value ','?
+	|	( DEFAULT )? CHARACTER SET '='? value ','?
+	|	( DEFAULT )? COLLATE '='? value ','?
+	|	AUTO_INC '='? INT
 	;
 	
 type
@@ -143,9 +149,17 @@ nameList
 	:	name ( '(' value ')' )? order? ( ','? name ( '(' value ')' )? order? )*
 	;
 	
+valueList
+	:	( value | empty ) (',' ( value | empty ))*
+	;
+	
 value
 	:	name
 	|	INT
+	;
+	
+	empty
+	:	'\'\''
 	;
 	
 name
@@ -171,12 +185,15 @@ INDEX : 'INDEX' | 'index' ;
 FULLTEXT : 'FULLTEXT' | 'fulltext' ;
 REFERENCES : 'REFERENCES' | 'references' ;
 ON : 'ON' | 'on' ;
+INTO : 'INTO' | 'into' ;
+VALUES : 'VALUES' | 'values' ;
 DELETE : 'DELETE' | 'delete' ;
 CASCADE : 'CASCADE' | 'cascade' ;
 RESTRICT : 'RESTRICT' | 'restrict' ;
 ACTION : 'ACTION' | 'action' ;
 NO : 'NO' | 'no' ;
 SET : 'SET' | 'set' ;
+INSERT : 'INSERT' | 'insert' ;
 UPDATE : 'UPDATE' | 'update' ;
 UNSIGNED : 'UNSIGNED' | 'unsigned' ;
 BINARY : 'BINARY' | 'binary' ;
@@ -184,6 +201,7 @@ AUTO_INC : 'AUTO_INCREMENT' | 'auto_increment' ;
 ASC : 'ASC' | 'asc' ;
 DESC : 'DESC' | 'desc' ;
 CHARACTER : 'CHARACTER' | 'character' ;
+COLLATE : 'COLLATE' | 'colate' ;
 USE : 'USE' | 'use' ;
 SCHEMA : 'SCHEMA' | 'schema' ;
 
@@ -212,19 +230,19 @@ HEX_DIGIT
 
 fragment
 ESC_SEQ
-    :   '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\')
-    |   UNICODE_ESC
-    |   OCTAL_ESC
-    ;
+	:	'\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\')
+	|	UNICODE_ESC
+	|	OCTAL_ESC
+	;
 
 fragment
 OCTAL_ESC
-    :   '\\' ('0'..'3') ('0'..'7') ('0'..'7')
-    |   '\\' ('0'..'7') ('0'..'7')
-    |   '\\' ('0'..'7')
-    ;
+	:	'\\' ('0'..'3') ('0'..'7') ('0'..'7')
+	|	'\\' ('0'..'7') ('0'..'7')
+	|	'\\' ('0'..'7')
+	;
 
 fragment
 UNICODE_ESC
-    :   '\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
-    ;
+	:	'\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
+	;
