@@ -42,7 +42,7 @@ public class OpenFolderDialog extends JDialog{
 		openFolder = new JButton("...");
 		openFolder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				folderField.setText(getFolderPath());
+				folderField.setText(getFolderPath(folderField.getText()));
 			}
 		});
 		cancel = new JButton("Cancel");
@@ -123,11 +123,15 @@ public class OpenFolderDialog extends JDialog{
 	 * chosen folder
 	 * @return the path of the chosen folder
 	 */
-	private String getFolderPath() {
+	private String getFolderPath(String old) {
 		fileopen = new JFileChooser();
 		fileopen.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		fileopen.setCurrentDirectory(new File(old));
 		fileopen.showDialog(this, "Open");
 		File f = fileopen.getSelectedFile();
+		if (f == null) {
+			return old;
+		}
 		return f.getPath();
 	}
 	

@@ -48,7 +48,7 @@ public class OpenDialog extends JDialog {
 		openOldFile = new JButton("...");
 		openOldFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				oldFileField.setText(getFilePath());
+				oldFileField.setText(getFilePath(oldFileField.getText()));
 			}
 		});
 		newFileLabel = new JLabel("New Schema : ");
@@ -56,7 +56,7 @@ public class OpenDialog extends JDialog {
 		openNewFile = new JButton("...");
 		openNewFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				newFileField.setText(getFilePath());
+				newFileField.setText(getFilePath(newFileField.getText()));
 			}
 		});
 		cancel = new JButton("Cancel");
@@ -162,11 +162,15 @@ public class OpenDialog extends JDialog {
 	 * chosen file
 	 * @return the path of the chosen file
 	 */
-	private String getFilePath() {
+	private String getFilePath(String old) {
 		fileopen = new JFileChooser();
 		fileopen.setFileFilter(new FileNameExtensionFilter("SQL files", "sql"));
+		fileopen.setCurrentDirectory(new File(old));
 		fileopen.showDialog(this, "Open");
 		File f = fileopen.getSelectedFile();
+		if ( f == null) {
+			return old;
+		}
 		return f.getPath();
 	}
 	

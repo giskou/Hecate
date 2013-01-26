@@ -34,9 +34,9 @@ public class AboutDialog extends JDialog {
 
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
-		add(Box.createRigidArea(new Dimension(0, 20)));
+		add(Box.createRigidArea(new Dimension(0, 15)));
 
-		name = new JLabel("      Hecate, 0.1     ");
+		name = new JLabel("      Hecate  0.2     ");
 		name.setFont(new Font("Serif", Font.BOLD, 15));
 		name.setAlignmentX(CENTER_ALIGNMENT);
 		add(name);
@@ -50,16 +50,16 @@ public class AboutDialog extends JDialog {
 		
 		add(Box.createRigidArea(new Dimension(0, 15)));
 		
-		author = new JLabel("        (c) Skoulis Ioannis        ");
+		author = new JLabel("         © Skoulis Ioannis        ");
 		author.setFont(new Font("Serif", Font.PLAIN, 13));
 		author.setAlignmentX(CENTER_ALIGNMENT);
 		add(author);
-		mail = new JLabel("        css03084@cs.uoi.gr        ");
+		mail = new JLabel("        iskoulis@cs.uoi.gr        ");
 		mail.setFont(new Font("Serif", Font.PLAIN, 12));
 		mail.setAlignmentX(CENTER_ALIGNMENT);
 		add(mail);
 
-		add(Box.createRigidArea(new Dimension(0, 25)));
+		add(Box.createRigidArea(new Dimension(0, 15)));
 
 		close = new JButton("Close");
 		close.addActionListener(new ActionListener() {
@@ -70,7 +70,7 @@ public class AboutDialog extends JDialog {
 		close.setAlignmentX(CENTER_ALIGNMENT);
 		add(close);
 		
-		add(Box.createRigidArea(new Dimension(0, 10)));
+		add(Box.createRigidArea(new Dimension(0, 15)));
 		
 		draw();
 	}
