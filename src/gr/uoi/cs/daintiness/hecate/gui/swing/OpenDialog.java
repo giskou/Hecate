@@ -7,13 +7,14 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -75,45 +76,49 @@ public class OpenDialog extends JDialog {
 		});
 
 		GroupLayout thisLayout = new GroupLayout((JComponent)getContentPane());
+		thisLayout.setHorizontalGroup(
+			thisLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(thisLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(thisLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(newFileLabel, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+						.addComponent(oldFileLable, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGroup(thisLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(thisLayout.createSequentialGroup()
+							.addGroup(thisLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(newFileField, 0, 316, Short.MAX_VALUE)
+								.addComponent(oldFileField, 0, 316, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(thisLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(openNewFile, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+								.addComponent(openOldFile, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(Alignment.TRAILING, thisLayout.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(ok, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(cancel, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap())
+		);
+		thisLayout.setVerticalGroup(
+			thisLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(thisLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(thisLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(openOldFile, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(oldFileLable, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(oldFileField, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(thisLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(newFileField, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(openNewFile, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(newFileLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(0, 67, Short.MAX_VALUE)
+					.addGroup(thisLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(cancel, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(ok, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
+		);
 		getContentPane().setLayout(thisLayout);
-		thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
-			.addContainerGap()
-			.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-			    .addComponent(openOldFile, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-			    .addComponent(oldFileLable, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-			    .addComponent(oldFileField, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-			.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-			.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-			    .addComponent(newFileField, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-			    .addComponent(openNewFile, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-			    .addComponent(newFileLabel, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-			.addGap(0, 67, Short.MAX_VALUE)
-			.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-			    .addComponent(cancel, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-			    .addComponent(ok, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-			.addContainerGap());
-		thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
-			.addContainerGap()
-			.addGroup(thisLayout.createParallelGroup()
-			    .addComponent(newFileLabel, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-			    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-			        .addComponent(oldFileLable, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-			        .addGap(12)))
-			.addGroup(thisLayout.createParallelGroup()
-			    .addGroup(thisLayout.createSequentialGroup()
-			        .addGroup(thisLayout.createParallelGroup()
-			            .addComponent(newFileField, GroupLayout.Alignment.LEADING, 0, 315, Short.MAX_VALUE)
-			            .addComponent(oldFileField, GroupLayout.Alignment.LEADING, 0, 315, Short.MAX_VALUE))
-			        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-			        .addGroup(thisLayout.createParallelGroup()
-			            .addComponent(openNewFile, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-			            .addComponent(openOldFile, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)))
-			    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-			        .addGap(0, 199, Short.MAX_VALUE)
-			        .addComponent(ok, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
-			        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED, 1, GroupLayout.PREFERRED_SIZE)
-			        .addComponent(cancel, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)))
-			.addContainerGap());
 
 		draw();
 	}
