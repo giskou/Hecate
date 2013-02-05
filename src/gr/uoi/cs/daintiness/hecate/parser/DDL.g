@@ -31,7 +31,7 @@ options {
 }
 
 start returns [Schema s]
-	:	( drop | create | namespace | insert )+
+	:	( drop | create | namespace | insert | commit )+
 	{
 		s = new Schema(tm) ;
 	}
@@ -39,6 +39,10 @@ start returns [Schema s]
 	
 namespace
 	:	USE name ';'
+	;
+	
+commit
+	: COMMIT ';'
 	;
 
 drop
@@ -52,7 +56,7 @@ create
 	;
 	
 insert
-	:	INSERT INTO name VALUES '(' valueList ')' ';'
+	:	INSERT INTO name ( '(' nameList ')' )? VALUES '(' valueList ')' ';'
 	;
 	
 schema
@@ -82,8 +86,10 @@ column
 	;
 	
 constraint
-	:	FULLTEXT? key
-	| UNIQUE name? ( '(' nameList ')' )?
+	:	CONSTRAINT name key
+	|	CONSTRAINT? FULLTEXT? key
+	|	( CONSTRAINT name )? UNIQUE name? ( '(' nameList ')' )?
+	| CONSTRAINT name? CHECK '(' name IS NOT NULL ')'
 	;
 	
 index
@@ -109,6 +115,9 @@ key
 		}
 	}
 	|	FOREIGN KEY name? ( '(' nameList ')' )? reference
+	{
+		//TODO
+	}
 	;
 	
 option
@@ -174,7 +183,7 @@ IF : 'IF' | 'if' ;
 NOT : 'NOT' | 'not' ;
 EXISTS : 'EXISTS' | 'exists' ;
 ENUM : 'ENUM' | 'enum' ;
-NULL : ('NULL' | 'null')? ;
+NULL : ('NULL' | 'null' | 'Null' )? ;
 DEFAULT : 'DEFAULT' | 'default' ;
 KEY : 'KEY' | 'key' ;
 HASH : 'HASH' 'hash' ;
@@ -182,6 +191,7 @@ UNIQUE : 'UNIQUE' | 'unique' ;
 PRIMARY : 'PRIMARY' | 'primary' ;
 FOREIGN : 'FOREIGN' | 'foreign' ;
 INDEX : 'INDEX' | 'index' ;
+CONSTRAINT : 'CONSTRAINT' | 'constraint' ;
 FULLTEXT : 'FULLTEXT' | 'fulltext' ;
 REFERENCES : 'REFERENCES' | 'references' ;
 ON : 'ON' | 'on' ;
@@ -201,9 +211,12 @@ AUTO_INC : 'AUTO_INCREMENT' | 'auto_increment' ;
 ASC : 'ASC' | 'asc' ;
 DESC : 'DESC' | 'desc' ;
 CHARACTER : 'CHARACTER' | 'character' ;
-COLLATE : 'COLLATE' | 'colate' ;
+COLLATE : 'COLLATE' | 'collate' ;
 USE : 'USE' | 'use' ;
 SCHEMA : 'SCHEMA' | 'schema' ;
+COMMIT : 'COMMIT' | 'commit' ;
+IS : 'IS' | 'is' ;
+CHECK : 'CHECK' | 'check' ;
 
 ID	:	('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')* ;
 
