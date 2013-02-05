@@ -4,6 +4,11 @@ import gr.uoi.cs.daintiness.hecate.Hecate;
 import gr.uoi.cs.daintiness.hecate.diff.Delta;
 import gr.uoi.cs.daintiness.hecate.parser.HecateParser;
 import gr.uoi.cs.daintiness.hecate.sql.Schema;
+import gr.uoi.cs.daintiness.hecate.transitions.Deletion;
+import gr.uoi.cs.daintiness.hecate.transitions.Insersion;
+import gr.uoi.cs.daintiness.hecate.transitions.TransitionList;
+import gr.uoi.cs.daintiness.hecate.transitions.Transitions;
+import gr.uoi.cs.daintiness.hecate.transitions.Update;
 
 import java.awt.Dimension;
 import java.awt.Image;
@@ -13,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -23,6 +29,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
 
 import org.antlr.runtime.RecognitionException;
 
@@ -137,6 +145,7 @@ public class MainWindow extends JFrame{
 		fileFOpen.setToolTipText("Create diff tree from multiple files");
 		fileFOpen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
+				Transitions trs = new Transitions();
 				if (openFolderDialog == null) {
 					openFolderDialog = new OpenFolderDialog();
 				}
@@ -149,21 +158,23 @@ public class MainWindow extends JFrame{
 					java.util.Arrays.sort(list);
 					
 					try {
-						BufferedWriter out = new BufferedWriter(new FileWriter("metrics"));
+						BufferedWriter metrics = new BufferedWriter(new FileWriter("metrics"));
 						
 						for (int i = 0; i < list.length-1; i++)  {
 							try {
 								HecateParser parser = new HecateParser(path + File.separator + list[i]);
 								HecateParser parser2 = new HecateParser(path + File.separator + list[i+1]);
 								Schema schema = parser.getSchema();
+								schema.setTitle(list[i]);
 								Schema schema2 = parser2.getSchema();
+								schema2.setTitle(list[i+1]);
 								Delta delta = new Delta();
-								delta.minus(schema, schema2);
+								trs.add(delta.minus(schema, schema2));
 								System.out.println(list[i] + "-" + list[i+1]);
 								if (i == 0) {
-									out.write("version-to-version\toldT\tnewT\toldA\tnewA\ttIns\ttDel\taIns\taDel\ttotAl\n");
+									metrics.write("version-to-version\toldT\tnewT\toldA\tnewA\ttIns\ttDel\taIns\taDel\ttotAl\n");
 								}
-								out.write(
+								metrics.write(
 									list[i] + "-" + list[i+1] + "\t" +
 									delta.getOldSizes()[0] + "\t" +
 									delta.getNewSizes()[0] + "\t" +
@@ -185,7 +196,8 @@ public class MainWindow extends JFrame{
 								e.printStackTrace();
 							}
 						}
-						out.close();
+						marshal(trs);
+						metrics.close();
 						try {
 							drawTree(new File(path + File.separator + list[0]), new File(path + File.separator + list[list.length-1]));
 						} catch (RecognitionException e) {
@@ -285,5 +297,16 @@ public class MainWindow extends JFrame{
 		
 		delta = new Delta();
 		delta.minus(oldSchema, newSchema);
+	}
+
+	private void marshal(Transitions trs) {
+		try {
+			JAXBContext jaxbContext = JAXBContext.newInstance(Update.class, Deletion.class, Insersion.class, TransitionList.class, Transitions.class);
+			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			jaxbMarshaller.marshal(trs, new FileOutputStream("transitions.xml"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
