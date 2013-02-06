@@ -31,72 +31,85 @@ options {
 }
 
 start returns [Schema s]
-	:	( drop | create | namespace | insert | commit )+
+	:	( drop | create | namespace | insert | update | commit )+
 	{
 		s = new Schema(tm) ;
 	}
 	;
-	
+
 namespace
 	:	USE name ';'
 	;
 	
 commit
-	: COMMIT ';'
+	:	COMMIT ';'
 	;
 
 drop
 	:	DROP TABLE ( IF EXISTS )? nameList ';'
+	|	DROP DATABASE ( IF EXISTS )? nameList ';'
 	;
 	
 create
-	:	CREATE schema ';'
-	|	CREATE table ';'
-	|	CREATE index ';'
+	:	CREATE database ';'?
+	|	CREATE schema ';'?
+	|	CREATE table ';'?
+	|	CREATE index ';'?
 	;
-	
+
 insert
-	:	INSERT INTO name ( '(' nameList ')' )? VALUES '(' valueList ')' ';'
+	:	INSERT IGNORE? INTO name ( '(' nameList ')' )? VALUES '(' (~';')* ')' ';'
 	;
-	
+
+update
+	:	UPDATE (~';')* ';'
+	;
+
+database
+	:	DATABASE ( IF NOT EXISTS )? name parameter?
+	;
+
 schema
-	: SCHEMA ( IF NOT EXISTS )? name parameter?
+	:	SCHEMA ( IF NOT EXISTS )? name parameter?
 	;
-	
+
 table
 	@init{
 		am.clear();
 	}
-	: TABLE ( IF NOT EXISTS )? name '(' definition ')' parameter*
+	:	TABLE ( IF NOT EXISTS )? name '(' definition ')' parameter*
 	{
-		tm.put($name.text.replace("`",""), new Table($name.text.replace("`",""), am, k)) ;
+		String n = $name.text.replace("`","");
+		tm.put(n, new Table(n, am, k)) ;
 	}
 	;
-	
+
 definition
 	:	( column | constraint | index ) ( ',' ( column | constraint | index ) )*
 	;
-	
+
 column
 	:	name type option*
 	{
 		String t = $type.text;
-		am.put($name.text.replace("`",""), new Attribute($name.text.replace("`",""), t.toUpperCase(), false, null)) ;
+		String n = $name.text.replace("`","");
+		if ( (t != null) & (n != null) )
+			am.put(n, new Attribute(n, t.toUpperCase(), false, null)) ;
 	}
 	;
-	
+
 constraint
 	:	CONSTRAINT name key
 	|	CONSTRAINT? FULLTEXT? key
 	|	( CONSTRAINT name )? UNIQUE name? ( '(' nameList ')' )?
-	| CONSTRAINT name? CHECK '(' name IS NOT NULL ')'
+	|	CONSTRAINT name? CHECK '(' name IS NOT NULL ')'
 	;
-	
+
 index
 	:	( UNIQUE | PRIMARY )? INDEX name? ( ON name )? '(' nameList ')'
 	|	FULLTEXT name '(' nameList ')'
 	;
-	
+
 key
 	@init{
 		km.clear();
@@ -119,7 +132,7 @@ key
 		//TODO
 	}
 	;
-	
+
 option
 	:	key
 	|	reference
@@ -127,57 +140,60 @@ option
 	|	AUTO_INC
 	|	DEFAULT ( value | NULL | empty )
 	;
-	
+
 reference
 	:	REFERENCES name? ( '(' nameList ')' )? referenceOptions*
 	;
-	
+
 referenceOptions
 	:	ON DELETE ( CASCADE | RESTRICT | NO ACTION | SET ( DEFAULT | NULL ) )
-	|	ON UPDATE ( CASCADE | SET ( DEFAULT | NULL )  );
-	
+	|	ON UPDATE ( CASCADE | SET ( DEFAULT | NULL )  )
+	;
+
 order
 	:	ASC
 	|	DESC
 	;
-	
+
 parameter
 	:	name '=' value ','?
 	|	( DEFAULT )? CHARACTER SET '='? value ','?
 	|	( DEFAULT )? COLLATE '='? value ','?
 	|	AUTO_INC '='? INT
 	;
-	
+
 type
-	:	name ( '(' INT ( ',' INT )? ')' )? ( UNSIGNED | BINARY )?
+	:	( UNSIGNED | BINARY )? name ( '(' INT ( ',' INT )? ')' )? ( UNSIGNED | BINARY )?
 	|	ENUM '(' nameList ')'
 	|	BINARY ( '(' INT ')' )
 	;
-	
+
 nameList
 	:	name ( '(' value ')' )? order? ( ','? name ( '(' value ')' )? order? )*
 	;
-	
+
 valueList
 	:	( value | empty ) (',' ( value | empty ))*
 	;
-	
+
 value
 	:	name
 	|	INT
 	;
-	
+
 	empty
 	:	'\'\''
 	;
-	
+
 name
 	:	ID ( '.' ID )*
 	|	DEF ( '.' DEF )*
+	|	ACTION
 	;
 
 DROP : 'DROP' | 'drop' ;
 CREATE : 'CREATE' | 'create' ;
+DATABASE : 'DATABASE' | 'database' ;
 TABLE : 'TABLE' | 'table' ;
 IF : 'IF' | 'if' ;
 NOT : 'NOT' | 'not' ;
@@ -217,6 +233,7 @@ SCHEMA : 'SCHEMA' | 'schema' ;
 COMMIT : 'COMMIT' | 'commit' ;
 IS : 'IS' | 'is' ;
 CHECK : 'CHECK' | 'check' ;
+IGNORE : 'IGNORE' | 'ignore' ;
 
 ID	:	('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')* ;
 
@@ -228,6 +245,8 @@ COMMENT
 	|	'--' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
 	|  '#' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
 	;
+
+CONFLICT	:	'<<<<<<<' ( options {greedy=false;} : . )* '>>>>>>>' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;} ;
 
 WS  :	( ' ' | '\t' | '\r' | '\n' ) {$channel=HIDDEN;} ;
 
