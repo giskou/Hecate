@@ -31,7 +31,7 @@ options {
 }
 
 start returns [Schema s]
-	:	( drop | create | namespace | insert | update | commit )+
+	:	( drop | create | namespace | insert | update | alter | commit )+
 	{
 		s = new Schema(tm) ;
 	}
@@ -64,6 +64,11 @@ insert
 update
 	:	UPDATE (~';')* ';'
 	;
+
+alter
+	:	ALTER TABLE name ADD CONSTRAINT name? key ( ON ( UPDATE | DELETE ) ( CASCADE | UPDATE ) ) ';'
+	;
+
 
 database
 	:	DATABASE ( IF NOT EXISTS )? name parameter?
@@ -210,9 +215,11 @@ INDEX : 'INDEX' | 'index' ;
 CONSTRAINT : 'CONSTRAINT' | 'constraint' ;
 FULLTEXT : 'FULLTEXT' | 'fulltext' ;
 REFERENCES : 'REFERENCES' | 'references' ;
+ALTER : 'ALTER' | 'alter' ;
 ON : 'ON' | 'on' ;
 INTO : 'INTO' | 'into' ;
 VALUES : 'VALUES' | 'values' ;
+ADD : 'ADD' | 'add' ;
 DELETE : 'DELETE' | 'delete' ;
 CASCADE : 'CASCADE' | 'cascade' ;
 RESTRICT : 'RESTRICT' | 'restrict' ;
