@@ -32,7 +32,7 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
-import org.antlr.runtime.RecognitionException;
+import org.antlr.v4.runtime.RecognitionException;
 
 /**
  * The main window of Hecate
@@ -162,12 +162,8 @@ public class MainWindow extends JFrame{
 						
 						for (int i = 0; i < list.length-1; i++)  {
 							try {
-								HecateParser parser = new HecateParser(path + File.separator + list[i]);
-								HecateParser parser2 = new HecateParser(path + File.separator + list[i+1]);
-								Schema schema = parser.getSchema();
-								schema.setTitle(list[i]);
-								Schema schema2 = parser2.getSchema();
-								schema2.setTitle(list[i+1]);
+								Schema schema = HecateParser.parse(path + File.separator + list[i]);
+								Schema schema2 = HecateParser.parse(path + File.separator + list[i+1]);
 								Delta delta = new Delta();
 								trs.add(delta.minus(schema, schema2));
 								System.out.println(list[i] + "-" + list[i+1]);
@@ -284,12 +280,8 @@ public class MainWindow extends JFrame{
 	 * @throws RecognitionException
 	 */
 	private void drawTree(File oldFile, File newFile) throws IOException, RecognitionException {
-		HecateParser parser = new HecateParser(oldFile.getAbsolutePath());
-		HecateParser parser2 = new HecateParser(newFile.getAbsolutePath());
-		oldSchema = parser.getSchema();
-		oldSchema.setTitle(oldFile.getName());
-		newSchema = parser2.getSchema();
-		newSchema.setTitle(newFile.getName());
+		oldSchema = HecateParser.parse(oldFile.getAbsolutePath());
+		newSchema = HecateParser.parse(newFile.getAbsolutePath());
 		
 		mainPanel.drawSchema(oldSchema, "old");
 		mainPanel.drawSchema(newSchema, "new");

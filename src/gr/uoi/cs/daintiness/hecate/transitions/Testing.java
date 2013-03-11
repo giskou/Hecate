@@ -23,18 +23,9 @@ public class Testing {
 
 	public static void main(String[] args) throws Exception{
 		
-		HecateParser parser = new HecateParser("AppData/schemas/CMS's/wikimedia/schemata/schema_004571.sql");
-		HecateParser parser2 = new HecateParser("AppData/schemas/CMS's/wikimedia/schemata/schema_008798.sql");
-		HecateParser parser3 = new HecateParser("AppData/schemas/CMS's/wikimedia/schemata/schema_019569.sql");
-
-
-		Schema schema1 = parser.getSchema();
-		schema1.setTitle("004571");
-		Schema schema2 = parser2.getSchema();
-		schema2.setTitle("008798");
-		Schema schema3 = parser3.getSchema();
-		schema3.setTitle("019569");
-		
+		Schema schema1 = HecateParser.parse("AppData/schemas/CMS's/wikimedia/schemata/schema_004571.sql");
+		Schema schema2 = HecateParser.parse("AppData/schemas/CMS's/wikimedia/schemata/schema_008798.sql");
+		Schema schema3 = HecateParser.parse("AppData/schemas/CMS's/wikimedia/schemata/schema_019569.sql");
 		
 		Delta delta = new Delta();
 		Transitions trs = new Transitions();

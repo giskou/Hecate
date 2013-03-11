@@ -10,6 +10,19 @@ public class Schema implements SqlItem{
 	
 	public Schema(TreeMap<String, Table> t) {
 		this.tables = t;
+	}	
+	
+	public Schema() {
+		this.tables = new TreeMap<String, Table>();
+	}
+	
+	public Schema(String name) {
+		this.tables = new TreeMap<String, Table>();
+		this.name = name;
+	}
+	
+	public void addTable(Table table) {
+		this.tables.put(table.getName(), table);
 	}
 	
 	public TreeMap<String, Table> getTables() {
@@ -30,6 +43,15 @@ public class Schema implements SqlItem{
 		return buff;
 	}
 	
+	public int[] getSize() {
+		int attr = 0;
+		for (Table t : this.tables.values()) {
+			attr += t.getSize();
+		}
+		int[] res = {this.tables.size(), attr};
+		return res;
+	}
+	
 	public void setTitle(String title) {
 		this.name = title;
 	}
@@ -48,7 +70,7 @@ public class Schema implements SqlItem{
 	}
 
 	@Override
-	public char getMode() {
+	public int getMode() {
 		return 0;
 	}
 
@@ -58,12 +80,7 @@ public class Schema implements SqlItem{
 	}
 
 	@Override
-	public void setMode(char c) {
+	public void setMode(int mode) {
 	
-	}
-
-	@Override
-	public String whatAmI() {
-		return "Schema";
 	}
 }

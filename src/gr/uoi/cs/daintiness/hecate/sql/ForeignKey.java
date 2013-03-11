@@ -3,7 +3,7 @@ package gr.uoi.cs.daintiness.hecate.sql;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class ForeignKey extends Key {
+public class ForeignKey extends PrimaryKey {
 	private Table ref;
 
 	public ForeignKey(String name, TreeMap<String, Attribute> k, Table t) {

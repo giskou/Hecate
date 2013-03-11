@@ -2,7 +2,9 @@ package gr.uoi.cs.daintiness.hecate.graph.tree;
 
 import gr.uoi.cs.daintiness.hecate.Hecate;
 import gr.uoi.cs.daintiness.hecate.sql.Attribute;
+import gr.uoi.cs.daintiness.hecate.sql.Schema;
 import gr.uoi.cs.daintiness.hecate.sql.SqlItem;
+import gr.uoi.cs.daintiness.hecate.sql.Table;
 
 import java.awt.Color;
 
@@ -21,16 +23,16 @@ public class HecateTreeRenderer implements RenderDataProvider {
 	@Override
 	public Color getBackground(Object o) {
 		switch (((SqlItem)o).getMode()) {
-			case 'u': return Color.YELLOW;
-			case 'd': return Color.RED;
-			case 'i': return Color.GREEN;
+			case SqlItem.UPDATED: return Color.YELLOW;
+			case SqlItem.DELETED: return Color.RED;
+			case SqlItem.INSERTED: return Color.GREEN;
 			default: return null;
 		}
 	}
 
 	@Override
 	public String getDisplayName(Object o) {
-		if (((SqlItem)o).whatAmI().compareTo("Attribute") == 0) {
+		if (o.getClass() == Attribute.class) {
 			if (((Attribute)o).isKey()) {
 				return "<u>" + ((SqlItem)o).getName() + "</u>";
 			}
@@ -46,13 +48,13 @@ public class HecateTreeRenderer implements RenderDataProvider {
 
 	@Override
 	public Icon getIcon(Object o) {
-		if (((SqlItem)o).whatAmI().compareTo("Attribute") == 0) {
+		if (o.getClass() == Attribute.class) {
 			return new ImageIcon(Hecate.class.getResource("art/attribute.png"));
 		}
-		if ((((SqlItem)o).whatAmI().compareTo("Table") == 0)) {
+		if (o.getClass() == Table.class) {
 			return new ImageIcon(Hecate.class.getResource("art/table.png"));
 		}
-		if ((((SqlItem)o).whatAmI().compareTo("Schema") == 0)) {
+		if (o.getClass() == Schema.class) {
 			return new ImageIcon(Hecate.class.getResource("art/schema.png"));
 		}
 		return null;

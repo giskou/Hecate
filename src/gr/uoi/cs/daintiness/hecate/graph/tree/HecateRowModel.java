@@ -1,9 +1,11 @@
 package gr.uoi.cs.daintiness.hecate.graph.tree;
 
 import gr.uoi.cs.daintiness.hecate.sql.Attribute;
-import gr.uoi.cs.daintiness.hecate.sql.SqlItem;
+import gr.uoi.cs.daintiness.hecate.sql.Table;
 
 import org.netbeans.swing.outline.RowModel;
+
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.Schema;
 
 /**
  * An implementation of {@link RowModel}
@@ -36,14 +38,14 @@ public class HecateRowModel implements RowModel{
 	public Object getValueFor(Object node, int column) {
 		switch (column) {
 			case 0: 
-				String type = ((SqlItem)node).whatAmI();
-				if (type == "Schema") {
+				Class<?> type = node.getClass();
+				if (type == Schema.class) {
 					return null;
 				}
-				else if (type == "Table") {
+				else if (type == Table.class) {
 					return null;
 				}
-				else if (type == "Attribute") {
+				else if (type == Attribute.class) {
 					switch (column) {
 						case 0: return ((Attribute)node).getType();
 						default: assert false;

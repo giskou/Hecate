@@ -3,29 +3,33 @@ package gr.uoi.cs.daintiness.hecate.sql;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class Key implements SqlItem{
+public class PrimaryKey implements SqlItem{
 	private String name;
 	protected TreeMap<String, Attribute> key;
-	private char mode;
+	private int mode;
 	
-	public Key() {
+	public PrimaryKey() {
 		this.name = null;
 		this.key = new TreeMap<String, Attribute>();
 	}
 	
-	public Key(String name, TreeMap<String, Attribute> k) {
+	public PrimaryKey(String name, TreeMap<String, Attribute> k) {
 		this.key = k;
 		this.name = name;
 	}
 	
+	public void  add(Attribute attr) {
+		key.put(attr.getName(), attr);
+	}
+	
 	@Override
-	public char getMode() {
-		return mode;
+	public int getMode() {
+		return this.mode;
 	}
 
 	@Override
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	@Override
@@ -41,16 +45,15 @@ public class Key implements SqlItem{
 	}
 
 	@Override
-	public void setMode(char c) {
-		mode = c;
+	public void setMode(int mode) {
+		this.mode = mode;
 	}
-
-	@Override
-	public String whatAmI() {
-		return "Key";
+	
+	public boolean isEmpty() {
+		return key.isEmpty();
 	}
 	
 	public String toString() {
-		return name;
+		return this.name;
 	}
 }

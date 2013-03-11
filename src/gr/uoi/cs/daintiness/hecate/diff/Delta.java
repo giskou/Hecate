@@ -1,7 +1,13 @@
 package gr.uoi.cs.daintiness.hecate.diff;
 
-import gr.uoi.cs.daintiness.hecate.sql.*;
-import gr.uoi.cs.daintiness.hecate.transitions.*;
+import gr.uoi.cs.daintiness.hecate.sql.Attribute;
+import gr.uoi.cs.daintiness.hecate.sql.Schema;
+import gr.uoi.cs.daintiness.hecate.sql.SqlItem;
+import gr.uoi.cs.daintiness.hecate.sql.Table;
+import gr.uoi.cs.daintiness.hecate.transitions.Deletion;
+import gr.uoi.cs.daintiness.hecate.transitions.Insersion;
+import gr.uoi.cs.daintiness.hecate.transitions.TransitionList;
+import gr.uoi.cs.daintiness.hecate.transitions.Update;
 
 import java.util.Iterator;
 
@@ -19,6 +25,7 @@ public class Delta {
 	private int attrIns, attrDel;
 	private int alterKey, alterAttribute, alterTable;
 	private int numOfTables, numOfAttributes;
+	private int numOfNewTables, numOfNewAttributes;
 	private Insersion in;
 	private Deletion out;
 	private Update up;
@@ -33,6 +40,7 @@ public class Delta {
 		tableIns = tableDel = 0;
 		attrIns = attrDel = 0;
 		numOfTables = numOfAttributes = 0;
+		numOfNewTables = numOfNewAttributes = 0;
 		alterKey = alterAttribute = alterTable =0;
 	}
 	
@@ -64,9 +72,11 @@ public class Delta {
 		Iterator<Table> oldTableValues = A.getTables().values().iterator() ;
 		Iterator<String> newTableKeys = B.getTables().keySet().iterator() ;
 		Iterator<Table> newTableValues = B.getTables().values().iterator() ;
-		
+		int[] sizeA = A.getSize(); int[] sizeB = A.getSize();
+		numOfTables = sizeA[0]; numOfAttributes = sizeA[1];
+		numOfNewTables = sizeB[0]; numOfNewAttributes = sizeB[1];
 		if (oldTableKeys.hasNext() && newTableKeys.hasNext()){
-			oldTableKey = oldTableKeys.next() ; numOfTables++;
+			oldTableKey = oldTableKeys.next() ;
 			Table oldTable = (Table) oldTableValues.next() ;
 			newTableKey = newTableKeys.next() ;
 			Table newTable = (Table) newTableValues.next() ;
@@ -74,10 +84,9 @@ public class Delta {
 				in = null;
 				out = null;
 				up = null;
-				if (oldTableKey.compareTo(newTableKey) == 0) {
-					// Matched tables
-					oldTable.setMode('m');
-					newTable.setMode('m');
+				if (oldTableKey.compareTo(newTableKey) == 0) {            // ** Matched tables
+					oldTable.setMode(SqlItem.MACHED);
+					newTable.setMode(SqlItem.MACHED);
 					// check attributes
 					Iterator<String> oldAttributeKeys = oldTable.getAttrs().keySet().iterator();
 					Iterator<Attribute> oldAttributeValues = oldTable.getAttrs().values().iterator() ;
@@ -85,146 +94,122 @@ public class Delta {
 					Iterator<Attribute> newAttributeValues = newTable.getAttrs().values().iterator() ;
 					
 					if (oldAttributeKeys.hasNext() && newAttributeKeys.hasNext()){
-						oldAttrKey = oldAttributeKeys.next() ; numOfAttributes++;
+						oldAttrKey = oldAttributeKeys.next() ;
 						Attribute oldAttr = oldAttributeValues.next();
 						newAttrKey = newAttributeKeys.next() ;
 						Attribute newAttr = newAttributeValues.next();
 						while (true) {
-							if (oldAttrKey.compareTo(newAttrKey) == 0) {
-							// possible attribute match
-								// check attribute type
-								if (oldAttr.getType().compareTo(newAttr.getType()) == 0){
-									// check key
-									if (oldAttr.isKey() == newAttr.isKey()) {
-										// Matched attributes
-										oldAttr.setMode('m');
-										newAttr.setMode('m');
-									}
-									else {
-										// attribute key changed
+							if (oldAttrKey.compareTo(newAttrKey) == 0) {                   // possible attribute match
+								if (oldAttr.getType().compareTo(newAttr.getType()) == 0){  // check attribute type
+									if (oldAttr.isKey() == newAttr.isKey()) {              // ** Matched attributes
+										oldAttr.setMode(SqlItem.MACHED);
+										newAttr.setMode(SqlItem.MACHED);
+									} else {                                               // * attribute key changed
 										alterKey++;
 										update(newAttr, "KeyChange");
-										oldTable.setMode('u');
-										newTable.setMode('u');
-										oldAttr.setMode('u');
-										newAttr.setMode('u');
+										oldTable.setMode(SqlItem.UPDATED);
+										newTable.setMode(SqlItem.UPDATED);
+										oldAttr.setMode(SqlItem.UPDATED);
+										newAttr.setMode(SqlItem.UPDATED);
 									}
-								}
-								else {
-									// attribute type changed
+								} else {                                                   // attribute type changed
 									alterAttribute++;
 									update(newAttr, "TypeChange");
-									oldTable.setMode('u');
-									newTable.setMode('u');
-									oldAttr.setMode('u');
-									newAttr.setMode('u');
+									oldTable.setMode(SqlItem.UPDATED);
+									newTable.setMode(SqlItem.UPDATED);
+									oldAttr.setMode(SqlItem.UPDATED);
+									newAttr.setMode(SqlItem.UPDATED);
 								}
 								// move both attributes
 								if (oldAttributeKeys.hasNext() && newAttributeKeys.hasNext()) {
-									oldAttrKey = oldAttributeKeys.next() ; numOfAttributes++;
+									oldAttrKey = oldAttributeKeys.next() ;
 									oldAttr = oldAttributeValues.next();
 									newAttrKey = newAttributeKeys.next() ;
 									newAttr = newAttributeValues.next();
-								}
-								else {
+									continue;
+								} else {            // one of the lists is empty, must process the rest of the other
 									break ;
 								}
-							}
-							else if (oldAttrKey.compareTo(newAttrKey) < 0) {
-								// Deleted attributes
+							} else if (oldAttrKey.compareTo(newAttrKey) < 0) {           // ** Deleted attributes
 								attrDel++;
 								delete(oldAttr);
-								oldAttr.setMode('d');
-								oldTable.setMode('u');
-								newTable.setMode('u');
+								oldAttr.setMode(SqlItem.DELETED);
+								oldTable.setMode(SqlItem.UPDATED);
+								newTable.setMode(SqlItem.UPDATED);
 								// move old only attributes
 								if (oldAttributeKeys.hasNext()) {
-									oldAttrKey = oldAttributeKeys.next() ; numOfAttributes++;
+									oldAttrKey = oldAttributeKeys.next() ;
 									oldAttr = oldAttributeValues.next();
-								}
-								else {
+									continue;
+								} else {                  // no more old
 									break ;
 								}
-							}
-							else {
-								// Inserted attributes
+							} else {                    // ** Inserted attributes
 								attrIns++;
 								insert(newAttr);
-								newAttr.setMode('i');
-								oldTable.setMode('u');
-								newTable.setMode('u');
+								newAttr.setMode(SqlItem.INSERTED);
+								oldTable.setMode(SqlItem.UPDATED);
+								newTable.setMode(SqlItem.UPDATED);
 								// move new only
 								if (newAttributeKeys.hasNext()) {
 									newAttrKey = newAttributeKeys.next() ;
 									newAttr = newAttributeValues.next();
-								}
-								else {
+									continue;
+								} else {                  // no more new
 									break ;
 								}
 							}
 						}
 					}
 					// check remaining attributes
-					while (oldAttributeKeys.hasNext()) {
-						oldAttrKey = (String) oldAttributeKeys.next(); numOfAttributes++;
+					while (oldAttributeKeys.hasNext()) {       // delete remaining old (not found in new)
+						oldAttrKey = (String) oldAttributeKeys.next();
 						Attribute oldAttr = oldAttributeValues.next();
-						// Deleted
 						delete(oldAttr);
 						attrDel++;
-						oldAttr.setMode('d');
-						oldTable.setMode('u');
-						newTable.setMode('u');
+						oldAttr.setMode(SqlItem.DELETED);
+						oldTable.setMode(SqlItem.UPDATED);
+						newTable.setMode(SqlItem.UPDATED);
 					}
-					while (newAttributeKeys.hasNext()) {
+					while (newAttributeKeys.hasNext()) {        // insert remaining new (not found in old)
 						newAttrKey = (String) newAttributeKeys.next();
 						Attribute newAttr = newAttributeValues.next();
-						// Inserted
 						insert(newAttr);
 						attrIns++;
-						newAttr.setMode('i');
-						oldTable.setMode('u');
-						newTable.setMode('u');
+						newAttr.setMode(SqlItem.INSERTED);
+						oldTable.setMode(SqlItem.UPDATED);
+						newTable.setMode(SqlItem.UPDATED);
 					}
-					// move both
-					if (oldTableKeys.hasNext() && newTableKeys.hasNext()) {
-						oldTableKey = oldTableKeys.next() ; numOfTables++;
+					//  ** Done with attributes **
+					if (oldTableKeys.hasNext() && newTableKeys.hasNext()) {   // move both tables
+						oldTableKey = oldTableKeys.next() ;
 						oldTable = (Table) oldTableValues.next() ;
 						newTableKey = newTableKeys.next() ;
 						newTable = (Table) newTableValues.next() ;
-					}
-					else {
+						continue;
+					} else {            // one list is empty
 						break ;
 					}
-				}
-				else if (oldTableKey.compareTo(newTableKey) < 0) {
-					// Deleted
-					delete(oldTable);
-					tableDel++;
-					oldTable.setMode('d');
-					// mark attributes deleted
-					markAll(oldTable, 'd');
-					// move old only
-					if (oldTableKeys.hasNext()) {
-						oldTableKey = oldTableKeys.next() ;  numOfTables++;
+				} else if (oldTableKey.compareTo(newTableKey) < 0) {  // ** Table Deleted
+					delete(oldTable); tableDel++;
+					oldTable.setMode(SqlItem.DELETED);
+					markAll(oldTable, SqlItem.DELETED);               // mark attributes deleted
+					if (oldTableKeys.hasNext()) {                     // move old only
+						oldTableKey = oldTableKeys.next() ;
 						oldTable = (Table) oldTableValues.next() ;
-					}
-					else {
+						continue;
+					} else {
 						break;
 					}
-				}
-				else {
-					// Inserted
-					insert(newTable);
-					tableIns++;
-					newTable.setMode('i');
-					// mark attributes inserted
-					markAll(newTable, 'i');
-					// move new only
-					if (newTableKeys.hasNext()) {
+				} else {                                             // ** Table Inserted
+					insert(newTable); tableIns++;
+					newTable.setMode(SqlItem.INSERTED);
+					markAll(newTable, SqlItem.INSERTED);             // mark attributes inserted
+					if (newTableKeys.hasNext()) {                    // move new only
 						newTableKey = newTableKeys.next() ;
 						newTable = (Table) newTableValues.next() ;
-					}
-					else {
+						continue;
+					} else {
 						break ;
 					}
 				}
@@ -232,32 +217,28 @@ public class Delta {
 		}
 		// check remaining table keys
 		while (oldTableKeys.hasNext()) {
-			oldTableKey = (String) oldTableKeys.next();  numOfTables++;
+			oldTableKey = (String) oldTableKeys.next();
 			Table oldTable = (Table) oldTableValues.next();
-			tableDel++;
-			delete(oldTable);
-			oldTable.setMode('d');
-			// mark attributes deleted
-			markAll(oldTable, 'd');
+			delete(oldTable); tableDel++;
+			oldTable.setMode(SqlItem.DELETED);
+			markAll(oldTable, SqlItem.DELETED);     // mark attributes deleted
 		}
 		while (newTableKeys.hasNext()) {
 			newTableKey = (String) newTableKeys.next();
 			Table newTable = (Table) newTableValues.next();
-			tableIns++;
-			insert(newTable);
-			newTable.setMode('i');
-			// mark attributes inserted
-			markAll(newTable, 'i');
+			insert(newTable); tableIns++;
+			newTable.setMode(SqlItem.INSERTED);
+			markAll(newTable, SqlItem.INSERTED);     // mark attributes inserted
 		}
 		return tl;
 	}
 
-	private void markAll(Table t, char m) {
+	private void markAll(Table t, int mode) {
 		for (Iterator<Attribute> i = t.getAttrs().values().iterator(); i.hasNext(); ) {
-			i.next().setMode(m);
-			switch(m){
-				case 'i': attrIns++; break;
-				case 'd': attrDel++; break;
+			i.next().setMode(mode);
+			switch(mode){
+				case SqlItem.INSERTED: attrIns++; break;
+				case SqlItem.DELETED: attrDel++; break;
 				default:;
 			}
 		}
@@ -343,8 +324,7 @@ public class Delta {
 	}
 	
 	public int[] getNewSizes() {
-		int i[] = {this.numOfTables + this.tableIns - this.tableDel, 
-		           this.numOfAttributes + this.attrIns - this.attrDel};
+		int i[] = {this.numOfNewTables, this.numOfNewAttributes};
 		return i;
 	}
 }

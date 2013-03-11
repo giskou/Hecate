@@ -1,81 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.0.11" icons="true" automaticImage="PNG" always-add-relationships="true" generalizations="true" 
   realizations="true" associations="true" dependencies="true" nesting-relationships="true">  
-  <class id="1" corner="BOTTOM_RIGHT" language="java" name="gr.uoi.cs.daintiness.hecate.transitions.Testing" 
-    project="Hecate" file="/Hecate/src/gr/uoi/cs/daintiness/hecate/transitions/Testing.java" binary="false">    
+  <class id="1" language="java" name="gr.uoi.cs.daintiness.hecate.transitions.Testing" project="Hecate" 
+    file="/Hecate/src/gr/uoi/cs/daintiness/hecate/transitions/Testing.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="118" y="16"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="false" 
+      visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="2" corner="BOTTOM_RIGHT" language="java" name="gr.uoi.cs.daintiness.hecate.transitions.Insersion" 
-    project="Hecate" file="/Hecate/src/gr/uoi/cs/daintiness/hecate/transitions/Insersion.java" binary="false">    
+  <class id="2" language="java" name="gr.uoi.cs.daintiness.hecate.transitions.Insersion" project="Hecate" 
+    file="/Hecate/src/gr/uoi/cs/daintiness/hecate/transitions/Insersion.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="847" y="4"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="false" 
+      visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="3" corner="BOTTOM_RIGHT" language="java" name="gr.uoi.cs.daintiness.hecate.transitions.Transition" 
-    project="Hecate" file="/Hecate/src/gr/uoi/cs/daintiness/hecate/transitions/Transition.java" binary="false">    
+  <class id="3" language="java" name="gr.uoi.cs.daintiness.hecate.transitions.Transition" project="Hecate" 
+    file="/Hecate/src/gr/uoi/cs/daintiness/hecate/transitions/Transition.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1067" y="293"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="false" 
+      visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="4" corner="BOTTOM_RIGHT" language="java" name="gr.uoi.cs.daintiness.hecate.sql.Table" project="Hecate" 
-    file="/Hecate/src/gr/uoi/cs/daintiness/hecate/sql/Table.java" binary="false">    
+  <class id="4" language="java" name="gr.uoi.cs.daintiness.hecate.sql.Table" project="Hecate" 
+    file="/Hecate/src/gr/uoi/cs/daintiness/hecate/sql/Table.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="426" y="435"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="false" 
+      visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="5" corner="BOTTOM_RIGHT" language="java" name="gr.uoi.cs.daintiness.hecate.sql.Attribute" project="Hecate" 
-    file="/Hecate/src/gr/uoi/cs/daintiness/hecate/sql/Attribute.java" binary="false">    
+  <class id="5" language="java" name="gr.uoi.cs.daintiness.hecate.sql.Attribute" project="Hecate" 
+    file="/Hecate/src/gr/uoi/cs/daintiness/hecate/sql/Attribute.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="791" y="636"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="false" 
+      visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="6" corner="BOTTOM_RIGHT" language="java" name="gr.uoi.cs.daintiness.hecate.sql.ForeignKey" project="Hecate" 
-    file="/Hecate/src/gr/uoi/cs/daintiness/hecate/sql/ForeignKey.java" binary="false">    
+  <class id="6" language="java" name="gr.uoi.cs.daintiness.hecate.sql.ForeignKey" project="Hecate" 
+    file="/Hecate/src/gr/uoi/cs/daintiness/hecate/sql/ForeignKey.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="192" y="706"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="false" 
+      visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="7" corner="BOTTOM_RIGHT" language="java" name="gr.uoi.cs.daintiness.hecate.sql.Schema" project="Hecate" 
-    file="/Hecate/src/gr/uoi/cs/daintiness/hecate/sql/Schema.java" binary="false">    
+  <class id="7" language="java" name="gr.uoi.cs.daintiness.hecate.sql.Schema" project="Hecate" 
+    file="/Hecate/src/gr/uoi/cs/daintiness/hecate/sql/Schema.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="130" y="434"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="false" 
+      visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="8" corner="BOTTOM_RIGHT" language="java" name="gr.uoi.cs.daintiness.hecate.sql.Key" project="Hecate" 
-    file="/Hecate/src/gr/uoi/cs/daintiness/hecate/sql/Key.java" binary="false">    
+  <class id="8" language="java" name="gr.uoi.cs.daintiness.hecate.sql.PrimaryKey" project="Hecate" 
+    file="/Hecate/src/gr/uoi/cs/daintiness/hecate/sql/PrimaryKey.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="494" y="861"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="false" 
+      visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="9" corner="BOTTOM_RIGHT" language="java" name="gr.uoi.cs.daintiness.hecate.transitions.Deletion" 
-    project="Hecate" file="/Hecate/src/gr/uoi/cs/daintiness/hecate/transitions/Deletion.java" binary="false">    
+  <class id="9" language="java" name="gr.uoi.cs.daintiness.hecate.transitions.Deletion" project="Hecate" 
+    file="/Hecate/src/gr/uoi/cs/daintiness/hecate/transitions/Deletion.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="291" y="167"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="false" 
+      visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="10" corner="BOTTOM_RIGHT" language="java" name="gr.uoi.cs.daintiness.hecate.transitions.Update" 
-    project="Hecate" file="/Hecate/src/gr/uoi/cs/daintiness/hecate/transitions/Update.java" binary="false">    
+  <class id="10" language="java" name="gr.uoi.cs.daintiness.hecate.transitions.Update" project="Hecate" 
+    file="/Hecate/src/gr/uoi/cs/daintiness/hecate/transitions/Update.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="516" y="84"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="false" 
+      visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
@@ -211,7 +222,7 @@
     <end type="TARGET" refId="8"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-    visibility="true">    
+    accessors="false" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true"/>    
     <operations public="true" package="true" protected="true" private="true"/>  
   </classifier-display>  

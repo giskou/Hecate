@@ -15,7 +15,7 @@ public class Attribute implements SqlItem{
 	@XmlElement
 	private boolean isKey;
 	private String def;
-	private char mode;
+	private int mode;
 	
 	public Attribute() {
 		this.table = null;
@@ -24,7 +24,7 @@ public class Attribute implements SqlItem{
 		this.isNull = false;
 		this.isKey = false;
 		this.def = null;
-		this.mode = 'x';
+		this.mode = UNTOUCHED;
 	}
 	
 	public Attribute(String name, String type, boolean isNull, String d) {
@@ -33,7 +33,16 @@ public class Attribute implements SqlItem{
 		this.isNull = isNull;
 		this.isKey = false;
 		this.def = d;
-		this.mode = 'u';
+		this.mode = UPDATED;
+	}	
+	
+	public Attribute(String name, String type) {
+		this.name = name;
+		this.type = type;
+		this.isNull = false;
+		this.isKey = false;
+		this.def = null;
+		this.mode = UPDATED;
 	}
 	
 	// --Getters--
@@ -65,13 +74,13 @@ public class Attribute implements SqlItem{
 		this.isKey = true;
 	}
 	@Override
-	public char getMode() {
+	public int getMode() {
 		return this.mode;
 	}
 	
 	@Override
-	public void setMode(char m){
-		this.mode = m;
+	public void setMode(int mode){
+		this.mode = mode;
 	}
 	
 	public void setTable(Table t) {
@@ -85,11 +94,8 @@ public class Attribute implements SqlItem{
 	
 	@Override
 	public String print() {
-		return name + " " + type + " (" + mode + ")";
-	}
-
-	@Override
-	public String whatAmI() {
-		return "Attribute";
+		String s = name + " " + type + " (" + mode + ")";
+		if (this.isKey) s += " *PK*";
+		return s;
 	}
 }

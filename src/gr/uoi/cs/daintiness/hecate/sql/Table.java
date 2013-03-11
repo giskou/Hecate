@@ -13,9 +13,9 @@ public class Table implements SqlItem{
 	private String name;
 	private TreeMap<String, Attribute> attrs;
 	@XmlElement
-	private Key pKey;
-	private Key fKey;
-	private char mode;
+	private PrimaryKey pKey;
+	private PrimaryKey fKey;
+	private int mode;
 	
 	// --Constructors--
 	public Table() {
@@ -25,7 +25,14 @@ public class Table implements SqlItem{
 		this.fKey = null;
 	}
 	
-	public Table(String name, TreeMap<String, Attribute> attributes, Key pKey) {
+	public Table(String name) {
+		this.name = name;
+		this.attrs = new TreeMap<String, Attribute>();
+		this.pKey = new PrimaryKey();
+		this.fKey = null;
+	}
+	
+	public Table(String name, TreeMap<String, Attribute> attributes, PrimaryKey pKey) {
 		this.name = name;
 		this.attrs = new TreeMap<String, Attribute>();
 		for (Map.Entry<String, Attribute> entry : attributes.entrySet()) {
@@ -36,7 +43,7 @@ public class Table implements SqlItem{
 		this.updateAttributes();
 	}
 	
-	public Table(String n, TreeMap<String, Attribute> a, Key p, Key f) {
+	public Table(String n, TreeMap<String, Attribute> a, PrimaryKey p, PrimaryKey f) {
 		this.name = n;
 		this.attrs = a;
 		this.pKey = p;
@@ -44,31 +51,48 @@ public class Table implements SqlItem{
 		this.updateAttributes();
 	}
 	
+	public void addAttribute(Attribute attr) {
+		this.attrs.put(attr.getName(), attr);
+		attr.setTable(this);
+		if (attr.isKey()) {
+			addAttrToPrimeKey(attr);
+		}
+	}
+	
+	public void addAttrToPrimeKey(Attribute attr) {
+		attr.setToKey();
+		this.pKey.add(attr);
+	}
+	
 	// --Getters--
 	public String getName() {
 		return this.name;
+	}
+	
+	public int getSize() {
+		return attrs.size();
 	}
 	
 	public TreeMap<String, Attribute> getAttrs() {
 		return this.attrs;
 	}
 	
-	public Key getpKey() {
+	public PrimaryKey getpKey() {
 		return this.pKey;
 	}
 	
-	public Key getfKey() {
+	public PrimaryKey getfKey() {
 		return this.fKey;
 	}
 	
 	@Override
-	public char getMode(){
+	public int getMode(){
 		return this.mode;
 	}
 	
 	@Override
-	public void setMode(char m){
-		this.mode = m;
+	public void setMode(int mode){
+		this.mode = mode;
 	}
 	
 	@Override
@@ -100,11 +124,6 @@ public class Table implements SqlItem{
 		return null;
 	}
 
-	@Override
-	public String whatAmI() {
-		return "Table";
-	}
-	
 	private void updateAttributes() {
 		for (Map.Entry<String, Attribute> entry : attrs.entrySet()) {
 			entry.getValue().setTable(this);

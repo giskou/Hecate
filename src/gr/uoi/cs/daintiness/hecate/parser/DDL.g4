@@ -30,8 +30,8 @@ drop_statement
     | DROP ( TABLE | DATABASE ) nameList PURGE? ( IF EXISTS )?
     ;
 insert_statement : INSERT IGNORE? INTO table_name parNameList? VALUES parValueList (CO parValueList)* ;
-create_statement : CREATE ( database | table | index | view | triger | pl_sql) ;
-alter_statement  : ALTER TABLE table_name ( ADD constraint )+ ;
+create_statement : CREATE ( database | table | index | view | triger | pl_sql ) ;
+alter_statement  : ALTER TABLE table_name ( ADD alter_constraint )+ ;
 
 update_statement
     : UPDATE table_name SET col_name EQ value ( CO col_name EQ value)*
@@ -42,8 +42,8 @@ database
     ;
 
 create_option
-    : DEFAULT? CHARACTER SET EQ? charset_name
-    | DEFAULT? COLLATE EQ? collation_name
+    : DEFAULT? CHARACTER SET EQ? charset_name # char_set
+    | DEFAULT? COLLATE EQ? collation_name     # collate
     ;
 
 index
@@ -67,7 +67,7 @@ table
       table_option*
     ;
 
-table_definition : column | constraint ;
+table_definition : column | table_constraint ;
 
 table_option
     : DEFAULT? CHARACTER SET EQ? ident
@@ -75,19 +75,22 @@ table_option
 
 column
     : col_name data_type data_option? create_option?
-      ( column_option | constraint | reference_definition )*
+      ( column_option | line_constraint | reference_definition )*
       ( ON UPDATE ident )? 
     ;
 column_option : NOT? NULL | AUTO_INC | DEFAULT ( value | NULL ) ;
 
+table_constraint : constraint ;
+line_constraint : constraint ;
+alter_constraint : constraint ;
 
 constraint
-    : CONSTRAINT? PRIMARY KEY constr_name? index_type? parNameList? index_option*
-    | ( INDEX | KEY ) index_name? ( ON col_name )? index_type? parNameList index_option*
-    | CONSTRAINT? UNIQUE ( INDEX | KEY )? index_name? index_type? parNameList? index_option*
-    | ( FULLTEXT | SPATIAL ) ( INDEX | KEY )? index_name? parNameList index_option*
-    | CONSTRAINT? constr_name? FOREIGN KEY index_name? parNameList reference_definition
-    | CONSTRAINT constr_name CHECK consume_par
+    : CONSTRAINT? constr_name? PRIMARY KEY constr_name? index_type? parNameList? index_option*            #primary
+    | ( INDEX | KEY ) index_name? ( ON col_name )? index_type? parNameList index_option*                  #index_key
+    | CONSTRAINT? constr_name? UNIQUE ( INDEX | KEY )? index_name? index_type? parNameList? index_option* #unique
+    | ( FULLTEXT | SPATIAL ) ( INDEX | KEY )? index_name? parNameList index_option*                       #fulltext
+    | CONSTRAINT? constr_name? FOREIGN KEY index_name? parNameList reference_definition                   #foreign
+    | CONSTRAINT constr_name CHECK consume_par                                                            #check
     ;
 
 consume_par : LP ( ~(LP|RP) | consume_par )* RP ;
@@ -97,9 +100,9 @@ reference_option : ON ( UPDATE | DELETE ) refs ;
 refs : ( ( RESTRICT | CASCADE ) DEFERRABLE? ) | ( SET NULL ) | ( NO ACTION ) ;
 
 data_type
-    : ident+ size? ( ENUM parValueList )?
-    | ENUM parValueList
-    | SET parValueList
+    : ident+ size? ( ENUM parValueList )? # generic
+    | ENUM parValueList                   # enum
+    | SET parValueList                    # set
     ;
 
 data_option : SIGNED | UNSIGNED | ZEROFILL | BINARY ;
@@ -138,7 +141,7 @@ special_char
 
 restricted
     : ACTION | ADD | ALTER | ASC | BIGINT | BINARY | BIT | BTREE | CASCADE
-    | CHARACTER | CHAR | CHECK | COLLATE | COL_FORMAT | COMMIT | CONSTRAINT
+    | CHARACTER | CHAR | CHECK | COLLATE | COL_FORMAT | COMMIT
     | CREATE | DATABASE | DECIMAL | DELETE | DESC | DISK | DOUBLE
     | DYNAMIC | ENUM | EXISTS | FIXED | FOREIGN | FULLTEXT | HASH | IF | INSERT
     | INTEGER | INTO | IS | NUMERIC | REAL | REFERENCES | RESTRICT | SCHEMA
