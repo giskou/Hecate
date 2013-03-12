@@ -75,6 +75,7 @@ public class HecateParser {
 		public void enterColumn (DDLParser.ColumnContext ctx) {
 			String colName = ctx.col_name().getText();
 			String colType = ctx.data_type().getText();
+			colType = colType.toUpperCase();
 			a = new Attribute(colName, colType);
 		}
 		
