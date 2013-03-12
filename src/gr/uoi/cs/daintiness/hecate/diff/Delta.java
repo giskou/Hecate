@@ -142,6 +142,11 @@ public class Delta {
 									oldAttr = oldAttributeValues.next();
 									continue;
 								} else {                  // no more old
+									attrIns++;
+									insert(newAttr);
+									newAttr.setMode(SqlItem.INSERTED);
+									oldTable.setMode(SqlItem.UPDATED);
+									newTable.setMode(SqlItem.UPDATED);
 									break ;
 								}
 							} else {                    // ** Inserted attributes
@@ -156,6 +161,11 @@ public class Delta {
 									newAttr = newAttributeValues.next();
 									continue;
 								} else {                  // no more new
+									attrDel++;
+									delete(oldAttr);
+									oldAttr.setMode(SqlItem.DELETED);
+									oldTable.setMode(SqlItem.UPDATED);
+									newTable.setMode(SqlItem.UPDATED);
 									break ;
 								}
 							}
@@ -199,6 +209,9 @@ public class Delta {
 						oldTable = (Table) oldTableValues.next() ;
 						continue;
 					} else {
+						insert(newTable); tableIns++;
+						newTable.setMode(SqlItem.INSERTED);
+						markAll(newTable, SqlItem.INSERTED);
 						break;
 					}
 				} else {                                             // ** Table Inserted
@@ -210,6 +223,9 @@ public class Delta {
 						newTable = (Table) newTableValues.next() ;
 						continue;
 					} else {
+						delete(oldTable); tableDel++;
+						oldTable.setMode(SqlItem.DELETED);
+						markAll(oldTable, SqlItem.DELETED);
 						break ;
 					}
 				}
