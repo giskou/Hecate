@@ -1,28 +1,28 @@
 package gr.uoi.cs.daintiness.hecate.sql;
 
+import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
-public class ForeignKey extends PrimaryKey {
-	private Table ref;
+public class ForeignKey {
+	private Map<Attribute, Attribute> references;
 
-	public ForeignKey(String name, TreeMap<String, Attribute> k, Table t) {
-		super(name, k);
-		this.ref = t;
+	public ForeignKey() {
+		references = new HashMap<Attribute, Attribute>();
+	}
+	
+	public void addReference(Attribute orig, Attribute ref) {
+		references.put(orig, ref);
 	}
 	
 	public String toString() {
 		String buff = new String();
 		buff = "Foreign Key: ";
-		for (Map.Entry<String, Attribute> entry : this.key.entrySet()) {
-			Attribute a = entry.getValue();
-			buff += a.toString() + " ";
+		for (Map.Entry<Attribute, Attribute> entry : this.references.entrySet()) {
+			Attribute or = entry.getKey();
+			Attribute re = entry.getValue();
+			buff += or.toString() + " -> " + re.toString() + "\n";
 		}
 		buff += "\n";
 		return buff;
-	}
-	
-	public Table getRef() {
-		return this.ref;
 	}
 }

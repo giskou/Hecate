@@ -14,7 +14,7 @@ public class Table implements SqlItem{
 	private TreeMap<String, Attribute> attrs;
 	@XmlElement
 	private PrimaryKey pKey;
-	private PrimaryKey fKey;
+	private ForeignKey fKey;
 	private int mode;
 	
 	// --Constructors--
@@ -22,14 +22,14 @@ public class Table implements SqlItem{
 		this.name = null;
 		this.attrs = new TreeMap<String, Attribute>();
 		this.pKey = null;
-		this.fKey = null;
+		this.fKey = new ForeignKey();
 	}
 	
 	public Table(String name) {
 		this.name = name;
 		this.attrs = new TreeMap<String, Attribute>();
 		this.pKey = new PrimaryKey();
-		this.fKey = null;
+		this.fKey = new ForeignKey();
 	}
 	
 	public Table(String name, TreeMap<String, Attribute> attributes, PrimaryKey pKey) {
@@ -39,11 +39,11 @@ public class Table implements SqlItem{
 			this.attrs.put(entry.getKey(), entry.getValue()) ;
 		}
 		this.pKey = pKey;
-		this.fKey = null;
+		this.fKey = new ForeignKey();
 		this.updateAttributes();
 	}
 	
-	public Table(String n, TreeMap<String, Attribute> a, PrimaryKey p, PrimaryKey f) {
+	public Table(String n, TreeMap<String, Attribute> a, PrimaryKey p, ForeignKey f) {
 		this.name = n;
 		this.attrs = a;
 		this.pKey = p;
@@ -81,7 +81,7 @@ public class Table implements SqlItem{
 		return this.pKey;
 	}
 	
-	public PrimaryKey getfKey() {
+	public ForeignKey getfKey() {
 		return this.fKey;
 	}
 	

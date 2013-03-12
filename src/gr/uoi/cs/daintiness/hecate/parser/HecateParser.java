@@ -55,6 +55,8 @@ public class HecateParser {
 		private Table t;
 		private Attribute a;
 		boolean foundTableConst = false;
+		boolean foundAlterConst = false;
+		String alteringTable = null;
 		
 		public void enterStart (DDLParser.StartContext ctx) {
 			System.out.println("Starting");
@@ -89,10 +91,19 @@ public class HecateParser {
 		public void enterLine_constraint(DDLParser.Line_constraintContext ctx) {
 			if (ctx.getText().contains("PRIMARY")) {
 				t.addAttrToPrimeKey(a);
+			} else if (ctx.getText().contains("FOREIGN")){
+				System.out.print(" FOREIGN " + ctx.getText());
 			}
 		}
 		public void exitLine_constraint(DDLParser.Line_constraintContext ctx) {
 			System.out.print( "PRIMARY ");
+		}
+		
+		public void enterAlter_statement(DDLParser.Alter_statementContext ctx) {
+			alteringTable = ctx.table_name().getText();
+		}
+		public void exitAlter_statement(DDLParser.Alter_statementContext ctx) {
+			alteringTable = null;
 		}
 		
 		public void enterTable_constraint(DDLParser.Table_constraintContext ctx) {
@@ -100,6 +111,13 @@ public class HecateParser {
 		}
 		public void exitTable_constraint(DDLParser.Table_constraintContext ctx) {
 			foundTableConst = false;
+		}
+		
+		public void enterAlter_constraint(DDLParser.Alter_constraintContext ctx) {
+			foundAlterConst = true;
+		}
+		public void exitAlter_constraint(DDLParser.Alter_constraintContext ctx) {
+			foundAlterConst = true;
 		}
 		
 		public void enterPrimary (DDLParser.PrimaryContext ctx) {
@@ -112,7 +130,35 @@ public class HecateParser {
 						t.addAttrToPrimeKey(t.getAttrs().get(s));
 					}
 				}
+			} else if (foundAlterConst) {
+				
 			}
+		}
+		
+		public void enterForeign (DDLParser.ForeignContext ctx) {
+			if (foundTableConst) {
+				System.out.print( "FOREIGN ");
+			} else {
+				System.out.println(alteringTable + " " + ctx.getText());
+				Table orTable = s.getTables().get(alteringTable);
+				Table reTable = s.getTables().get(ctx.reference_definition().table_name().getText());
+				Attribute[] or = getNames(ctx.parNameList().getText(), orTable);
+				Attribute[] re = getNames(ctx.reference_definition().parNameList().getText(), reTable);
+				for (int i = 0; i < or.length; i++) {
+					System.out.println(orTable + "." + or[i] + "->" + reTable + "." + re[i] + "\n");
+					orTable.getfKey().addReference(or[i], re[i]);
+				}
+			}
+		}
+		
+		private Attribute[] getNames(String s, Table table) {
+			s = s.substring(1, s.length()-1);
+			String[] names = s.split(",");
+			Attribute[] res = new Attribute[names.length];
+			for (int i = 0; i < names.length; i++) {
+				res[i] = table.getAttrs().get(names[i]);
+			}
+			return res;
 		}
 		
 		private boolean hasQuotes(String s) {
