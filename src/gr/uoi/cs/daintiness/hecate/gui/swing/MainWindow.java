@@ -168,7 +168,7 @@ public class MainWindow extends JFrame{
 								trs.add(delta.minus(schema, schema2));
 								System.out.println(list[i] + "-" + list[i+1]);
 								if (i == 0) {
-									metrics.write("version-to-version\toldT\tnewT\toldA\tnewA\ttIns\ttDel\taIns\taDel\ttotAl\n");
+									metrics.write("version-to-version\t\toldT\tnewT\toldA\tnewA\ttIns\ttDel\taIns\taDel\ttotAl\n");
 								}
 								metrics.write(
 									list[i] + "-" + list[i+1] + "\t" +

@@ -72,7 +72,7 @@ public class Delta {
 		Iterator<Table> oldTableValues = A.getTables().values().iterator() ;
 		Iterator<String> newTableKeys = B.getTables().keySet().iterator() ;
 		Iterator<Table> newTableValues = B.getTables().values().iterator() ;
-		int[] sizeA = A.getSize(); int[] sizeB = A.getSize();
+		int[] sizeA = A.getSize(); int[] sizeB = B.getSize();
 		numOfTables = sizeA[0]; numOfAttributes = sizeA[1];
 		numOfNewTables = sizeB[0]; numOfNewAttributes = sizeB[1];
 		if (oldTableKeys.hasNext() && newTableKeys.hasNext()){
