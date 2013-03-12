@@ -4,6 +4,7 @@ import gr.uoi.cs.daintiness.hecate.sql.Attribute;
 import gr.uoi.cs.daintiness.hecate.sql.Schema;
 import gr.uoi.cs.daintiness.hecate.sql.Table;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.antlr.v4.runtime.ANTLRFileStream;
@@ -44,7 +45,8 @@ public class HecateParser {
 		SchemaLoader    loader = new SchemaLoader();
 		ParseTreeWalker walker = new ParseTreeWalker();
 		walker.walk(loader, root);
-		
+		String[] path = filePath.split(File.separator);
+		s.setTitle(path[path.length-1]);
 		return s;
 	}
 	
@@ -63,7 +65,7 @@ public class HecateParser {
 		}
 		
 		public void enterTable (DDLParser.TableContext ctx) {
-			String tableName = ctx.table_name().getText();
+			String tableName = removeQuotes(ctx.table_name().getText());
 			t = new Table(tableName);
 			System.out.println("TABLE : " + tableName);
 		}
@@ -73,7 +75,7 @@ public class HecateParser {
 		}
 		
 		public void enterColumn (DDLParser.ColumnContext ctx) {
-			String colName = ctx.col_name().getText();
+			String colName = removeQuotes(ctx.col_name().getText());
 			String colType = ctx.data_type().getText();
 			colType = colType.toUpperCase();
 			a = new Attribute(colName, colType);
@@ -111,6 +113,26 @@ public class HecateParser {
 					}
 				}
 			}
+		}
+		
+		private boolean hasQuotes(String s) {
+			switch (s.charAt(0)) {
+				case '\'':
+				case '\"':
+				case '`':
+					return true;
+				default:
+					return false;
+			}
+		}
+		
+		private String removeQuotes(String s) {
+			if (hasQuotes(s)) {
+				String res = null;
+				res = s.substring(1, s.length()-1);
+				return res;
+			}
+			return s;
 		}
 	}
 }
