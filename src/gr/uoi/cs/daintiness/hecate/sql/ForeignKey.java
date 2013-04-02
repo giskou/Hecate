@@ -25,4 +25,8 @@ public class ForeignKey {
 		buff += "\n";
 		return buff;
 	}
+	
+	public ForeignKey getRefs() {
+		return references;
+	}
 }
