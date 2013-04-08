@@ -25,9 +25,7 @@ public class HecateTreeModel implements TreeModel {
 	}
 
 	@Override
-	public void addTreeModelListener(TreeModelListener l) {
-		// TODO Auto-generated method stub
-	}
+	public void addTreeModelListener(TreeModelListener l) {}
 
 	@Override
 	public Object getChild(Object parent, int index) {
@@ -98,12 +96,8 @@ public class HecateTreeModel implements TreeModel {
 	}
 
 	@Override
-	public void removeTreeModelListener(TreeModelListener l) {
-		// TODO Auto-generated method stub
-	}
+	public void removeTreeModelListener(TreeModelListener l) {}
 
 	@Override
-	public void valueForPathChanged(TreePath arg0, Object arg1) {
-		// TODO Auto-generated method stub
-	}
+	public void valueForPathChanged(TreePath arg0, Object arg1) {}
 }

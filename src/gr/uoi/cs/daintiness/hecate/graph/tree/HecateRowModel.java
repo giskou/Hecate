@@ -63,9 +63,6 @@ public class HecateRowModel implements RowModel{
 	}
 
 	@Override
-	public void setValueFor(Object arg0, int arg1, Object arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void setValueFor(Object arg0, int arg1, Object arg2) {}
 
 }

@@ -42,7 +42,6 @@ public class HecateTreeRenderer implements RenderDataProvider {
 
 	@Override
 	public Color getForeground(Object o) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -62,7 +61,6 @@ public class HecateTreeRenderer implements RenderDataProvider {
 
 	@Override
 	public String getTooltipText(Object o) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

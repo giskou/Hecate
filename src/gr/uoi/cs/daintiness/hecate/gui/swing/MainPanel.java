@@ -27,7 +27,7 @@ import org.netbeans.swing.outline.TreePathSupport;
  */
 @SuppressWarnings("serial")
 public class MainPanel extends JPanel {
-	
+
 	private JScrollPane leftScrollPane;
 	private JScrollPane rightScrollPane;
 	private Outline leftOutline;
@@ -38,22 +38,20 @@ public class MainPanel extends JPanel {
 	private OutlineModel rightOutlineModel;
 	private TreePathSupport leftTreePathSup;
 	private TreePathSupport rightTreePathSup;
-	
+
 	/**
 	 * Default Constructor.
 	 */
 	public MainPanel() {
 		setLayout(new GridLayout(1,2));
-		
+
 		leftScrollPane = new JScrollPane();
 		add(leftScrollPane);
 
-		
 		rightScrollPane = new JScrollPane();
 		add(rightScrollPane);
-
 	}
-	
+
 	/**
 	 * Creates and draws a tree of the schema <code>s</code> at side
 	 * <code>side</code>.
@@ -73,7 +71,6 @@ public class MainPanel extends JPanel {
 			leftScrollPane.add(leftOutline);
 			leftScrollPane.setViewportView(leftOutline);
 //			leftOutline.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-//				
 //				@Override
 //				public void valueChanged(ListSelectionEvent e) {
 //					int row = leftOutline.getSelectedRow();
@@ -85,7 +82,6 @@ public class MainPanel extends JPanel {
 //			});
 			leftTreePathSup = leftOutlineModel.getTreePathSupport();
 			leftTreePathSup.addTreeExpansionListener(new TreeExpansionListener() {
-				
 				@Override
 				public void treeExpanded(TreeExpansionEvent e) {
 					Table ext = (Table) e.getPath().getLastPathComponent();
@@ -94,11 +90,8 @@ public class MainPanel extends JPanel {
 					TreePath tp = new TreePath(a);
 					try {
 						rightTreePathSup.expandPath(tp);
-					} catch (Exception e2) {
-						// TODO: handle exception
-					}
+					} catch (Exception e2) {}
 				}
-				
 				@Override
 				public void treeCollapsed(TreeExpansionEvent e) {
 					Table ext = (Table) e.getPath().getLastPathComponent();
@@ -107,9 +100,7 @@ public class MainPanel extends JPanel {
 					TreePath tp = new TreePath(a);
 					try {
 						rightTreePathSup.collapsePath(tp);
-					} catch (Exception e2) {
-						// TODO: handle exception
-					}
+					} catch (Exception e2) {}
 				}
 			});
 		}
@@ -123,7 +114,6 @@ public class MainPanel extends JPanel {
 			rightScrollPane.add(rightOutline);
 			rightScrollPane.setViewportView(rightOutline);
 //			rightOutline.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-//				
 //				@Override
 //				public void valueChanged(ListSelectionEvent e) {
 //					int row = rightOutline.getSelectedRow();
@@ -135,7 +125,6 @@ public class MainPanel extends JPanel {
 //			});
 			rightTreePathSup = rightOutlineModel.getTreePathSupport();
 			rightTreePathSup.addTreeExpansionListener(new TreeExpansionListener() {
-				
 				@Override
 				public void treeExpanded(TreeExpansionEvent e) {
 					Table ext = (Table) e.getPath().getLastPathComponent();
@@ -144,11 +133,8 @@ public class MainPanel extends JPanel {
 					TreePath tp = new TreePath(a);
 					try {
 						leftTreePathSup.expandPath(tp);
-					} catch (Exception e2) {
-						
-					}
+					} catch (Exception e2) {}
 				}
-				
 				@Override
 				public void treeCollapsed(TreeExpansionEvent e) {
 					Table ext = (Table) e.getPath().getLastPathComponent();
@@ -157,9 +143,7 @@ public class MainPanel extends JPanel {
 					TreePath tp = new TreePath(a);
 					try {
 						leftTreePathSup.collapsePath(tp);
-					} catch (Exception e2) {
-						// TODO: handle exception
-					}
+					} catch (Exception e2) {}
 				}
 			});
 		}

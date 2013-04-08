@@ -129,10 +129,8 @@ public class MainWindow extends JFrame{
 					try {
 						drawTree(openDialog.getOldFile(), openDialog.getNewFile());
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} catch (RecognitionException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -166,7 +164,7 @@ public class MainWindow extends JFrame{
 								Schema schema2 = HecateParser.parse(path + File.separator + list[i+1]);
 								Delta delta = new Delta();
 								trs.add(delta.minus(schema, schema2));
-								System.out.println(list[i] + "-" + list[i+1]);
+//								System.out.println(list[i] + "-" + list[i+1]);
 								if (i == 0) {
 									metrics.write("version-to-version\t\toldT\tnewT\toldA\tnewA\ttIns\ttDel\taIns\taDel\ttotAl\n");
 								}
@@ -185,10 +183,8 @@ public class MainWindow extends JFrame{
 								);
 
 							} catch (IOException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							} catch (RecognitionException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 						}
@@ -197,11 +193,9 @@ public class MainWindow extends JFrame{
 						try {
 							drawTree(new File(path + File.separator + list[0]), new File(path + File.separator + list[list.length-1]));
 						} catch (RecognitionException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
