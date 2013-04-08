@@ -6,6 +6,8 @@ import gr.uoi.cs.daintiness.hecate.sql.Table;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.antlr.v4.runtime.ANTLRFileStream;
 import org.antlr.v4.runtime.CharStream;
@@ -22,6 +24,16 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
  */
 public class HecateParser {
 	static Schema s;
+	
+	static class UnMach {
+		Table orT;
+		DDLParser.ForeignContext ctx;
+		
+		public UnMach(Table orT, DDLParser.ForeignContext ctx) {
+			this.orT = orT;
+			this.ctx = ctx;
+		}
+	}
 	
 	/**
 	 * 
@@ -58,12 +70,14 @@ public class HecateParser {
 		boolean foundAlterConst = false;
 		boolean foundLineConst = false;
 		String alteringTable = null;
+		List<UnMach> unMached = new ArrayList<HecateParser.UnMach>();
 		
 		public void enterStart (DDLParser.StartContext ctx) {
 			System.out.println("Starting");
 			s = new Schema();
 		}
 		public void exitStart (DDLParser.StartContext ctx) {
+			processUnmached();
 			System.out.println("\n\n\n" + s.print());
 		}
 		
@@ -140,6 +154,10 @@ public class HecateParser {
 					reTable = t;
 				} else {
 					reTable = s.getTables().get(reTableName);
+					if (reTable == null) {
+						unMached.add(new UnMach(orTable, ctx));
+						return;
+					}
 				}
 			} else if (foundAlterConst) {
 //				System.out.println(alteringTable + " " + ctx.getText());
@@ -151,6 +169,10 @@ public class HecateParser {
 			or = getNames(ctx.parNameList().getText(), orTable);
 			re = getNames(ctx.reference_definition().parNameList().getText(), reTable);
 			for (int i = 0; i < or.length; i++) {
+				if (or[i] == null || re[i] == null) {
+					// sql typo???
+					continue;
+				}
 //				System.out.println(orTable + "." + or[i] + "->" + reTable + "." + re[i] + "\n");
 				orTable.getfKey().addReference(or[i], re[i]);
 			}
@@ -162,6 +184,29 @@ public class HecateParser {
 			Attribute or = a;
 			Attribute[] re = getNames(ctx.reference_definition().parNameList().getText(), reTable);
 			orTable.getfKey().addReference(or, re[0]);
+		}
+		
+		private void processUnmached() {
+			for (UnMach item : unMached) {
+				DDLParser.ForeignContext ctx = item.ctx;
+				Table orTable = item.orT;
+				String reTableName = ctx.reference_definition().table_name().getText();
+				Table reTable = s.getTables().get(reTableName);
+				if (reTable == null) {
+					// still not found ... ignore
+					continue;
+				}
+				Attribute[] or = getNames(ctx.parNameList().getText(), orTable);
+				Attribute[] re = getNames(ctx.reference_definition().parNameList().getText(), reTable);
+				for (int i = 0; i < or.length; i++) {
+					if (or[i] == null || re[i] == null) {
+						// sql typo???
+						continue;
+					}
+//					System.out.println(orTable + "." + or[i] + "->" + reTable + "." + re[i] + "\n");
+					orTable.getfKey().addReference(or[i], re[i]);
+				}
+			}
 		}
 		
 		private Attribute[] getNames(String s, Table table) {
