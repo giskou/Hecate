@@ -35,7 +35,7 @@ public class Schema implements SqlItem{
 	
 	public String print() {
 		String buff = new String();
-		buff = "Shema: \n\n";
+		buff = "Schema: \n\n";
 		for (Map.Entry<String, Table> entry : this.tables.entrySet()) {
 			Table a = entry.getValue();
 			buff += "  " + a.print() + "\n";
