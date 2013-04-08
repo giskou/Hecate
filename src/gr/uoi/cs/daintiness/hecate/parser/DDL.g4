@@ -75,8 +75,8 @@ table_option
 
 column
     : col_name data_type data_option? create_option?
-      ( column_option | line_constraint | reference_definition )*
-      ( ON UPDATE ident )? 
+      ( column_option | line_constraint )*
+      ( ON UPDATE ident )?
     ;
 column_option : NOT? NULL | AUTO_INC | DEFAULT ( value | NULL ) ;
 
@@ -91,6 +91,7 @@ constraint
     | ( FULLTEXT | SPATIAL ) ( INDEX | KEY )? index_name? parNameList index_option*                       #fulltext
     | CONSTRAINT? constr_name? FOREIGN KEY index_name? parNameList reference_definition                   #foreign
     | CONSTRAINT constr_name CHECK consume_par                                                            #check
+    | reference_definition                                                                                #reference
     ;
 
 consume_par : LP ( ~(LP|RP) | consume_par )* RP ;

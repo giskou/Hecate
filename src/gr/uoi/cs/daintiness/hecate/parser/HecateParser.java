@@ -56,6 +56,7 @@ public class HecateParser {
 		private Attribute a;
 		boolean foundTableConst = false;
 		boolean foundAlterConst = false;
+		boolean foundLineConst = false;
 		String alteringTable = null;
 		
 		public void enterStart (DDLParser.StartContext ctx) {
@@ -69,11 +70,9 @@ public class HecateParser {
 		public void enterTable (DDLParser.TableContext ctx) {
 			String tableName = removeQuotes(ctx.table_name().getText());
 			t = new Table(tableName);
-			System.out.println("TABLE : " + tableName);
 		}
 		public void exitTable (DDLParser.TableContext ctx) {
 			s.addTable(t);
-			System.out.println();
 		}
 		
 		public void enterColumn (DDLParser.ColumnContext ctx) {
@@ -84,19 +83,14 @@ public class HecateParser {
 		}
 		
 		public void exitColumn (DDLParser.ColumnContext ctx) {
-			System.out.print(a.getName() + " ");
 			t.addAttribute(a);
 		}
 		
 		public void enterLine_constraint(DDLParser.Line_constraintContext ctx) {
-			if (ctx.getText().contains("PRIMARY")) {
-				t.addAttrToPrimeKey(a);
-			} else if (ctx.getText().contains("FOREIGN")){
-				System.out.print(" FOREIGN " + ctx.getText());
-			}
+			foundLineConst = true;
 		}
 		public void exitLine_constraint(DDLParser.Line_constraintContext ctx) {
-			System.out.print( "PRIMARY ");
+			foundLineConst = false;
 		}
 		
 		public void enterAlter_statement(DDLParser.Alter_statementContext ctx) {
@@ -131,24 +125,43 @@ public class HecateParser {
 					}
 				}
 			} else if (foundAlterConst) {
-				
-			}
+			} else if (foundLineConst){
+				t.addAttrToPrimeKey(a);
+			} else {}
 		}
 		
 		public void enterForeign (DDLParser.ForeignContext ctx) {
+			Table orTable = null, reTable = null;
+			Attribute[] or, re;
+			String reTableName = ctx.reference_definition().table_name().getText();
 			if (foundTableConst) {
-				System.out.print( "FOREIGN ");
-			} else {
-				System.out.println(alteringTable + " " + ctx.getText());
-				Table orTable = s.getTables().get(alteringTable);
-				Table reTable = s.getTables().get(ctx.reference_definition().table_name().getText());
-				Attribute[] or = getNames(ctx.parNameList().getText(), orTable);
-				Attribute[] re = getNames(ctx.reference_definition().parNameList().getText(), reTable);
-				for (int i = 0; i < or.length; i++) {
-					System.out.println(orTable + "." + or[i] + "->" + reTable + "." + re[i] + "\n");
-					orTable.getfKey().addReference(or[i], re[i]);
+				orTable = t;
+				if (reTableName.compareTo(orTable.getName()) == 0) {
+					reTable = t;
+				} else {
+					reTable = s.getTables().get(reTableName);
 				}
+			} else if (foundAlterConst) {
+//				System.out.println(alteringTable + " " + ctx.getText());
+				orTable = s.getTables().get(alteringTable);
+				reTable = s.getTables().get(reTableName);
+			} else {
+				// this is not supposed to happen
 			}
+			or = getNames(ctx.parNameList().getText(), orTable);
+			re = getNames(ctx.reference_definition().parNameList().getText(), reTable);
+			for (int i = 0; i < or.length; i++) {
+//				System.out.println(orTable + "." + or[i] + "->" + reTable + "." + re[i] + "\n");
+				orTable.getfKey().addReference(or[i], re[i]);
+			}
+		}
+		
+		public void enterReference (DDLParser.ReferenceContext ctx) {
+			Table orTable = t;
+			Table reTable = s.getTables().get(ctx.reference_definition().table_name().getText());
+			Attribute or = a;
+			Attribute[] re = getNames(ctx.reference_definition().parNameList().getText(), reTable);
+			orTable.getfKey().addReference(or, re[0]);
 		}
 		
 		private Attribute[] getNames(String s, Table table) {

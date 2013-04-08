@@ -178,6 +178,9 @@ public interface DDLListener extends ParseTreeListener {
 	void enterDatabase(DDLParser.DatabaseContext ctx);
 	void exitDatabase(DDLParser.DatabaseContext ctx);
 
+	void enterReference(DDLParser.ReferenceContext ctx);
+	void exitReference(DDLParser.ReferenceContext ctx);
+
 	void enterTriger(DDLParser.TrigerContext ctx);
 	void exitTriger(DDLParser.TrigerContext ctx);
 

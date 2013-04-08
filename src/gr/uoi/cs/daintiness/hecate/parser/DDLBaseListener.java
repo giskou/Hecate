@@ -181,6 +181,9 @@ public class DDLBaseListener implements DDLListener {
 	@Override public void enterDatabase(DDLParser.DatabaseContext ctx) { }
 	@Override public void exitDatabase(DDLParser.DatabaseContext ctx) { }
 
+	@Override public void enterReference(DDLParser.ReferenceContext ctx) { }
+	@Override public void exitReference(DDLParser.ReferenceContext ctx) { }
+
 	@Override public void enterTriger(DDLParser.TrigerContext ctx) { }
 	@Override public void exitTriger(DDLParser.TrigerContext ctx) { }
 

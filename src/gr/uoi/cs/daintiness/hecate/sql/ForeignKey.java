@@ -14,6 +14,17 @@ public class ForeignKey {
 		references.put(orig, ref);
 	}
 	
+	public boolean containsKey(Attribute attr){
+		if (references.containsKey(attr)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public Attribute getRef(Attribute attr) {
+		return references.get(attr);
+	}
+	
 	public String toString() {
 		String buff = new String();
 		buff = "Foreign Key: ";
@@ -28,5 +39,14 @@ public class ForeignKey {
 	
 	public ForeignKey getRefs() {
 		return references;
+	}
+
+	public boolean isEqual(ForeignKey fk) {
+		if (this.references.size() == fk.references.size()) {
+			// TODO check if keys are equal
+			return false;
+		} else {
+			return false;
+		}
 	}
 }

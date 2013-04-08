@@ -14,6 +14,7 @@ public class Table implements SqlItem{
 	private TreeMap<String, Attribute> attrs;
 	@XmlElement
 	private PrimaryKey pKey;
+	@XmlElement
 	private ForeignKey fKey;
 	private int mode;
 	
@@ -106,7 +107,12 @@ public class Table implements SqlItem{
 		buff = "Table: " + this.name + "\n";
 		for (Map.Entry<String, Attribute> entry : this.attrs.entrySet()) {
 			Attribute a = entry.getValue();
-			buff += "    " + a.print() + "\n";
+			buff += "    " + a.print();
+			if (fKey.containsKey(entry.getValue())) {
+				Attribute at = fKey.getRef(entry.getValue());
+				buff += " -> " + at.getTable().getName() + "." + at.getName();
+			}
+			buff += "\n";
 		}
 		return buff;
 	}
