@@ -37,7 +37,7 @@ public class ForeignKey {
 		return buff;
 	}
 	
-	public ForeignKey getRefs() {
+	public Map<Attribute, Attribute> getRefs() {
 		return references;
 	}
 
