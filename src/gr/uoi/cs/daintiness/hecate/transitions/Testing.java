@@ -4,6 +4,7 @@
 package gr.uoi.cs.daintiness.hecate.transitions;
 
 import gr.uoi.cs.daintiness.hecate.diff.Delta;
+import gr.uoi.cs.daintiness.hecate.diff.DiffResult;
 import gr.uoi.cs.daintiness.hecate.parser.HecateParser;
 import gr.uoi.cs.daintiness.hecate.sql.Schema;
 
@@ -22,16 +23,19 @@ import javax.xml.bind.Unmarshaller;
 public class Testing {
 
 	public static void main(String[] args) throws Exception{
+		DiffResult res;
+		String path = "/home/iskoulis/Projects/Evolution Datasets/CMS\'s/wikimedia/schemata/";
+		Schema schema1 = HecateParser.parse(path + "rev_004571.sql");
+		Schema schema2 = HecateParser.parse(path + "rev_008798.sql");
+		Schema schema3 = HecateParser.parse(path + "rev_019569.sql");
 		
-		Schema schema1 = HecateParser.parse("AppData/schemas/CMS's/wikimedia/schemata/schema_004571.sql");
-		Schema schema2 = HecateParser.parse("AppData/schemas/CMS's/wikimedia/schemata/schema_008798.sql");
-		Schema schema3 = HecateParser.parse("AppData/schemas/CMS's/wikimedia/schemata/schema_019569.sql");
-		
-		Delta delta = new Delta();
 		Transitions trs = new Transitions();
-		TransitionList tl1 = delta.minus(schema1, schema2); trs.add(tl1);
-		TransitionList tl2 = delta.minus(schema2, schema3); trs.add(tl2);
-		TransitionList tl3 = delta.minus(schema1, schema3); trs.add(tl3);
+		res = Delta.minus(schema1, schema2);
+		trs.add(res.tl);
+		res = Delta.minus(schema2, schema3);
+		trs.add(res.tl);
+		res = Delta.minus(schema1, schema3);
+		trs.add(res.tl);
 		test(trs);
 	}
 	

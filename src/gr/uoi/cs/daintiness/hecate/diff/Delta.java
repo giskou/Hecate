@@ -20,30 +20,12 @@ import java.util.Iterator;
  */
 public class Delta {
 
-	private int insertions, deletions, alterations;
-	private int tableIns, tableDel;
-	private int attrIns, attrDel;
-	private int alterKey, alterAttribute, alterTable;
-	private int numOfTables, numOfAttributes;
-	private int numOfNewTables, numOfNewAttributes;
-	private Insersion in;
-	private Deletion out;
-	private Update up;
-	private TransitionList tl;
+	private static Metrics met;
+	private static Insersion in;
+	private static Deletion out;
+	private static Update up;
+	private static TransitionList tl;
 		
-	/**
-	 * The default Constructor
-	 * Just initializes <code>insertions</code> and <code>deletions</code>
-	 */
-	public Delta(){
-		insertions = deletions = alterations = 0;
-		tableIns = tableDel = 0;
-		attrIns = attrDel = 0;
-		numOfTables = numOfAttributes = 0;
-		numOfNewTables = numOfNewAttributes = 0;
-		alterKey = alterAttribute = alterTable =0;
-	}
-	
 	/**
 	 * This function performs the main diff algorithm for
 	 * finding the differences between the schemas that are 
@@ -64,7 +46,8 @@ public class Delta {
 	 * @param B
 	 *   The modified version of the original schema
 	 */
-	public TransitionList minus(Schema A, Schema B) {
+	public static DiffResult minus(Schema A, Schema B) {
+		met = new Metrics();
 		tl = new TransitionList(A.toString(), B.toString());
 		String oldTableKey = null, newTableKey = null ;
 		String oldAttrKey = null, newAttrKey = null ;
@@ -73,20 +56,17 @@ public class Delta {
 		Iterator<String> newTableKeys = B.getTables().keySet().iterator() ;
 		Iterator<Table> newTableValues = B.getTables().values().iterator() ;
 		int[] sizeA = A.getSize(); int[] sizeB = B.getSize();
-		numOfTables = sizeA[0]; numOfAttributes = sizeA[1];
-		numOfNewTables = sizeB[0]; numOfNewAttributes = sizeB[1];
+		met.setOrigTables(sizeA[0]); met.setOrigAttrs(sizeA[1]);
+		met.setNewTables(sizeB[0]); met.setNewAttrs(sizeB[1]);
 		if (oldTableKeys.hasNext() && newTableKeys.hasNext()){
 			oldTableKey = oldTableKeys.next() ;
 			Table oldTable = (Table) oldTableValues.next() ;
 			newTableKey = newTableKeys.next() ;
 			Table newTable = (Table) newTableValues.next() ;
 			while(true) {
-				in = null;
-				out = null;
-				up = null;
+				in = null; out = null; up = null;
 				if (oldTableKey.compareTo(newTableKey) == 0) {            // ** Matched tables
-					oldTable.setMode(SqlItem.MACHED);
-					newTable.setMode(SqlItem.MACHED);
+					match(oldTable, newTable);
 					// check attributes
 					Iterator<String> oldAttributeKeys = oldTable.getAttrs().keySet().iterator();
 					Iterator<Attribute> oldAttributeValues = oldTable.getAttrs().values().iterator() ;
@@ -102,23 +82,12 @@ public class Delta {
 							if (oldAttrKey.compareTo(newAttrKey) == 0) {                   // possible attribute match
 								if (oldAttr.getType().compareTo(newAttr.getType()) == 0){  // check attribute type
 									if (oldAttr.isKey() == newAttr.isKey()) {              // ** Matched attributes
-										oldAttr.setMode(SqlItem.MACHED);
-										newAttr.setMode(SqlItem.MACHED);
+										match(oldAttr, newAttr);
 									} else {                                               // * attribute key changed
-										alterKey++;
-										update(newAttr, "KeyChange");
-										oldTable.setMode(SqlItem.UPDATED);
-										newTable.setMode(SqlItem.UPDATED);
-										oldAttr.setMode(SqlItem.UPDATED);
-										newAttr.setMode(SqlItem.UPDATED);
+										attrKeyChange(oldAttr, newAttr);
 									}
 								} else {                                                   // attribute type changed
-									alterAttribute++;
-									update(newAttr, "TypeChange");
-									oldTable.setMode(SqlItem.UPDATED);
-									newTable.setMode(SqlItem.UPDATED);
-									oldAttr.setMode(SqlItem.UPDATED);
-									newAttr.setMode(SqlItem.UPDATED);
+									attrTypeChange(oldAttr, newAttr);
 								}
 								// move both attributes
 								if (oldAttributeKeys.hasNext() && newAttributeKeys.hasNext()) {
@@ -131,41 +100,26 @@ public class Delta {
 									break ;
 								}
 							} else if (oldAttrKey.compareTo(newAttrKey) < 0) {           // ** Deleted attributes
-								attrDel++;
-								delete(oldAttr);
-								oldAttr.setMode(SqlItem.DELETED);
-								oldTable.setMode(SqlItem.UPDATED);
-								newTable.setMode(SqlItem.UPDATED);
+								attrDel(oldAttr, newTable);
+								met.deleteAttr();
 								// move old only attributes
 								if (oldAttributeKeys.hasNext()) {
-									oldAttrKey = oldAttributeKeys.next() ;
+									oldAttrKey = oldAttributeKeys.next();
 									oldAttr = oldAttributeValues.next();
 									continue;
 								} else {                  // no more old
-									attrIns++;
-									insert(newAttr);
-									newAttr.setMode(SqlItem.INSERTED);
-									oldTable.setMode(SqlItem.UPDATED);
-									newTable.setMode(SqlItem.UPDATED);
+									attrIns(oldTable, newAttr);
 									break ;
 								}
 							} else {                    // ** Inserted attributes
-								attrIns++;
-								insert(newAttr);
-								newAttr.setMode(SqlItem.INSERTED);
-								oldTable.setMode(SqlItem.UPDATED);
-								newTable.setMode(SqlItem.UPDATED);
+								attrIns(oldTable, newAttr);
 								// move new only
 								if (newAttributeKeys.hasNext()) {
 									newAttrKey = newAttributeKeys.next() ;
 									newAttr = newAttributeValues.next();
 									continue;
 								} else {                  // no more new
-									attrDel++;
-									delete(oldAttr);
-									oldAttr.setMode(SqlItem.DELETED);
-									oldTable.setMode(SqlItem.UPDATED);
-									newTable.setMode(SqlItem.UPDATED);
+									attrDel(oldAttr, newTable);
 									break ;
 								}
 							}
@@ -175,20 +129,12 @@ public class Delta {
 					while (oldAttributeKeys.hasNext()) {       // delete remaining old (not found in new)
 						oldAttrKey = (String) oldAttributeKeys.next();
 						Attribute oldAttr = oldAttributeValues.next();
-						delete(oldAttr);
-						attrDel++;
-						oldAttr.setMode(SqlItem.DELETED);
-						oldTable.setMode(SqlItem.UPDATED);
-						newTable.setMode(SqlItem.UPDATED);
+						attrDel(oldAttr, newTable);
 					}
 					while (newAttributeKeys.hasNext()) {        // insert remaining new (not found in old)
 						newAttrKey = (String) newAttributeKeys.next();
 						Attribute newAttr = newAttributeValues.next();
-						insert(newAttr);
-						attrIns++;
-						newAttr.setMode(SqlItem.INSERTED);
-						oldTable.setMode(SqlItem.UPDATED);
-						newTable.setMode(SqlItem.UPDATED);
+						attrIns(oldTable, newAttr);
 					}
 					//  ** Done with attributes **
 					if (oldTableKeys.hasNext() && newTableKeys.hasNext()) {   // move both tables
@@ -201,30 +147,26 @@ public class Delta {
 						break ;
 					}
 				} else if (oldTableKey.compareTo(newTableKey) < 0) {  // ** Table Deleted
-					delete(oldTable); tableDel++;
-					oldTable.setMode(SqlItem.DELETED);
+					delete(oldTable); met.deleteTable();
 					markAll(oldTable, SqlItem.DELETED);               // mark attributes deleted
 					if (oldTableKeys.hasNext()) {                     // move old only
 						oldTableKey = oldTableKeys.next() ;
 						oldTable = (Table) oldTableValues.next() ;
 						continue;
 					} else {
-						insert(newTable); tableIns++;
-						newTable.setMode(SqlItem.INSERTED);
+						insert(newTable); met.insetTable();
 						markAll(newTable, SqlItem.INSERTED);
 						break;
 					}
 				} else {                                             // ** Table Inserted
-					insert(newTable); tableIns++;
-					newTable.setMode(SqlItem.INSERTED);
+					insert(newTable); met.insetTable();
 					markAll(newTable, SqlItem.INSERTED);             // mark attributes inserted
 					if (newTableKeys.hasNext()) {                    // move new only
 						newTableKey = newTableKeys.next() ;
 						newTable = (Table) newTableValues.next() ;
 						continue;
 					} else {
-						delete(oldTable); tableDel++;
-						oldTable.setMode(SqlItem.DELETED);
+						delete(oldTable); met.deleteTable();
 						markAll(oldTable, SqlItem.DELETED);
 						break ;
 					}
@@ -235,32 +177,77 @@ public class Delta {
 		while (oldTableKeys.hasNext()) {
 			oldTableKey = (String) oldTableKeys.next();
 			Table oldTable = (Table) oldTableValues.next();
-			delete(oldTable); tableDel++;
-			oldTable.setMode(SqlItem.DELETED);
+			delete(oldTable); met.deleteTable();
 			markAll(oldTable, SqlItem.DELETED);     // mark attributes deleted
 		}
 		while (newTableKeys.hasNext()) {
 			newTableKey = (String) newTableKeys.next();
 			Table newTable = (Table) newTableValues.next();
-			insert(newTable); tableIns++;
-			newTable.setMode(SqlItem.INSERTED);
+			insert(newTable); met.insetTable();
 			markAll(newTable, SqlItem.INSERTED);     // mark attributes inserted
 		}
-		return tl;
+		try {
+			met.sanityCheck();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		DiffResult res = new DiffResult(tl, met);
+		return res;
 	}
 
-	private void markAll(Table t, int mode) {
+	private static void attrIns(Table oldTable, Attribute newAttr) {
+		met.insertAttr();
+		insert(newAttr);
+		newAttr.setMode(SqlItem.INSERTED);
+		oldTable.setMode(SqlItem.UPDATED);
+		newAttr.getTable().setMode(SqlItem.UPDATED);
+	}
+
+	private static void attrDel(Attribute oldAttr, Table newTable) {
+		met.deleteAttr();
+		delete(oldAttr);
+		oldAttr.setMode(SqlItem.DELETED);
+		oldAttr.getTable().setMode(SqlItem.UPDATED);
+		newTable.setMode(SqlItem.UPDATED);
+	}
+
+	private static void attrTypeChange(Attribute oldAttr, Attribute newAttr) {
+		met.alterAttr();
+		update(newAttr, "TypeChange");
+		oldAttr.getTable().setMode(SqlItem.UPDATED);
+		newAttr.getTable().setMode(SqlItem.UPDATED);
+		oldAttr.setMode(SqlItem.UPDATED);
+		newAttr.setMode(SqlItem.UPDATED);
+	}
+
+	private static void attrKeyChange(Attribute oldAttr, Attribute newAttr) {
+		met.alterKey();
+		update(newAttr, "KeyChange");
+		oldAttr.getTable().setMode(SqlItem.UPDATED);
+		newAttr.getTable().setMode(SqlItem.UPDATED);
+		oldAttr.setMode(SqlItem.UPDATED);
+		newAttr.setMode(SqlItem.UPDATED);
+	}
+
+	private static void match(SqlItem oldI, SqlItem newI) {
+		oldI.setMode(SqlItem.MACHED);
+		newI.setMode(SqlItem.MACHED);
+	}
+
+	private static void markAll(Table t, int mode) {
+		t.setMode(mode);
 		for (Iterator<Attribute> i = t.getAttrs().values().iterator(); i.hasNext(); ) {
 			i.next().setMode(mode);
 			switch(mode){
-				case SqlItem.INSERTED: attrIns++; break;
-				case SqlItem.DELETED: attrDel++; break;
+				case SqlItem.INSERTED: met.insertAttr(); break;
+				case SqlItem.DELETED: met.deleteAttr(); break;
 				default:;
 			}
 		}
 	}
 	
-	private void insert(SqlItem item) {
+	private static void insert(SqlItem item) {
 		if (item.getClass() == Attribute.class) {
 			if (in == null) {
 				in = new Insersion();
@@ -278,7 +265,7 @@ public class Delta {
 		}
 	}
 	
-	private void delete(SqlItem item) {
+	private static void delete(SqlItem item) {
 		if (item.getClass() == Attribute.class) {
 			if (out == null) {
 				out = new Deletion();
@@ -296,7 +283,7 @@ public class Delta {
 		}
 	}
 	
-	private void update(Attribute item, String type) {
+	private static void update(Attribute item, String type) {
 		if (up == null) {
 			up = new Update();
 			tl.add(up);
@@ -310,37 +297,8 @@ public class Delta {
 	
 	/**
 	 * Returns the metrics of the diff performed with {@link minus}
-	 * @return An integer array with insertions at 0
-	 * and deletions at 1.
 	 */
-	public int[] getTotalMetrics() {
-		this.insertions = this.tableIns + this.attrIns;
-		this.deletions = this.tableDel + this.attrDel;
-		this.alterations = this.alterKey + this.alterAttribute ;
-		int i[] = {this.insertions, this.deletions, this.alterations};
-		return i;
-	}
-	
-	public int[] getTableMetrics() {
-		this.alterTable = this.alterAttribute + this.alterKey +
-		                  this.attrIns;
-		int i[] = {this.tableIns, this.tableDel, this.alterTable};
-		return i;
-	}
-	
-	public int[] getAttributeMetrics() {
-		int i[] = {this.attrIns, this.attrDel,
-				   this.alterAttribute + this.alterKey};
-		return i;
-	}
-	
-	public int[] getOldSizes() {
-		int i[] = {this.numOfTables, this.numOfAttributes};
-		return i;
-	}
-	
-	public int[] getNewSizes() {
-		int i[] = {this.numOfNewTables, this.numOfNewAttributes};
-		return i;
+	public static Metrics getMetrics() {
+		return met;
 	}
 }

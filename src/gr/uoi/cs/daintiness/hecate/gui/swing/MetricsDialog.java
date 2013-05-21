@@ -1,6 +1,6 @@
 package gr.uoi.cs.daintiness.hecate.gui.swing;
 
-import gr.uoi.cs.daintiness.hecate.diff.Delta;
+import gr.uoi.cs.daintiness.hecate.diff.Metrics;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -23,7 +23,7 @@ public class MetricsDialog extends JDialog {
 	 * Paramerized Constructor
 	 * @param d a Delta object that has run {@link minus} at least once
 	 */
-	public MetricsDialog(Delta d) {
+	public MetricsDialog(Metrics d) {
 		initialize();
 		
 		mainText = new JTextPane();

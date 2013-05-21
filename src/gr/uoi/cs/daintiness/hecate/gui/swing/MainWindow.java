@@ -2,6 +2,7 @@ package gr.uoi.cs.daintiness.hecate.gui.swing;
 
 import gr.uoi.cs.daintiness.hecate.Hecate;
 import gr.uoi.cs.daintiness.hecate.diff.Delta;
+import gr.uoi.cs.daintiness.hecate.diff.DiffResult;
 import gr.uoi.cs.daintiness.hecate.parser.HecateParser;
 import gr.uoi.cs.daintiness.hecate.sql.Schema;
 import gr.uoi.cs.daintiness.hecate.transitions.Deletion;
@@ -64,7 +65,7 @@ public class MainWindow extends JFrame{
 	private AboutDialog aboutDialog;
 	private Image hecateIcon;
 	
-	private Delta delta;
+	private DiffResult res;
 	
 	/**
 	 * Default Constructor
@@ -151,37 +152,36 @@ public class MainWindow extends JFrame{
 				if (openFolderDialog.getStatus() != 0) {
 					String path = openFolderDialog.getFolder();
 					File dir = new File(path);
-					
 					String[] list = dir.list();
 					java.util.Arrays.sort(list);
-					
 					try {
-						BufferedWriter metrics = new BufferedWriter(new FileWriter("metrics"));
-						
+						BufferedWriter metrics = new BufferedWriter(new FileWriter("metrics.csv"));
 						for (int i = 0; i < list.length-1; i++)  {
 							try {
 								Schema schema = HecateParser.parse(path + File.separator + list[i]);
 								Schema schema2 = HecateParser.parse(path + File.separator + list[i+1]);
-								Delta delta = new Delta();
-								trs.add(delta.minus(schema, schema2));
+								res = Delta.minus(schema, schema2);
+								trs.add(res.tl);
 //								System.out.println(list[i] + "-" + list[i+1]);
 								if (i == 0) {
-									metrics.write("version-to-version\t\toldT\tnewT\toldA\tnewA\ttIns\ttDel\taIns\taDel\ttotAl\n");
+									metrics.write("oldVersion,newVersion,#oldTables,#newTables,#oldAttrs"
+											+ ",newAttr,tableIns,tableDel,attrIns,attrDel"
+											+ ",attrTypeAlt,keyAlt,totalAlt\n");
 								}
 								metrics.write(
-									list[i] + "-" + list[i+1] + "\t" +
-									delta.getOldSizes()[0] + "\t" +
-									delta.getNewSizes()[0] + "\t" +
-									delta.getOldSizes()[1] + "\t" +
-									delta.getNewSizes()[1] + "\t" +
-									delta.getTableMetrics()[0] + "\t" +
-									delta.getTableMetrics()[1] + "\t" +
-									delta.getAttributeMetrics()[0] + "\t" +
-									delta.getAttributeMetrics()[1] + "\t" +
-									delta.getTotalMetrics()[2] +
-									"\n"
+									list[i] + "," + list[i+1] + "," +
+									res.met.getOldSizes()[0] + "," +
+									res.met.getNewSizes()[0] + "," +
+									res.met.getOldSizes()[1] + "," +
+									res.met.getNewSizes()[1] + "," +
+									res.met.getTableMetrics()[0] + "," +
+									res.met.getTableMetrics()[1] + "," +
+									res.met.getAttributeMetrics()[0] + "," +
+									res.met.getAttributeMetrics()[1] + "," +
+									res.met.getAttributeMetrics()[2] + "," +
+									res.met.getAttributeMetrics()[3] + "," +
+									res.met.getTotalMetrics()[2] + "\n"
 								);
-
 							} catch (IOException e) {
 								e.printStackTrace();
 							} catch (RecognitionException e) {
@@ -224,8 +224,10 @@ public class MainWindow extends JFrame{
 		viewMetrics.setToolTipText("View diff Metrics");
 		viewMetrics.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				metricsDialog = new MetricsDialog(delta);
-				metricsDialog.setVisible(true);
+				if (res != null) {
+					metricsDialog = new MetricsDialog(res.met);
+					metricsDialog.setVisible(true);
+				}
 			}
 		});
 		view.add(viewMetrics);
@@ -281,8 +283,7 @@ public class MainWindow extends JFrame{
 		mainPanel.drawSchema(newSchema, "new");
 		draw();
 		
-		delta = new Delta();
-		delta.minus(oldSchema, newSchema);
+		res = Delta.minus(oldSchema, newSchema);
 	}
 
 	private void marshal(Transitions trs) {
