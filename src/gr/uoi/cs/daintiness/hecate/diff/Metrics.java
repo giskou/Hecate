@@ -10,6 +10,8 @@ package gr.uoi.cs.daintiness.hecate.diff;
  */
 public class Metrics {
 
+	private String oldVersion;
+	private String newVersion;
 	private int insertions, deletions, alterations;
 	private int tableIns, tableDel, tableAlt;
 	private int attrIns, attrDel, attrAlt;
@@ -19,7 +21,9 @@ public class Metrics {
 	/**
 	 * 
 	 */
-	public Metrics() {
+	public Metrics(String oldVersion, String newVersion) {
+		this.oldVersion = oldVersion;
+		this.newVersion = newVersion;
 		reset();
 	}
 
@@ -95,6 +99,11 @@ public class Metrics {
 	public int[] getNewSizes() {
 		int i[] = {this.numOfNewTables, this.numOfNewAttributes};
 		return i;
+	}
+
+	public String[] getVersionNames() {
+		String[] ret = {oldVersion, newVersion};
+		return ret;
 	}
 
 	public void sanityCheck() throws Exception {

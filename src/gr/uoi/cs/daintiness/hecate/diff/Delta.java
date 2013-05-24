@@ -47,7 +47,7 @@ public class Delta {
 	 *   The modified version of the original schema
 	 */
 	public static DiffResult minus(Schema A, Schema B) {
-		met = new Metrics();
+		met = new Metrics(A.getName(), B.getName());
 		tl = new TransitionList(A.toString(), B.toString());
 		String oldTableKey = null, newTableKey = null ;
 		String oldAttrKey = null, newAttrKey = null ;
