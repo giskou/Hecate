@@ -3,13 +3,10 @@ package gr.uoi.cs.daintiness.hecate.gui.swing;
 import gr.uoi.cs.daintiness.hecate.Hecate;
 import gr.uoi.cs.daintiness.hecate.diff.Delta;
 import gr.uoi.cs.daintiness.hecate.diff.DiffResult;
+import gr.uoi.cs.daintiness.hecate.io.Export;
 import gr.uoi.cs.daintiness.hecate.parser.HecateParser;
 import gr.uoi.cs.daintiness.hecate.sql.Schema;
-import gr.uoi.cs.daintiness.hecate.transitions.Deletion;
-import gr.uoi.cs.daintiness.hecate.transitions.Insersion;
-import gr.uoi.cs.daintiness.hecate.transitions.TransitionList;
 import gr.uoi.cs.daintiness.hecate.transitions.Transitions;
-import gr.uoi.cs.daintiness.hecate.transitions.Update;
 
 import java.awt.Dimension;
 import java.awt.Image;
@@ -17,10 +14,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.ImageIcon;
@@ -30,8 +24,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
 
 import org.antlr.v4.runtime.RecognitionException;
 
@@ -155,47 +147,17 @@ public class MainWindow extends JFrame{
 					String[] list = dir.list();
 					java.util.Arrays.sort(list);
 					try {
-						BufferedWriter metrics = new BufferedWriter(new FileWriter("metrics.csv"));
+						Export.initMetrics(path);
 						for (int i = 0; i < list.length-1; i++)  {
-							try {
-								Schema schema = HecateParser.parse(path + File.separator + list[i]);
-								Schema schema2 = HecateParser.parse(path + File.separator + list[i+1]);
-								res = Delta.minus(schema, schema2);
-								trs.add(res.tl);
-//								System.out.println(list[i] + "-" + list[i+1]);
-								if (i == 0) {
-									metrics.write("oldVersion,newVersion,#oldTables,#newTables,#oldAttrs"
-											+ ",newAttr,tableIns,tableDel,attrIns,attrDel"
-											+ ",attrTypeAlt,keyAlt,totalAlt\n");
-								}
-								metrics.write(
-									list[i] + "," + list[i+1] + "," +
-									res.met.getOldSizes()[0] + "," +
-									res.met.getNewSizes()[0] + "," +
-									res.met.getOldSizes()[1] + "," +
-									res.met.getNewSizes()[1] + "," +
-									res.met.getTableMetrics()[0] + "," +
-									res.met.getTableMetrics()[1] + "," +
-									res.met.getAttributeMetrics()[0] + "," +
-									res.met.getAttributeMetrics()[1] + "," +
-									res.met.getAttributeMetrics()[2] + "," +
-									res.met.getAttributeMetrics()[3] + "," +
-									res.met.getTotalMetrics()[2] + "\n"
-								);
-							} catch (IOException e) {
-								e.printStackTrace();
-							} catch (RecognitionException e) {
-								e.printStackTrace();
-							}
+							Schema schema = HecateParser.parse(path + File.separator + list[i]);
+							Schema schema2 = HecateParser.parse(path + File.separator + list[i+1]);
+							res = Delta.minus(schema, schema2);
+							trs.add(res.tl);
+							Export.metrics(res, path);
 						}
-						marshal(trs);
-						metrics.close();
-						try {
-							drawTree(new File(path + File.separator + list[0]), new File(path + File.separator + list[list.length-1]));
-						} catch (RecognitionException e) {
-							e.printStackTrace();
-						}
-					} catch (IOException e) {
+						Export.xml(trs, path);
+						drawTree(new File(path + File.separator + list[0]), new File(path + File.separator + list[list.length-1]));
+					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				}
@@ -284,16 +246,5 @@ public class MainWindow extends JFrame{
 		draw();
 		
 		res = Delta.minus(oldSchema, newSchema);
-	}
-
-	private void marshal(Transitions trs) {
-		try {
-			JAXBContext jaxbContext = JAXBContext.newInstance(Update.class, Deletion.class, Insersion.class, TransitionList.class, Transitions.class);
-			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			jaxbMarshaller.marshal(trs, new FileOutputStream("transitions.xml"));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 }
