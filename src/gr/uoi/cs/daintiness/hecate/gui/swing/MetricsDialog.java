@@ -58,7 +58,7 @@ public class MetricsDialog extends JDialog {
 		oldVersionAttributesLine.add(lblOldAttributes);
 		
 		JPanel newVersionPane = new JPanel();
-		String newVersionStr = d.getVersionNames()[0] + "  ";
+		String newVersionStr = d.getVersionNames()[1] + "  ";
 		JPanel newVersionTablesLine = new JPanel();
 		JLabel lblNewTables = new JLabel(Integer.toString(d.getNewSizes()[0]));
 		JPanel newVersionAttributesLine = new JPanel();
