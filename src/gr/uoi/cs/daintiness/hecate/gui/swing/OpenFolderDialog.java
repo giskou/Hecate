@@ -7,13 +7,14 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 /**
  * A dialog for opening a folder for recursive diff-ing
@@ -61,38 +62,38 @@ public class OpenFolderDialog extends JDialog{
 		});
 		
 		GroupLayout thisLayout = new GroupLayout((JComponent)getContentPane());
+		thisLayout.setHorizontalGroup(
+			thisLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(thisLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(folderLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(12)
+					.addGroup(thisLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(thisLayout.createSequentialGroup()
+							.addComponent(folderField, 0, 316, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(openFolder, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+						.addGroup(Alignment.TRAILING, thisLayout.createSequentialGroup()
+							.addComponent(ok, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
+							.addGap(4)
+							.addComponent(cancel)))
+					.addContainerGap())
+		);
+		thisLayout.setVerticalGroup(
+			thisLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(thisLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(thisLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(openFolder, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(folderLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(folderField, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+					.addGroup(thisLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(cancel, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(ok, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
+		);
 		getContentPane().setLayout(thisLayout);
-		thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
-			.addContainerGap()
-			.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-			    .addComponent(openFolder, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-			    .addComponent(folderLabel, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-			    .addComponent(folderField, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-			.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-			.addGap(0, 67, Short.MAX_VALUE)
-			.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-			    .addComponent(cancel, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-			    .addComponent(ok, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-			.addContainerGap());
-		thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
-			.addContainerGap()
-			.addGroup(thisLayout.createParallelGroup()
-			    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-			        .addComponent(folderLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-			        .addGap(12)))
-			.addGroup(thisLayout.createParallelGroup()
-			    .addGroup(thisLayout.createSequentialGroup()
-			        .addGroup(thisLayout.createParallelGroup()
-			            .addComponent(folderField, GroupLayout.Alignment.LEADING, 0, 315, Short.MAX_VALUE))
-			        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-			        .addGroup(thisLayout.createParallelGroup()
-			            .addComponent(openFolder, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)))
-			    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-			        .addGap(0, 199, Short.MAX_VALUE)
-			        .addComponent(ok, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
-			        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED, 1, GroupLayout.PREFERRED_SIZE)
-			        .addComponent(cancel, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)))
-			.addContainerGap());
 		
 		draw();
 	}
