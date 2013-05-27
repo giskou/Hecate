@@ -73,12 +73,12 @@ public class HecateParser {
 		List<UnMach> unMached = new ArrayList<HecateParser.UnMach>();
 		
 		public void enterStart (DDLParser.StartContext ctx) {
-			System.out.println("Starting");
+//			System.out.println("Starting");
 			s = new Schema();
 		}
 		public void exitStart (DDLParser.StartContext ctx) {
 			processUnmached();
-			System.out.println("\n\n\n" + s.print());
+//			System.out.println("\n\n\n" + s.print());
 		}
 		
 		public void enterTable (DDLParser.TableContext ctx) {
