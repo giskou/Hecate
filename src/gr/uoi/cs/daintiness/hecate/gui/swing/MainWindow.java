@@ -148,7 +148,10 @@ public class MainWindow extends JFrame{
 					java.util.Arrays.sort(list);
 					try {
 						Export.initMetrics(path);
-						for (int i = 0; i < list.length-1; i++)  {
+						if (res != null) {
+							res.met.resetVersionNum();
+						}
+						for (int i = 0; i < list.length-1; i++) {
 							Schema schema = HecateParser.parse(path + File.separator + list[i]);
 							Schema schema2 = HecateParser.parse(path + File.separator + list[i+1]);
 							res = Delta.minus(schema, schema2);

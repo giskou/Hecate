@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+import java.awt.Dimension;
 
 /**
  * A dialog with miscellaneous metics
@@ -25,10 +26,17 @@ public class MetricsDialog extends JDialog {
 	 * @param d a Delta object that has run {@link minus} at least once
 	 */
 	public MetricsDialog(Metrics d) {
+		setMinimumSize(new Dimension(350, 250));
 		setTitle("Metrics");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MetricsDialog.class.getResource("/gr/uoi/cs/daintiness/hecate/art/icon.png")));
 		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		
+		if (d.getNumVersions() > 2) {
+			JPanel numVersions = new JPanel();
+			getContentPane().add(numVersions);
+			numVersions.setLayout(new BoxLayout(numVersions, BoxLayout.X_AXIS));
+			numVersions.add(new JLabel("Total Versions: " + d.getNumVersions()));
+		}
 		
 		// *** VERSIONS ***
 		JPanel versionContainer = new JPanel();
@@ -42,6 +50,7 @@ public class MetricsDialog extends JDialog {
 		JLabel lblOldTables = new JLabel(Integer.toString(d.getOldSizes()[0]));
 		JPanel oldVersionAttributesLine = new JPanel();
 		JLabel lblOldAttributes = new JLabel(Integer.toString(d.getOldSizes()[1]));
+		JPanel oldVersionApTLine = new JPanel();
 		
 		oldVersionPane.setBorder(new TitledBorder(null, oldVersionStr, TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		versionContainer.add(oldVersionPane);
@@ -56,6 +65,11 @@ public class MetricsDialog extends JDialog {
 		oldVersionAttributesLine.add(new JLabel("Attributes"));
 		oldVersionAttributesLine.add(Box.createHorizontalGlue());
 		oldVersionAttributesLine.add(lblOldAttributes);
+		oldVersionPane.add(oldVersionApTLine);
+		oldVersionApTLine.setLayout(new BoxLayout(oldVersionApTLine, BoxLayout.X_AXIS));
+		oldVersionApTLine.add(new JLabel("Attr/Table"));
+		oldVersionApTLine.add(Box.createHorizontalGlue());
+		oldVersionApTLine.add(new JLabel(Integer.toString(d.getOldSizes()[1]/d.getOldSizes()[0])));
 		
 		JPanel newVersionPane = new JPanel();
 		String newVersionStr = d.getVersionNames()[1] + "  ";
@@ -63,6 +77,7 @@ public class MetricsDialog extends JDialog {
 		JLabel lblNewTables = new JLabel(Integer.toString(d.getNewSizes()[0]));
 		JPanel newVersionAttributesLine = new JPanel();
 		JLabel lblNewAttributes= new JLabel(Integer.toString(d.getNewSizes()[1]));
+		JPanel newVersionApTLine = new JPanel();
 		
 		newVersionPane.setBorder(new TitledBorder(null, newVersionStr, TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		versionContainer.add(newVersionPane);
@@ -77,6 +92,11 @@ public class MetricsDialog extends JDialog {
 		newVersionAttributesLine.add(new JLabel("Attributes"));
 		newVersionAttributesLine.add(Box.createHorizontalGlue());
 		newVersionAttributesLine.add(lblNewAttributes);
+		newVersionPane.add(newVersionApTLine);
+		newVersionApTLine.setLayout(new BoxLayout(newVersionApTLine, BoxLayout.X_AXIS));
+		newVersionApTLine.add(new JLabel("Attr/Table"));
+		newVersionApTLine.add(Box.createHorizontalGlue());
+		newVersionApTLine.add(new JLabel(Integer.toString(d.getNewSizes()[1]/d.getNewSizes()[0])));
 		
 		
 		// *** TRANSITIONS ***
@@ -134,6 +154,6 @@ public class MetricsDialog extends JDialog {
 //		exportContainer.setLayout(new BoxLayout(exportContainer, BoxLayout.X_AXIS));
 //		exportContainer.add(btnExport);
 		
-		pack();
+	//	pack();
 	}
 }
