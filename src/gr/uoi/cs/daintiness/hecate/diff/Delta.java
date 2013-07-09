@@ -240,8 +240,8 @@ public class Delta {
 		for (Iterator<Attribute> i = t.getAttrs().values().iterator(); i.hasNext(); ) {
 			i.next().setMode(mode);
 			switch(mode){
-				case SqlItem.INSERTED: met.insertAttr(); break;
-				case SqlItem.DELETED: met.deleteAttr(); break;
+				case SqlItem.INSERTED: met.insertTabAttr(); break;
+				case SqlItem.DELETED: met.deleteTabAttr(); break;
 				default:;
 			}
 		}

@@ -17,6 +17,9 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
 public class Export {
+	
+	static private int id;
+	
 	public static void xml(Transitions trs, String path) {
 		try {
 			JAXBContext jaxbContext = JAXBContext.newInstance(Update.class, Deletion.class, Insersion.class, TransitionList.class, Transitions.class);
@@ -33,6 +36,8 @@ public class Export {
 		String filePath = getDir(path) + File.separator + "metrics.csv";
 		BufferedWriter metrics = new BufferedWriter(new FileWriter(filePath, true));
 		metrics.write(
+				(id++) + "," +
+				"time" + "," + // TODO fix time stuff
 				res.met.getVersionNames()[0] + "," +
 				res.met.getVersionNames()[1] + "," +
 				res.met.getOldSizes()[0] + "," +
@@ -45,17 +50,20 @@ public class Export {
 				res.met.getAttributeMetrics()[1] + "," +
 				res.met.getAttributeMetrics()[2] + "," +
 				res.met.getAttributeMetrics()[3] + "," +
-				res.met.getTotalMetrics()[2] + "\n"
+				res.met.getTotalMetrics()[2] + "," +
+				res.met.getAttributeMetrics()[4] + "," +
+				res.met.getAttributeMetrics()[5] + "\n"
 			);
 		metrics.close();
 	}
 	
 	public static void initMetrics(String path) throws IOException {
+		id = 1;
 		String filePath = getDir(path) + File.separator + "metrics.csv";
 		BufferedWriter metrics = new BufferedWriter(new FileWriter(filePath));
-		metrics.write("# oldVersion,newVersion,#oldTables,#newTables,#oldAttrs"
+		metrics.write("# transID,time,oldVersion,newVersion,#oldTables,#newTables,#oldAttrs"
 				+ ",newAttr,tableIns,tableDel,attrIns,attrDel"
-				+ ",attrTypeAlt,keyAlt,totalAlt\n");
+				+ ",attrTypeAlt,keyAlt,totalAlt,attrTabIns,attrTabDel\n");
 		metrics.close();
 	}
 	

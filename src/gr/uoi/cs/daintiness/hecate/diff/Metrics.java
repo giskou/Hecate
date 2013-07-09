@@ -15,6 +15,7 @@ public class Metrics {
 	private int insertions, deletions, alterations;
 	private int tableIns, tableDel, tableAlt;
 	private int attrIns, attrDel, attrAlt;
+	private int attrTabIns, attrTabDel;
 	private int keyAlt;
 	private int numOfTables, numOfAttributes;
 	private int numOfNewTables, numOfNewAttributes;
@@ -44,12 +45,18 @@ public class Metrics {
 	protected void insertAttr () {
 		attrIns++; insertions++;
 	}
+	protected void insertTabAttr () {
+		attrTabIns++; insertions++;
+	}
 	protected void insetTable() {
 		tableIns++; insertions++;
 	}
 
 	protected void deleteAttr() {
 		attrDel++; deletions++;
+	}
+	protected void deleteTabAttr() {
+		attrTabDel++; deletions++;
 	}
 	protected void deleteTable() {
 		tableDel++; deletions++;
@@ -93,7 +100,7 @@ public class Metrics {
 	}
 
 	public int[] getAttributeMetrics() {
-		int i[] = {this.attrIns, this.attrDel, this.attrAlt ,this.keyAlt};
+		int i[] = {this.attrIns, this.attrDel, this.attrAlt ,this.keyAlt, this.attrTabIns, this.attrTabDel};
 		return i;
 	}
 
@@ -117,7 +124,7 @@ public class Metrics {
 	}
 
 	public void sanityCheck() throws Exception {
-		if(insertions != tableIns + attrIns) throw new Exception("BIV!!");
-		if(deletions != tableDel + attrDel) throw new Exception("BIV!!");
+		if(insertions != tableIns + attrIns + attrTabIns) throw new Exception("BIV!!");
+		if(deletions != tableDel + attrDel + attrTabDel) throw new Exception("BIV!!");
 	}
 }
