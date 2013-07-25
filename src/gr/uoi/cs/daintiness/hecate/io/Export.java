@@ -35,23 +35,25 @@ public class Export {
 	public static void metrics(DiffResult res, String path) throws IOException {
 		String filePath = getDir(path) + File.separator + "metrics.csv";
 		BufferedWriter metrics = new BufferedWriter(new FileWriter(filePath, true));
+		String name = res.met.getVersionNames()[1];
+		String time = name.substring(0, name.length()-4);
 		metrics.write(
-				(id++) + "," +
-				"time" + "," + // TODO fix time stuff
-				res.met.getVersionNames()[0] + "," +
-				res.met.getVersionNames()[1] + "," +
-				res.met.getOldSizes()[0] + "," +
-				res.met.getNewSizes()[0] + "," +
-				res.met.getOldSizes()[1] + "," +
-				res.met.getNewSizes()[1] + "," +
-				res.met.getTableMetrics()[0] + "," +
-				res.met.getTableMetrics()[1] + "," +
-				res.met.getAttributeMetrics()[0] + "," +
-				res.met.getAttributeMetrics()[1] + "," +
-				res.met.getAttributeMetrics()[2] + "," +
-				res.met.getAttributeMetrics()[3] + "," +
-				res.met.getTotalMetrics()[2] + "," +
-				res.met.getAttributeMetrics()[4] + "," +
+				(id++) + "\t" +
+				time + "\t" +
+				res.met.getVersionNames()[0] + "\t" +
+				res.met.getVersionNames()[1] + "\t" +
+				res.met.getOldSizes()[0] + "\t" +
+				res.met.getNewSizes()[0] + "\t" +
+				res.met.getOldSizes()[1] + "\t" +
+				res.met.getNewSizes()[1] + "\t" +
+				res.met.getTableMetrics()[0] + "\t" +
+				res.met.getTableMetrics()[1] + "\t" +
+				res.met.getAttributeMetrics()[0] + "\t" +
+				res.met.getAttributeMetrics()[1] + "\t" +
+				res.met.getAttributeMetrics()[2] + "\t" +
+				res.met.getAttributeMetrics()[3] + "\t" +
+				res.met.getTotalMetrics()[2] + "\t" +
+				res.met.getAttributeMetrics()[4] + "\t" +
 				res.met.getAttributeMetrics()[5] + "\n"
 			);
 		metrics.close();
@@ -61,9 +63,9 @@ public class Export {
 		id = 1;
 		String filePath = getDir(path) + File.separator + "metrics.csv";
 		BufferedWriter metrics = new BufferedWriter(new FileWriter(filePath));
-		metrics.write("# transID,time,oldVersion,newVersion,#oldTables,#newTables,#oldAttrs"
-				+ ",newAttr,tableIns,tableDel,attrIns,attrDel"
-				+ ",attrTypeAlt,keyAlt,totalAlt,attrTabIns,attrTabDel\n");
+		metrics.write("# trID\ttime\toldVer\tnewVer\t#oldT\t#newT\t#oldA"
+				+ "\tnewA\ttIns\ttDel\taIns\taDel"
+				+ "\taTypeAlt\tkeyAlt\ttotAlt\taTabIns\taTabDel\n");
 		metrics.close();
 	}
 	
