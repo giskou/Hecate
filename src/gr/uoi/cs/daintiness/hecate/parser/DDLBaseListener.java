@@ -1,4 +1,4 @@
-// Generated from /home/iskoulis/Dev/Hecate/src/gr/uoi/cs/daintiness/hecate/parser/DDL.g4 by ANTLR 4.0
+// Generated from /home/iskoulis/Projects/Hecate/src/gr/uoi/cs/daintiness/hecate/parser/DDL.g4 by ANTLR 4.0
 package gr.uoi.cs.daintiness.hecate.parser;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -96,6 +96,9 @@ public class DDLBaseListener implements DDLListener {
 
 	@Override public void enterColumn(DDLParser.ColumnContext ctx) { }
 	@Override public void exitColumn(DDLParser.ColumnContext ctx) { }
+
+	@Override public void enterSet_type(DDLParser.Set_typeContext ctx) { }
+	@Override public void exitSet_type(DDLParser.Set_typeContext ctx) { }
 
 	@Override public void enterView(DDLParser.ViewContext ctx) { }
 	@Override public void exitView(DDLParser.ViewContext ctx) { }

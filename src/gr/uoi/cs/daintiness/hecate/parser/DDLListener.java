@@ -1,4 +1,4 @@
-// Generated from /home/iskoulis/Dev/Hecate/src/gr/uoi/cs/daintiness/hecate/parser/DDL.g4 by ANTLR 4.0
+// Generated from /home/iskoulis/Projects/Hecate/src/gr/uoi/cs/daintiness/hecate/parser/DDL.g4 by ANTLR 4.0
 package gr.uoi.cs.daintiness.hecate.parser;
 import org.antlr.v4.runtime.tree.*;
 import org.antlr.v4.runtime.Token;
@@ -93,6 +93,9 @@ public interface DDLListener extends ParseTreeListener {
 
 	void enterColumn(DDLParser.ColumnContext ctx);
 	void exitColumn(DDLParser.ColumnContext ctx);
+
+	void enterSet_type(DDLParser.Set_typeContext ctx);
+	void exitSet_type(DDLParser.Set_typeContext ctx);
 
 	void enterView(DDLParser.ViewContext ctx);
 	void exitView(DDLParser.ViewContext ctx);

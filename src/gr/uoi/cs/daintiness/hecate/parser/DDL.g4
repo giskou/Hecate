@@ -20,10 +20,12 @@ other_statement
     : insert_statement
     | namespace
     | commit
+    | set
     ;
 
 namespace : USE ident ;
 commit    : COMMIT ;
+set       : SET ident ( EQ ident )? ;
 
 drop_statement
     : DROP ( TABLE | DATABASE ) IF EXISTS nameList PURGE?
@@ -103,7 +105,7 @@ refs : ( ( RESTRICT | CASCADE ) DEFERRABLE? ) | ( SET NULL ) | ( NO ACTION ) ;
 data_type
     : ident+ size? ( ENUM parValueList )? # generic
     | ENUM parValueList                   # enum
-    | SET parValueList                    # set
+    | SET parValueList                    # set_type
     ;
 
 data_option : SIGNED | UNSIGNED | ZEROFILL | BINARY ;
@@ -153,7 +155,7 @@ restricted
 
 STRING_G : '`'  ( '\\' '`'  | . )*? '`'  ;
 STRING_Q : '"'  ( '\\' '"'  | . )*? '"'  ;
-STRING_D : '\'' ( '\\' '\'' | . )*? '\'' ;
+STRING_D : '\'' ( '\\' '\'' | '\'' '\'' | . )*? '\'' ;
 
 WS          : [ \r\t\u000C\n]+ -> skip ;
 COMMENT     : CommentStart .*? CommentStop -> skip ;
