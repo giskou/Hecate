@@ -54,13 +54,13 @@ public class Export {
 				res.met.getAttributeMetrics()[3] + "\t" +
 				res.met.getTotalMetrics()[2] + "\t" +
 				res.met.getAttributeMetrics()[4] + "\t" +
-				res.met.getAttributeMetrics()[5] + "\n"
+				res.met.getAttributeMetrics()[5] + "\t" +
+				res.met.getTableMetrics()[2] + "\n"
 			);
 		metrics.close();
 	}
 	
 	public static void initMetrics(String path) throws IOException {
-		id = 1;
 		String filePath = getDir(path) + File.separator + "metrics.csv";
 		BufferedWriter metrics = new BufferedWriter(new FileWriter(filePath));
 		metrics.write("# trID\ttime\toldVer\tnewVer\t#oldT\t#newT\t#oldA"
@@ -77,6 +77,4 @@ public class Export {
 		}
 		return dir.getPath();
 	}
-
-
 }

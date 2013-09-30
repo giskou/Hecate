@@ -101,7 +101,6 @@ public class Delta {
 								}
 							} else if (oldAttrKey.compareTo(newAttrKey) < 0) {           // ** Deleted attributes
 								attrDel(oldAttr, newTable);
-								met.deleteAttr();
 								// move old only attributes
 								if (oldAttributeKeys.hasNext()) {
 									oldAttrKey = oldAttributeKeys.next();
@@ -137,6 +136,9 @@ public class Delta {
 						attrIns(oldTable, newAttr);
 					}
 					//  ** Done with attributes **
+					if (newTable.getMode() == SqlItem.UPDATED) {
+						met.alterTable();
+					}
 					if (oldTableKeys.hasNext() && newTableKeys.hasNext()) {   // move both tables
 						oldTableKey = oldTableKeys.next() ;
 						oldTable = (Table) oldTableValues.next() ;

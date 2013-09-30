@@ -68,7 +68,7 @@ public class Metrics {
 	}
 	protected void alterTable() {
 		tableAlt++;
-		// XXX this is wrong, must check before calling this
+		alterations++;
 	}
 	protected void alterKey() {
 		keyAlt++;
@@ -124,7 +124,9 @@ public class Metrics {
 	}
 
 	public void sanityCheck() throws Exception {
+		assert(insertions == tableIns + attrIns + attrTabIns);
 		if(insertions != tableIns + attrIns + attrTabIns) throw new Exception("BIV!!");
+		assert(deletions != tableDel + attrDel + attrTabDel);
 		if(deletions != tableDel + attrDel + attrTabDel) throw new Exception("BIV!!");
 	}
 }
