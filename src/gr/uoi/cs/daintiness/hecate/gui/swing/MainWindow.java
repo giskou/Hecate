@@ -4,8 +4,10 @@ import gr.uoi.cs.daintiness.hecate.Hecate;
 import gr.uoi.cs.daintiness.hecate.diff.Delta;
 import gr.uoi.cs.daintiness.hecate.diff.DiffResult;
 import gr.uoi.cs.daintiness.hecate.io.Export;
+import gr.uoi.cs.daintiness.hecate.io.TablesOverVersion;
 import gr.uoi.cs.daintiness.hecate.parser.HecateParser;
 import gr.uoi.cs.daintiness.hecate.sql.Schema;
+import gr.uoi.cs.daintiness.hecate.sql.Table;
 import gr.uoi.cs.daintiness.hecate.transitions.Transitions;
 
 import java.awt.Dimension;
@@ -16,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.Map.Entry;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -151,13 +154,29 @@ public class MainWindow extends JFrame{
 						if (res != null) {
 							res.met.resetVersionNum();
 						}
+						TablesOverVersion tv = new TablesOverVersion();
+						int ver = 0;
 						for (int i = 0; i < list.length-1; i++) {
 							Schema schema = HecateParser.parse(path + File.separator + list[i]);
+							for (Entry<String, Table> e : schema.getTables().entrySet()) {
+								String tname = e.getKey();
+								int attrs = e.getValue().getSize();
+								tv.addTable(tname, i, attrs);
+							}
 							Schema schema2 = HecateParser.parse(path + File.separator + list[i+1]);
+							if (i == list.length-2) {
+								for (Entry<String, Table> e : schema.getTables().entrySet()) {
+									String tname = e.getKey();
+									int attrs = e.getValue().getSize();
+									tv.addTable(tname, i+1, attrs);
+								}
+							}
 							res = Delta.minus(schema, schema2);
 							trs.add(res.tl);
 							Export.metrics(res, path);
+							ver = i;
 						}
+						tv.export(path, ver+1);
 						Export.xml(trs, path);
 						drawTree(new File(path + File.separator + list[0]), new File(path + File.separator + list[list.length-1]));
 					} catch (Exception e) {

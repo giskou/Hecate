@@ -69,7 +69,7 @@ public class Export {
 		metrics.close();
 	}
 	
-	private static String getDir(String path) {
+	static String getDir(String path) {
 		String parrent = (new File(path)).getParent();
 		File dir = new File(parrent + File.separator + "results");
 		if (!dir.exists()) {
