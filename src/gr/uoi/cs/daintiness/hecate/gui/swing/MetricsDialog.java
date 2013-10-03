@@ -1,6 +1,6 @@
 package gr.uoi.cs.daintiness.hecate.gui.swing;
 
-import gr.uoi.cs.daintiness.hecate.diff.Metrics;
+import gr.uoi.cs.daintiness.hecate.metrics.Metrics;
 
 import java.awt.Toolkit;
 

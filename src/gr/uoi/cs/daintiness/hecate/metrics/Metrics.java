@@ -1,7 +1,7 @@
 /**
  * 
  */
-package gr.uoi.cs.daintiness.hecate.diff;
+package gr.uoi.cs.daintiness.hecate.metrics;
 
 
 /**
@@ -56,50 +56,50 @@ public class Metrics {
 		versions = 0;
 	}
 
-	protected void insertAttr () {
+	public void insertAttr () {
 		attrIns++; insertions++;
 	}
-	protected void insertTabAttr () {
+	public void insertTabAttr () {
 		attrTabIns++; insertions++;
 	}
-	protected void insetTable() {
+	public void insetTable() {
 		tableIns++; insertions++;
 	}
 
-	protected void deleteAttr() {
+	public void deleteAttr() {
 		attrDel++; deletions++;
 	}
-	protected void deleteTabAttr() {
+	public void deleteTabAttr() {
 		attrTabDel++; deletions++;
 	}
-	protected void deleteTable() {
+	public void deleteTable() {
 		tableDel++; deletions++;
 	}
 
-	protected void alterAttr() {
+	public void alterAttr() {
 		attrAlt++;
 		alterations++;
 	}
-	protected void alterTable() {
+	public void alterTable() {
 		tableAlt++;
 		alterations++;
 	}
-	protected void alterKey() {
+	public void alterKey() {
 		keyAlt++;
 		alterations++;
 	}
 
-	protected void setOrigTables(int n) {
+	public void setOrigTables(int n) {
 		numOfTables = n;
 	}
-	protected void setOrigAttrs(int n) {
+	public void setOrigAttrs(int n) {
 		numOfAttributes = n;
 	}
 
-	protected void setNewTables(int n) {
+	public void setNewTables(int n) {
 		numOfNewTables = n;
 	}
-	protected void setNewAttrs(int n) {
+	public void setNewAttrs(int n) {
 		numOfNewAttributes = n;
 	}
 
@@ -137,10 +137,16 @@ public class Metrics {
 		return versions;
 	}
 
-	public void sanityCheck() throws Exception {
-		assert(insertions == tableIns + attrIns + attrTabIns);
-		if(insertions != tableIns + attrIns + attrTabIns) throw new Exception("BIV!!");
-		assert(deletions != tableDel + attrDel + attrTabDel);
-		if(deletions != tableDel + attrDel + attrTabDel) throw new Exception("BIV!!");
+	public void sanityCheck() {
+		int calcIns = tableIns + attrIns + attrTabIns;
+		assert insertions == calcIns: "Insertions misculculated";
+		int calcDel = tableDel + attrDel + attrTabDel;
+		assert deletions == calcDel: "Deletions misculculated";
+		int tableGrowth = numOfNewTables - numOfTables;
+		int calcTabChanges = tableIns - tableDel;
+		assert tableGrowth == calcTabChanges: "Table changes misculculated";
+		int attrGrowth = numOfNewAttributes - numOfAttributes;
+		int calcAttrChanges = attrIns + attrTabIns - attrDel - attrTabDel; 
+		assert attrGrowth == calcAttrChanges: "Attribute changes misculculated";
 	}
 }

@@ -178,11 +178,7 @@ public class Delta {
 			Table newTable = (Table) newTableValues.next();
 			tableIns(newTable);
 		}
-		try {
-			res.met.sanityCheck();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		res.met.sanityCheck();
 		return res;
 	}
 

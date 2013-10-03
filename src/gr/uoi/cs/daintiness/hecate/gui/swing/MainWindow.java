@@ -4,7 +4,7 @@ import gr.uoi.cs.daintiness.hecate.Hecate;
 import gr.uoi.cs.daintiness.hecate.diff.Delta;
 import gr.uoi.cs.daintiness.hecate.diff.DiffResult;
 import gr.uoi.cs.daintiness.hecate.io.Export;
-import gr.uoi.cs.daintiness.hecate.io.TablesOverVersion;
+import gr.uoi.cs.daintiness.hecate.metrics.TablesOverVersion;
 import gr.uoi.cs.daintiness.hecate.parser.HecateParser;
 import gr.uoi.cs.daintiness.hecate.sql.Schema;
 import gr.uoi.cs.daintiness.hecate.sql.Table;

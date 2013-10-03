@@ -3,7 +3,8 @@
  */
 package gr.uoi.cs.daintiness.hecate.diff;
 
-import gr.uoi.cs.daintiness.hecate.io.TablesOverVersion;
+import gr.uoi.cs.daintiness.hecate.metrics.Metrics;
+import gr.uoi.cs.daintiness.hecate.metrics.TablesOverVersion;
 import gr.uoi.cs.daintiness.hecate.transitions.TransitionList;
 
 /**

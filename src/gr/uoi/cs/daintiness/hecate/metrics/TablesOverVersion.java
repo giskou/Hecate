@@ -1,7 +1,9 @@
 /**
  * 
  */
-package gr.uoi.cs.daintiness.hecate.io;
+package gr.uoi.cs.daintiness.hecate.metrics;
+
+import gr.uoi.cs.daintiness.hecate.io.Export;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -17,6 +19,7 @@ import java.util.Map.Entry;
 public class TablesOverVersion {
 
 	private LinkedHashMap<String, LinkedHashMap<Integer, Integer>> tables;
+	private LinkedHashMap<String, TableChanges> changes;
 
 	public boolean addTable(String name, int version, int size) {
 		if (tables.containsKey(name)) {
@@ -40,9 +43,9 @@ public class TablesOverVersion {
 	public void export(String path, int versions) throws IOException {
 		String filePath = Export.getDir(path) + File.separator + "tables.csv";
 		BufferedWriter tables = new BufferedWriter(new FileWriter(filePath));
-		tables.write(" ;");
+		tables.write(";");
 		for (int i = 0; i < versions; i++) {
-			tables.write(i+1 + " ;");
+			tables.write(i+1 + ";");
 		}
 		tables.write("\n");
 		for (Entry<String, LinkedHashMap<Integer, Integer>> e : this.tables.entrySet()) {
