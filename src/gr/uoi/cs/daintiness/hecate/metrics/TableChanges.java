@@ -13,9 +13,18 @@ public class TableChanges {
 	int deletions;
 	int keyChange;
 	int attrTypeChange;
-	
+
 	public TableChanges() {
 		this.version = 0;
-		
+		this.insertions = 0;
+		this.deletions = 0;
+		this.keyChange = 0;
+		this.attrTypeChange = 0;
 	}
+
+	public int getVersion() { return version; }
+	public int getInsertions() { return insertions; }
+	public int getDeletions() { return deletions; }
+	public int getKeyChange() { return keyChange; }
+	public int getAttrTypeChange() { return attrTypeChange; }
 }
