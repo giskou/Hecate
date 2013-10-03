@@ -8,29 +8,22 @@ package gr.uoi.cs.daintiness.hecate.metrics;
  *
  */
 public class TableChanges {
-	int version;
-	int insertions;
-	int deletions;
-	int keyChange;
-	int attrTypeChange;
+	private int insertions;
+	private int deletions;
+	private int keyChange;
+	private int attrTypeChange;
 
 	public TableChanges() {
-		this.version = 0;
 		this.insertions = 0;
 		this.deletions = 0;
 		this.keyChange = 0;
 		this.attrTypeChange = 0;
 	}
 
-	public int getVersion() { return version; }
 	public int getInsertions() { return insertions; }
 	public int getDeletions() { return deletions; }
 	public int getKeyChange() { return keyChange; }
 	public int getAttrTypeChange() { return attrTypeChange; }
-	
-	public void setVersion(int version) {
-		this.version = version;
-	}
 	
 	public void addInsertion() {
 		this.insertions++;

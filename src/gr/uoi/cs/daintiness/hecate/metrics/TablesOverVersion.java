@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Map.Entry;
 
 /**
@@ -19,8 +20,46 @@ import java.util.Map.Entry;
 public class TablesOverVersion {
 
 	private LinkedHashMap<String, LinkedHashMap<Integer, Integer>> tables;
-	private LinkedHashMap<String, TableChanges> changes;
+	private LinkedHashMap<String, LinkedHashMap<Integer, TableChanges>> changes;
 
+	public enum changeType {
+		Insertion,
+		Deletion,
+		KeyChange,
+		TypeChange
+	}
+	
+	public void addChange(String table, int version, changeType type) {
+		LinkedHashMap<Integer, TableChanges> tcm;
+		if (changes.containsKey(table)) {
+			tcm = changes.get(table);
+		} else {
+			tcm = new LinkedHashMap<Integer, TableChanges>();
+			changes.put(table, tcm);
+		}
+		TableChanges tc;
+		if (tcm.containsKey(version)) {
+			tc = tcm.get(version);
+		} else {
+			tc = new TableChanges();
+			tcm.put(version, tc);
+		}
+		switch (type) {
+		case Insertion:
+			tc.addInsertion();
+			break;
+		case Deletion:
+			tc.addDeletion();
+			break;
+		case KeyChange:
+			tc.addKeyChange();
+			break;
+		case TypeChange:
+			tc.addAttrTypeChange();
+			break;
+		}
+	}
+	
 	public boolean addTable(String name, int version, int size) {
 		if (tables.containsKey(name)) {
 			tables.get(name).put(version, size);
@@ -34,6 +73,7 @@ public class TablesOverVersion {
 	
 	public TablesOverVersion() {
 		this.tables = new LinkedHashMap<String, LinkedHashMap<Integer, Integer>>();
+		this.changes = new LinkedHashMap<String, LinkedHashMap<Integer, TableChanges>>();
 	}
 
 	public int getTableSize() {
