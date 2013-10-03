@@ -27,4 +27,24 @@ public class TableChanges {
 	public int getDeletions() { return deletions; }
 	public int getKeyChange() { return keyChange; }
 	public int getAttrTypeChange() { return attrTypeChange; }
+	
+	public void setVersion(int version) {
+		this.version = version;
+	}
+	
+	public void addInsertion() {
+		this.insertions++;
+	}
+	
+	public void addDeletion() {
+		this.deletions++;
+	}
+	
+	public void addKeyChange() {
+		this.keyChange++;
+	}
+	
+	public void addAttrTypeChange() {
+		this.attrTypeChange++;
+	}
 }
