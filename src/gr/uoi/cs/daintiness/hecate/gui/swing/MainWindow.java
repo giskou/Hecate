@@ -151,11 +151,7 @@ public class MainWindow extends JFrame{
 					java.util.Arrays.sort(list);
 					try {
 						Export.initMetrics(path);
-						if (res != null) {
-							res.met.resetVersionNum();
-						}
 						TablesOverVersion tv = new TablesOverVersion();
-						int ver = 0;
 						for (int i = 0; i < list.length-1; i++) {
 							Schema schema = HecateParser.parse(path + File.separator + list[i]);
 							for (Entry<String, Table> e : schema.getTables().entrySet()) {
@@ -174,9 +170,8 @@ public class MainWindow extends JFrame{
 							res = Delta.minus(schema, schema2);
 							trs.add(res.tl);
 							Export.metrics(res, path);
-							ver = i;
 						}
-						tv.export(path, ver+1);
+						Export.tables(path, res.met.getNumRevisions()+1, tv);
 						Export.xml(trs, path);
 						drawTree(new File(path + File.separator + list[0]), new File(path + File.separator + list[list.length-1]));
 					} catch (Exception e) {

@@ -1,5 +1,6 @@
 package gr.uoi.cs.daintiness.hecate.diff;
 
+import gr.uoi.cs.daintiness.hecate.metrics.TableChangeType;
 import gr.uoi.cs.daintiness.hecate.sql.Attribute;
 import gr.uoi.cs.daintiness.hecate.sql.Schema;
 import gr.uoi.cs.daintiness.hecate.sql.SqlItem;
@@ -46,6 +47,7 @@ public class Delta {
 	 */
 	public static DiffResult minus(Schema A, Schema B) {
 		res = new DiffResult();
+		res.met.newRevision();
 		res.setVersionNames(A.getName(), A.getName());
 		String oldTableKey = null, newTableKey = null ;
 		String oldAttrKey = null, newAttrKey = null ;
@@ -188,6 +190,7 @@ public class Delta {
 		newAttr.setMode(SqlItem.INSERTED);
 		oldTable.setMode(SqlItem.UPDATED);
 		newAttr.getTable().setMode(SqlItem.UPDATED);
+		res.tv.addChange(oldTable.getName(), res.met.getNumRevisions(), TableChangeType.Insertion);
 	}
 
 	private static void attrDel(Attribute oldAttr, Table newTable) {
@@ -196,6 +199,7 @@ public class Delta {
 		oldAttr.setMode(SqlItem.DELETED);
 		oldAttr.getTable().setMode(SqlItem.UPDATED);
 		newTable.setMode(SqlItem.UPDATED);
+		res.tv.addChange(newTable.getName(), res.met.getNumRevisions(), TableChangeType.Deletion);
 	}
 
 	private static void attrTypeChange(Attribute oldAttr, Attribute newAttr) {
@@ -205,6 +209,7 @@ public class Delta {
 		newAttr.getTable().setMode(SqlItem.UPDATED);
 		oldAttr.setMode(SqlItem.UPDATED);
 		newAttr.setMode(SqlItem.UPDATED);
+		res.tv.addChange(newAttr.getTable().getName(), res.met.getNumRevisions(), TableChangeType.AttrTypeChange);
 	}
 
 	private static void attrKeyChange(Attribute oldAttr, Attribute newAttr) {
@@ -214,6 +219,7 @@ public class Delta {
 		newAttr.getTable().setMode(SqlItem.UPDATED);
 		oldAttr.setMode(SqlItem.UPDATED);
 		newAttr.setMode(SqlItem.UPDATED);
+		res.tv.addChange(newAttr.getTable().getName(), res.met.getNumRevisions(), TableChangeType.KeyChange);
 	}
 	
 	private static void tableDel(Table t) {

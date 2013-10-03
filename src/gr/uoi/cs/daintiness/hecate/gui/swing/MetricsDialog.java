@@ -31,11 +31,11 @@ public class MetricsDialog extends JDialog {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MetricsDialog.class.getResource("/gr/uoi/cs/daintiness/hecate/art/icon.png")));
 		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		
-		if (d.getNumVersions() > 2) {
+		if (d.getNumRevisions() > 2) {
 			JPanel numVersions = new JPanel();
 			getContentPane().add(numVersions);
 			numVersions.setLayout(new BoxLayout(numVersions, BoxLayout.X_AXIS));
-			numVersions.add(new JLabel("Total Versions: " + d.getNumVersions()));
+			numVersions.add(new JLabel("Total Versions: " + d.getNumRevisions()));
 		}
 		
 		// *** VERSIONS ***

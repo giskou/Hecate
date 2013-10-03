@@ -20,20 +20,18 @@ public class Metrics {
 	private int keyAlt;
 	private int numOfTables, numOfAttributes;
 	private int numOfNewTables, numOfNewAttributes;
-	private static int versions = 0;
+	private static int revisions = 0;
 	
 	/**
 	 * 
 	 */
 	public Metrics(String oldVersion, String newVersion) {
-		versions++;
 		this.oldVersion = oldVersion;
 		this.newVersion = newVersion;
 		reset();
 	}
 	
 	public Metrics() {
-		versions++;
 		this.oldVersion = "not set";
 		this.newVersion = "not set";
 		reset();
@@ -52,8 +50,8 @@ public class Metrics {
 		numOfTables = numOfAttributes = 0;
 	}
 	
-	public void resetVersionNum() {
-		versions = 0;
+	public void newRevision() {
+		revisions++;
 	}
 
 	public void insertAttr () {
@@ -133,8 +131,8 @@ public class Metrics {
 		return ret;
 	}
 
-	public int getNumVersions() {
-		return versions;
+	public int getNumRevisions() {
+		return revisions;
 	}
 
 	public void sanityCheck() {

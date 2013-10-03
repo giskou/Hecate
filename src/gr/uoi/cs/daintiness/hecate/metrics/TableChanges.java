@@ -3,6 +3,7 @@
  */
 package gr.uoi.cs.daintiness.hecate.metrics;
 
+
 /**
  * @author iskoulis
  *
@@ -12,7 +13,7 @@ public class TableChanges {
 	private int deletions;
 	private int keyChange;
 	private int attrTypeChange;
-
+	
 	public TableChanges() {
 		this.insertions = 0;
 		this.deletions = 0;
