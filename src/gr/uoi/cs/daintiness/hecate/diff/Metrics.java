@@ -3,6 +3,7 @@
  */
 package gr.uoi.cs.daintiness.hecate.diff;
 
+
 /**
  * 
  * @author iskoulis
@@ -20,6 +21,7 @@ public class Metrics {
 	private int numOfTables, numOfAttributes;
 	private int numOfNewTables, numOfNewAttributes;
 	private static int versions = 0;
+	
 	/**
 	 * 
 	 */
@@ -29,15 +31,27 @@ public class Metrics {
 		this.newVersion = newVersion;
 		reset();
 	}
+	
+	public Metrics() {
+		versions++;
+		this.oldVersion = "not set";
+		this.newVersion = "not set";
+		reset();
+	}
+	
+	public void setVersionNames(String oldVersion, String newVersion) {
+		this.oldVersion = oldVersion;
+		this.newVersion = newVersion;
+	}
 
-	public void reset() {
+	private void reset() {
 		insertions = deletions = alterations = 0;
 		tableIns = tableDel = 0;
 		attrIns = attrDel = 0;
 		tableAlt = attrAlt = keyAlt = 0;
 		numOfTables = numOfAttributes = 0;
 	}
-
+	
 	public void resetVersionNum() {
 		versions = 0;
 	}

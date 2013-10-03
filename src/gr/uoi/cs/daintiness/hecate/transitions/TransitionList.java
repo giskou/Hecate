@@ -17,8 +17,9 @@ public class TransitionList {
 	private ArrayList<Transition> list;
 	
 	public TransitionList() {
-		this.oldVersion = null;
-		this.newVersion = null;
+		this.oldVersion = "not set";
+		this.newVersion = "not set";
+		list = new ArrayList<Transition>();
 	}
 	
 	public TransitionList(String oldVersion, String newVersion) {
@@ -47,5 +48,10 @@ public class TransitionList {
 	 */
 	public String getNewVersion() {
 		return newVersion;
+	}
+	
+	public void setVersionNames(String oldVersion, String newVersion) {
+		this.oldVersion = oldVersion;
+		this.newVersion = newVersion;
 	}
 }
