@@ -114,7 +114,79 @@ public class Export {
 			tables.write(e.getKey() + ";");
 			for (int i = 0; i <= versions; i++) {
 				if (e.getValue().containsKey(i)) {
-					tables.write(e.getValue().get(i).getInsertions() + ";");
+					if (e.getValue().get(i).getInsertions() != 0) {
+						tables.write(e.getValue().get(i).getInsertions());
+					}
+					tables.write(";");
+				} else {
+					tables.write(";");
+				}
+			}
+			tables.write("\n");
+		}
+		tables.close();
+		
+		filePath = Export.getDir(path) + File.separator + "table_del.csv";
+		tables = new BufferedWriter(new FileWriter(filePath));
+		tables.write(";");
+		for (int i = 1; i <= versions; i++) {
+			tables.write(i + "-" + (i+1) + ";");
+		}
+		tables.write("\n");
+		for (Entry<String, LinkedHashMap<Integer, TableChanges>> e : tc.entrySet()) {
+			tables.write(e.getKey() + ";");
+			for (int i = 0; i <= versions; i++) {
+				if (e.getValue().containsKey(i)) {
+					if (e.getValue().get(i).getDeletions() != 0) {
+						tables.write(e.getValue().get(i).getDeletions());
+					}
+					tables.write(";");
+				} else {
+					tables.write(";");
+				}
+			}
+			tables.write("\n");
+		}
+		tables.close();
+		
+		filePath = Export.getDir(path) + File.separator + "table_key_ch.csv";
+		tables = new BufferedWriter(new FileWriter(filePath));
+		tables.write(";");
+		for (int i = 1; i <= versions; i++) {
+			tables.write(i + "-" + (i+1) + ";");
+		}
+		tables.write("\n");
+		for (Entry<String, LinkedHashMap<Integer, TableChanges>> e : tc.entrySet()) {
+			tables.write(e.getKey() + ";");
+			for (int i = 0; i <= versions; i++) {
+				if (e.getValue().containsKey(i)) {
+					if (e.getValue().get(i).getKeyChange() != 0) {
+						tables.write(e.getValue().get(i).getKeyChange());
+					}
+					tables.write(";");
+				} else {
+					tables.write(";");
+				}
+			}
+			tables.write("\n");
+		}
+		tables.close();
+		
+		filePath = Export.getDir(path) + File.separator + "table_type_ch.csv";
+		tables = new BufferedWriter(new FileWriter(filePath));
+		tables.write(";");
+		for (int i = 1; i <= versions; i++) {
+			tables.write(i + "-" + (i+1) + ";");
+		}
+		tables.write("\n");
+		for (Entry<String, LinkedHashMap<Integer, TableChanges>> e : tc.entrySet()) {
+			tables.write(e.getKey() + ";");
+			for (int i = 0; i <= versions; i++) {
+				if (e.getValue().containsKey(i)) {
+					if (e.getValue().get(i).getAttrTypeChange() != 0) {
+						tables.write(e.getValue().get(i).getAttrTypeChange());
+					}
+					tables.write(";");
 				} else {
 					tables.write(";");
 				}
