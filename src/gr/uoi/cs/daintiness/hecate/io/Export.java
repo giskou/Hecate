@@ -54,12 +54,10 @@ public class Export {
 				res.met.getTableMetrics()[1] + ";" +		//tDel
 				res.met.getAttributeMetrics()[0] + ";" +	//aIns
 				res.met.getAttributeMetrics()[1] + ";" +	//aDel
-				res.met.getAttributeMetrics()[2] + ";" +	//tabAlt
-				res.met.getAttributeMetrics()[3] + ";" +	//aTypeAlt
-				res.met.getTotalMetrics()[2] + ";" +		//keyAlt
-				res.met.getAttributeMetrics()[4] + ";" +	//totAlt
-				res.met.getAttributeMetrics()[5] + ";" +	//aTabIns
-				res.met.getTableMetrics()[2] + "\n"			//aTabDel
+				res.met.getAttributeMetrics()[2] + ";" +	//aTypeAlt
+				res.met.getAttributeMetrics()[3] + ";" +	//keyAlt
+				res.met.getAttributeMetrics()[4] + ";" +	//aTabIns
+				res.met.getAttributeMetrics()[5] + "\n"		//aTabDel
 			);
 		metrics.close();
 	}
@@ -67,9 +65,8 @@ public class Export {
 	public static void initMetrics(String path) throws IOException {
 		String filePath = getDir(path) + File.separator + "metrics.csv";
 		BufferedWriter metrics = new BufferedWriter(new FileWriter(filePath));
-		metrics.write("trID;time;oldVer;newVer;#oldT;#newT;#oldA"
-				+ ";#newA;tIns;tDel;aIns;aDel;tabAlt"
-				+ ";aTypeAlt;keyAlt;totAlt;aTabIns;aTabDel\n");
+		metrics.write("trID;time;oldVer;newVer;#oldT;#newT;#oldA;#newA"
+				+ ";tIns;tDel;aIns;aDel;aTypeAlt;keyAlt;aTabIns;aTabDel");
 		metrics.close();
 	}
 	
