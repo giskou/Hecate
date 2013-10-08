@@ -11,14 +11,14 @@ import java.util.LinkedHashMap;
  */
 public class TablesOverVersion {
 
-	private LinkedHashMap<String, LinkedHashMap<Integer, Integer>> tables;
-	private static LinkedHashMap<String, LinkedHashMap<Integer, TableChanges>> changes;
+	private TableSizeOverVersion tables;
+	private static TableChangesOverVerson changes;
 	
 	
 	public TablesOverVersion() {
-		this.tables = new LinkedHashMap<String, LinkedHashMap<Integer, Integer>>();
+		this.tables = new TableSizeOverVersion();
 		if (changes == null) {
-			changes = new LinkedHashMap<String, LinkedHashMap<Integer, TableChanges>>();
+			changes = new TableChangesOverVerson();
 		}
 	}
 
@@ -68,11 +68,11 @@ public class TablesOverVersion {
 		return tables.size();
 	}
 	
-	public LinkedHashMap<String, LinkedHashMap<Integer, Integer>> getTables() {
+	public TableSizeOverVersion getTables() {
 		return this.tables;
 	}
 
-	public LinkedHashMap<String, LinkedHashMap<Integer, TableChanges>> getChanges() {
+	public TableChangesOverVerson getChanges() {
 		return changes;
 	}
 }
