@@ -50,6 +50,10 @@ public class Metrics {
 		numOfTables = numOfAttributes = 0;
 	}
 	
+	public void resetRevisions() {
+		revisions = 0;
+	}
+	
 	public void newRevision() {
 		revisions++;
 	}

@@ -1,10 +1,9 @@
 package gr.uoi.cs.daintiness.hecate.io;
 
 import gr.uoi.cs.daintiness.hecate.diff.DiffResult;
-import gr.uoi.cs.daintiness.hecate.metrics.TableChanges;
-import gr.uoi.cs.daintiness.hecate.metrics.TableChangesOverVerson;
-import gr.uoi.cs.daintiness.hecate.metrics.TableSizeOverVersion;
-import gr.uoi.cs.daintiness.hecate.metrics.TablesOverVersion;
+import gr.uoi.cs.daintiness.hecate.metrics.tables.Changes;
+import gr.uoi.cs.daintiness.hecate.metrics.tables.MetricsOverVersion;
+import gr.uoi.cs.daintiness.hecate.metrics.tables.TablesInfo;
 import gr.uoi.cs.daintiness.hecate.transitions.Deletion;
 import gr.uoi.cs.daintiness.hecate.transitions.Insersion;
 import gr.uoi.cs.daintiness.hecate.transitions.TransitionList;
@@ -16,9 +15,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.Map.Entry;
 
+import javax.swing.JOptionPane;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
@@ -66,7 +64,7 @@ public class Export {
 		String filePath = getDir(path) + File.separator + "metrics.csv";
 		BufferedWriter metrics = new BufferedWriter(new FileWriter(filePath));
 		metrics.write("trID;time;oldVer;newVer;#oldT;#newT;#oldA;#newA"
-				+ ";tIns;tDel;aIns;aDel;aTypeAlt;keyAlt;aTabIns;aTabDel");
+				+ ";tIns;tDel;aIns;aDel;aTypeAlt;keyAlt;aTabIns;aTabDel\n");
 		metrics.close();
 	}
 	
@@ -79,97 +77,84 @@ public class Export {
 		return dir.getPath();
 	}
 	
-	public static void tables(String path, int versions, TablesOverVersion tov) throws IOException {
-		TableSizeOverVersion ts = tov.getTables();
-		String filePath = Export.getDir(path) + File.separator + "tables.csv";
-		BufferedWriter tables = new BufferedWriter(new FileWriter(filePath));
-		writeVersionsLine(tables, versions);
-		for (Entry<String, LinkedHashMap<Integer, Integer>> e : ts.entrySet()) {
-			tables.write(e.getKey() + ";");
-			for (int i = 0; i < versions; i++) {
-				if (e.getValue().containsKey(i)) {
-					tables.write(e.getValue().get(i).toString());
-				}
-				tables.write(";");
-			}
-			tables.write("\n");
-		}
-		tables.close();
+	public static void tables(String path, int versions, TablesInfo tov) {
+		String slashedPath = Export.getDir(path) + File.separator;
+		String sTab = slashedPath + "tables.csv";
+		String sTabI = slashedPath + "table_ins.csv";
+		String sTabD = slashedPath + "table_del.csv";
+		String sTabT = slashedPath + "table_type.csv";
+		String sTabK = slashedPath + "table_key.csv";
+		String sTabAll = slashedPath + "all.csv";
 		
-		TableChangesOverVerson tc = tov.getChanges();
-		filePath = Export.getDir(path) + File.separator + "table_add.csv";
-		tables = new BufferedWriter(new FileWriter(filePath));
-		writeVersionsLine(tables, versions);
-		for (Entry<String, LinkedHashMap<Integer, TableChanges>> e : tc.entrySet()) {
-			tables.write(e.getKey() + ";");
-			for (int i = 0; i <= versions; i++) {
-				if (e.getValue().containsKey(i)) {
-					if (e.getValue().get(i).getInsertions() != 0) {
-						tables.write(e.getValue().get(i).getInsertions()+ "");
+		try {
+			BufferedWriter fTab = new BufferedWriter(new FileWriter(sTab));
+			BufferedWriter fTabI = new BufferedWriter(new FileWriter(sTabI));
+			BufferedWriter fTabD = new BufferedWriter(new FileWriter(sTabD));
+			BufferedWriter fTabT = new BufferedWriter(new FileWriter(sTabT));
+			BufferedWriter fTabK = new BufferedWriter(new FileWriter(sTabK));
+			BufferedWriter fTabAll = new BufferedWriter(new FileWriter(sTabAll));
+			
+			writeVersionsLine(fTab, versions);
+			writeVersionsLine(fTabI, versions);
+			writeVersionsLine(fTabD, versions);
+			writeVersionsLine(fTabT, versions);
+			writeVersionsLine(fTabK, versions);
+			writeVersionsLine(fTabAll, versions);
+			
+			for (String t : tov.getTables()){
+				fTab.write(t + ";");
+				fTabI.write(t + ";");
+				fTabD.write(t + ";");
+				fTabT.write(t + ";");
+				fTabK.write(t + ";");
+				fTabAll.write(t + ";");
+				for (int i = 0; i < versions; i++) {
+					MetricsOverVersion tm = tov.getTableMetrics(t);
+					if (tm != null && tm.containsKey(i)) {
+						fTab.write(tm.getSize(i) + ";");
+						Changes c = tm.getChanges(i);
+						fTabI.write(c.getInsertions() + ";");
+						fTabD.write(c.getDeletions() + ";");
+						fTabT.write(c.getAttrTypeChange() + ";");
+						fTabK.write(c.getKeyChange() + ";");
+						fTabAll.write(tm.getSize(i) + "|" +
+								      c.getInsertions() + "|" +
+								      c.getDeletions() + "|" +
+								      c.getAttrTypeChange() + "|" +
+								      c.getKeyChange() + ";");
+								      
+					} else {
+						fTab.write("0;");
+						fTabI.write("-;");
+						fTabD.write("-;");
+						fTabT.write("-;");
+						fTabK.write("-;");
+						fTabAll.write("0|-|-|-|-;");
 					}
 				}
-				tables.write(";");
+				fTab.write("\n");
+				fTabI.write("\n");
+				fTabD.write("\n");
+				fTabT.write("\n");
+				fTabK.write("\n");
+				fTabAll.write("\n");
 			}
-			tables.write("\n");
+			fTab.close();
+			fTabI.close();
+			fTabD.close();
+			fTabT.close();
+			fTabK.close();
+			fTabAll.close();
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Oups...",
+					                      JOptionPane.ERROR_MESSAGE);
 		}
-		tables.close();
-		
-		filePath = Export.getDir(path) + File.separator + "table_del.csv";
-		tables = new BufferedWriter(new FileWriter(filePath));
-		writeVersionsLine(tables, versions);
-		for (Entry<String, LinkedHashMap<Integer, TableChanges>> e : tc.entrySet()) {
-			tables.write(e.getKey() + ";");
-			for (int i = 0; i <= versions; i++) {
-				if (e.getValue().containsKey(i)) {
-					if (e.getValue().get(i).getDeletions() != 0) {
-						tables.write(e.getValue().get(i).getDeletions() + "");
-					}
-				}
-				tables.write(";");
-			}
-			tables.write("\n");
-		}
-		tables.close();
-		
-		filePath = Export.getDir(path) + File.separator + "table_key_ch.csv";
-		tables = new BufferedWriter(new FileWriter(filePath));
-		writeVersionsLine(tables, versions);
-		for (Entry<String, LinkedHashMap<Integer, TableChanges>> e : tc.entrySet()) {
-			tables.write(e.getKey() + ";");
-			for (int i = 0; i <= versions; i++) {
-				if (e.getValue().containsKey(i)) {
-					if (e.getValue().get(i).getKeyChange() != 0) {
-						tables.write(e.getValue().get(i).getKeyChange() + "");
-					}
-				}
-				tables.write(";");
-			}
-			tables.write("\n");
-		}
-		tables.close();
-		
-		filePath = Export.getDir(path) + File.separator + "table_type_ch.csv";
-		tables = new BufferedWriter(new FileWriter(filePath));
-		writeVersionsLine(tables, versions);
-		for (Entry<String, LinkedHashMap<Integer, TableChanges>> e : tc.entrySet()) {
-			tables.write(e.getKey() + ";");
-			for (int i = 0; i <= versions; i++) {
-				if (e.getValue().containsKey(i)) {
-					if (e.getValue().get(i).getAttrTypeChange() != 0) {
-						tables.write(e.getValue().get(i).getAttrTypeChange() + "");
-					}
-				}
-				tables.write(";");
-			}
-			tables.write("\n");
-		}
-		tables.close();
 	}
 	
 	private static void writeVersionsLine(BufferedWriter file, int versions) throws IOException {
 		file.write(";");
 		for (int i = 0; i < versions; i++) {
-			file.write(i+1 + ";");
+			file.write(i + ";");
 		}
 		file.write("\n");
 	}

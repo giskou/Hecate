@@ -4,7 +4,7 @@
 package gr.uoi.cs.daintiness.hecate.diff;
 
 import gr.uoi.cs.daintiness.hecate.metrics.Metrics;
-import gr.uoi.cs.daintiness.hecate.metrics.TablesOverVersion;
+import gr.uoi.cs.daintiness.hecate.metrics.tables.TablesInfo;
 import gr.uoi.cs.daintiness.hecate.transitions.TransitionList;
 
 /**
@@ -15,18 +15,23 @@ public class DiffResult {
 
 	final public TransitionList tl;
 	final public Metrics met;
-	final public TablesOverVersion tv;
+	final public TablesInfo tInfo;
 	/**
 	 * 
 	 */
 	public DiffResult() {
 		this.tl = new TransitionList();
 		this.met = new Metrics();
-		this.tv = new TablesOverVersion();
+		this.tInfo = new TablesInfo();
 	}
 	
 	public void setVersionNames(String newVersion, String oldVersion) {
 		this.tl.setVersionNames(oldVersion, newVersion);
 		this.met.setVersionNames(oldVersion, newVersion);
+	}
+	
+	public void clear() {
+		this.tInfo.clear();
+		met.resetRevisions();
 	}
 }

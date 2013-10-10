@@ -1,13 +1,13 @@
 /**
  * 
  */
-package gr.uoi.cs.daintiness.hecate.metrics;
+package gr.uoi.cs.daintiness.hecate.metrics.tables;
 
 /**
  * @author iskoulis
  *
  */
-public enum TableChangeType {
+public enum ChangeType {
 	Insertion,
 	Deletion,
 	KeyChange,

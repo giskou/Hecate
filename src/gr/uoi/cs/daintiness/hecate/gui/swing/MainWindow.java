@@ -1,14 +1,7 @@
 package gr.uoi.cs.daintiness.hecate.gui.swing;
 
 import gr.uoi.cs.daintiness.hecate.Hecate;
-import gr.uoi.cs.daintiness.hecate.diff.Delta;
 import gr.uoi.cs.daintiness.hecate.diff.DiffResult;
-import gr.uoi.cs.daintiness.hecate.io.Export;
-import gr.uoi.cs.daintiness.hecate.metrics.TablesOverVersion;
-import gr.uoi.cs.daintiness.hecate.parser.HecateParser;
-import gr.uoi.cs.daintiness.hecate.sql.Schema;
-import gr.uoi.cs.daintiness.hecate.sql.Table;
-import gr.uoi.cs.daintiness.hecate.transitions.Transitions;
 
 import java.awt.Dimension;
 import java.awt.Image;
@@ -17,8 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.io.IOException;
-import java.util.Map.Entry;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -37,9 +28,6 @@ import org.antlr.v4.runtime.RecognitionException;
  */
 @SuppressWarnings("serial")
 public class MainWindow extends JFrame{
-	
-	private Schema oldSchema;
-	private Schema newSchema;
 	
 	private MainPanel mainPanel;
 	private JMenuBar menuBar;
@@ -123,9 +111,11 @@ public class MainWindow extends JFrame{
 				openDialog.setVisible(true);
 				if (openDialog.getStatus() != 0) {
 					try {
-						drawTree(openDialog.getOldFile(), openDialog.getNewFile());
-					} catch (IOException e) {
-						e.printStackTrace();
+						DiffWorker task = 
+								new DiffWorker(mainPanel,
+										openDialog.getOldFile(),
+										openDialog.getNewFile());
+						task.execute();
 					} catch (RecognitionException e) {
 						e.printStackTrace();
 					}
@@ -139,7 +129,6 @@ public class MainWindow extends JFrame{
 		fileFOpen.setToolTipText("Create diff tree from multiple files");
 		fileFOpen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				Transitions trs = new Transitions();
 				if (openFolderDialog == null) {
 					openFolderDialog = new OpenFolderDialog();
 				}
@@ -147,33 +136,10 @@ public class MainWindow extends JFrame{
 				if (openFolderDialog.getStatus() != 0) {
 					String path = openFolderDialog.getFolder();
 					File dir = new File(path);
-					String[] list = dir.list();
-					java.util.Arrays.sort(list);
 					try {
-						Export.initMetrics(path);
-						TablesOverVersion tv = new TablesOverVersion();
-						for (int i = 0; i < list.length-1; i++) {
-							Schema schema = HecateParser.parse(path + File.separator + list[i]);
-							for (Entry<String, Table> e : schema.getTables().entrySet()) {
-								String tname = e.getKey();
-								int attrs = e.getValue().getSize();
-								tv.addTable(tname, i, attrs);
-							}
-							Schema schema2 = HecateParser.parse(path + File.separator + list[i+1]);
-							if (i == list.length-2) {
-								for (Entry<String, Table> e : schema.getTables().entrySet()) {
-									String tname = e.getKey();
-									int attrs = e.getValue().getSize();
-									tv.addTable(tname, i+1, attrs);
-								}
-							}
-							res = Delta.minus(schema, schema2);
-							trs.add(res.tl);
-							Export.metrics(res, path);
-						}
-						Export.tables(path, res.met.getNumRevisions()+1, tv);
-						Export.xml(trs, path);
-						drawTree(new File(path + File.separator + list[0]), new File(path + File.separator + list[list.length-1]));
+						DiffWorker task = new DiffWorker(mainPanel, dir);
+						task.execute();
+						
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -242,26 +208,5 @@ public class MainWindow extends JFrame{
 		Dimension size = toolkit.getScreenSize();
 		setLocation(size.width/2 - getWidth()/2, 
 		            size.height/2 - getHeight()/2);
-	}
-	
-	/**
-	 * Calls the parser on the files, initializes the {@link Delta}
-	 * class and draws the trees at the {@link MainPanel}
-	 * @param oldFilePath
-	 *   The {@ink String} of the path of the original schema file
-	 * @param newFilePath
-	 *   The {@ink String} of the path of the modified schema file
-	 * @throws IOException
-	 * @throws RecognitionException
-	 */
-	private void drawTree(File oldFile, File newFile) throws IOException, RecognitionException {
-		oldSchema = HecateParser.parse(oldFile.getAbsolutePath());
-		newSchema = HecateParser.parse(newFile.getAbsolutePath());
-		
-		mainPanel.drawSchema(oldSchema, "old");
-		mainPanel.drawSchema(newSchema, "new");
-		draw();
-		
-		res = Delta.minus(oldSchema, newSchema);
 	}
 }

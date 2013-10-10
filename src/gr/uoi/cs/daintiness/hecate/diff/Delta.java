@@ -1,6 +1,6 @@
 package gr.uoi.cs.daintiness.hecate.diff;
 
-import gr.uoi.cs.daintiness.hecate.metrics.TableChangeType;
+import gr.uoi.cs.daintiness.hecate.metrics.tables.ChangeType;
 import gr.uoi.cs.daintiness.hecate.sql.Attribute;
 import gr.uoi.cs.daintiness.hecate.sql.Schema;
 import gr.uoi.cs.daintiness.hecate.sql.SqlItem;
@@ -190,7 +190,7 @@ public class Delta {
 		newAttr.setMode(SqlItem.INSERTED);
 		oldTable.setMode(SqlItem.UPDATED);
 		newAttr.getTable().setMode(SqlItem.UPDATED);
-		res.tv.addChange(oldTable.getName(), res.met.getNumRevisions(), TableChangeType.Insertion);
+		res.tInfo.addChange(oldTable.getName(), res.met.getNumRevisions(), ChangeType.Insertion);
 	}
 
 	private static void attrDel(Attribute oldAttr, Table newTable) {
@@ -199,7 +199,7 @@ public class Delta {
 		oldAttr.setMode(SqlItem.DELETED);
 		oldAttr.getTable().setMode(SqlItem.UPDATED);
 		newTable.setMode(SqlItem.UPDATED);
-		res.tv.addChange(newTable.getName(), res.met.getNumRevisions(), TableChangeType.Deletion);
+		res.tInfo.addChange(newTable.getName(), res.met.getNumRevisions(), ChangeType.Deletion);
 	}
 
 	private static void attrTypeChange(Attribute oldAttr, Attribute newAttr) {
@@ -209,7 +209,7 @@ public class Delta {
 		newAttr.getTable().setMode(SqlItem.UPDATED);
 		oldAttr.setMode(SqlItem.UPDATED);
 		newAttr.setMode(SqlItem.UPDATED);
-		res.tv.addChange(newAttr.getTable().getName(), res.met.getNumRevisions(), TableChangeType.AttrTypeChange);
+		res.tInfo.addChange(newAttr.getTable().getName(), res.met.getNumRevisions(), ChangeType.AttrTypeChange);
 	}
 
 	private static void attrKeyChange(Attribute oldAttr, Attribute newAttr) {
@@ -219,7 +219,7 @@ public class Delta {
 		newAttr.getTable().setMode(SqlItem.UPDATED);
 		oldAttr.setMode(SqlItem.UPDATED);
 		newAttr.setMode(SqlItem.UPDATED);
-		res.tv.addChange(newAttr.getTable().getName(), res.met.getNumRevisions(), TableChangeType.KeyChange);
+		res.tInfo.addChange(newAttr.getTable().getName(), res.met.getNumRevisions(), ChangeType.KeyChange);
 	}
 	
 	private static void tableDel(Table t) {
