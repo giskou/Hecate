@@ -16,6 +16,6 @@ public class TableMetrics {
 	void setSize(int size) { this.size = size; }
 	
 	public String toString() {
-		return "S:" + size + "," + changes.toString();
+		return size + "[" + changes.toString() + "]";
 	}
 }
