@@ -48,7 +48,7 @@ public class Delta {
 	public static DiffResult minus(Schema A, Schema B) {
 		res = new DiffResult();
 		res.met.newRevision();
-		res.setVersionNames(A.getName(), A.getName());
+		res.setVersionNames(A.getName(), B.getName());
 		String oldTableKey = null, newTableKey = null ;
 		String oldAttrKey = null, newAttrKey = null ;
 		Iterator<String> oldTableKeys = A.getTables().keySet().iterator() ;
