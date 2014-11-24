@@ -87,8 +87,8 @@ public class MainPanel extends JPanel {
 					Table ext = (Table) e.getPath().getLastPathComponent();
 					Schema s = (Schema) rightTreeModel.getRoot();
 					Object[] a = {s, s.getTables().get(ext.getName())};
-					TreePath tp = new TreePath(a);
 					try {
+						TreePath tp = new TreePath(a);
 						rightTreePathSup.expandPath(tp);
 					} catch (Exception e2) {}
 				}
@@ -97,8 +97,8 @@ public class MainPanel extends JPanel {
 					Table ext = (Table) e.getPath().getLastPathComponent();
 					Schema s = (Schema) rightTreeModel.getRoot();
 					Object[] a = {s, s.getTables().get(ext.getName())};
-					TreePath tp = new TreePath(a);
 					try {
+						TreePath tp = new TreePath(a);
 						rightTreePathSup.collapsePath(tp);
 					} catch (Exception e2) {}
 				}
@@ -130,8 +130,8 @@ public class MainPanel extends JPanel {
 					Table ext = (Table) e.getPath().getLastPathComponent();
 					Schema s = (Schema) leftTreeModel.getRoot();
 					Object[] a = {s, s.getTables().get(ext.getName())};
-					TreePath tp = new TreePath(a);
 					try {
+						TreePath tp = new TreePath(a);
 						leftTreePathSup.expandPath(tp);
 					} catch (Exception e2) {}
 				}
@@ -140,8 +140,8 @@ public class MainPanel extends JPanel {
 					Table ext = (Table) e.getPath().getLastPathComponent();
 					Schema s = (Schema) leftTreeModel.getRoot();
 					Object[] a = {s, s.getTables().get(ext.getName())};
-					TreePath tp = new TreePath(a);
 					try {
+						TreePath tp = new TreePath(a);
 						leftTreePathSup.collapsePath(tp);
 					} catch (Exception e2) {}
 				}
