@@ -1,4 +1,4 @@
-// Generated from /home/iskoulis/Projects/Hecate/src/gr/uoi/cs/daintiness/hecate/parser/DDL.g4 by ANTLR 4.0
+// Generated from /home/giskou/dev/phd/Hecate/src/gr/uoi/cs/daintiness/hecate/parser/DDL.g4 by ANTLR 4.1
 package gr.uoi.cs.daintiness.hecate.parser;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
@@ -98,15 +98,15 @@ public class DDLParser extends Parser {
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 	public static class StartContext extends ParserRuleContext {
+		public TerminalNode EOF() { return getToken(DDLParser.EOF, 0); }
 		public TerminalNode SQ(int i) {
 			return getToken(DDLParser.SQ, i);
 		}
-		public TerminalNode EOF() { return getToken(DDLParser.EOF, 0); }
-		public List<Sql_statementContext> sql_statement() {
-			return getRuleContexts(Sql_statementContext.class);
-		}
 		public Sql_statementContext sql_statement(int i) {
 			return getRuleContext(Sql_statementContext.class,i);
+		}
+		public List<Sql_statementContext> sql_statement() {
+			return getRuleContexts(Sql_statementContext.class);
 		}
 		public List<TerminalNode> SQ() { return getTokens(DDLParser.SQ); }
 		public StartContext(ParserRuleContext parent, int invokingState) {
@@ -120,6 +120,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitStart(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitStart(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -166,11 +171,11 @@ public class DDLParser extends Parser {
 	}
 
 	public static class Sql_statementContext extends ParserRuleContext {
-		public Ddl_statementContext ddl_statement() {
-			return getRuleContext(Ddl_statementContext.class,0);
-		}
 		public Other_statementContext other_statement() {
 			return getRuleContext(Other_statementContext.class,0);
+		}
+		public Ddl_statementContext ddl_statement() {
+			return getRuleContext(Ddl_statementContext.class,0);
 		}
 		public Sql_statementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -183,6 +188,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitSql_statement(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitSql_statement(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -226,17 +236,17 @@ public class DDLParser extends Parser {
 	}
 
 	public static class Ddl_statementContext extends ParserRuleContext {
-		public Drop_statementContext drop_statement() {
-			return getRuleContext(Drop_statementContext.class,0);
-		}
-		public Alter_statementContext alter_statement() {
-			return getRuleContext(Alter_statementContext.class,0);
-		}
 		public Update_statementContext update_statement() {
 			return getRuleContext(Update_statementContext.class,0);
 		}
+		public Drop_statementContext drop_statement() {
+			return getRuleContext(Drop_statementContext.class,0);
+		}
 		public Create_statementContext create_statement() {
 			return getRuleContext(Create_statementContext.class,0);
+		}
+		public Alter_statementContext alter_statement() {
+			return getRuleContext(Alter_statementContext.class,0);
 		}
 		public Ddl_statementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -249,6 +259,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitDdl_statement(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitDdl_statement(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -298,17 +313,17 @@ public class DDLParser extends Parser {
 	}
 
 	public static class Other_statementContext extends ParserRuleContext {
-		public CommitContext commit() {
-			return getRuleContext(CommitContext.class,0);
-		}
-		public SetContext set() {
-			return getRuleContext(SetContext.class,0);
-		}
 		public Insert_statementContext insert_statement() {
 			return getRuleContext(Insert_statementContext.class,0);
 		}
 		public NamespaceContext namespace() {
 			return getRuleContext(NamespaceContext.class,0);
+		}
+		public CommitContext commit() {
+			return getRuleContext(CommitContext.class,0);
+		}
+		public SetContext set() {
+			return getRuleContext(SetContext.class,0);
 		}
 		public Other_statementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -321,6 +336,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitOther_statement(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitOther_statement(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -370,10 +390,10 @@ public class DDLParser extends Parser {
 	}
 
 	public static class NamespaceContext extends ParserRuleContext {
+		public TerminalNode USE() { return getToken(DDLParser.USE, 0); }
 		public IdentContext ident() {
 			return getRuleContext(IdentContext.class,0);
 		}
-		public TerminalNode USE() { return getToken(DDLParser.USE, 0); }
 		public NamespaceContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -385,6 +405,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitNamespace(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitNamespace(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -423,6 +448,11 @@ public class DDLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitCommit(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitCommit(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final CommitContext commit() throws RecognitionException {
@@ -447,13 +477,13 @@ public class DDLParser extends Parser {
 
 	public static class SetContext extends ParserRuleContext {
 		public TerminalNode SET() { return getToken(DDLParser.SET, 0); }
+		public IdentContext ident(int i) {
+			return getRuleContext(IdentContext.class,i);
+		}
 		public List<IdentContext> ident() {
 			return getRuleContexts(IdentContext.class);
 		}
 		public TerminalNode EQ() { return getToken(DDLParser.EQ, 0); }
-		public IdentContext ident(int i) {
-			return getRuleContext(IdentContext.class,i);
-		}
 		public SetContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -465,6 +495,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitSet(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitSet(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -500,15 +535,15 @@ public class DDLParser extends Parser {
 	}
 
 	public static class Drop_statementContext extends ParserRuleContext {
-		public TerminalNode TABLE() { return getToken(DDLParser.TABLE, 0); }
-		public TerminalNode PURGE() { return getToken(DDLParser.PURGE, 0); }
+		public TerminalNode IF() { return getToken(DDLParser.IF, 0); }
 		public TerminalNode DATABASE() { return getToken(DDLParser.DATABASE, 0); }
-		public TerminalNode EXISTS() { return getToken(DDLParser.EXISTS, 0); }
-		public TerminalNode DROP() { return getToken(DDLParser.DROP, 0); }
 		public NameListContext nameList() {
 			return getRuleContext(NameListContext.class,0);
 		}
-		public TerminalNode IF() { return getToken(DDLParser.IF, 0); }
+		public TerminalNode EXISTS() { return getToken(DDLParser.EXISTS, 0); }
+		public TerminalNode TABLE() { return getToken(DDLParser.TABLE, 0); }
+		public TerminalNode PURGE() { return getToken(DDLParser.PURGE, 0); }
+		public TerminalNode DROP() { return getToken(DDLParser.DROP, 0); }
 		public Drop_statementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -520,6 +555,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitDrop_statement(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitDrop_statement(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -598,26 +638,26 @@ public class DDLParser extends Parser {
 	}
 
 	public static class Insert_statementContext extends ParserRuleContext {
+		public TerminalNode CO(int i) {
+			return getToken(DDLParser.CO, i);
+		}
+		public List<TerminalNode> CO() { return getTokens(DDLParser.CO); }
+		public ParValueListContext parValueList(int i) {
+			return getRuleContext(ParValueListContext.class,i);
+		}
+		public TerminalNode INTO() { return getToken(DDLParser.INTO, 0); }
+		public TerminalNode INSERT() { return getToken(DDLParser.INSERT, 0); }
+		public TerminalNode IGNORE() { return getToken(DDLParser.IGNORE, 0); }
 		public List<ParValueListContext> parValueList() {
 			return getRuleContexts(ParValueListContext.class);
 		}
-		public TerminalNode CO(int i) {
-			return getToken(DDLParser.CO, i);
+		public TerminalNode VALUES() { return getToken(DDLParser.VALUES, 0); }
+		public Table_nameContext table_name() {
+			return getRuleContext(Table_nameContext.class,0);
 		}
 		public ParNameListContext parNameList() {
 			return getRuleContext(ParNameListContext.class,0);
 		}
-		public TerminalNode INSERT() { return getToken(DDLParser.INSERT, 0); }
-		public TerminalNode IGNORE() { return getToken(DDLParser.IGNORE, 0); }
-		public Table_nameContext table_name() {
-			return getRuleContext(Table_nameContext.class,0);
-		}
-		public List<TerminalNode> CO() { return getTokens(DDLParser.CO); }
-		public TerminalNode INTO() { return getToken(DDLParser.INTO, 0); }
-		public ParValueListContext parValueList(int i) {
-			return getRuleContext(ParValueListContext.class,i);
-		}
-		public TerminalNode VALUES() { return getToken(DDLParser.VALUES, 0); }
 		public Insert_statementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -629,6 +669,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitInsert_statement(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitInsert_statement(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -688,21 +733,21 @@ public class DDLParser extends Parser {
 	}
 
 	public static class Create_statementContext extends ParserRuleContext {
-		public IndexContext index() {
-			return getRuleContext(IndexContext.class,0);
-		}
-		public TerminalNode CREATE() { return getToken(DDLParser.CREATE, 0); }
-		public ViewContext view() {
-			return getRuleContext(ViewContext.class,0);
-		}
-		public TableContext table() {
-			return getRuleContext(TableContext.class,0);
-		}
 		public Pl_sqlContext pl_sql() {
 			return getRuleContext(Pl_sqlContext.class,0);
 		}
 		public DatabaseContext database() {
 			return getRuleContext(DatabaseContext.class,0);
+		}
+		public TableContext table() {
+			return getRuleContext(TableContext.class,0);
+		}
+		public TerminalNode CREATE() { return getToken(DDLParser.CREATE, 0); }
+		public ViewContext view() {
+			return getRuleContext(ViewContext.class,0);
+		}
+		public IndexContext index() {
+			return getRuleContext(IndexContext.class,0);
 		}
 		public TrigerContext triger() {
 			return getRuleContext(TrigerContext.class,0);
@@ -718,6 +763,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitCreate_statement(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitCreate_statement(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -780,19 +830,19 @@ public class DDLParser extends Parser {
 	}
 
 	public static class Alter_statementContext extends ParserRuleContext {
+		public TerminalNode ADD(int i) {
+			return getToken(DDLParser.ADD, i);
+		}
+		public TerminalNode ALTER() { return getToken(DDLParser.ALTER, 0); }
 		public TerminalNode TABLE() { return getToken(DDLParser.TABLE, 0); }
 		public List<Alter_constraintContext> alter_constraint() {
 			return getRuleContexts(Alter_constraintContext.class);
 		}
-		public TerminalNode ALTER() { return getToken(DDLParser.ALTER, 0); }
-		public TerminalNode ADD(int i) {
-			return getToken(DDLParser.ADD, i);
+		public Table_nameContext table_name() {
+			return getRuleContext(Table_nameContext.class,0);
 		}
 		public Alter_constraintContext alter_constraint(int i) {
 			return getRuleContext(Alter_constraintContext.class,i);
-		}
-		public Table_nameContext table_name() {
-			return getRuleContext(Table_nameContext.class,0);
 		}
 		public List<TerminalNode> ADD() { return getTokens(DDLParser.ADD); }
 		public Alter_statementContext(ParserRuleContext parent, int invokingState) {
@@ -806,6 +856,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitAlter_statement(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitAlter_statement(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -847,31 +902,31 @@ public class DDLParser extends Parser {
 	}
 
 	public static class Update_statementContext extends ParserRuleContext {
-		public List<Col_nameContext> col_name() {
-			return getRuleContexts(Col_nameContext.class);
-		}
+		public TerminalNode SET() { return getToken(DDLParser.SET, 0); }
 		public ValueContext value(int i) {
 			return getRuleContext(ValueContext.class,i);
 		}
-		public TerminalNode UPDATE() { return getToken(DDLParser.UPDATE, 0); }
-		public TerminalNode SET() { return getToken(DDLParser.SET, 0); }
 		public TerminalNode CO(int i) {
 			return getToken(DDLParser.CO, i);
 		}
-		public List<TerminalNode> EQ() { return getTokens(DDLParser.EQ); }
-		public Table_nameContext table_name() {
-			return getRuleContext(Table_nameContext.class,0);
-		}
+		public List<TerminalNode> CO() { return getTokens(DDLParser.CO); }
 		public List<ValueContext> value() {
 			return getRuleContexts(ValueContext.class);
 		}
 		public TerminalNode EQ(int i) {
 			return getToken(DDLParser.EQ, i);
 		}
-		public List<TerminalNode> CO() { return getTokens(DDLParser.CO); }
+		public List<Col_nameContext> col_name() {
+			return getRuleContexts(Col_nameContext.class);
+		}
 		public Col_nameContext col_name(int i) {
 			return getRuleContext(Col_nameContext.class,i);
 		}
+		public TerminalNode UPDATE() { return getToken(DDLParser.UPDATE, 0); }
+		public Table_nameContext table_name() {
+			return getRuleContext(Table_nameContext.class,0);
+		}
+		public List<TerminalNode> EQ() { return getTokens(DDLParser.EQ); }
 		public Update_statementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -883,6 +938,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitUpdate_statement(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitUpdate_statement(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -929,20 +989,20 @@ public class DDLParser extends Parser {
 	}
 
 	public static class DatabaseContext extends ParserRuleContext {
-		public Create_optionContext create_option(int i) {
-			return getRuleContext(Create_optionContext.class,i);
-		}
-		public Schema_nameContext schema_name() {
-			return getRuleContext(Schema_nameContext.class,0);
-		}
-		public TerminalNode SCHEMA() { return getToken(DDLParser.SCHEMA, 0); }
-		public TerminalNode EXISTS() { return getToken(DDLParser.EXISTS, 0); }
-		public TerminalNode NOT() { return getToken(DDLParser.NOT, 0); }
+		public TerminalNode IF() { return getToken(DDLParser.IF, 0); }
 		public TerminalNode DATABASE() { return getToken(DDLParser.DATABASE, 0); }
 		public List<Create_optionContext> create_option() {
 			return getRuleContexts(Create_optionContext.class);
 		}
-		public TerminalNode IF() { return getToken(DDLParser.IF, 0); }
+		public TerminalNode EXISTS() { return getToken(DDLParser.EXISTS, 0); }
+		public Create_optionContext create_option(int i) {
+			return getRuleContext(Create_optionContext.class,i);
+		}
+		public TerminalNode SCHEMA() { return getToken(DDLParser.SCHEMA, 0); }
+		public TerminalNode NOT() { return getToken(DDLParser.NOT, 0); }
+		public Schema_nameContext schema_name() {
+			return getRuleContext(Schema_nameContext.class,0);
+		}
 		public DatabaseContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -954,6 +1014,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitDatabase(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitDatabase(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1019,12 +1084,12 @@ public class DDLParser extends Parser {
 		}
 	}
 	public static class CollateContext extends Create_optionContext {
-		public TerminalNode EQ() { return getToken(DDLParser.EQ, 0); }
+		public TerminalNode DEFAULT() { return getToken(DDLParser.DEFAULT, 0); }
+		public TerminalNode COLLATE() { return getToken(DDLParser.COLLATE, 0); }
 		public Collation_nameContext collation_name() {
 			return getRuleContext(Collation_nameContext.class,0);
 		}
-		public TerminalNode DEFAULT() { return getToken(DDLParser.DEFAULT, 0); }
-		public TerminalNode COLLATE() { return getToken(DDLParser.COLLATE, 0); }
+		public TerminalNode EQ() { return getToken(DDLParser.EQ, 0); }
 		public CollateContext(Create_optionContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
@@ -1034,15 +1099,20 @@ public class DDLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitCollate(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitCollate(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class Char_setContext extends Create_optionContext {
 		public TerminalNode SET() { return getToken(DDLParser.SET, 0); }
-		public TerminalNode EQ() { return getToken(DDLParser.EQ, 0); }
+		public TerminalNode DEFAULT() { return getToken(DDLParser.DEFAULT, 0); }
+		public TerminalNode CHARACTER() { return getToken(DDLParser.CHARACTER, 0); }
 		public Charset_nameContext charset_name() {
 			return getRuleContext(Charset_nameContext.class,0);
 		}
-		public TerminalNode CHARACTER() { return getToken(DDLParser.CHARACTER, 0); }
-		public TerminalNode DEFAULT() { return getToken(DDLParser.DEFAULT, 0); }
+		public TerminalNode EQ() { return getToken(DDLParser.EQ, 0); }
 		public Char_setContext(Create_optionContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
@@ -1051,6 +1121,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitChar_set(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitChar_set(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1126,25 +1201,25 @@ public class DDLParser extends Parser {
 
 	public static class IndexContext extends ParserRuleContext {
 		public TerminalNode ON() { return getToken(DDLParser.ON, 0); }
+		public TerminalNode SPATIAL() { return getToken(DDLParser.SPATIAL, 0); }
+		public Index_optionContext index_option() {
+			return getRuleContext(Index_optionContext.class,0);
+		}
+		public Index_typeContext index_type() {
+			return getRuleContext(Index_typeContext.class,0);
+		}
 		public Index_nameContext index_name() {
 			return getRuleContext(Index_nameContext.class,0);
 		}
-		public TerminalNode INDEX() { return getToken(DDLParser.INDEX, 0); }
 		public TerminalNode FULLTEXT() { return getToken(DDLParser.FULLTEXT, 0); }
-		public TerminalNode UNIQUE() { return getToken(DDLParser.UNIQUE, 0); }
-		public Index_optionContext index_option() {
-			return getRuleContext(Index_optionContext.class,0);
+		public Table_nameContext table_name() {
+			return getRuleContext(Table_nameContext.class,0);
 		}
 		public ParNameListContext parNameList() {
 			return getRuleContext(ParNameListContext.class,0);
 		}
-		public Table_nameContext table_name() {
-			return getRuleContext(Table_nameContext.class,0);
-		}
-		public TerminalNode SPATIAL() { return getToken(DDLParser.SPATIAL, 0); }
-		public Index_typeContext index_type() {
-			return getRuleContext(Index_typeContext.class,0);
-		}
+		public TerminalNode UNIQUE() { return getToken(DDLParser.UNIQUE, 0); }
+		public TerminalNode INDEX() { return getToken(DDLParser.INDEX, 0); }
 		public IndexContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1156,6 +1231,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitIndex(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitIndex(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1216,9 +1296,9 @@ public class DDLParser extends Parser {
 	}
 
 	public static class Index_typeContext extends ParserRuleContext {
-		public TerminalNode HASH() { return getToken(DDLParser.HASH, 0); }
 		public TerminalNode BTREE() { return getToken(DDLParser.BTREE, 0); }
 		public TerminalNode USING() { return getToken(DDLParser.USING, 0); }
+		public TerminalNode HASH() { return getToken(DDLParser.HASH, 0); }
 		public Index_typeContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1230,6 +1310,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitIndex_type(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitIndex_type(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1287,6 +1372,11 @@ public class DDLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitIndex_option(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitIndex_option(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Index_optionContext index_option() throws RecognitionException {
@@ -1333,19 +1423,19 @@ public class DDLParser extends Parser {
 	}
 
 	public static class ViewContext extends ParserRuleContext {
-		public TerminalNode RP(int i) {
-			return getToken(DDLParser.RP, i);
-		}
 		public TerminalNode AS() { return getToken(DDLParser.AS, 0); }
-		public IdentContext ident() {
-			return getRuleContext(IdentContext.class,0);
-		}
+		public TerminalNode VIEW() { return getToken(DDLParser.VIEW, 0); }
+		public TerminalNode LP() { return getToken(DDLParser.LP, 0); }
+		public List<TerminalNode> RP() { return getTokens(DDLParser.RP); }
 		public ParNameListContext parNameList() {
 			return getRuleContext(ParNameListContext.class,0);
 		}
-		public TerminalNode VIEW() { return getToken(DDLParser.VIEW, 0); }
-		public List<TerminalNode> RP() { return getTokens(DDLParser.RP); }
-		public TerminalNode LP() { return getToken(DDLParser.LP, 0); }
+		public TerminalNode RP(int i) {
+			return getToken(DDLParser.RP, i);
+		}
+		public IdentContext ident() {
+			return getRuleContext(IdentContext.class,0);
+		}
 		public ViewContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1357,6 +1447,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitView(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitView(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1405,15 +1500,15 @@ public class DDLParser extends Parser {
 	}
 
 	public static class TrigerContext extends ParserRuleContext {
-		public Triger_nameContext triger_name() {
-			return getRuleContext(Triger_nameContext.class,0);
-		}
+		public TerminalNode TRIGGER() { return getToken(DDLParser.TRIGGER, 0); }
+		public TerminalNode OR() { return getToken(DDLParser.OR, 0); }
 		public TerminalNode REPLACE() { return getToken(DDLParser.REPLACE, 0); }
 		public Consume_until_endContext consume_until_end() {
 			return getRuleContext(Consume_until_endContext.class,0);
 		}
-		public TerminalNode OR() { return getToken(DDLParser.OR, 0); }
-		public TerminalNode TRIGGER() { return getToken(DDLParser.TRIGGER, 0); }
+		public Triger_nameContext triger_name() {
+			return getRuleContext(Triger_nameContext.class,0);
+		}
 		public TrigerContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1425,6 +1520,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitTriger(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitTriger(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1461,16 +1561,16 @@ public class DDLParser extends Parser {
 	}
 
 	public static class Pl_sqlContext extends ParserRuleContext {
+		public TerminalNode OR() { return getToken(DDLParser.OR, 0); }
 		public TerminalNode FUNCTION() { return getToken(DDLParser.FUNCTION, 0); }
-		public IdentContext ident() {
-			return getRuleContext(IdentContext.class,0);
-		}
-		public TerminalNode REPLACE() { return getToken(DDLParser.REPLACE, 0); }
 		public TerminalNode PROCEDURE() { return getToken(DDLParser.PROCEDURE, 0); }
+		public TerminalNode REPLACE() { return getToken(DDLParser.REPLACE, 0); }
 		public Consume_until_endContext consume_until_end() {
 			return getRuleContext(Consume_until_endContext.class,0);
 		}
-		public TerminalNode OR() { return getToken(DDLParser.OR, 0); }
+		public IdentContext ident() {
+			return getRuleContext(IdentContext.class,0);
+		}
 		public Pl_sqlContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1482,6 +1582,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitPl_sql(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitPl_sql(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1523,14 +1628,14 @@ public class DDLParser extends Parser {
 	}
 
 	public static class Consume_until_endContext extends ParserRuleContext {
-		public TerminalNode END(int i) {
-			return getToken(DDLParser.END, i);
-		}
 		public TerminalNode SQ(int i) {
 			return getToken(DDLParser.SQ, i);
 		}
-		public List<TerminalNode> END() { return getTokens(DDLParser.END); }
+		public TerminalNode END(int i) {
+			return getToken(DDLParser.END, i);
+		}
 		public List<TerminalNode> SQ() { return getTokens(DDLParser.SQ); }
+		public List<TerminalNode> END() { return getTokens(DDLParser.END); }
 		public Consume_until_endContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1542,6 +1647,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitConsume_until_end(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitConsume_until_end(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1718,36 +1828,36 @@ public class DDLParser extends Parser {
 	}
 
 	public static class TableContext extends ParserRuleContext {
-		public TerminalNode CO(int i) {
-			return getToken(DDLParser.CO, i);
-		}
-		public TerminalNode RP() { return getToken(DDLParser.RP, 0); }
-		public List<TerminalNode> SQ() { return getTokens(DDLParser.SQ); }
-		public TerminalNode LP() { return getToken(DDLParser.LP, 0); }
-		public Table_definitionContext table_definition(int i) {
-			return getRuleContext(Table_definitionContext.class,i);
-		}
-		public TerminalNode TABLE() { return getToken(DDLParser.TABLE, 0); }
 		public List<Table_definitionContext> table_definition() {
 			return getRuleContexts(Table_definitionContext.class);
-		}
-		public TerminalNode SQ(int i) {
-			return getToken(DDLParser.SQ, i);
-		}
-		public TerminalNode NOT() { return getToken(DDLParser.NOT, 0); }
-		public TerminalNode EXISTS() { return getToken(DDLParser.EXISTS, 0); }
-		public Table_nameContext table_name() {
-			return getRuleContext(Table_nameContext.class,0);
 		}
 		public List<Table_optionContext> table_option() {
 			return getRuleContexts(Table_optionContext.class);
 		}
-		public List<TerminalNode> CO() { return getTokens(DDLParser.CO); }
+		public TerminalNode EXISTS() { return getToken(DDLParser.EXISTS, 0); }
+		public TerminalNode LP() { return getToken(DDLParser.LP, 0); }
 		public TerminalNode TEMPORARY() { return getToken(DDLParser.TEMPORARY, 0); }
+		public TerminalNode RP() { return getToken(DDLParser.RP, 0); }
 		public Table_optionContext table_option(int i) {
 			return getRuleContext(Table_optionContext.class,i);
 		}
+		public List<TerminalNode> SQ() { return getTokens(DDLParser.SQ); }
+		public Table_definitionContext table_definition(int i) {
+			return getRuleContext(Table_definitionContext.class,i);
+		}
 		public TerminalNode IF() { return getToken(DDLParser.IF, 0); }
+		public TerminalNode CO(int i) {
+			return getToken(DDLParser.CO, i);
+		}
+		public List<TerminalNode> CO() { return getTokens(DDLParser.CO); }
+		public TerminalNode SQ(int i) {
+			return getToken(DDLParser.SQ, i);
+		}
+		public TerminalNode NOT() { return getToken(DDLParser.NOT, 0); }
+		public TerminalNode TABLE() { return getToken(DDLParser.TABLE, 0); }
+		public Table_nameContext table_name() {
+			return getRuleContext(Table_nameContext.class,0);
+		}
 		public TableContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1759,6 +1869,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitTable(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitTable(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1865,6 +1980,11 @@ public class DDLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitTable_definition(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitTable_definition(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Table_definitionContext table_definition() throws RecognitionException {
@@ -1901,16 +2021,16 @@ public class DDLParser extends Parser {
 
 	public static class Table_optionContext extends ParserRuleContext {
 		public TerminalNode SET() { return getToken(DDLParser.SET, 0); }
+		public TerminalNode DEFAULT() { return getToken(DDLParser.DEFAULT, 0); }
 		public TerminalNode INT() { return getToken(DDLParser.INT, 0); }
+		public TerminalNode CHARACTER() { return getToken(DDLParser.CHARACTER, 0); }
+		public IdentContext ident(int i) {
+			return getRuleContext(IdentContext.class,i);
+		}
 		public List<IdentContext> ident() {
 			return getRuleContexts(IdentContext.class);
 		}
 		public TerminalNode EQ() { return getToken(DDLParser.EQ, 0); }
-		public TerminalNode CHARACTER() { return getToken(DDLParser.CHARACTER, 0); }
-		public TerminalNode DEFAULT() { return getToken(DDLParser.DEFAULT, 0); }
-		public IdentContext ident(int i) {
-			return getRuleContext(IdentContext.class,i);
-		}
 		public Table_optionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1922,6 +2042,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitTable_option(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitTable_option(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2083,31 +2208,31 @@ public class DDLParser extends Parser {
 		public Line_constraintContext line_constraint(int i) {
 			return getRuleContext(Line_constraintContext.class,i);
 		}
-		public Col_nameContext col_name() {
-			return getRuleContext(Col_nameContext.class,0);
+		public List<Column_optionContext> column_option() {
+			return getRuleContexts(Column_optionContext.class);
 		}
-		public TerminalNode UPDATE() { return getToken(DDLParser.UPDATE, 0); }
 		public TerminalNode ON() { return getToken(DDLParser.ON, 0); }
-		public Column_optionContext column_option(int i) {
-			return getRuleContext(Column_optionContext.class,i);
-		}
-		public IdentContext ident() {
-			return getRuleContext(IdentContext.class,0);
-		}
-		public Data_optionContext data_option() {
-			return getRuleContext(Data_optionContext.class,0);
-		}
-		public Data_typeContext data_type() {
-			return getRuleContext(Data_typeContext.class,0);
-		}
 		public List<Line_constraintContext> line_constraint() {
 			return getRuleContexts(Line_constraintContext.class);
 		}
 		public Create_optionContext create_option() {
 			return getRuleContext(Create_optionContext.class,0);
 		}
-		public List<Column_optionContext> column_option() {
-			return getRuleContexts(Column_optionContext.class);
+		public Column_optionContext column_option(int i) {
+			return getRuleContext(Column_optionContext.class,i);
+		}
+		public Data_optionContext data_option() {
+			return getRuleContext(Data_optionContext.class,0);
+		}
+		public Col_nameContext col_name() {
+			return getRuleContext(Col_nameContext.class,0);
+		}
+		public TerminalNode UPDATE() { return getToken(DDLParser.UPDATE, 0); }
+		public Data_typeContext data_type() {
+			return getRuleContext(Data_typeContext.class,0);
+		}
+		public IdentContext ident() {
+			return getRuleContext(IdentContext.class,0);
 		}
 		public ColumnContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -2120,6 +2245,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitColumn(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitColumn(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2200,12 +2330,12 @@ public class DDLParser extends Parser {
 
 	public static class Column_optionContext extends ParserRuleContext {
 		public TerminalNode AUTO_INC() { return getToken(DDLParser.AUTO_INC, 0); }
-		public TerminalNode NOT() { return getToken(DDLParser.NOT, 0); }
+		public TerminalNode DEFAULT() { return getToken(DDLParser.DEFAULT, 0); }
 		public ValueContext value() {
 			return getRuleContext(ValueContext.class,0);
 		}
+		public TerminalNode NOT() { return getToken(DDLParser.NOT, 0); }
 		public TerminalNode NULL() { return getToken(DDLParser.NULL, 0); }
-		public TerminalNode DEFAULT() { return getToken(DDLParser.DEFAULT, 0); }
 		public Column_optionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -2217,6 +2347,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitColumn_option(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitColumn_option(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2299,6 +2434,11 @@ public class DDLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitTable_constraint(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitTable_constraint(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Table_constraintContext table_constraint() throws RecognitionException {
@@ -2336,6 +2476,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitLine_constraint(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitLine_constraint(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2375,6 +2520,11 @@ public class DDLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitAlter_constraint(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitAlter_constraint(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Alter_constraintContext alter_constraint() throws RecognitionException {
@@ -2409,28 +2559,28 @@ public class DDLParser extends Parser {
 		}
 	}
 	public static class UniqueContext extends ConstraintContext {
-		public TerminalNode INDEX() { return getToken(DDLParser.INDEX, 0); }
-		public Index_nameContext index_name() {
-			return getRuleContext(Index_nameContext.class,0);
-		}
 		public Index_optionContext index_option(int i) {
 			return getRuleContext(Index_optionContext.class,i);
+		}
+		public Constr_nameContext constr_name() {
+			return getRuleContext(Constr_nameContext.class,0);
 		}
 		public List<Index_optionContext> index_option() {
 			return getRuleContexts(Index_optionContext.class);
 		}
-		public TerminalNode UNIQUE() { return getToken(DDLParser.UNIQUE, 0); }
-		public Constr_nameContext constr_name() {
-			return getRuleContext(Constr_nameContext.class,0);
-		}
-		public ParNameListContext parNameList() {
-			return getRuleContext(ParNameListContext.class,0);
-		}
-		public TerminalNode CONSTRAINT() { return getToken(DDLParser.CONSTRAINT, 0); }
-		public TerminalNode KEY() { return getToken(DDLParser.KEY, 0); }
 		public Index_typeContext index_type() {
 			return getRuleContext(Index_typeContext.class,0);
 		}
+		public TerminalNode KEY() { return getToken(DDLParser.KEY, 0); }
+		public Index_nameContext index_name() {
+			return getRuleContext(Index_nameContext.class,0);
+		}
+		public TerminalNode CONSTRAINT() { return getToken(DDLParser.CONSTRAINT, 0); }
+		public ParNameListContext parNameList() {
+			return getRuleContext(ParNameListContext.class,0);
+		}
+		public TerminalNode INDEX() { return getToken(DDLParser.INDEX, 0); }
+		public TerminalNode UNIQUE() { return getToken(DDLParser.UNIQUE, 0); }
 		public UniqueContext(ConstraintContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
@@ -2440,15 +2590,20 @@ public class DDLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitUnique(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitUnique(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class CheckContext extends ConstraintContext {
-		public Consume_parContext consume_par() {
-			return getRuleContext(Consume_parContext.class,0);
-		}
+		public TerminalNode CHECK() { return getToken(DDLParser.CHECK, 0); }
 		public Constr_nameContext constr_name() {
 			return getRuleContext(Constr_nameContext.class,0);
 		}
-		public TerminalNode CHECK() { return getToken(DDLParser.CHECK, 0); }
+		public Consume_parContext consume_par() {
+			return getRuleContext(Consume_parContext.class,0);
+		}
 		public TerminalNode CONSTRAINT() { return getToken(DDLParser.CONSTRAINT, 0); }
 		public CheckContext(ConstraintContext ctx) { copyFrom(ctx); }
 		@Override
@@ -2459,28 +2614,33 @@ public class DDLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitCheck(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitCheck(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class PrimaryContext extends ConstraintContext {
 		public Index_optionContext index_option(int i) {
 			return getRuleContext(Index_optionContext.class,i);
 		}
-		public List<Index_optionContext> index_option() {
-			return getRuleContexts(Index_optionContext.class);
-		}
 		public List<Constr_nameContext> constr_name() {
 			return getRuleContexts(Constr_nameContext.class);
 		}
-		public TerminalNode PRIMARY() { return getToken(DDLParser.PRIMARY, 0); }
-		public ParNameListContext parNameList() {
-			return getRuleContext(ParNameListContext.class,0);
+		public List<Index_optionContext> index_option() {
+			return getRuleContexts(Index_optionContext.class);
 		}
-		public TerminalNode CONSTRAINT() { return getToken(DDLParser.CONSTRAINT, 0); }
+		public Index_typeContext index_type() {
+			return getRuleContext(Index_typeContext.class,0);
+		}
+		public TerminalNode KEY() { return getToken(DDLParser.KEY, 0); }
 		public Constr_nameContext constr_name(int i) {
 			return getRuleContext(Constr_nameContext.class,i);
 		}
-		public TerminalNode KEY() { return getToken(DDLParser.KEY, 0); }
-		public Index_typeContext index_type() {
-			return getRuleContext(Index_typeContext.class,0);
+		public TerminalNode CONSTRAINT() { return getToken(DDLParser.CONSTRAINT, 0); }
+		public TerminalNode PRIMARY() { return getToken(DDLParser.PRIMARY, 0); }
+		public ParNameListContext parNameList() {
+			return getRuleContext(ParNameListContext.class,0);
 		}
 		public PrimaryContext(ConstraintContext ctx) { copyFrom(ctx); }
 		@Override
@@ -2491,29 +2651,34 @@ public class DDLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitPrimary(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitPrimary(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class Index_keyContext extends ConstraintContext {
-		public Col_nameContext col_name() {
-			return getRuleContext(Col_nameContext.class,0);
-		}
-		public TerminalNode ON() { return getToken(DDLParser.ON, 0); }
-		public Index_nameContext index_name() {
-			return getRuleContext(Index_nameContext.class,0);
-		}
-		public TerminalNode INDEX() { return getToken(DDLParser.INDEX, 0); }
 		public Index_optionContext index_option(int i) {
 			return getRuleContext(Index_optionContext.class,i);
 		}
+		public TerminalNode ON() { return getToken(DDLParser.ON, 0); }
 		public List<Index_optionContext> index_option() {
 			return getRuleContexts(Index_optionContext.class);
+		}
+		public Index_typeContext index_type() {
+			return getRuleContext(Index_typeContext.class,0);
+		}
+		public Col_nameContext col_name() {
+			return getRuleContext(Col_nameContext.class,0);
+		}
+		public TerminalNode KEY() { return getToken(DDLParser.KEY, 0); }
+		public Index_nameContext index_name() {
+			return getRuleContext(Index_nameContext.class,0);
 		}
 		public ParNameListContext parNameList() {
 			return getRuleContext(ParNameListContext.class,0);
 		}
-		public TerminalNode KEY() { return getToken(DDLParser.KEY, 0); }
-		public Index_typeContext index_type() {
-			return getRuleContext(Index_typeContext.class,0);
-		}
+		public TerminalNode INDEX() { return getToken(DDLParser.INDEX, 0); }
 		public Index_keyContext(ConstraintContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
@@ -2523,23 +2688,28 @@ public class DDLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitIndex_key(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitIndex_key(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class ForeignContext extends ConstraintContext {
-		public Index_nameContext index_name() {
-			return getRuleContext(Index_nameContext.class,0);
-		}
 		public Constr_nameContext constr_name() {
 			return getRuleContext(Constr_nameContext.class,0);
 		}
+		public TerminalNode KEY() { return getToken(DDLParser.KEY, 0); }
+		public Index_nameContext index_name() {
+			return getRuleContext(Index_nameContext.class,0);
+		}
+		public TerminalNode CONSTRAINT() { return getToken(DDLParser.CONSTRAINT, 0); }
 		public ParNameListContext parNameList() {
 			return getRuleContext(ParNameListContext.class,0);
 		}
-		public TerminalNode FOREIGN() { return getToken(DDLParser.FOREIGN, 0); }
-		public TerminalNode CONSTRAINT() { return getToken(DDLParser.CONSTRAINT, 0); }
 		public Reference_definitionContext reference_definition() {
 			return getRuleContext(Reference_definitionContext.class,0);
 		}
-		public TerminalNode KEY() { return getToken(DDLParser.KEY, 0); }
+		public TerminalNode FOREIGN() { return getToken(DDLParser.FOREIGN, 0); }
 		public ForeignContext(ConstraintContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
@@ -2548,6 +2718,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitForeign(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitForeign(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class ReferenceContext extends ConstraintContext {
@@ -2563,24 +2738,29 @@ public class DDLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitReference(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitReference(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class FulltextContext extends ConstraintContext {
-		public TerminalNode INDEX() { return getToken(DDLParser.INDEX, 0); }
-		public Index_nameContext index_name() {
-			return getRuleContext(Index_nameContext.class,0);
-		}
 		public Index_optionContext index_option(int i) {
 			return getRuleContext(Index_optionContext.class,i);
 		}
+		public TerminalNode SPATIAL() { return getToken(DDLParser.SPATIAL, 0); }
 		public List<Index_optionContext> index_option() {
 			return getRuleContexts(Index_optionContext.class);
+		}
+		public TerminalNode KEY() { return getToken(DDLParser.KEY, 0); }
+		public Index_nameContext index_name() {
+			return getRuleContext(Index_nameContext.class,0);
 		}
 		public TerminalNode FULLTEXT() { return getToken(DDLParser.FULLTEXT, 0); }
 		public ParNameListContext parNameList() {
 			return getRuleContext(ParNameListContext.class,0);
 		}
-		public TerminalNode KEY() { return getToken(DDLParser.KEY, 0); }
-		public TerminalNode SPATIAL() { return getToken(DDLParser.SPATIAL, 0); }
+		public TerminalNode INDEX() { return getToken(DDLParser.INDEX, 0); }
 		public FulltextContext(ConstraintContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
@@ -2589,6 +2769,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitFulltext(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitFulltext(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2911,20 +3096,20 @@ public class DDLParser extends Parser {
 	}
 
 	public static class Consume_parContext extends ParserRuleContext {
-		public TerminalNode RP(int i) {
-			return getToken(DDLParser.RP, i);
-		}
-		public List<Consume_parContext> consume_par() {
-			return getRuleContexts(Consume_parContext.class);
+		public TerminalNode LP(int i) {
+			return getToken(DDLParser.LP, i);
 		}
 		public Consume_parContext consume_par(int i) {
 			return getRuleContext(Consume_parContext.class,i);
 		}
-		public List<TerminalNode> RP() { return getTokens(DDLParser.RP); }
-		public TerminalNode LP(int i) {
-			return getToken(DDLParser.LP, i);
-		}
 		public List<TerminalNode> LP() { return getTokens(DDLParser.LP); }
+		public List<Consume_parContext> consume_par() {
+			return getRuleContexts(Consume_parContext.class);
+		}
+		public List<TerminalNode> RP() { return getTokens(DDLParser.RP); }
+		public TerminalNode RP(int i) {
+			return getToken(DDLParser.RP, i);
+		}
 		public Consume_parContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -2936,6 +3121,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitConsume_par(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitConsume_par(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3106,14 +3296,14 @@ public class DDLParser extends Parser {
 		public Reference_optionContext reference_option(int i) {
 			return getRuleContext(Reference_optionContext.class,i);
 		}
-		public ParNameListContext parNameList() {
-			return getRuleContext(ParNameListContext.class,0);
+		public List<Reference_optionContext> reference_option() {
+			return getRuleContexts(Reference_optionContext.class);
 		}
 		public Table_nameContext table_name() {
 			return getRuleContext(Table_nameContext.class,0);
 		}
-		public List<Reference_optionContext> reference_option() {
-			return getRuleContexts(Reference_optionContext.class);
+		public ParNameListContext parNameList() {
+			return getRuleContext(ParNameListContext.class,0);
 		}
 		public TerminalNode REFERENCES() { return getToken(DDLParser.REFERENCES, 0); }
 		public Reference_definitionContext(ParserRuleContext parent, int invokingState) {
@@ -3127,6 +3317,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitReference_definition(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitReference_definition(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3169,12 +3364,12 @@ public class DDLParser extends Parser {
 	}
 
 	public static class Reference_optionContext extends ParserRuleContext {
-		public TerminalNode UPDATE() { return getToken(DDLParser.UPDATE, 0); }
-		public TerminalNode ON() { return getToken(DDLParser.ON, 0); }
-		public TerminalNode DELETE() { return getToken(DDLParser.DELETE, 0); }
 		public RefsContext refs() {
 			return getRuleContext(RefsContext.class,0);
 		}
+		public TerminalNode ON() { return getToken(DDLParser.ON, 0); }
+		public TerminalNode DELETE() { return getToken(DDLParser.DELETE, 0); }
+		public TerminalNode UPDATE() { return getToken(DDLParser.UPDATE, 0); }
 		public Reference_optionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -3186,6 +3381,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitReference_option(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitReference_option(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3219,12 +3419,12 @@ public class DDLParser extends Parser {
 
 	public static class RefsContext extends ParserRuleContext {
 		public TerminalNode SET() { return getToken(DDLParser.SET, 0); }
-		public TerminalNode DEFERRABLE() { return getToken(DDLParser.DEFERRABLE, 0); }
 		public TerminalNode CASCADE() { return getToken(DDLParser.CASCADE, 0); }
 		public TerminalNode ACTION() { return getToken(DDLParser.ACTION, 0); }
+		public TerminalNode DEFERRABLE() { return getToken(DDLParser.DEFERRABLE, 0); }
+		public TerminalNode NO() { return getToken(DDLParser.NO, 0); }
 		public TerminalNode RESTRICT() { return getToken(DDLParser.RESTRICT, 0); }
 		public TerminalNode NULL() { return getToken(DDLParser.NULL, 0); }
-		public TerminalNode NO() { return getToken(DDLParser.NO, 0); }
 		public RefsContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -3236,6 +3436,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitRefs(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitRefs(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3313,18 +3518,18 @@ public class DDLParser extends Parser {
 		}
 	}
 	public static class GenericContext extends Data_typeContext {
+		public TerminalNode ENUM() { return getToken(DDLParser.ENUM, 0); }
+		public IdentContext ident(int i) {
+			return getRuleContext(IdentContext.class,i);
+		}
+		public SizeContext size() {
+			return getRuleContext(SizeContext.class,0);
+		}
 		public ParValueListContext parValueList() {
 			return getRuleContext(ParValueListContext.class,0);
 		}
 		public List<IdentContext> ident() {
 			return getRuleContexts(IdentContext.class);
-		}
-		public TerminalNode ENUM() { return getToken(DDLParser.ENUM, 0); }
-		public SizeContext size() {
-			return getRuleContext(SizeContext.class,0);
-		}
-		public IdentContext ident(int i) {
-			return getRuleContext(IdentContext.class,i);
 		}
 		public GenericContext(Data_typeContext ctx) { copyFrom(ctx); }
 		@Override
@@ -3335,12 +3540,17 @@ public class DDLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitGeneric(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitGeneric(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class Set_typeContext extends Data_typeContext {
+		public TerminalNode SET() { return getToken(DDLParser.SET, 0); }
 		public ParValueListContext parValueList() {
 			return getRuleContext(ParValueListContext.class,0);
 		}
-		public TerminalNode SET() { return getToken(DDLParser.SET, 0); }
 		public Set_typeContext(Data_typeContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
@@ -3350,12 +3560,17 @@ public class DDLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitSet_type(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitSet_type(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class EnumContext extends Data_typeContext {
+		public TerminalNode ENUM() { return getToken(DDLParser.ENUM, 0); }
 		public ParValueListContext parValueList() {
 			return getRuleContext(ParValueListContext.class,0);
 		}
-		public TerminalNode ENUM() { return getToken(DDLParser.ENUM, 0); }
 		public EnumContext(Data_typeContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
@@ -3364,6 +3579,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitEnum(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitEnum(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3450,9 +3670,9 @@ public class DDLParser extends Parser {
 
 	public static class Data_optionContext extends ParserRuleContext {
 		public TerminalNode SIGNED() { return getToken(DDLParser.SIGNED, 0); }
+		public TerminalNode BINARY() { return getToken(DDLParser.BINARY, 0); }
 		public TerminalNode ZEROFILL() { return getToken(DDLParser.ZEROFILL, 0); }
 		public TerminalNode UNSIGNED() { return getToken(DDLParser.UNSIGNED, 0); }
-		public TerminalNode BINARY() { return getToken(DDLParser.BINARY, 0); }
 		public Data_optionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -3464,6 +3684,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitData_option(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitData_option(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3509,6 +3734,11 @@ public class DDLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitSchema_name(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitSchema_name(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Schema_nameContext schema_name() throws RecognitionException {
@@ -3546,6 +3776,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitTable_name(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitTable_name(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3585,6 +3820,11 @@ public class DDLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitCol_name(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitCol_name(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Col_nameContext col_name() throws RecognitionException {
@@ -3622,6 +3862,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitIndex_name(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitIndex_name(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3661,6 +3906,11 @@ public class DDLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitCharset_name(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitCharset_name(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Charset_nameContext charset_name() throws RecognitionException {
@@ -3698,6 +3948,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitCollation_name(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitCollation_name(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3737,6 +3992,11 @@ public class DDLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitConstr_name(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitConstr_name(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Constr_nameContext constr_name() throws RecognitionException {
@@ -3775,6 +4035,11 @@ public class DDLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitTriger_name(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitTriger_name(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Triger_nameContext triger_name() throws RecognitionException {
@@ -3798,29 +4063,29 @@ public class DDLParser extends Parser {
 	}
 
 	public static class NameListContext extends ParserRuleContext {
-		public TerminalNode RP(int i) {
-			return getToken(DDLParser.RP, i);
-		}
 		public ValueContext value(int i) {
 			return getRuleContext(ValueContext.class,i);
-		}
-		public List<IdentContext> ident() {
-			return getRuleContexts(IdentContext.class);
 		}
 		public TerminalNode CO(int i) {
 			return getToken(DDLParser.CO, i);
 		}
-		public List<ValueContext> value() {
-			return getRuleContexts(ValueContext.class);
-		}
-		public List<TerminalNode> RP() { return getTokens(DDLParser.RP); }
 		public List<TerminalNode> CO() { return getTokens(DDLParser.CO); }
 		public TerminalNode LP(int i) {
 			return getToken(DDLParser.LP, i);
 		}
+		public List<ValueContext> value() {
+			return getRuleContexts(ValueContext.class);
+		}
 		public List<TerminalNode> LP() { return getTokens(DDLParser.LP); }
 		public IdentContext ident(int i) {
 			return getRuleContext(IdentContext.class,i);
+		}
+		public List<TerminalNode> RP() { return getTokens(DDLParser.RP); }
+		public TerminalNode RP(int i) {
+			return getToken(DDLParser.RP, i);
+		}
+		public List<IdentContext> ident() {
+			return getRuleContexts(IdentContext.class);
 		}
 		public NameListContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -3833,6 +4098,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitNameList(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitNameList(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3892,11 +4162,11 @@ public class DDLParser extends Parser {
 	}
 
 	public static class ParNameListContext extends ParserRuleContext {
-		public TerminalNode RP() { return getToken(DDLParser.RP, 0); }
 		public NameListContext nameList() {
 			return getRuleContext(NameListContext.class,0);
 		}
 		public TerminalNode LP() { return getToken(DDLParser.LP, 0); }
+		public TerminalNode RP() { return getToken(DDLParser.RP, 0); }
 		public ParNameListContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -3908,6 +4178,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitParNameList(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitParNameList(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3940,10 +4215,10 @@ public class DDLParser extends Parser {
 		public TerminalNode CO(int i) {
 			return getToken(DDLParser.CO, i);
 		}
+		public List<TerminalNode> CO() { return getTokens(DDLParser.CO); }
 		public List<ValueContext> value() {
 			return getRuleContexts(ValueContext.class);
 		}
-		public List<TerminalNode> CO() { return getTokens(DDLParser.CO); }
 		public ValueListContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -3955,6 +4230,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitValueList(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitValueList(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3994,11 +4274,11 @@ public class DDLParser extends Parser {
 	}
 
 	public static class ParValueListContext extends ParserRuleContext {
+		public TerminalNode LP() { return getToken(DDLParser.LP, 0); }
 		public TerminalNode RP() { return getToken(DDLParser.RP, 0); }
 		public ValueListContext valueList() {
 			return getRuleContext(ValueListContext.class,0);
 		}
-		public TerminalNode LP() { return getToken(DDLParser.LP, 0); }
 		public ParValueListContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -4010,6 +4290,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitParValueList(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitParValueList(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4036,14 +4321,14 @@ public class DDLParser extends Parser {
 	}
 
 	public static class ValuesListContext extends ParserRuleContext {
-		public List<ParValueListContext> parValueList() {
-			return getRuleContexts(ParValueListContext.class);
-		}
-		public TerminalNode RP() { return getToken(DDLParser.RP, 0); }
 		public ParValueListContext parValueList(int i) {
 			return getRuleContext(ParValueListContext.class,i);
 		}
 		public TerminalNode LP() { return getToken(DDLParser.LP, 0); }
+		public TerminalNode RP() { return getToken(DDLParser.RP, 0); }
+		public List<ParValueListContext> parValueList() {
+			return getRuleContexts(ParValueListContext.class);
+		}
 		public ValuesListContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -4055,6 +4340,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitValuesList(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitValuesList(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4094,13 +4384,13 @@ public class DDLParser extends Parser {
 	}
 
 	public static class SizeContext extends ParserRuleContext {
-		public List<TerminalNode> INT() { return getTokens(DDLParser.INT); }
-		public TerminalNode RP() { return getToken(DDLParser.RP, 0); }
 		public TerminalNode CO() { return getToken(DDLParser.CO, 0); }
+		public List<TerminalNode> INT() { return getTokens(DDLParser.INT); }
+		public TerminalNode LP() { return getToken(DDLParser.LP, 0); }
+		public TerminalNode RP() { return getToken(DDLParser.RP, 0); }
 		public TerminalNode INT(int i) {
 			return getToken(DDLParser.INT, i);
 		}
-		public TerminalNode LP() { return getToken(DDLParser.LP, 0); }
 		public SizeContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -4112,6 +4402,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitSize(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitSize(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4162,6 +4457,11 @@ public class DDLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitOrder(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitOrder(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final OrderContext order() throws RecognitionException {
@@ -4191,15 +4491,15 @@ public class DDLParser extends Parser {
 	}
 
 	public static class ValueContext extends ParserRuleContext {
-		public IdentContext ident() {
-			return getRuleContext(IdentContext.class,0);
+		public FunctionContext function() {
+			return getRuleContext(FunctionContext.class,0);
 		}
 		public NumberContext number() {
 			return getRuleContext(NumberContext.class,0);
 		}
 		public TerminalNode NULL() { return getToken(DDLParser.NULL, 0); }
-		public FunctionContext function() {
-			return getRuleContext(FunctionContext.class,0);
+		public IdentContext ident() {
+			return getRuleContext(IdentContext.class,0);
 		}
 		public ValueContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -4212,6 +4512,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitValue(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitValue(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4262,16 +4567,16 @@ public class DDLParser extends Parser {
 	}
 
 	public static class IdentContext extends ParserRuleContext {
-		public Quoted_restContext quoted_rest() {
-			return getRuleContext(Quoted_restContext.class,0);
+		public RestrictedContext restricted() {
+			return getRuleContext(RestrictedContext.class,0);
 		}
 		public StringContext string() {
 			return getRuleContext(StringContext.class,0);
 		}
-		public RestrictedContext restricted() {
-			return getRuleContext(RestrictedContext.class,0);
-		}
 		public TerminalNode ID() { return getToken(DDLParser.ID, 0); }
+		public Quoted_restContext quoted_rest() {
+			return getRuleContext(Quoted_restContext.class,0);
+		}
 		public IdentContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -4283,6 +4588,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitIdent(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitIdent(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4394,12 +4704,12 @@ public class DDLParser extends Parser {
 	}
 
 	public static class NumberContext extends ParserRuleContext {
-		public QuoteContext quote(int i) {
-			return getRuleContext(QuoteContext.class,i);
-		}
-		public TerminalNode INT() { return getToken(DDLParser.INT, 0); }
 		public List<QuoteContext> quote() {
 			return getRuleContexts(QuoteContext.class);
+		}
+		public TerminalNode INT() { return getToken(DDLParser.INT, 0); }
+		public QuoteContext quote(int i) {
+			return getRuleContext(QuoteContext.class,i);
 		}
 		public NumberContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -4412,6 +4722,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitNumber(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitNumber(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4455,8 +4770,8 @@ public class DDLParser extends Parser {
 	}
 
 	public static class QuoteContext extends ParserRuleContext {
-		public TerminalNode GR() { return getToken(DDLParser.GR, 0); }
 		public TerminalNode DQ() { return getToken(DDLParser.DQ, 0); }
+		public TerminalNode GR() { return getToken(DDLParser.GR, 0); }
 		public TerminalNode QO() { return getToken(DDLParser.QO, 0); }
 		public QuoteContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -4469,6 +4784,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitQuote(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitQuote(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4499,14 +4819,14 @@ public class DDLParser extends Parser {
 	}
 
 	public static class Quoted_restContext extends ParserRuleContext {
-		public QuoteContext quote(int i) {
-			return getRuleContext(QuoteContext.class,i);
+		public RestrictedContext restricted() {
+			return getRuleContext(RestrictedContext.class,0);
 		}
 		public List<QuoteContext> quote() {
 			return getRuleContexts(QuoteContext.class);
 		}
-		public RestrictedContext restricted() {
-			return getRuleContext(RestrictedContext.class,0);
+		public QuoteContext quote(int i) {
+			return getRuleContext(QuoteContext.class,i);
 		}
 		public Quoted_restContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -4519,6 +4839,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitQuoted_rest(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitQuoted_rest(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4545,8 +4870,8 @@ public class DDLParser extends Parser {
 	}
 
 	public static class StringContext extends ParserRuleContext {
-		public TerminalNode STRING_G() { return getToken(DDLParser.STRING_G, 0); }
 		public TerminalNode STRING_Q() { return getToken(DDLParser.STRING_Q, 0); }
+		public TerminalNode STRING_G() { return getToken(DDLParser.STRING_G, 0); }
 		public TerminalNode STRING_D() { return getToken(DDLParser.STRING_D, 0); }
 		public StringContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -4559,6 +4884,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitString(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitString(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4607,6 +4937,11 @@ public class DDLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitFunction(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitFunction(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final FunctionContext function() throws RecognitionException {
@@ -4631,26 +4966,26 @@ public class DDLParser extends Parser {
 	}
 
 	public static class Special_charContext extends ParserRuleContext {
-		public TerminalNode AT() { return getToken(DDLParser.AT, 0); }
-		public TerminalNode US() { return getToken(DDLParser.US, 0); }
-		public TerminalNode HA() { return getToken(DDLParser.HA, 0); }
-		public TerminalNode SL() { return getToken(DDLParser.SL, 0); }
-		public TerminalNode RP() { return getToken(DDLParser.RP, 0); }
 		public TerminalNode DA() { return getToken(DDLParser.DA, 0); }
-		public TerminalNode CA() { return getToken(DDLParser.CA, 0); }
-		public TerminalNode QO() { return getToken(DDLParser.QO, 0); }
 		public TerminalNode SP() { return getToken(DDLParser.SP, 0); }
-		public TerminalNode LP() { return getToken(DDLParser.LP, 0); }
-		public TerminalNode SQ() { return getToken(DDLParser.SQ, 0); }
-		public TerminalNode PL() { return getToken(DDLParser.PL, 0); }
-		public TerminalNode DO() { return getToken(DDLParser.DO, 0); }
 		public TerminalNode VB() { return getToken(DDLParser.VB, 0); }
 		public TerminalNode ST() { return getToken(DDLParser.ST, 0); }
-		public TerminalNode GR() { return getToken(DDLParser.GR, 0); }
-		public TerminalNode DQ() { return getToken(DDLParser.DQ, 0); }
-		public TerminalNode EQ() { return getToken(DDLParser.EQ, 0); }
-		public TerminalNode CO() { return getToken(DDLParser.CO, 0); }
+		public TerminalNode CA() { return getToken(DDLParser.CA, 0); }
+		public TerminalNode LP() { return getToken(DDLParser.LP, 0); }
+		public TerminalNode PL() { return getToken(DDLParser.PL, 0); }
+		public TerminalNode RP() { return getToken(DDLParser.RP, 0); }
 		public TerminalNode CL() { return getToken(DDLParser.CL, 0); }
+		public TerminalNode SL() { return getToken(DDLParser.SL, 0); }
+		public TerminalNode AT() { return getToken(DDLParser.AT, 0); }
+		public TerminalNode HA() { return getToken(DDLParser.HA, 0); }
+		public TerminalNode EQ() { return getToken(DDLParser.EQ, 0); }
+		public TerminalNode SQ() { return getToken(DDLParser.SQ, 0); }
+		public TerminalNode QO() { return getToken(DDLParser.QO, 0); }
+		public TerminalNode US() { return getToken(DDLParser.US, 0); }
+		public TerminalNode CO() { return getToken(DDLParser.CO, 0); }
+		public TerminalNode DO() { return getToken(DDLParser.DO, 0); }
+		public TerminalNode DQ() { return getToken(DDLParser.DQ, 0); }
+		public TerminalNode GR() { return getToken(DDLParser.GR, 0); }
 		public Special_charContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -4662,6 +4997,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitSpecial_char(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitSpecial_char(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4692,65 +5032,65 @@ public class DDLParser extends Parser {
 	}
 
 	public static class RestrictedContext extends ParserRuleContext {
-		public TerminalNode FUNCTION() { return getToken(DDLParser.FUNCTION, 0); }
-		public TerminalNode ALTER() { return getToken(DDLParser.ALTER, 0); }
-		public TerminalNode YEAR() { return getToken(DDLParser.YEAR, 0); }
-		public TerminalNode FIXED() { return getToken(DDLParser.FIXED, 0); }
-		public TerminalNode CHAR() { return getToken(DDLParser.CHAR, 0); }
-		public TerminalNode TABLE() { return getToken(DDLParser.TABLE, 0); }
-		public TerminalNode UPDATE() { return getToken(DDLParser.UPDATE, 0); }
-		public TerminalNode VARCHAR() { return getToken(DDLParser.VARCHAR, 0); }
-		public TerminalNode CASCADE() { return getToken(DDLParser.CASCADE, 0); }
-		public TerminalNode FOREIGN() { return getToken(DDLParser.FOREIGN, 0); }
-		public TerminalNode ACTION() { return getToken(DDLParser.ACTION, 0); }
-		public TerminalNode CHARACTER() { return getToken(DDLParser.CHARACTER, 0); }
-		public TerminalNode IF() { return getToken(DDLParser.IF, 0); }
-		public TerminalNode STORAGE() { return getToken(DDLParser.STORAGE, 0); }
-		public TerminalNode CREATE() { return getToken(DDLParser.CREATE, 0); }
-		public TerminalNode BTREE() { return getToken(DDLParser.BTREE, 0); }
-		public TerminalNode INSERT() { return getToken(DDLParser.INSERT, 0); }
-		public TerminalNode USING() { return getToken(DDLParser.USING, 0); }
-		public TerminalNode REFERENCES() { return getToken(DDLParser.REFERENCES, 0); }
-		public TerminalNode IS() { return getToken(DDLParser.IS, 0); }
-		public TerminalNode REPLACE() { return getToken(DDLParser.REPLACE, 0); }
-		public TerminalNode COL_FORMAT() { return getToken(DDLParser.COL_FORMAT, 0); }
-		public TerminalNode DOUBLE() { return getToken(DDLParser.DOUBLE, 0); }
-		public TerminalNode FULLTEXT() { return getToken(DDLParser.FULLTEXT, 0); }
-		public TerminalNode ZEROFILL() { return getToken(DDLParser.ZEROFILL, 0); }
-		public TerminalNode EXISTS() { return getToken(DDLParser.EXISTS, 0); }
-		public TerminalNode INTO() { return getToken(DDLParser.INTO, 0); }
-		public TerminalNode COLLATE() { return getToken(DDLParser.COLLATE, 0); }
-		public TerminalNode ADD() { return getToken(DDLParser.ADD, 0); }
-		public TerminalNode INTEGER() { return getToken(DDLParser.INTEGER, 0); }
-		public TerminalNode VARBINARY() { return getToken(DDLParser.VARBINARY, 0); }
-		public TerminalNode ASC() { return getToken(DDLParser.ASC, 0); }
-		public TerminalNode SPATIAL() { return getToken(DDLParser.SPATIAL, 0); }
-		public TerminalNode VALUES() { return getToken(DDLParser.VALUES, 0); }
-		public TerminalNode HASH() { return getToken(DDLParser.HASH, 0); }
-		public TerminalNode AUTO_INC() { return getToken(DDLParser.AUTO_INC, 0); }
-		public TerminalNode SET() { return getToken(DDLParser.SET, 0); }
-		public TerminalNode DELETE() { return getToken(DDLParser.DELETE, 0); }
-		public TerminalNode IGNORE() { return getToken(DDLParser.IGNORE, 0); }
-		public TerminalNode NUMERIC() { return getToken(DDLParser.NUMERIC, 0); }
-		public TerminalNode RESTRICT() { return getToken(DDLParser.RESTRICT, 0); }
-		public TerminalNode REAL() { return getToken(DDLParser.REAL, 0); }
-		public TerminalNode COMMIT() { return getToken(DDLParser.COMMIT, 0); }
-		public TerminalNode SCHEMA() { return getToken(DDLParser.SCHEMA, 0); }
-		public TerminalNode ENUM() { return getToken(DDLParser.ENUM, 0); }
-		public TerminalNode UNSIGNED() { return getToken(DDLParser.UNSIGNED, 0); }
-		public TerminalNode DATABASE() { return getToken(DDLParser.DATABASE, 0); }
-		public TerminalNode DECIMAL() { return getToken(DDLParser.DECIMAL, 0); }
-		public TerminalNode DISK() { return getToken(DDLParser.DISK, 0); }
-		public TerminalNode BIGINT() { return getToken(DDLParser.BIGINT, 0); }
 		public TerminalNode BIT() { return getToken(DDLParser.BIT, 0); }
-		public TerminalNode CHECK() { return getToken(DDLParser.CHECK, 0); }
+		public TerminalNode ENUM() { return getToken(DDLParser.ENUM, 0); }
+		public TerminalNode EXISTS() { return getToken(DDLParser.EXISTS, 0); }
+		public TerminalNode DOUBLE() { return getToken(DDLParser.DOUBLE, 0); }
+		public TerminalNode INSERT() { return getToken(DDLParser.INSERT, 0); }
+		public TerminalNode IS() { return getToken(DDLParser.IS, 0); }
+		public TerminalNode UNSIGNED() { return getToken(DDLParser.UNSIGNED, 0); }
+		public TerminalNode ADD() { return getToken(DDLParser.ADD, 0); }
+		public TerminalNode YEAR() { return getToken(DDLParser.YEAR, 0); }
+		public TerminalNode IF() { return getToken(DDLParser.IF, 0); }
 		public TerminalNode USE() { return getToken(DDLParser.USE, 0); }
-		public TerminalNode DESC() { return getToken(DDLParser.DESC, 0); }
-		public TerminalNode BINARY() { return getToken(DDLParser.BINARY, 0); }
-		public TerminalNode END() { return getToken(DDLParser.END, 0); }
-		public TerminalNode TEMPORARY() { return getToken(DDLParser.TEMPORARY, 0); }
-		public TerminalNode DYNAMIC() { return getToken(DDLParser.DYNAMIC, 0); }
+		public TerminalNode DELETE() { return getToken(DDLParser.DELETE, 0); }
+		public TerminalNode TABLE() { return getToken(DDLParser.TABLE, 0); }
+		public TerminalNode VALUES() { return getToken(DDLParser.VALUES, 0); }
+		public TerminalNode CHAR() { return getToken(DDLParser.CHAR, 0); }
 		public TerminalNode SMALLINT() { return getToken(DDLParser.SMALLINT, 0); }
+		public TerminalNode VARBINARY() { return getToken(DDLParser.VARBINARY, 0); }
+		public TerminalNode ALTER() { return getToken(DDLParser.ALTER, 0); }
+		public TerminalNode VARCHAR() { return getToken(DDLParser.VARCHAR, 0); }
+		public TerminalNode ASC() { return getToken(DDLParser.ASC, 0); }
+		public TerminalNode RESTRICT() { return getToken(DDLParser.RESTRICT, 0); }
+		public TerminalNode REFERENCES() { return getToken(DDLParser.REFERENCES, 0); }
+		public TerminalNode DESC() { return getToken(DDLParser.DESC, 0); }
+		public TerminalNode CASCADE() { return getToken(DDLParser.CASCADE, 0); }
+		public TerminalNode COLLATE() { return getToken(DDLParser.COLLATE, 0); }
+		public TerminalNode USING() { return getToken(DDLParser.USING, 0); }
+		public TerminalNode HASH() { return getToken(DDLParser.HASH, 0); }
+		public TerminalNode DECIMAL() { return getToken(DDLParser.DECIMAL, 0); }
+		public TerminalNode FOREIGN() { return getToken(DDLParser.FOREIGN, 0); }
+		public TerminalNode SET() { return getToken(DDLParser.SET, 0); }
+		public TerminalNode CHECK() { return getToken(DDLParser.CHECK, 0); }
+		public TerminalNode SCHEMA() { return getToken(DDLParser.SCHEMA, 0); }
+		public TerminalNode INTO() { return getToken(DDLParser.INTO, 0); }
+		public TerminalNode IGNORE() { return getToken(DDLParser.IGNORE, 0); }
+		public TerminalNode FULLTEXT() { return getToken(DDLParser.FULLTEXT, 0); }
+		public TerminalNode CHARACTER() { return getToken(DDLParser.CHARACTER, 0); }
+		public TerminalNode DYNAMIC() { return getToken(DDLParser.DYNAMIC, 0); }
+		public TerminalNode FIXED() { return getToken(DDLParser.FIXED, 0); }
+		public TerminalNode REAL() { return getToken(DDLParser.REAL, 0); }
+		public TerminalNode UPDATE() { return getToken(DDLParser.UPDATE, 0); }
+		public TerminalNode BINARY() { return getToken(DDLParser.BINARY, 0); }
+		public TerminalNode BIGINT() { return getToken(DDLParser.BIGINT, 0); }
+		public TerminalNode DATABASE() { return getToken(DDLParser.DATABASE, 0); }
+		public TerminalNode CREATE() { return getToken(DDLParser.CREATE, 0); }
+		public TerminalNode TEMPORARY() { return getToken(DDLParser.TEMPORARY, 0); }
+		public TerminalNode STORAGE() { return getToken(DDLParser.STORAGE, 0); }
+		public TerminalNode DISK() { return getToken(DDLParser.DISK, 0); }
+		public TerminalNode AUTO_INC() { return getToken(DDLParser.AUTO_INC, 0); }
+		public TerminalNode NUMERIC() { return getToken(DDLParser.NUMERIC, 0); }
+		public TerminalNode ACTION() { return getToken(DDLParser.ACTION, 0); }
+		public TerminalNode SPATIAL() { return getToken(DDLParser.SPATIAL, 0); }
+		public TerminalNode BTREE() { return getToken(DDLParser.BTREE, 0); }
+		public TerminalNode FUNCTION() { return getToken(DDLParser.FUNCTION, 0); }
+		public TerminalNode COMMIT() { return getToken(DDLParser.COMMIT, 0); }
+		public TerminalNode REPLACE() { return getToken(DDLParser.REPLACE, 0); }
+		public TerminalNode ZEROFILL() { return getToken(DDLParser.ZEROFILL, 0); }
+		public TerminalNode INTEGER() { return getToken(DDLParser.INTEGER, 0); }
+		public TerminalNode COL_FORMAT() { return getToken(DDLParser.COL_FORMAT, 0); }
+		public TerminalNode END() { return getToken(DDLParser.END, 0); }
 		public RestrictedContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -4762,6 +5102,11 @@ public class DDLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DDLListener ) ((DDLListener)listener).exitRestricted(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DDLVisitor ) return ((DDLVisitor<? extends T>)visitor).visitRestricted(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4792,274 +5137,277 @@ public class DDLParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\2\3t\u02aa\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4"+
-		"\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20"+
-		"\4\21\t\21\4\22\t\22\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27"+
-		"\4\30\t\30\4\31\t\31\4\32\t\32\4\33\t\33\4\34\t\34\4\35\t\35\4\36\t\36"+
-		"\4\37\t\37\4 \t \4!\t!\4\"\t\"\4#\t#\4$\t$\4%\t%\4&\t&\4\'\t\'\4(\t(\4"+
-		")\t)\4*\t*\4+\t+\4,\t,\4-\t-\4.\t.\4/\t/\4\60\t\60\4\61\t\61\4\62\t\62"+
-		"\4\63\t\63\4\64\t\64\4\65\t\65\4\66\t\66\4\67\t\67\48\t8\49\t9\4:\t:\4"+
-		";\t;\4<\t<\4=\t=\3\2\3\2\5\2}\n\2\6\2\177\n\2\r\2\16\2\u0080\3\2\3\2\3"+
-		"\3\3\3\5\3\u0087\n\3\3\4\3\4\3\4\3\4\5\4\u008d\n\4\3\5\3\5\3\5\3\5\5\5"+
-		"\u0093\n\5\3\6\3\6\3\6\3\7\3\7\3\b\3\b\3\b\3\b\5\b\u009e\n\b\3\t\3\t\3"+
-		"\t\3\t\3\t\3\t\5\t\u00a6\n\t\3\t\3\t\3\t\3\t\5\t\u00ac\n\t\3\t\3\t\5\t"+
-		"\u00b0\n\t\5\t\u00b2\n\t\3\n\3\n\5\n\u00b6\n\n\3\n\3\n\3\n\5\n\u00bb\n"+
-		"\n\3\n\3\n\3\n\3\n\7\n\u00c1\n\n\f\n\16\n\u00c4\13\n\3\13\3\13\3\13\3"+
-		"\13\3\13\3\13\3\13\5\13\u00cd\n\13\3\f\3\f\3\f\3\f\3\f\6\f\u00d4\n\f\r"+
-		"\f\16\f\u00d5\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\7\r\u00e3\n"+
-		"\r\f\r\16\r\u00e6\13\r\3\16\3\16\3\16\3\16\5\16\u00ec\n\16\3\16\3\16\7"+
-		"\16\u00f0\n\16\f\16\16\16\u00f3\13\16\3\17\5\17\u00f6\n\17\3\17\3\17\3"+
-		"\17\5\17\u00fb\n\17\3\17\3\17\5\17\u00ff\n\17\3\17\3\17\5\17\u0103\n\17"+
-		"\3\17\5\17\u0106\n\17\3\20\5\20\u0109\n\20\3\20\3\20\3\20\5\20\u010e\n"+
-		"\20\3\20\3\20\3\20\3\20\5\20\u0114\n\20\3\21\3\21\5\21\u0118\n\21\3\22"+
-		"\3\22\5\22\u011c\n\22\3\22\3\22\5\22\u0120\n\22\3\23\3\23\3\23\3\23\3"+
-		"\23\3\23\7\23\u0128\n\23\f\23\16\23\u012b\13\23\3\23\3\23\3\24\3\24\5"+
-		"\24\u0131\n\24\3\24\3\24\3\24\3\24\3\25\3\25\5\25\u0139\n\25\3\25\3\25"+
-		"\3\25\3\25\3\26\3\26\3\26\7\26\u0142\n\26\f\26\16\26\u0145\13\26\3\26"+
-		"\3\26\3\27\5\27\u014a\n\27\3\27\3\27\3\27\3\27\5\27\u0150\n\27\3\27\3"+
-		"\27\3\27\3\27\5\27\u0156\n\27\7\27\u0158\n\27\f\27\16\27\u015b\13\27\3"+
-		"\27\3\27\7\27\u015f\n\27\f\27\16\27\u0162\13\27\3\30\3\30\5\30\u0166\n"+
-		"\30\3\31\5\31\u0169\n\31\3\31\3\31\3\31\5\31\u016e\n\31\3\31\3\31\5\31"+
-		"\u0172\n\31\3\31\3\31\5\31\u0176\n\31\3\31\3\31\5\31\u017a\n\31\5\31\u017c"+
-		"\n\31\5\31\u017e\n\31\3\32\3\32\3\32\5\32\u0183\n\32\3\32\5\32\u0186\n"+
-		"\32\3\32\3\32\7\32\u018a\n\32\f\32\16\32\u018d\13\32\3\32\3\32\3\32\5"+
-		"\32\u0192\n\32\3\33\5\33\u0195\n\33\3\33\3\33\3\33\3\33\3\33\5\33\u019c"+
-		"\n\33\5\33\u019e\n\33\3\34\3\34\3\35\3\35\3\36\3\36\3\37\5\37\u01a7\n"+
-		"\37\3\37\5\37\u01aa\n\37\3\37\3\37\3\37\5\37\u01af\n\37\3\37\5\37\u01b2"+
-		"\n\37\3\37\5\37\u01b5\n\37\3\37\7\37\u01b8\n\37\f\37\16\37\u01bb\13\37"+
-		"\3\37\3\37\5\37\u01bf\n\37\3\37\3\37\5\37\u01c3\n\37\3\37\5\37\u01c6\n"+
-		"\37\3\37\3\37\7\37\u01ca\n\37\f\37\16\37\u01cd\13\37\3\37\5\37\u01d0\n"+
-		"\37\3\37\5\37\u01d3\n\37\3\37\3\37\5\37\u01d7\n\37\3\37\5\37\u01da\n\37"+
-		"\3\37\5\37\u01dd\n\37\3\37\5\37\u01e0\n\37\3\37\7\37\u01e3\n\37\f\37\16"+
-		"\37\u01e6\13\37\3\37\3\37\5\37\u01ea\n\37\3\37\5\37\u01ed\n\37\3\37\3"+
-		"\37\7\37\u01f1\n\37\f\37\16\37\u01f4\13\37\3\37\5\37\u01f7\n\37\3\37\5"+
-		"\37\u01fa\n\37\3\37\3\37\3\37\5\37\u01ff\n\37\3\37\3\37\3\37\3\37\3\37"+
-		"\3\37\3\37\3\37\3\37\5\37\u020a\n\37\3 \3 \3 \7 \u020f\n \f \16 \u0212"+
-		"\13 \3 \3 \3!\3!\3!\3!\7!\u021a\n!\f!\16!\u021d\13!\3\"\3\"\3\"\3\"\3"+
-		"#\3#\5#\u0225\n#\3#\3#\3#\3#\5#\u022b\n#\3$\6$\u022e\n$\r$\16$\u022f\3"+
-		"$\5$\u0233\n$\3$\3$\5$\u0237\n$\3$\3$\3$\3$\5$\u023d\n$\3%\3%\3&\3&\3"+
-		"\'\3\'\3(\3(\3)\3)\3*\3*\3+\3+\3,\3,\3-\3-\3.\3.\3.\3.\3.\5.\u0256\n."+
-		"\3.\3.\3.\3.\3.\3.\5.\u025e\n.\7.\u0260\n.\f.\16.\u0263\13.\3/\3/\3/\3"+
-		"/\3\60\3\60\3\60\7\60\u026c\n\60\f\60\16\60\u026f\13\60\3\61\3\61\3\61"+
-		"\3\61\3\62\3\62\7\62\u0277\n\62\f\62\16\62\u027a\13\62\3\62\3\62\3\63"+
-		"\3\63\3\63\3\63\5\63\u0282\n\63\3\63\3\63\3\64\3\64\3\65\3\65\3\65\3\65"+
-		"\5\65\u028c\n\65\3\66\3\66\3\66\3\66\5\66\u0292\n\66\3\67\3\67\3\67\3"+
-		"\67\3\67\5\67\u0299\n\67\38\38\39\39\39\39\3:\3:\3;\3;\3;\3<\3<\3=\3="+
-		"\3=\2>\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60\62\64\668:<"+
-		">@BDFHJLNPRTVXZ\\^`bdfhjlnprtvx\2\31\4\63\63cc\4\63\63cc\4\63\63]]\5B"+
-		"Baaff\4))DD\3\13\13\4CCVV\3==\3\f\f\3\f\r\4GGLL\4GGLL\4BBaa\4GGLL\3\n"+
-		"\13\4\67\67hh\4**\\\\\6\'\'__ggqq\4$$88\4\16\16\25\26\3\3\5\3\t\34\r "+
-		"\"$\60\62\64\67:<FHKRRY^`dgmpq\u02e2\2~\3\2\2\2\4\u0086\3\2\2\2\6\u008c"+
-		"\3\2\2\2\b\u0092\3\2\2\2\n\u0094\3\2\2\2\f\u0097\3\2\2\2\16\u0099\3\2"+
-		"\2\2\20\u00b1\3\2\2\2\22\u00b3\3\2\2\2\24\u00c5\3\2\2\2\26\u00ce\3\2\2"+
-		"\2\30\u00d7\3\2\2\2\32\u00e7\3\2\2\2\34\u0105\3\2\2\2\36\u0108\3\2\2\2"+
-		" \u0115\3\2\2\2\"\u011f\3\2\2\2$\u0121\3\2\2\2&\u0130\3\2\2\2(\u0138\3"+
-		"\2\2\2*\u0143\3\2\2\2,\u0149\3\2\2\2.\u0165\3\2\2\2\60\u017d\3\2\2\2\62"+
-		"\u017f\3\2\2\2\64\u019d\3\2\2\2\66\u019f\3\2\2\28\u01a1\3\2\2\2:\u01a3"+
-		"\3\2\2\2<\u0209\3\2\2\2>\u020b\3\2\2\2@\u0215\3\2\2\2B\u021e\3\2\2\2D"+
-		"\u022a\3\2\2\2F\u023c\3\2\2\2H\u023e\3\2\2\2J\u0240\3\2\2\2L\u0242\3\2"+
-		"\2\2N\u0244\3\2\2\2P\u0246\3\2\2\2R\u0248\3\2\2\2T\u024a\3\2\2\2V\u024c"+
-		"\3\2\2\2X\u024e\3\2\2\2Z\u0250\3\2\2\2\\\u0264\3\2\2\2^\u0268\3\2\2\2"+
-		"`\u0270\3\2\2\2b\u0274\3\2\2\2d\u027d\3\2\2\2f\u0285\3\2\2\2h\u028b\3"+
-		"\2\2\2j\u0291\3\2\2\2l\u0298\3\2\2\2n\u029a\3\2\2\2p\u029c\3\2\2\2r\u02a0"+
-		"\3\2\2\2t\u02a2\3\2\2\2v\u02a5\3\2\2\2x\u02a7\3\2\2\2z|\5\4\3\2{}\7\f"+
-		"\2\2|{\3\2\2\2|}\3\2\2\2}\177\3\2\2\2~z\3\2\2\2\177\u0080\3\2\2\2\u0080"+
-		"~\3\2\2\2\u0080\u0081\3\2\2\2\u0081\u0082\3\2\2\2\u0082\u0083\7\1\2\2"+
-		"\u0083\3\3\2\2\2\u0084\u0087\5\6\4\2\u0085\u0087\5\b\5\2\u0086\u0084\3"+
-		"\2\2\2\u0086\u0085\3\2\2\2\u0087\5\3\2\2\2\u0088\u008d\5\20\t\2\u0089"+
-		"\u008d\5\24\13\2\u008a\u008d\5\26\f\2\u008b\u008d\5\30\r\2\u008c\u0088"+
-		"\3\2\2\2\u008c\u0089\3\2\2\2\u008c\u008a\3\2\2\2\u008c\u008b\3\2\2\2\u008d"+
-		"\7\3\2\2\2\u008e\u0093\5\22\n\2\u008f\u0093\5\n\6\2\u0090\u0093\5\f\7"+
-		"\2\u0091\u0093\5\16\b\2\u0092\u008e\3\2\2\2\u0092\u008f\3\2\2\2\u0092"+
-		"\u0090\3\2\2\2\u0092\u0091\3\2\2\2\u0093\t\3\2\2\2\u0094\u0095\7i\2\2"+
-		"\u0095\u0096\5j\66\2\u0096\13\3\2\2\2\u0097\u0098\7\60\2\2\u0098\r\3\2"+
-		"\2\2\u0099\u009a\7^\2\2\u009a\u009d\5j\66\2\u009b\u009c\7\t\2\2\u009c"+
-		"\u009e\5j\66\2\u009d\u009b\3\2\2\2\u009d\u009e\3\2\2\2\u009e\17\3\2\2"+
-		"\2\u009f\u00a0\7;\2\2\u00a0\u00a1\t\2\2\2\u00a1\u00a2\7E\2\2\u00a2\u00a3"+
-		"\7?\2\2\u00a3\u00a5\5Z.\2\u00a4\u00a6\7X\2\2\u00a5\u00a4\3\2\2\2\u00a5"+
-		"\u00a6\3\2\2\2\u00a6\u00b2\3\2\2\2\u00a7\u00a8\7;\2\2\u00a8\u00a9\t\3"+
-		"\2\2\u00a9\u00ab\5Z.\2\u00aa\u00ac\7X\2\2\u00ab\u00aa\3\2\2\2\u00ab\u00ac"+
-		"\3\2\2\2\u00ac\u00af\3\2\2\2\u00ad\u00ae\7E\2\2\u00ae\u00b0\7?\2\2\u00af"+
-		"\u00ad\3\2\2\2\u00af\u00b0\3\2\2\2\u00b0\u00b2\3\2\2\2\u00b1\u009f\3\2"+
-		"\2\2\u00b1\u00a7\3\2\2\2\u00b2\21\3\2\2\2\u00b3\u00b5\7H\2\2\u00b4\u00b6"+
-		"\7F\2\2\u00b5\u00b4\3\2\2\2\u00b5\u00b6\3\2\2\2\u00b6\u00b7\3\2\2\2\u00b7"+
-		"\u00b8\7J\2\2\u00b8\u00ba\5L\'\2\u00b9\u00bb\5\\/\2\u00ba\u00b9\3\2\2"+
-		"\2\u00ba\u00bb\3\2\2\2\u00bb\u00bc\3\2\2\2\u00bc\u00bd\7k\2\2\u00bd\u00c2"+
-		"\5`\61\2\u00be\u00bf\7\r\2\2\u00bf\u00c1\5`\61\2\u00c0\u00be\3\2\2\2\u00c1"+
-		"\u00c4\3\2\2\2\u00c2\u00c0\3\2\2\2\u00c2\u00c3\3\2\2\2\u00c3\23\3\2\2"+
-		"\2\u00c4\u00c2\3\2\2\2\u00c5\u00cc\7\62\2\2\u00c6\u00cd\5\32\16\2\u00c7"+
-		"\u00cd\5,\27\2\u00c8\u00cd\5\36\20\2\u00c9\u00cd\5$\23\2\u00ca\u00cd\5"+
-		"&\24\2\u00cb\u00cd\5(\25\2\u00cc\u00c6\3\2\2\2\u00cc\u00c7\3\2\2\2\u00cc"+
-		"\u00c8\3\2\2\2\u00cc\u00c9\3\2\2\2\u00cc\u00ca\3\2\2\2\u00cc\u00cb\3\2"+
-		"\2\2\u00cd\25\3\2\2\2\u00ce\u00cf\7\"\2\2\u00cf\u00d0\7c\2\2\u00d0\u00d3"+
-		"\5L\'\2\u00d1\u00d2\7!\2\2\u00d2\u00d4\5:\36\2\u00d3\u00d1\3\2\2\2\u00d4"+
-		"\u00d5\3\2\2\2\u00d5\u00d3\3\2\2\2\u00d5\u00d6\3\2\2\2\u00d6\27\3\2\2"+
-		"\2\u00d7\u00d8\7h\2\2\u00d8\u00d9\5L\'\2\u00d9\u00da\7^\2\2\u00da\u00db"+
-		"\5N(\2\u00db\u00dc\7\t\2\2\u00dc\u00e4\5h\65\2\u00dd\u00de\7\r\2\2\u00de"+
-		"\u00df\5N(\2\u00df\u00e0\7\t\2\2\u00e0\u00e1\5h\65\2\u00e1\u00e3\3\2\2"+
-		"\2\u00e2\u00dd\3\2\2\2\u00e3\u00e6\3\2\2\2\u00e4\u00e2\3\2\2\2\u00e4\u00e5"+
-		"\3\2\2\2\u00e5\31\3\2\2\2\u00e6\u00e4\3\2\2\2\u00e7\u00eb\t\4\2\2\u00e8"+
-		"\u00e9\7E\2\2\u00e9\u00ea\7P\2\2\u00ea\u00ec\7?\2\2\u00eb\u00e8\3\2\2"+
-		"\2\u00eb\u00ec\3\2\2\2\u00ec\u00ed\3\2\2\2\u00ed\u00f1\5J&\2\u00ee\u00f0"+
-		"\5\34\17\2\u00ef\u00ee\3\2\2\2\u00f0\u00f3\3\2\2\2\u00f1\u00ef\3\2\2\2"+
-		"\u00f1\u00f2\3\2\2\2\u00f2\33\3\2\2\2\u00f3\u00f1\3\2\2\2\u00f4\u00f6"+
-		"\7\65\2\2\u00f5\u00f4\3\2\2\2\u00f5\u00f6\3\2\2\2\u00f6\u00f7\3\2\2\2"+
-		"\u00f7\u00f8\7+\2\2\u00f8\u00fa\7^\2\2\u00f9\u00fb\7\t\2\2\u00fa\u00f9"+
-		"\3\2\2\2\u00fa\u00fb\3\2\2\2\u00fb\u00fc\3\2\2\2\u00fc\u0106\5R*\2\u00fd"+
-		"\u00ff\7\65\2\2\u00fe\u00fd\3\2\2\2\u00fe\u00ff\3\2\2\2\u00ff\u0100\3"+
-		"\2\2\2\u0100\u0102\7.\2\2\u0101\u0103\7\t\2\2\u0102\u0101\3\2\2\2\u0102"+
-		"\u0103\3\2\2\2\u0103\u0104\3\2\2\2\u0104\u0106\5T+\2\u0105\u00f5\3\2\2"+
-		"\2\u0105\u00fe\3\2\2\2\u0106\35\3\2\2\2\u0107\u0109\t\5\2\2\u0108\u0107"+
-		"\3\2\2\2\u0108\u0109\3\2\2\2\u0109\u010a\3\2\2\2\u010a\u010b\7G\2\2\u010b"+
-		"\u010d\5P)\2\u010c\u010e\5 \21\2\u010d\u010c\3\2\2\2\u010d\u010e\3\2\2"+
-		"\2\u010e\u010f\3\2\2\2\u010f\u0110\7S\2\2\u0110\u0111\5L\'\2\u0111\u0113"+
-		"\5\\/\2\u0112\u0114\5\"\22\2\u0113\u0112\3\2\2\2\u0113\u0114\3\2\2\2\u0114"+
-		"\37\3\2\2\2\u0115\u0117\7j\2\2\u0116\u0118\t\6\2\2\u0117\u0116\3\2\2\2"+
-		"\u0117\u0118\3\2\2\2\u0118!\3\2\2\2\u0119\u011b\7M\2\2\u011a\u011c\7\t"+
-		"\2\2\u011b\u011a\3\2\2\2\u011b\u011c\3\2\2\2\u011c\u011d\3\2\2\2\u011d"+
-		"\u0120\5h\65\2\u011e\u0120\5 \21\2\u011f\u0119\3\2\2\2\u011f\u011e\3\2"+
-		"\2\2\u0120#\3\2\2\2\u0121\u0122\7n\2\2\u0122\u0123\5j\66\2\u0123\u0124"+
-		"\5\\/\2\u0124\u0125\7#\2\2\u0125\u0129\7\n\2\2\u0126\u0128\n\7\2\2\u0127"+
-		"\u0126\3\2\2\2\u0128\u012b\3\2\2\2\u0129\u0127\3\2\2\2\u0129\u012a\3\2"+
-		"\2\2\u012a\u012c\3\2\2\2\u012b\u0129\3\2\2\2\u012c\u012d\7\13\2\2\u012d"+
-		"%\3\2\2\2\u012e\u012f\7T\2\2\u012f\u0131\7[\2\2\u0130\u012e\3\2\2\2\u0130"+
-		"\u0131\3\2\2\2\u0131\u0132\3\2\2\2\u0132\u0133\7e\2\2\u0133\u0134\5X-"+
-		"\2\u0134\u0135\5*\26\2\u0135\'\3\2\2\2\u0136\u0137\7T\2\2\u0137\u0139"+
-		"\7[\2\2\u0138\u0136\3\2\2\2\u0138\u0139\3\2\2\2\u0139\u013a\3\2\2\2\u013a"+
-		"\u013b\t\b\2\2\u013b\u013c\5j\66\2\u013c\u013d\5*\26\2\u013d)\3\2\2\2"+
-		"\u013e\u0142\n\t\2\2\u013f\u0140\7=\2\2\u0140\u0142\n\n\2\2\u0141\u013e"+
-		"\3\2\2\2\u0141\u013f\3\2\2\2\u0142\u0145\3\2\2\2\u0143\u0141\3\2\2\2\u0143"+
-		"\u0144\3\2\2\2\u0144\u0146\3\2\2\2\u0145\u0143\3\2\2\2\u0146\u0147\7="+
-		"\2\2\u0147+\3\2\2\2\u0148\u014a\7d\2\2\u0149\u0148\3\2\2\2\u0149\u014a"+
-		"\3\2\2\2\u014a\u014b\3\2\2\2\u014b\u014f\7c\2\2\u014c\u014d\7E\2\2\u014d"+
-		"\u014e\7P\2\2\u014e\u0150\7?\2\2\u014f\u014c\3\2\2\2\u014f\u0150\3\2\2"+
-		"\2\u0150\u0151\3\2\2\2\u0151\u0152\5L\'\2\u0152\u0159\7\n\2\2\u0153\u0155"+
-		"\5.\30\2\u0154\u0156\t\13\2\2\u0155\u0154\3\2\2\2\u0155\u0156\3\2\2\2"+
-		"\u0156\u0158\3\2\2\2\u0157\u0153\3\2\2\2\u0158\u015b\3\2\2\2\u0159\u0157"+
-		"\3\2\2\2\u0159\u015a\3\2\2\2\u015a\u015c\3\2\2\2\u015b\u0159\3\2\2\2\u015c"+
-		"\u0160\7\13\2\2\u015d\u015f\5\60\31\2\u015e\u015d\3\2\2\2\u015f\u0162"+
-		"\3\2\2\2\u0160\u015e\3\2\2\2\u0160\u0161\3\2\2\2\u0161-\3\2\2\2\u0162"+
-		"\u0160\3\2\2\2\u0163\u0166\5\62\32\2\u0164\u0166\5\66\34\2\u0165\u0163"+
-		"\3\2\2\2\u0165\u0164\3\2\2\2\u0166/\3\2\2\2\u0167\u0169\7\65\2\2\u0168"+
-		"\u0167\3\2\2\2\u0168\u0169\3\2\2\2\u0169\u016a\3\2\2\2\u016a\u016b\7+"+
-		"\2\2\u016b\u016d\7^\2\2\u016c\u016e\7\t\2\2\u016d\u016c\3\2\2\2\u016d"+
-		"\u016e\3\2\2\2\u016e\u016f\3\2\2\2\u016f\u017e\5j\66\2\u0170\u0172\7\65"+
-		"\2\2\u0171\u0170\3\2\2\2\u0171\u0172\3\2\2\2\u0172\u0173\3\2\2\2\u0173"+
-		"\u017b\5j\66\2\u0174\u0176\7\t\2\2\u0175\u0174\3\2\2\2\u0175\u0176\3\2"+
-		"\2\2\u0176\u0179\3\2\2\2\u0177\u017a\5j\66\2\u0178\u017a\7r\2\2\u0179"+
-		"\u0177\3\2\2\2\u0179\u0178\3\2\2\2\u017a\u017c\3\2\2\2\u017b\u0175\3\2"+
-		"\2\2\u017b\u017c\3\2\2\2\u017c\u017e\3\2\2\2\u017d\u0168\3\2\2\2\u017d"+
-		"\u0171\3\2\2\2\u017e\61\3\2\2\2\u017f\u0180\5N(\2\u0180\u0182\5F$\2\u0181"+
-		"\u0183\5H%\2\u0182\u0181\3\2\2\2\u0182\u0183\3\2\2\2\u0183\u0185\3\2\2"+
-		"\2\u0184\u0186\5\34\17\2\u0185\u0184\3\2\2\2\u0185\u0186\3\2\2\2\u0186"+
-		"\u018b\3\2\2\2\u0187\u018a\5\64\33\2\u0188\u018a\58\35\2\u0189\u0187\3"+
-		"\2\2\2\u0189\u0188\3\2\2\2\u018a\u018d\3\2\2\2\u018b\u0189\3\2\2\2\u018b"+
-		"\u018c\3\2\2\2\u018c\u0191\3\2\2\2\u018d\u018b\3\2\2\2\u018e\u018f\7S"+
-		"\2\2\u018f\u0190\7h\2\2\u0190\u0192\5j\66\2\u0191\u018e\3\2\2\2\u0191"+
-		"\u0192\3\2\2\2\u0192\63\3\2\2\2\u0193\u0195\7P\2\2\u0194\u0193\3\2\2\2"+
-		"\u0194\u0195\3\2\2\2\u0195\u0196\3\2\2\2\u0196\u019e\7Q\2\2\u0197\u019e"+
-		"\7%\2\2\u0198\u019b\7\65\2\2\u0199\u019c\5h\65\2\u019a\u019c\7Q\2\2\u019b"+
-		"\u0199\3\2\2\2\u019b\u019a\3\2\2\2\u019c\u019e\3\2\2\2\u019d\u0194\3\2"+
-		"\2\2\u019d\u0197\3\2\2\2\u019d\u0198\3\2\2\2\u019e\65\3\2\2\2\u019f\u01a0"+
-		"\5<\37\2\u01a0\67\3\2\2\2\u01a1\u01a2\5<\37\2\u01a29\3\2\2\2\u01a3\u01a4"+
-		"\5<\37\2\u01a4;\3\2\2\2\u01a5\u01a7\7\61\2\2\u01a6\u01a5\3\2\2\2\u01a6"+
-		"\u01a7\3\2\2\2\u01a7\u01a9\3\2\2\2\u01a8\u01aa\5V,\2\u01a9\u01a8\3\2\2"+
-		"\2\u01a9\u01aa\3\2\2\2\u01aa\u01ab\3\2\2\2\u01ab\u01ac\7W\2\2\u01ac\u01ae"+
-		"\7L\2\2\u01ad\u01af\5V,\2\u01ae\u01ad\3\2\2\2\u01ae\u01af\3\2\2\2\u01af"+
-		"\u01b1\3\2\2\2\u01b0\u01b2\5 \21\2\u01b1\u01b0\3\2\2\2\u01b1\u01b2\3\2"+
-		"\2\2\u01b2\u01b4\3\2\2\2\u01b3\u01b5\5\\/\2\u01b4\u01b3\3\2\2\2\u01b4"+
-		"\u01b5\3\2\2\2\u01b5\u01b9\3\2\2\2\u01b6\u01b8\5\"\22\2\u01b7\u01b6\3"+
-		"\2\2\2\u01b8\u01bb\3\2\2\2\u01b9\u01b7\3\2\2\2\u01b9\u01ba\3\2\2\2\u01ba"+
-		"\u020a\3\2\2\2\u01bb\u01b9\3\2\2\2\u01bc\u01be\t\f\2\2\u01bd\u01bf\5P"+
-		")\2\u01be\u01bd\3\2\2\2\u01be\u01bf\3\2\2\2\u01bf\u01c2\3\2\2\2\u01c0"+
-		"\u01c1\7S\2\2\u01c1\u01c3\5N(\2\u01c2\u01c0\3\2\2\2\u01c2\u01c3\3\2\2"+
-		"\2\u01c3\u01c5\3\2\2\2\u01c4\u01c6\5 \21\2\u01c5\u01c4\3\2\2\2\u01c5\u01c6"+
-		"\3\2\2\2\u01c6\u01c7\3\2\2\2\u01c7\u01cb\5\\/\2\u01c8\u01ca\5\"\22\2\u01c9"+
-		"\u01c8\3\2\2\2\u01ca\u01cd\3\2\2\2\u01cb\u01c9\3\2\2\2\u01cb\u01cc\3\2"+
-		"\2\2\u01cc\u020a\3\2\2\2\u01cd\u01cb\3\2\2\2\u01ce\u01d0\7\61\2\2\u01cf"+
-		"\u01ce\3\2\2\2\u01cf\u01d0\3\2\2\2\u01d0\u01d2\3\2\2\2\u01d1\u01d3\5V"+
-		",\2\u01d2\u01d1\3\2\2\2\u01d2\u01d3\3\2\2\2\u01d3\u01d4\3\2\2\2\u01d4"+
-		"\u01d6\7f\2\2\u01d5\u01d7\t\r\2\2\u01d6\u01d5\3\2\2\2\u01d6\u01d7\3\2"+
-		"\2\2\u01d7\u01d9\3\2\2\2\u01d8\u01da\5P)\2\u01d9\u01d8\3\2\2\2\u01d9\u01da"+
-		"\3\2\2\2\u01da\u01dc\3\2\2\2\u01db\u01dd\5 \21\2\u01dc\u01db\3\2\2\2\u01dc"+
-		"\u01dd\3\2\2\2\u01dd\u01df\3\2\2\2\u01de\u01e0\5\\/\2\u01df\u01de\3\2"+
-		"\2\2\u01df\u01e0\3\2\2\2\u01e0\u01e4\3\2\2\2\u01e1\u01e3\5\"\22\2\u01e2"+
-		"\u01e1\3\2\2\2\u01e3\u01e6\3\2\2\2\u01e4\u01e2\3\2\2\2\u01e4\u01e5\3\2"+
-		"\2\2\u01e5\u020a\3\2\2\2\u01e6\u01e4\3\2\2\2\u01e7\u01e9\t\16\2\2\u01e8"+
-		"\u01ea\t\17\2\2\u01e9\u01e8\3\2\2\2\u01e9\u01ea\3\2\2\2\u01ea\u01ec\3"+
-		"\2\2\2\u01eb\u01ed\5P)\2\u01ec\u01eb\3\2\2\2\u01ec\u01ed\3\2\2\2\u01ed"+
-		"\u01ee\3\2\2\2\u01ee\u01f2\5\\/\2\u01ef\u01f1\5\"\22\2\u01f0\u01ef\3\2"+
-		"\2\2\u01f1\u01f4\3\2\2\2\u01f2\u01f0\3\2\2\2\u01f2\u01f3\3\2\2\2\u01f3"+
-		"\u020a\3\2\2\2\u01f4\u01f2\3\2\2\2\u01f5\u01f7\7\61\2\2\u01f6\u01f5\3"+
-		"\2\2\2\u01f6\u01f7\3\2\2\2\u01f7\u01f9\3\2\2\2\u01f8\u01fa\5V,\2\u01f9"+
-		"\u01f8\3\2\2\2\u01f9\u01fa\3\2\2\2\u01fa\u01fb\3\2\2\2\u01fb\u01fc\7A"+
-		"\2\2\u01fc\u01fe\7L\2\2\u01fd\u01ff\5P)\2\u01fe\u01fd\3\2\2\2\u01fe\u01ff"+
-		"\3\2\2\2\u01ff\u0200\3\2\2\2\u0200\u0201\5\\/\2\u0201\u0202\5@!\2\u0202"+
-		"\u020a\3\2\2\2\u0203\u0204\7\61\2\2\u0204\u0205\5V,\2\u0205\u0206\7-\2"+
-		"\2\u0206\u0207\5> \2\u0207\u020a\3\2\2\2\u0208\u020a\5@!\2\u0209\u01a6"+
-		"\3\2\2\2\u0209\u01bc\3\2\2\2\u0209\u01cf\3\2\2\2\u0209\u01e7\3\2\2\2\u0209"+
-		"\u01f6\3\2\2\2\u0209\u0203\3\2\2\2\u0209\u0208\3\2\2\2\u020a=\3\2\2\2"+
-		"\u020b\u0210\7\n\2\2\u020c\u020f\n\20\2\2\u020d\u020f\5> \2\u020e\u020c"+
-		"\3\2\2\2\u020e\u020d\3\2\2\2\u020f\u0212\3\2\2\2\u0210\u020e\3\2\2\2\u0210"+
-		"\u0211\3\2\2\2\u0211\u0213\3\2\2\2\u0212\u0210\3\2\2\2\u0213\u0214\7\13"+
-		"\2\2\u0214?\3\2\2\2\u0215\u0216\7Z\2\2\u0216\u0217\5L\'\2\u0217\u021b"+
-		"\5\\/\2\u0218\u021a\5B\"\2\u0219\u0218\3\2\2\2\u021a\u021d\3\2\2\2\u021b"+
-		"\u0219\3\2\2\2\u021b\u021c\3\2\2\2\u021cA\3\2\2\2\u021d\u021b\3\2\2\2"+
-		"\u021e\u021f\7S\2\2\u021f\u0220\t\21\2\2\u0220\u0221\5D#\2\u0221C\3\2"+
-		"\2\2\u0222\u0224\t\22\2\2\u0223\u0225\7\66\2\2\u0224\u0223\3\2\2\2\u0224"+
-		"\u0225\3\2\2\2\u0225\u022b\3\2\2\2\u0226\u0227\7^\2\2\u0227\u022b\7Q\2"+
-		"\2\u0228\u0229\7O\2\2\u0229\u022b\7 \2\2\u022a\u0222\3\2\2\2\u022a\u0226"+
-		"\3\2\2\2\u022a\u0228\3\2\2\2\u022bE\3\2\2\2\u022c\u022e\5j\66\2\u022d"+
-		"\u022c\3\2\2\2\u022e\u022f\3\2\2\2\u022f\u022d\3\2\2\2\u022f\u0230\3\2"+
-		"\2\2\u0230\u0232\3\2\2\2\u0231\u0233\5d\63\2\u0232\u0231\3\2\2\2\u0232"+
-		"\u0233\3\2\2\2\u0233\u0236\3\2\2\2\u0234\u0235\7>\2\2\u0235\u0237\5`\61"+
-		"\2\u0236\u0234\3\2\2\2\u0236\u0237\3\2\2\2\u0237\u023d\3\2\2\2\u0238\u0239"+
-		"\7>\2\2\u0239\u023d\5`\61\2\u023a\u023b\7^\2\2\u023b\u023d\5`\61\2\u023c"+
-		"\u022d\3\2\2\2\u023c\u0238\3\2\2\2\u023c\u023a\3\2\2\2\u023dG\3\2\2\2"+
-		"\u023e\u023f\t\23\2\2\u023fI\3\2\2\2\u0240\u0241\5j\66\2\u0241K\3\2\2"+
-		"\2\u0242\u0243\5j\66\2\u0243M\3\2\2\2\u0244\u0245\5j\66\2\u0245O\3\2\2"+
-		"\2\u0246\u0247\5j\66\2\u0247Q\3\2\2\2\u0248\u0249\5j\66\2\u0249S\3\2\2"+
-		"\2\u024a\u024b\5j\66\2\u024bU\3\2\2\2\u024c\u024d\5j\66\2\u024dW\3\2\2"+
-		"\2\u024e\u024f\5j\66\2\u024fY\3\2\2\2\u0250\u0255\5j\66\2\u0251\u0252"+
-		"\7\n\2\2\u0252\u0253\5h\65\2\u0253\u0254\7\13\2\2\u0254\u0256\3\2\2\2"+
-		"\u0255\u0251\3\2\2\2\u0255\u0256\3\2\2\2\u0256\u0261\3\2\2\2\u0257\u0258"+
-		"\7\r\2\2\u0258\u025d\5j\66\2\u0259\u025a\7\n\2\2\u025a\u025b\5h\65\2\u025b"+
-		"\u025c\7\13\2\2\u025c\u025e\3\2\2\2\u025d\u0259\3\2\2\2\u025d\u025e\3"+
-		"\2\2\2\u025e\u0260\3\2\2\2\u025f\u0257\3\2\2\2\u0260\u0263\3\2\2\2\u0261"+
-		"\u025f\3\2\2\2\u0261\u0262\3\2\2\2\u0262[\3\2\2\2\u0263\u0261\3\2\2\2"+
-		"\u0264\u0265\7\n\2\2\u0265\u0266\5Z.\2\u0266\u0267\7\13\2\2\u0267]\3\2"+
-		"\2\2\u0268\u026d\5h\65\2\u0269\u026a\7\r\2\2\u026a\u026c\5h\65\2\u026b"+
-		"\u0269\3\2\2\2\u026c\u026f\3\2\2\2\u026d\u026b\3\2\2\2\u026d\u026e\3\2"+
-		"\2\2\u026e_\3\2\2\2\u026f\u026d\3\2\2\2\u0270\u0271\7\n\2\2\u0271\u0272"+
-		"\5^\60\2\u0272\u0273\7\13\2\2\u0273a\3\2\2\2\u0274\u0278\7\n\2\2\u0275"+
-		"\u0277\5`\61\2\u0276\u0275\3\2\2\2\u0277\u027a\3\2\2\2\u0278\u0276\3\2"+
-		"\2\2\u0278\u0279\3\2\2\2\u0279\u027b\3\2\2\2\u027a\u0278\3\2\2\2\u027b"+
-		"\u027c\7\13\2\2\u027cc\3\2\2\2\u027d\u027e\7\n\2\2\u027e\u0281\7r\2\2"+
-		"\u027f\u0280\7\r\2\2\u0280\u0282\7r\2\2\u0281\u027f\3\2\2\2\u0281\u0282"+
-		"\3\2\2\2\u0282\u0283\3\2\2\2\u0283\u0284\7\13\2\2\u0284e\3\2\2\2\u0285"+
-		"\u0286\t\24\2\2\u0286g\3\2\2\2\u0287\u028c\5l\67\2\u0288\u028c\7Q\2\2"+
-		"\u0289\u028c\5j\66\2\u028a\u028c\5t;\2\u028b\u0287\3\2\2\2\u028b\u0288"+
-		"\3\2\2\2\u028b\u0289\3\2\2\2\u028b\u028a\3\2\2\2\u028ci\3\2\2\2\u028d"+
-		"\u0292\7s\2\2\u028e\u0292\5x=\2\u028f\u0292\5p9\2\u0290\u0292\5r:\2\u0291"+
-		"\u028d\3\2\2\2\u0291\u028e\3\2\2\2\u0291\u028f\3\2\2\2\u0291\u0290\3\2"+
-		"\2\2\u0292k\3\2\2\2\u0293\u0299\7r\2\2\u0294\u0295\5n8\2\u0295\u0296\7"+
-		"r\2\2\u0296\u0297\5n8\2\u0297\u0299\3\2\2\2\u0298\u0293\3\2\2\2\u0298"+
-		"\u0294\3\2\2\2\u0299m\3\2\2\2\u029a\u029b\t\25\2\2\u029bo\3\2\2\2\u029c"+
-		"\u029d\5n8\2\u029d\u029e\5x=\2\u029e\u029f\5n8\2\u029fq\3\2\2\2\u02a0"+
-		"\u02a1\t\26\2\2\u02a1s\3\2\2\2\u02a2\u02a3\5j\66\2\u02a3\u02a4\5> \2\u02a4"+
-		"u\3\2\2\2\u02a5\u02a6\t\27\2\2\u02a6w\3\2\2\2\u02a7\u02a8\t\30\2\2\u02a8"+
-		"y\3\2\2\2c|\u0080\u0086\u008c\u0092\u009d\u00a5\u00ab\u00af\u00b1\u00b5"+
-		"\u00ba\u00c2\u00cc\u00d5\u00e4\u00eb\u00f1\u00f5\u00fa\u00fe\u0102\u0105"+
-		"\u0108\u010d\u0113\u0117\u011b\u011f\u0129\u0130\u0138\u0141\u0143\u0149"+
-		"\u014f\u0155\u0159\u0160\u0165\u0168\u016d\u0171\u0175\u0179\u017b\u017d"+
-		"\u0182\u0185\u0189\u018b\u0191\u0194\u019b\u019d\u01a6\u01a9\u01ae\u01b1"+
-		"\u01b4\u01b9\u01be\u01c2\u01c5\u01cb\u01cf\u01d2\u01d6\u01d9\u01dc\u01df"+
-		"\u01e4\u01e9\u01ec\u01f2\u01f6\u01f9\u01fe\u0209\u020e\u0210\u021b\u0224"+
-		"\u022a\u022f\u0232\u0236\u023c\u0255\u025d\u0261\u026d\u0278\u0281\u028b"+
-		"\u0291\u0298";
+		"\3\uacf5\uee8c\u4f5d\u8b0d\u4a45\u78bd\u1b2f\u3378\3t\u02aa\4\2\t\2\4"+
+		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
+		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
+		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
+		"\4\32\t\32\4\33\t\33\4\34\t\34\4\35\t\35\4\36\t\36\4\37\t\37\4 \t \4!"+
+		"\t!\4\"\t\"\4#\t#\4$\t$\4%\t%\4&\t&\4\'\t\'\4(\t(\4)\t)\4*\t*\4+\t+\4"+
+		",\t,\4-\t-\4.\t.\4/\t/\4\60\t\60\4\61\t\61\4\62\t\62\4\63\t\63\4\64\t"+
+		"\64\4\65\t\65\4\66\t\66\4\67\t\67\48\t8\49\t9\4:\t:\4;\t;\4<\t<\4=\t="+
+		"\3\2\3\2\5\2}\n\2\6\2\177\n\2\r\2\16\2\u0080\3\2\3\2\3\3\3\3\5\3\u0087"+
+		"\n\3\3\4\3\4\3\4\3\4\5\4\u008d\n\4\3\5\3\5\3\5\3\5\5\5\u0093\n\5\3\6\3"+
+		"\6\3\6\3\7\3\7\3\b\3\b\3\b\3\b\5\b\u009e\n\b\3\t\3\t\3\t\3\t\3\t\3\t\5"+
+		"\t\u00a6\n\t\3\t\3\t\3\t\3\t\5\t\u00ac\n\t\3\t\3\t\5\t\u00b0\n\t\5\t\u00b2"+
+		"\n\t\3\n\3\n\5\n\u00b6\n\n\3\n\3\n\3\n\5\n\u00bb\n\n\3\n\3\n\3\n\3\n\7"+
+		"\n\u00c1\n\n\f\n\16\n\u00c4\13\n\3\13\3\13\3\13\3\13\3\13\3\13\3\13\5"+
+		"\13\u00cd\n\13\3\f\3\f\3\f\3\f\3\f\6\f\u00d4\n\f\r\f\16\f\u00d5\3\r\3"+
+		"\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\7\r\u00e3\n\r\f\r\16\r\u00e6\13"+
+		"\r\3\16\3\16\3\16\3\16\5\16\u00ec\n\16\3\16\3\16\7\16\u00f0\n\16\f\16"+
+		"\16\16\u00f3\13\16\3\17\5\17\u00f6\n\17\3\17\3\17\3\17\5\17\u00fb\n\17"+
+		"\3\17\3\17\5\17\u00ff\n\17\3\17\3\17\5\17\u0103\n\17\3\17\5\17\u0106\n"+
+		"\17\3\20\5\20\u0109\n\20\3\20\3\20\3\20\5\20\u010e\n\20\3\20\3\20\3\20"+
+		"\3\20\5\20\u0114\n\20\3\21\3\21\5\21\u0118\n\21\3\22\3\22\5\22\u011c\n"+
+		"\22\3\22\3\22\5\22\u0120\n\22\3\23\3\23\3\23\3\23\3\23\3\23\7\23\u0128"+
+		"\n\23\f\23\16\23\u012b\13\23\3\23\3\23\3\24\3\24\5\24\u0131\n\24\3\24"+
+		"\3\24\3\24\3\24\3\25\3\25\5\25\u0139\n\25\3\25\3\25\3\25\3\25\3\26\3\26"+
+		"\3\26\7\26\u0142\n\26\f\26\16\26\u0145\13\26\3\26\3\26\3\27\5\27\u014a"+
+		"\n\27\3\27\3\27\3\27\3\27\5\27\u0150\n\27\3\27\3\27\3\27\3\27\5\27\u0156"+
+		"\n\27\7\27\u0158\n\27\f\27\16\27\u015b\13\27\3\27\3\27\7\27\u015f\n\27"+
+		"\f\27\16\27\u0162\13\27\3\30\3\30\5\30\u0166\n\30\3\31\5\31\u0169\n\31"+
+		"\3\31\3\31\3\31\5\31\u016e\n\31\3\31\3\31\5\31\u0172\n\31\3\31\3\31\5"+
+		"\31\u0176\n\31\3\31\3\31\5\31\u017a\n\31\5\31\u017c\n\31\5\31\u017e\n"+
+		"\31\3\32\3\32\3\32\5\32\u0183\n\32\3\32\5\32\u0186\n\32\3\32\3\32\7\32"+
+		"\u018a\n\32\f\32\16\32\u018d\13\32\3\32\3\32\3\32\5\32\u0192\n\32\3\33"+
+		"\5\33\u0195\n\33\3\33\3\33\3\33\3\33\3\33\5\33\u019c\n\33\5\33\u019e\n"+
+		"\33\3\34\3\34\3\35\3\35\3\36\3\36\3\37\5\37\u01a7\n\37\3\37\5\37\u01aa"+
+		"\n\37\3\37\3\37\3\37\5\37\u01af\n\37\3\37\5\37\u01b2\n\37\3\37\5\37\u01b5"+
+		"\n\37\3\37\7\37\u01b8\n\37\f\37\16\37\u01bb\13\37\3\37\3\37\5\37\u01bf"+
+		"\n\37\3\37\3\37\5\37\u01c3\n\37\3\37\5\37\u01c6\n\37\3\37\3\37\7\37\u01ca"+
+		"\n\37\f\37\16\37\u01cd\13\37\3\37\5\37\u01d0\n\37\3\37\5\37\u01d3\n\37"+
+		"\3\37\3\37\5\37\u01d7\n\37\3\37\5\37\u01da\n\37\3\37\5\37\u01dd\n\37\3"+
+		"\37\5\37\u01e0\n\37\3\37\7\37\u01e3\n\37\f\37\16\37\u01e6\13\37\3\37\3"+
+		"\37\5\37\u01ea\n\37\3\37\5\37\u01ed\n\37\3\37\3\37\7\37\u01f1\n\37\f\37"+
+		"\16\37\u01f4\13\37\3\37\5\37\u01f7\n\37\3\37\5\37\u01fa\n\37\3\37\3\37"+
+		"\3\37\5\37\u01ff\n\37\3\37\3\37\3\37\3\37\3\37\3\37\3\37\3\37\3\37\5\37"+
+		"\u020a\n\37\3 \3 \3 \7 \u020f\n \f \16 \u0212\13 \3 \3 \3!\3!\3!\3!\7"+
+		"!\u021a\n!\f!\16!\u021d\13!\3\"\3\"\3\"\3\"\3#\3#\5#\u0225\n#\3#\3#\3"+
+		"#\3#\5#\u022b\n#\3$\6$\u022e\n$\r$\16$\u022f\3$\5$\u0233\n$\3$\3$\5$\u0237"+
+		"\n$\3$\3$\3$\3$\5$\u023d\n$\3%\3%\3&\3&\3\'\3\'\3(\3(\3)\3)\3*\3*\3+\3"+
+		"+\3,\3,\3-\3-\3.\3.\3.\3.\3.\5.\u0256\n.\3.\3.\3.\3.\3.\3.\5.\u025e\n"+
+		".\7.\u0260\n.\f.\16.\u0263\13.\3/\3/\3/\3/\3\60\3\60\3\60\7\60\u026c\n"+
+		"\60\f\60\16\60\u026f\13\60\3\61\3\61\3\61\3\61\3\62\3\62\7\62\u0277\n"+
+		"\62\f\62\16\62\u027a\13\62\3\62\3\62\3\63\3\63\3\63\3\63\5\63\u0282\n"+
+		"\63\3\63\3\63\3\64\3\64\3\65\3\65\3\65\3\65\5\65\u028c\n\65\3\66\3\66"+
+		"\3\66\3\66\5\66\u0292\n\66\3\67\3\67\3\67\3\67\3\67\5\67\u0299\n\67\3"+
+		"8\38\39\39\39\39\3:\3:\3;\3;\3;\3<\3<\3=\3=\3=\2>\2\4\6\b\n\f\16\20\22"+
+		"\24\26\30\32\34\36 \"$&(*,.\60\62\64\668:<>@BDFHJLNPRTVXZ\\^`bdfhjlnp"+
+		"rtvx\2\26\4\2\63\63cc\4\2\63\63]]\5\2BBaaff\4\2))DD\3\2\13\13\4\2CCVV"+
+		"\3\2==\3\2\f\f\3\2\f\r\4\2GGLL\4\2BBaa\3\2\n\13\4\2\67\67hh\4\2**\\\\"+
+		"\6\2\'\'__ggqq\4\2$$88\4\2\16\16\25\26\3\2\3\5\3\2\t\34\r\2 \"$\60\62"+
+		"\64\67:<FHKRRY^`dgmpq\u02e2\2~\3\2\2\2\4\u0086\3\2\2\2\6\u008c\3\2\2\2"+
+		"\b\u0092\3\2\2\2\n\u0094\3\2\2\2\f\u0097\3\2\2\2\16\u0099\3\2\2\2\20\u00b1"+
+		"\3\2\2\2\22\u00b3\3\2\2\2\24\u00c5\3\2\2\2\26\u00ce\3\2\2\2\30\u00d7\3"+
+		"\2\2\2\32\u00e7\3\2\2\2\34\u0105\3\2\2\2\36\u0108\3\2\2\2 \u0115\3\2\2"+
+		"\2\"\u011f\3\2\2\2$\u0121\3\2\2\2&\u0130\3\2\2\2(\u0138\3\2\2\2*\u0143"+
+		"\3\2\2\2,\u0149\3\2\2\2.\u0165\3\2\2\2\60\u017d\3\2\2\2\62\u017f\3\2\2"+
+		"\2\64\u019d\3\2\2\2\66\u019f\3\2\2\28\u01a1\3\2\2\2:\u01a3\3\2\2\2<\u0209"+
+		"\3\2\2\2>\u020b\3\2\2\2@\u0215\3\2\2\2B\u021e\3\2\2\2D\u022a\3\2\2\2F"+
+		"\u023c\3\2\2\2H\u023e\3\2\2\2J\u0240\3\2\2\2L\u0242\3\2\2\2N\u0244\3\2"+
+		"\2\2P\u0246\3\2\2\2R\u0248\3\2\2\2T\u024a\3\2\2\2V\u024c\3\2\2\2X\u024e"+
+		"\3\2\2\2Z\u0250\3\2\2\2\\\u0264\3\2\2\2^\u0268\3\2\2\2`\u0270\3\2\2\2"+
+		"b\u0274\3\2\2\2d\u027d\3\2\2\2f\u0285\3\2\2\2h\u028b\3\2\2\2j\u0291\3"+
+		"\2\2\2l\u0298\3\2\2\2n\u029a\3\2\2\2p\u029c\3\2\2\2r\u02a0\3\2\2\2t\u02a2"+
+		"\3\2\2\2v\u02a5\3\2\2\2x\u02a7\3\2\2\2z|\5\4\3\2{}\7\f\2\2|{\3\2\2\2|"+
+		"}\3\2\2\2}\177\3\2\2\2~z\3\2\2\2\177\u0080\3\2\2\2\u0080~\3\2\2\2\u0080"+
+		"\u0081\3\2\2\2\u0081\u0082\3\2\2\2\u0082\u0083\7\2\2\3\u0083\3\3\2\2\2"+
+		"\u0084\u0087\5\6\4\2\u0085\u0087\5\b\5\2\u0086\u0084\3\2\2\2\u0086\u0085"+
+		"\3\2\2\2\u0087\5\3\2\2\2\u0088\u008d\5\20\t\2\u0089\u008d\5\24\13\2\u008a"+
+		"\u008d\5\26\f\2\u008b\u008d\5\30\r\2\u008c\u0088\3\2\2\2\u008c\u0089\3"+
+		"\2\2\2\u008c\u008a\3\2\2\2\u008c\u008b\3\2\2\2\u008d\7\3\2\2\2\u008e\u0093"+
+		"\5\22\n\2\u008f\u0093\5\n\6\2\u0090\u0093\5\f\7\2\u0091\u0093\5\16\b\2"+
+		"\u0092\u008e\3\2\2\2\u0092\u008f\3\2\2\2\u0092\u0090\3\2\2\2\u0092\u0091"+
+		"\3\2\2\2\u0093\t\3\2\2\2\u0094\u0095\7i\2\2\u0095\u0096\5j\66\2\u0096"+
+		"\13\3\2\2\2\u0097\u0098\7\60\2\2\u0098\r\3\2\2\2\u0099\u009a\7^\2\2\u009a"+
+		"\u009d\5j\66\2\u009b\u009c\7\t\2\2\u009c\u009e\5j\66\2\u009d\u009b\3\2"+
+		"\2\2\u009d\u009e\3\2\2\2\u009e\17\3\2\2\2\u009f\u00a0\7;\2\2\u00a0\u00a1"+
+		"\t\2\2\2\u00a1\u00a2\7E\2\2\u00a2\u00a3\7?\2\2\u00a3\u00a5\5Z.\2\u00a4"+
+		"\u00a6\7X\2\2\u00a5\u00a4\3\2\2\2\u00a5\u00a6\3\2\2\2\u00a6\u00b2\3\2"+
+		"\2\2\u00a7\u00a8\7;\2\2\u00a8\u00a9\t\2\2\2\u00a9\u00ab\5Z.\2\u00aa\u00ac"+
+		"\7X\2\2\u00ab\u00aa\3\2\2\2\u00ab\u00ac\3\2\2\2\u00ac\u00af\3\2\2\2\u00ad"+
+		"\u00ae\7E\2\2\u00ae\u00b0\7?\2\2\u00af\u00ad\3\2\2\2\u00af\u00b0\3\2\2"+
+		"\2\u00b0\u00b2\3\2\2\2\u00b1\u009f\3\2\2\2\u00b1\u00a7\3\2\2\2\u00b2\21"+
+		"\3\2\2\2\u00b3\u00b5\7H\2\2\u00b4\u00b6\7F\2\2\u00b5\u00b4\3\2\2\2\u00b5"+
+		"\u00b6\3\2\2\2\u00b6\u00b7\3\2\2\2\u00b7\u00b8\7J\2\2\u00b8\u00ba\5L\'"+
+		"\2\u00b9\u00bb\5\\/\2\u00ba\u00b9\3\2\2\2\u00ba\u00bb\3\2\2\2\u00bb\u00bc"+
+		"\3\2\2\2\u00bc\u00bd\7k\2\2\u00bd\u00c2\5`\61\2\u00be\u00bf\7\r\2\2\u00bf"+
+		"\u00c1\5`\61\2\u00c0\u00be\3\2\2\2\u00c1\u00c4\3\2\2\2\u00c2\u00c0\3\2"+
+		"\2\2\u00c2\u00c3\3\2\2\2\u00c3\23\3\2\2\2\u00c4\u00c2\3\2\2\2\u00c5\u00cc"+
+		"\7\62\2\2\u00c6\u00cd\5\32\16\2\u00c7\u00cd\5,\27\2\u00c8\u00cd\5\36\20"+
+		"\2\u00c9\u00cd\5$\23\2\u00ca\u00cd\5&\24\2\u00cb\u00cd\5(\25\2\u00cc\u00c6"+
+		"\3\2\2\2\u00cc\u00c7\3\2\2\2\u00cc\u00c8\3\2\2\2\u00cc\u00c9\3\2\2\2\u00cc"+
+		"\u00ca\3\2\2\2\u00cc\u00cb\3\2\2\2\u00cd\25\3\2\2\2\u00ce\u00cf\7\"\2"+
+		"\2\u00cf\u00d0\7c\2\2\u00d0\u00d3\5L\'\2\u00d1\u00d2\7!\2\2\u00d2\u00d4"+
+		"\5:\36\2\u00d3\u00d1\3\2\2\2\u00d4\u00d5\3\2\2\2\u00d5\u00d3\3\2\2\2\u00d5"+
+		"\u00d6\3\2\2\2\u00d6\27\3\2\2\2\u00d7\u00d8\7h\2\2\u00d8\u00d9\5L\'\2"+
+		"\u00d9\u00da\7^\2\2\u00da\u00db\5N(\2\u00db\u00dc\7\t\2\2\u00dc\u00e4"+
+		"\5h\65\2\u00dd\u00de\7\r\2\2\u00de\u00df\5N(\2\u00df\u00e0\7\t\2\2\u00e0"+
+		"\u00e1\5h\65\2\u00e1\u00e3\3\2\2\2\u00e2\u00dd\3\2\2\2\u00e3\u00e6\3\2"+
+		"\2\2\u00e4\u00e2\3\2\2\2\u00e4\u00e5\3\2\2\2\u00e5\31\3\2\2\2\u00e6\u00e4"+
+		"\3\2\2\2\u00e7\u00eb\t\3\2\2\u00e8\u00e9\7E\2\2\u00e9\u00ea\7P\2\2\u00ea"+
+		"\u00ec\7?\2\2\u00eb\u00e8\3\2\2\2\u00eb\u00ec\3\2\2\2\u00ec\u00ed\3\2"+
+		"\2\2\u00ed\u00f1\5J&\2\u00ee\u00f0\5\34\17\2\u00ef\u00ee\3\2\2\2\u00f0"+
+		"\u00f3\3\2\2\2\u00f1\u00ef\3\2\2\2\u00f1\u00f2\3\2\2\2\u00f2\33\3\2\2"+
+		"\2\u00f3\u00f1\3\2\2\2\u00f4\u00f6\7\65\2\2\u00f5\u00f4\3\2\2\2\u00f5"+
+		"\u00f6\3\2\2\2\u00f6\u00f7\3\2\2\2\u00f7\u00f8\7+\2\2\u00f8\u00fa\7^\2"+
+		"\2\u00f9\u00fb\7\t\2\2\u00fa\u00f9\3\2\2\2\u00fa\u00fb\3\2\2\2\u00fb\u00fc"+
+		"\3\2\2\2\u00fc\u0106\5R*\2\u00fd\u00ff\7\65\2\2\u00fe\u00fd\3\2\2\2\u00fe"+
+		"\u00ff\3\2\2\2\u00ff\u0100\3\2\2\2\u0100\u0102\7.\2\2\u0101\u0103\7\t"+
+		"\2\2\u0102\u0101\3\2\2\2\u0102\u0103\3\2\2\2\u0103\u0104\3\2\2\2\u0104"+
+		"\u0106\5T+\2\u0105\u00f5\3\2\2\2\u0105\u00fe\3\2\2\2\u0106\35\3\2\2\2"+
+		"\u0107\u0109\t\4\2\2\u0108\u0107\3\2\2\2\u0108\u0109\3\2\2\2\u0109\u010a"+
+		"\3\2\2\2\u010a\u010b\7G\2\2\u010b\u010d\5P)\2\u010c\u010e\5 \21\2\u010d"+
+		"\u010c\3\2\2\2\u010d\u010e\3\2\2\2\u010e\u010f\3\2\2\2\u010f\u0110\7S"+
+		"\2\2\u0110\u0111\5L\'\2\u0111\u0113\5\\/\2\u0112\u0114\5\"\22\2\u0113"+
+		"\u0112\3\2\2\2\u0113\u0114\3\2\2\2\u0114\37\3\2\2\2\u0115\u0117\7j\2\2"+
+		"\u0116\u0118\t\5\2\2\u0117\u0116\3\2\2\2\u0117\u0118\3\2\2\2\u0118!\3"+
+		"\2\2\2\u0119\u011b\7M\2\2\u011a\u011c\7\t\2\2\u011b\u011a\3\2\2\2\u011b"+
+		"\u011c\3\2\2\2\u011c\u011d\3\2\2\2\u011d\u0120\5h\65\2\u011e\u0120\5 "+
+		"\21\2\u011f\u0119\3\2\2\2\u011f\u011e\3\2\2\2\u0120#\3\2\2\2\u0121\u0122"+
+		"\7n\2\2\u0122\u0123\5j\66\2\u0123\u0124\5\\/\2\u0124\u0125\7#\2\2\u0125"+
+		"\u0129\7\n\2\2\u0126\u0128\n\6\2\2\u0127\u0126\3\2\2\2\u0128\u012b\3\2"+
+		"\2\2\u0129\u0127\3\2\2\2\u0129\u012a\3\2\2\2\u012a\u012c\3\2\2\2\u012b"+
+		"\u0129\3\2\2\2\u012c\u012d\7\13\2\2\u012d%\3\2\2\2\u012e\u012f\7T\2\2"+
+		"\u012f\u0131\7[\2\2\u0130\u012e\3\2\2\2\u0130\u0131\3\2\2\2\u0131\u0132"+
+		"\3\2\2\2\u0132\u0133\7e\2\2\u0133\u0134\5X-\2\u0134\u0135\5*\26\2\u0135"+
+		"\'\3\2\2\2\u0136\u0137\7T\2\2\u0137\u0139\7[\2\2\u0138\u0136\3\2\2\2\u0138"+
+		"\u0139\3\2\2\2\u0139\u013a\3\2\2\2\u013a\u013b\t\7\2\2\u013b\u013c\5j"+
+		"\66\2\u013c\u013d\5*\26\2\u013d)\3\2\2\2\u013e\u0142\n\b\2\2\u013f\u0140"+
+		"\7=\2\2\u0140\u0142\n\t\2\2\u0141\u013e\3\2\2\2\u0141\u013f\3\2\2\2\u0142"+
+		"\u0145\3\2\2\2\u0143\u0141\3\2\2\2\u0143\u0144\3\2\2\2\u0144\u0146\3\2"+
+		"\2\2\u0145\u0143\3\2\2\2\u0146\u0147\7=\2\2\u0147+\3\2\2\2\u0148\u014a"+
+		"\7d\2\2\u0149\u0148\3\2\2\2\u0149\u014a\3\2\2\2\u014a\u014b\3\2\2\2\u014b"+
+		"\u014f\7c\2\2\u014c\u014d\7E\2\2\u014d\u014e\7P\2\2\u014e\u0150\7?\2\2"+
+		"\u014f\u014c\3\2\2\2\u014f\u0150\3\2\2\2\u0150\u0151\3\2\2\2\u0151\u0152"+
+		"\5L\'\2\u0152\u0159\7\n\2\2\u0153\u0155\5.\30\2\u0154\u0156\t\n\2\2\u0155"+
+		"\u0154\3\2\2\2\u0155\u0156\3\2\2\2\u0156\u0158\3\2\2\2\u0157\u0153\3\2"+
+		"\2\2\u0158\u015b\3\2\2\2\u0159\u0157\3\2\2\2\u0159\u015a\3\2\2\2\u015a"+
+		"\u015c\3\2\2\2\u015b\u0159\3\2\2\2\u015c\u0160\7\13\2\2\u015d\u015f\5"+
+		"\60\31\2\u015e\u015d\3\2\2\2\u015f\u0162\3\2\2\2\u0160\u015e\3\2\2\2\u0160"+
+		"\u0161\3\2\2\2\u0161-\3\2\2\2\u0162\u0160\3\2\2\2\u0163\u0166\5\62\32"+
+		"\2\u0164\u0166\5\66\34\2\u0165\u0163\3\2\2\2\u0165\u0164\3\2\2\2\u0166"+
+		"/\3\2\2\2\u0167\u0169\7\65\2\2\u0168\u0167\3\2\2\2\u0168\u0169\3\2\2\2"+
+		"\u0169\u016a\3\2\2\2\u016a\u016b\7+\2\2\u016b\u016d\7^\2\2\u016c\u016e"+
+		"\7\t\2\2\u016d\u016c\3\2\2\2\u016d\u016e\3\2\2\2\u016e\u016f\3\2\2\2\u016f"+
+		"\u017e\5j\66\2\u0170\u0172\7\65\2\2\u0171\u0170\3\2\2\2\u0171\u0172\3"+
+		"\2\2\2\u0172\u0173\3\2\2\2\u0173\u017b\5j\66\2\u0174\u0176\7\t\2\2\u0175"+
+		"\u0174\3\2\2\2\u0175\u0176\3\2\2\2\u0176\u0179\3\2\2\2\u0177\u017a\5j"+
+		"\66\2\u0178\u017a\7r\2\2\u0179\u0177\3\2\2\2\u0179\u0178\3\2\2\2\u017a"+
+		"\u017c\3\2\2\2\u017b\u0175\3\2\2\2\u017b\u017c\3\2\2\2\u017c\u017e\3\2"+
+		"\2\2\u017d\u0168\3\2\2\2\u017d\u0171\3\2\2\2\u017e\61\3\2\2\2\u017f\u0180"+
+		"\5N(\2\u0180\u0182\5F$\2\u0181\u0183\5H%\2\u0182\u0181\3\2\2\2\u0182\u0183"+
+		"\3\2\2\2\u0183\u0185\3\2\2\2\u0184\u0186\5\34\17\2\u0185\u0184\3\2\2\2"+
+		"\u0185\u0186\3\2\2\2\u0186\u018b\3\2\2\2\u0187\u018a\5\64\33\2\u0188\u018a"+
+		"\58\35\2\u0189\u0187\3\2\2\2\u0189\u0188\3\2\2\2\u018a\u018d\3\2\2\2\u018b"+
+		"\u0189\3\2\2\2\u018b\u018c\3\2\2\2\u018c\u0191\3\2\2\2\u018d\u018b\3\2"+
+		"\2\2\u018e\u018f\7S\2\2\u018f\u0190\7h\2\2\u0190\u0192\5j\66\2\u0191\u018e"+
+		"\3\2\2\2\u0191\u0192\3\2\2\2\u0192\63\3\2\2\2\u0193\u0195\7P\2\2\u0194"+
+		"\u0193\3\2\2\2\u0194\u0195\3\2\2\2\u0195\u0196\3\2\2\2\u0196\u019e\7Q"+
+		"\2\2\u0197\u019e\7%\2\2\u0198\u019b\7\65\2\2\u0199\u019c\5h\65\2\u019a"+
+		"\u019c\7Q\2\2\u019b\u0199\3\2\2\2\u019b\u019a\3\2\2\2\u019c\u019e\3\2"+
+		"\2\2\u019d\u0194\3\2\2\2\u019d\u0197\3\2\2\2\u019d\u0198\3\2\2\2\u019e"+
+		"\65\3\2\2\2\u019f\u01a0\5<\37\2\u01a0\67\3\2\2\2\u01a1\u01a2\5<\37\2\u01a2"+
+		"9\3\2\2\2\u01a3\u01a4\5<\37\2\u01a4;\3\2\2\2\u01a5\u01a7\7\61\2\2\u01a6"+
+		"\u01a5\3\2\2\2\u01a6\u01a7\3\2\2\2\u01a7\u01a9\3\2\2\2\u01a8\u01aa\5V"+
+		",\2\u01a9\u01a8\3\2\2\2\u01a9\u01aa\3\2\2\2\u01aa\u01ab\3\2\2\2\u01ab"+
+		"\u01ac\7W\2\2\u01ac\u01ae\7L\2\2\u01ad\u01af\5V,\2\u01ae\u01ad\3\2\2\2"+
+		"\u01ae\u01af\3\2\2\2\u01af\u01b1\3\2\2\2\u01b0\u01b2\5 \21\2\u01b1\u01b0"+
+		"\3\2\2\2\u01b1\u01b2\3\2\2\2\u01b2\u01b4\3\2\2\2\u01b3\u01b5\5\\/\2\u01b4"+
+		"\u01b3\3\2\2\2\u01b4\u01b5\3\2\2\2\u01b5\u01b9\3\2\2\2\u01b6\u01b8\5\""+
+		"\22\2\u01b7\u01b6\3\2\2\2\u01b8\u01bb\3\2\2\2\u01b9\u01b7\3\2\2\2\u01b9"+
+		"\u01ba\3\2\2\2\u01ba\u020a\3\2\2\2\u01bb\u01b9\3\2\2\2\u01bc\u01be\t\13"+
+		"\2\2\u01bd\u01bf\5P)\2\u01be\u01bd\3\2\2\2\u01be\u01bf\3\2\2\2\u01bf\u01c2"+
+		"\3\2\2\2\u01c0\u01c1\7S\2\2\u01c1\u01c3\5N(\2\u01c2\u01c0\3\2\2\2\u01c2"+
+		"\u01c3\3\2\2\2\u01c3\u01c5\3\2\2\2\u01c4\u01c6\5 \21\2\u01c5\u01c4\3\2"+
+		"\2\2\u01c5\u01c6\3\2\2\2\u01c6\u01c7\3\2\2\2\u01c7\u01cb\5\\/\2\u01c8"+
+		"\u01ca\5\"\22\2\u01c9\u01c8\3\2\2\2\u01ca\u01cd\3\2\2\2\u01cb\u01c9\3"+
+		"\2\2\2\u01cb\u01cc\3\2\2\2\u01cc\u020a\3\2\2\2\u01cd\u01cb\3\2\2\2\u01ce"+
+		"\u01d0\7\61\2\2\u01cf\u01ce\3\2\2\2\u01cf\u01d0\3\2\2\2\u01d0\u01d2\3"+
+		"\2\2\2\u01d1\u01d3\5V,\2\u01d2\u01d1\3\2\2\2\u01d2\u01d3\3\2\2\2\u01d3"+
+		"\u01d4\3\2\2\2\u01d4\u01d6\7f\2\2\u01d5\u01d7\t\13\2\2\u01d6\u01d5\3\2"+
+		"\2\2\u01d6\u01d7\3\2\2\2\u01d7\u01d9\3\2\2\2\u01d8\u01da\5P)\2\u01d9\u01d8"+
+		"\3\2\2\2\u01d9\u01da\3\2\2\2\u01da\u01dc\3\2\2\2\u01db\u01dd\5 \21\2\u01dc"+
+		"\u01db\3\2\2\2\u01dc\u01dd\3\2\2\2\u01dd\u01df\3\2\2\2\u01de\u01e0\5\\"+
+		"/\2\u01df\u01de\3\2\2\2\u01df\u01e0\3\2\2\2\u01e0\u01e4\3\2\2\2\u01e1"+
+		"\u01e3\5\"\22\2\u01e2\u01e1\3\2\2\2\u01e3\u01e6\3\2\2\2\u01e4\u01e2\3"+
+		"\2\2\2\u01e4\u01e5\3\2\2\2\u01e5\u020a\3\2\2\2\u01e6\u01e4\3\2\2\2\u01e7"+
+		"\u01e9\t\f\2\2\u01e8\u01ea\t\13\2\2\u01e9\u01e8\3\2\2\2\u01e9\u01ea\3"+
+		"\2\2\2\u01ea\u01ec\3\2\2\2\u01eb\u01ed\5P)\2\u01ec\u01eb\3\2\2\2\u01ec"+
+		"\u01ed\3\2\2\2\u01ed\u01ee\3\2\2\2\u01ee\u01f2\5\\/\2\u01ef\u01f1\5\""+
+		"\22\2\u01f0\u01ef\3\2\2\2\u01f1\u01f4\3\2\2\2\u01f2\u01f0\3\2\2\2\u01f2"+
+		"\u01f3\3\2\2\2\u01f3\u020a\3\2\2\2\u01f4\u01f2\3\2\2\2\u01f5\u01f7\7\61"+
+		"\2\2\u01f6\u01f5\3\2\2\2\u01f6\u01f7\3\2\2\2\u01f7\u01f9\3\2\2\2\u01f8"+
+		"\u01fa\5V,\2\u01f9\u01f8\3\2\2\2\u01f9\u01fa\3\2\2\2\u01fa\u01fb\3\2\2"+
+		"\2\u01fb\u01fc\7A\2\2\u01fc\u01fe\7L\2\2\u01fd\u01ff\5P)\2\u01fe\u01fd"+
+		"\3\2\2\2\u01fe\u01ff\3\2\2\2\u01ff\u0200\3\2\2\2\u0200\u0201\5\\/\2\u0201"+
+		"\u0202\5@!\2\u0202\u020a\3\2\2\2\u0203\u0204\7\61\2\2\u0204\u0205\5V,"+
+		"\2\u0205\u0206\7-\2\2\u0206\u0207\5> \2\u0207\u020a\3\2\2\2\u0208\u020a"+
+		"\5@!\2\u0209\u01a6\3\2\2\2\u0209\u01bc\3\2\2\2\u0209\u01cf\3\2\2\2\u0209"+
+		"\u01e7\3\2\2\2\u0209\u01f6\3\2\2\2\u0209\u0203\3\2\2\2\u0209\u0208\3\2"+
+		"\2\2\u020a=\3\2\2\2\u020b\u0210\7\n\2\2\u020c\u020f\n\r\2\2\u020d\u020f"+
+		"\5> \2\u020e\u020c\3\2\2\2\u020e\u020d\3\2\2\2\u020f\u0212\3\2\2\2\u0210"+
+		"\u020e\3\2\2\2\u0210\u0211\3\2\2\2\u0211\u0213\3\2\2\2\u0212\u0210\3\2"+
+		"\2\2\u0213\u0214\7\13\2\2\u0214?\3\2\2\2\u0215\u0216\7Z\2\2\u0216\u0217"+
+		"\5L\'\2\u0217\u021b\5\\/\2\u0218\u021a\5B\"\2\u0219\u0218\3\2\2\2\u021a"+
+		"\u021d\3\2\2\2\u021b\u0219\3\2\2\2\u021b\u021c\3\2\2\2\u021cA\3\2\2\2"+
+		"\u021d\u021b\3\2\2\2\u021e\u021f\7S\2\2\u021f\u0220\t\16\2\2\u0220\u0221"+
+		"\5D#\2\u0221C\3\2\2\2\u0222\u0224\t\17\2\2\u0223\u0225\7\66\2\2\u0224"+
+		"\u0223\3\2\2\2\u0224\u0225\3\2\2\2\u0225\u022b\3\2\2\2\u0226\u0227\7^"+
+		"\2\2\u0227\u022b\7Q\2\2\u0228\u0229\7O\2\2\u0229\u022b\7 \2\2\u022a\u0222"+
+		"\3\2\2\2\u022a\u0226\3\2\2\2\u022a\u0228\3\2\2\2\u022bE\3\2\2\2\u022c"+
+		"\u022e\5j\66\2\u022d\u022c\3\2\2\2\u022e\u022f\3\2\2\2\u022f\u022d\3\2"+
+		"\2\2\u022f\u0230\3\2\2\2\u0230\u0232\3\2\2\2\u0231\u0233\5d\63\2\u0232"+
+		"\u0231\3\2\2\2\u0232\u0233\3\2\2\2\u0233\u0236\3\2\2\2\u0234\u0235\7>"+
+		"\2\2\u0235\u0237\5`\61\2\u0236\u0234\3\2\2\2\u0236\u0237\3\2\2\2\u0237"+
+		"\u023d\3\2\2\2\u0238\u0239\7>\2\2\u0239\u023d\5`\61\2\u023a\u023b\7^\2"+
+		"\2\u023b\u023d\5`\61\2\u023c\u022d\3\2\2\2\u023c\u0238\3\2\2\2\u023c\u023a"+
+		"\3\2\2\2\u023dG\3\2\2\2\u023e\u023f\t\20\2\2\u023fI\3\2\2\2\u0240\u0241"+
+		"\5j\66\2\u0241K\3\2\2\2\u0242\u0243\5j\66\2\u0243M\3\2\2\2\u0244\u0245"+
+		"\5j\66\2\u0245O\3\2\2\2\u0246\u0247\5j\66\2\u0247Q\3\2\2\2\u0248\u0249"+
+		"\5j\66\2\u0249S\3\2\2\2\u024a\u024b\5j\66\2\u024bU\3\2\2\2\u024c\u024d"+
+		"\5j\66\2\u024dW\3\2\2\2\u024e\u024f\5j\66\2\u024fY\3\2\2\2\u0250\u0255"+
+		"\5j\66\2\u0251\u0252\7\n\2\2\u0252\u0253\5h\65\2\u0253\u0254\7\13\2\2"+
+		"\u0254\u0256\3\2\2\2\u0255\u0251\3\2\2\2\u0255\u0256\3\2\2\2\u0256\u0261"+
+		"\3\2\2\2\u0257\u0258\7\r\2\2\u0258\u025d\5j\66\2\u0259\u025a\7\n\2\2\u025a"+
+		"\u025b\5h\65\2\u025b\u025c\7\13\2\2\u025c\u025e\3\2\2\2\u025d\u0259\3"+
+		"\2\2\2\u025d\u025e\3\2\2\2\u025e\u0260\3\2\2\2\u025f\u0257\3\2\2\2\u0260"+
+		"\u0263\3\2\2\2\u0261\u025f\3\2\2\2\u0261\u0262\3\2\2\2\u0262[\3\2\2\2"+
+		"\u0263\u0261\3\2\2\2\u0264\u0265\7\n\2\2\u0265\u0266\5Z.\2\u0266\u0267"+
+		"\7\13\2\2\u0267]\3\2\2\2\u0268\u026d\5h\65\2\u0269\u026a\7\r\2\2\u026a"+
+		"\u026c\5h\65\2\u026b\u0269\3\2\2\2\u026c\u026f\3\2\2\2\u026d\u026b\3\2"+
+		"\2\2\u026d\u026e\3\2\2\2\u026e_\3\2\2\2\u026f\u026d\3\2\2\2\u0270\u0271"+
+		"\7\n\2\2\u0271\u0272\5^\60\2\u0272\u0273\7\13\2\2\u0273a\3\2\2\2\u0274"+
+		"\u0278\7\n\2\2\u0275\u0277\5`\61\2\u0276\u0275\3\2\2\2\u0277\u027a\3\2"+
+		"\2\2\u0278\u0276\3\2\2\2\u0278\u0279\3\2\2\2\u0279\u027b\3\2\2\2\u027a"+
+		"\u0278\3\2\2\2\u027b\u027c\7\13\2\2\u027cc\3\2\2\2\u027d\u027e\7\n\2\2"+
+		"\u027e\u0281\7r\2\2\u027f\u0280\7\r\2\2\u0280\u0282\7r\2\2\u0281\u027f"+
+		"\3\2\2\2\u0281\u0282\3\2\2\2\u0282\u0283\3\2\2\2\u0283\u0284\7\13\2\2"+
+		"\u0284e\3\2\2\2\u0285\u0286\t\21\2\2\u0286g\3\2\2\2\u0287\u028c\5l\67"+
+		"\2\u0288\u028c\7Q\2\2\u0289\u028c\5j\66\2\u028a\u028c\5t;\2\u028b\u0287"+
+		"\3\2\2\2\u028b\u0288\3\2\2\2\u028b\u0289\3\2\2\2\u028b\u028a\3\2\2\2\u028c"+
+		"i\3\2\2\2\u028d\u0292\7s\2\2\u028e\u0292\5x=\2\u028f\u0292\5p9\2\u0290"+
+		"\u0292\5r:\2\u0291\u028d\3\2\2\2\u0291\u028e\3\2\2\2\u0291\u028f\3\2\2"+
+		"\2\u0291\u0290\3\2\2\2\u0292k\3\2\2\2\u0293\u0299\7r\2\2\u0294\u0295\5"+
+		"n8\2\u0295\u0296\7r\2\2\u0296\u0297\5n8\2\u0297\u0299\3\2\2\2\u0298\u0293"+
+		"\3\2\2\2\u0298\u0294\3\2\2\2\u0299m\3\2\2\2\u029a\u029b\t\22\2\2\u029b"+
+		"o\3\2\2\2\u029c\u029d\5n8\2\u029d\u029e\5x=\2\u029e\u029f\5n8\2\u029f"+
+		"q\3\2\2\2\u02a0\u02a1\t\23\2\2\u02a1s\3\2\2\2\u02a2\u02a3\5j\66\2\u02a3"+
+		"\u02a4\5> \2\u02a4u\3\2\2\2\u02a5\u02a6\t\24\2\2\u02a6w\3\2\2\2\u02a7"+
+		"\u02a8\t\25\2\2\u02a8y\3\2\2\2c|\u0080\u0086\u008c\u0092\u009d\u00a5\u00ab"+
+		"\u00af\u00b1\u00b5\u00ba\u00c2\u00cc\u00d5\u00e4\u00eb\u00f1\u00f5\u00fa"+
+		"\u00fe\u0102\u0105\u0108\u010d\u0113\u0117\u011b\u011f\u0129\u0130\u0138"+
+		"\u0141\u0143\u0149\u014f\u0155\u0159\u0160\u0165\u0168\u016d\u0171\u0175"+
+		"\u0179\u017b\u017d\u0182\u0185\u0189\u018b\u0191\u0194\u019b\u019d\u01a6"+
+		"\u01a9\u01ae\u01b1\u01b4\u01b9\u01be\u01c2\u01c5\u01cb\u01cf\u01d2\u01d6"+
+		"\u01d9\u01dc\u01df\u01e4\u01e9\u01ec\u01f2\u01f6\u01f9\u01fe\u0209\u020e"+
+		"\u0210\u021b\u0224\u022a\u022f\u0232\u0236\u023c\u0255\u025d\u0261\u026d"+
+		"\u0278\u0281\u028b\u0291\u0298";
 	public static final ATN _ATN =
 		ATNSimulator.deserialize(_serializedATN.toCharArray());
 	static {
 		_decisionToDFA = new DFA[_ATN.getNumberOfDecisions()];
+		for (int i = 0; i < _ATN.getNumberOfDecisions(); i++) {
+			_decisionToDFA[i] = new DFA(_ATN.getDecisionState(i), i);
+		}
 	}
 }

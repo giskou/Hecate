@@ -1,221 +1,936 @@
-// Generated from /home/iskoulis/Projects/Hecate/src/gr/uoi/cs/daintiness/hecate/parser/DDL.g4 by ANTLR 4.0
+// Generated from /home/giskou/dev/phd/Hecate/src/gr/uoi/cs/daintiness/hecate/parser/DDL.g4 by ANTLR 4.1
 package gr.uoi.cs.daintiness.hecate.parser;
 
 import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.Token;
-import org.antlr.v4.runtime.tree.TerminalNode;
+import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ErrorNode;
+import org.antlr.v4.runtime.tree.TerminalNode;
 
+/**
+ * This class provides an empty implementation of {@link DDLListener},
+ * which can be extended to create a listener which only needs to handle a subset
+ * of the available methods.
+ */
 public class DDLBaseListener implements DDLListener {
-	@Override public void enterDrop_statement(DDLParser.Drop_statementContext ctx) { }
-	@Override public void exitDrop_statement(DDLParser.Drop_statementContext ctx) { }
-
-	@Override public void enterSchema_name(DDLParser.Schema_nameContext ctx) { }
-	@Override public void exitSchema_name(DDLParser.Schema_nameContext ctx) { }
-
-	@Override public void enterCollate(DDLParser.CollateContext ctx) { }
-	@Override public void exitCollate(DDLParser.CollateContext ctx) { }
-
-	@Override public void enterInsert_statement(DDLParser.Insert_statementContext ctx) { }
-	@Override public void exitInsert_statement(DDLParser.Insert_statementContext ctx) { }
-
-	@Override public void enterFunction(DDLParser.FunctionContext ctx) { }
-	@Override public void exitFunction(DDLParser.FunctionContext ctx) { }
-
-	@Override public void enterNamespace(DDLParser.NamespaceContext ctx) { }
-	@Override public void exitNamespace(DDLParser.NamespaceContext ctx) { }
-
-	@Override public void enterCommit(DDLParser.CommitContext ctx) { }
-	@Override public void exitCommit(DDLParser.CommitContext ctx) { }
-
-	@Override public void enterPrimary(DDLParser.PrimaryContext ctx) { }
-	@Override public void exitPrimary(DDLParser.PrimaryContext ctx) { }
-
-	@Override public void enterValue(DDLParser.ValueContext ctx) { }
-	@Override public void exitValue(DDLParser.ValueContext ctx) { }
-
-	@Override public void enterReference_option(DDLParser.Reference_optionContext ctx) { }
-	@Override public void exitReference_option(DDLParser.Reference_optionContext ctx) { }
-
-	@Override public void enterSql_statement(DDLParser.Sql_statementContext ctx) { }
-	@Override public void exitSql_statement(DDLParser.Sql_statementContext ctx) { }
-
-	@Override public void enterCreate_statement(DDLParser.Create_statementContext ctx) { }
-	@Override public void exitCreate_statement(DDLParser.Create_statementContext ctx) { }
-
-	@Override public void enterReference_definition(DDLParser.Reference_definitionContext ctx) { }
-	@Override public void exitReference_definition(DDLParser.Reference_definitionContext ctx) { }
-
-	@Override public void enterConsume_until_end(DDLParser.Consume_until_endContext ctx) { }
-	@Override public void exitConsume_until_end(DDLParser.Consume_until_endContext ctx) { }
-
-	@Override public void enterIndex(DDLParser.IndexContext ctx) { }
-	@Override public void exitIndex(DDLParser.IndexContext ctx) { }
-
-	@Override public void enterData_option(DDLParser.Data_optionContext ctx) { }
-	@Override public void exitData_option(DDLParser.Data_optionContext ctx) { }
-
-	@Override public void enterParNameList(DDLParser.ParNameListContext ctx) { }
-	@Override public void exitParNameList(DDLParser.ParNameListContext ctx) { }
-
-	@Override public void enterUpdate_statement(DDLParser.Update_statementContext ctx) { }
-	@Override public void exitUpdate_statement(DDLParser.Update_statementContext ctx) { }
-
-	@Override public void enterValueList(DDLParser.ValueListContext ctx) { }
-	@Override public void exitValueList(DDLParser.ValueListContext ctx) { }
-
-	@Override public void enterSpecial_char(DDLParser.Special_charContext ctx) { }
-	@Override public void exitSpecial_char(DDLParser.Special_charContext ctx) { }
-
-	@Override public void enterNumber(DDLParser.NumberContext ctx) { }
-	@Override public void exitNumber(DDLParser.NumberContext ctx) { }
-
-	@Override public void enterEnum(DDLParser.EnumContext ctx) { }
-	@Override public void exitEnum(DDLParser.EnumContext ctx) { }
-
-	@Override public void enterTable(DDLParser.TableContext ctx) { }
-	@Override public void exitTable(DDLParser.TableContext ctx) { }
-
-	@Override public void enterPl_sql(DDLParser.Pl_sqlContext ctx) { }
-	@Override public void exitPl_sql(DDLParser.Pl_sqlContext ctx) { }
-
-	@Override public void enterSize(DDLParser.SizeContext ctx) { }
-	@Override public void exitSize(DDLParser.SizeContext ctx) { }
-
-	@Override public void enterQuoted_rest(DDLParser.Quoted_restContext ctx) { }
-	@Override public void exitQuoted_rest(DDLParser.Quoted_restContext ctx) { }
-
-	@Override public void enterAlter_constraint(DDLParser.Alter_constraintContext ctx) { }
-	@Override public void exitAlter_constraint(DDLParser.Alter_constraintContext ctx) { }
-
-	@Override public void enterStart(DDLParser.StartContext ctx) { }
-	@Override public void exitStart(DDLParser.StartContext ctx) { }
-
-	@Override public void enterRefs(DDLParser.RefsContext ctx) { }
-	@Override public void exitRefs(DDLParser.RefsContext ctx) { }
-
-	@Override public void enterColumn(DDLParser.ColumnContext ctx) { }
-	@Override public void exitColumn(DDLParser.ColumnContext ctx) { }
-
-	@Override public void enterSet_type(DDLParser.Set_typeContext ctx) { }
-	@Override public void exitSet_type(DDLParser.Set_typeContext ctx) { }
-
-	@Override public void enterView(DDLParser.ViewContext ctx) { }
-	@Override public void exitView(DDLParser.ViewContext ctx) { }
-
-	@Override public void enterNameList(DDLParser.NameListContext ctx) { }
-	@Override public void exitNameList(DDLParser.NameListContext ctx) { }
-
-	@Override public void enterForeign(DDLParser.ForeignContext ctx) { }
-	@Override public void exitForeign(DDLParser.ForeignContext ctx) { }
-
-	@Override public void enterGeneric(DDLParser.GenericContext ctx) { }
-	@Override public void exitGeneric(DDLParser.GenericContext ctx) { }
-
-	@Override public void enterTable_constraint(DDLParser.Table_constraintContext ctx) { }
-	@Override public void exitTable_constraint(DDLParser.Table_constraintContext ctx) { }
-
-	@Override public void enterUnique(DDLParser.UniqueContext ctx) { }
-	@Override public void exitUnique(DDLParser.UniqueContext ctx) { }
-
-	@Override public void enterSet(DDLParser.SetContext ctx) { }
-	@Override public void exitSet(DDLParser.SetContext ctx) { }
-
-	@Override public void enterCharset_name(DDLParser.Charset_nameContext ctx) { }
-	@Override public void exitCharset_name(DDLParser.Charset_nameContext ctx) { }
-
-	@Override public void enterIndex_name(DDLParser.Index_nameContext ctx) { }
-	@Override public void exitIndex_name(DDLParser.Index_nameContext ctx) { }
-
-	@Override public void enterTable_definition(DDLParser.Table_definitionContext ctx) { }
-	@Override public void exitTable_definition(DDLParser.Table_definitionContext ctx) { }
-
-	@Override public void enterIdent(DDLParser.IdentContext ctx) { }
-	@Override public void exitIdent(DDLParser.IdentContext ctx) { }
-
-	@Override public void enterOrder(DDLParser.OrderContext ctx) { }
-	@Override public void exitOrder(DDLParser.OrderContext ctx) { }
-
-	@Override public void enterQuote(DDLParser.QuoteContext ctx) { }
-	@Override public void exitQuote(DDLParser.QuoteContext ctx) { }
-
-	@Override public void enterTable_name(DDLParser.Table_nameContext ctx) { }
-	@Override public void exitTable_name(DDLParser.Table_nameContext ctx) { }
-
-	@Override public void enterTriger_name(DDLParser.Triger_nameContext ctx) { }
-	@Override public void exitTriger_name(DDLParser.Triger_nameContext ctx) { }
-
-	@Override public void enterValuesList(DDLParser.ValuesListContext ctx) { }
-	@Override public void exitValuesList(DDLParser.ValuesListContext ctx) { }
-
-	@Override public void enterOther_statement(DDLParser.Other_statementContext ctx) { }
-	@Override public void exitOther_statement(DDLParser.Other_statementContext ctx) { }
-
-	@Override public void enterIndex_key(DDLParser.Index_keyContext ctx) { }
-	@Override public void exitIndex_key(DDLParser.Index_keyContext ctx) { }
-
-	@Override public void enterFulltext(DDLParser.FulltextContext ctx) { }
-	@Override public void exitFulltext(DDLParser.FulltextContext ctx) { }
-
-	@Override public void enterParValueList(DDLParser.ParValueListContext ctx) { }
-	@Override public void exitParValueList(DDLParser.ParValueListContext ctx) { }
-
-	@Override public void enterCol_name(DDLParser.Col_nameContext ctx) { }
-	@Override public void exitCol_name(DDLParser.Col_nameContext ctx) { }
-
-	@Override public void enterIndex_option(DDLParser.Index_optionContext ctx) { }
-	@Override public void exitIndex_option(DDLParser.Index_optionContext ctx) { }
-
-	@Override public void enterConsume_par(DDLParser.Consume_parContext ctx) { }
-	@Override public void exitConsume_par(DDLParser.Consume_parContext ctx) { }
-
-	@Override public void enterCheck(DDLParser.CheckContext ctx) { }
-	@Override public void exitCheck(DDLParser.CheckContext ctx) { }
-
-	@Override public void enterAlter_statement(DDLParser.Alter_statementContext ctx) { }
-	@Override public void exitAlter_statement(DDLParser.Alter_statementContext ctx) { }
-
-	@Override public void enterLine_constraint(DDLParser.Line_constraintContext ctx) { }
-	@Override public void exitLine_constraint(DDLParser.Line_constraintContext ctx) { }
-
-	@Override public void enterRestricted(DDLParser.RestrictedContext ctx) { }
-	@Override public void exitRestricted(DDLParser.RestrictedContext ctx) { }
-
-	@Override public void enterDatabase(DDLParser.DatabaseContext ctx) { }
-	@Override public void exitDatabase(DDLParser.DatabaseContext ctx) { }
-
-	@Override public void enterReference(DDLParser.ReferenceContext ctx) { }
-	@Override public void exitReference(DDLParser.ReferenceContext ctx) { }
-
-	@Override public void enterTriger(DDLParser.TrigerContext ctx) { }
-	@Override public void exitTriger(DDLParser.TrigerContext ctx) { }
-
-	@Override public void enterDdl_statement(DDLParser.Ddl_statementContext ctx) { }
-	@Override public void exitDdl_statement(DDLParser.Ddl_statementContext ctx) { }
-
-	@Override public void enterConstr_name(DDLParser.Constr_nameContext ctx) { }
-	@Override public void exitConstr_name(DDLParser.Constr_nameContext ctx) { }
-
-	@Override public void enterString(DDLParser.StringContext ctx) { }
-	@Override public void exitString(DDLParser.StringContext ctx) { }
-
-	@Override public void enterTable_option(DDLParser.Table_optionContext ctx) { }
-	@Override public void exitTable_option(DDLParser.Table_optionContext ctx) { }
-
-	@Override public void enterColumn_option(DDLParser.Column_optionContext ctx) { }
-	@Override public void exitColumn_option(DDLParser.Column_optionContext ctx) { }
-
-	@Override public void enterCollation_name(DDLParser.Collation_nameContext ctx) { }
-	@Override public void exitCollation_name(DDLParser.Collation_nameContext ctx) { }
-
-	@Override public void enterChar_set(DDLParser.Char_setContext ctx) { }
-	@Override public void exitChar_set(DDLParser.Char_setContext ctx) { }
-
-	@Override public void enterIndex_type(DDLParser.Index_typeContext ctx) { }
-	@Override public void exitIndex_type(DDLParser.Index_typeContext ctx) { }
-
-	@Override public void enterEveryRule(ParserRuleContext ctx) { }
-	@Override public void exitEveryRule(ParserRuleContext ctx) { }
-	@Override public void visitTerminal(TerminalNode node) { }
-	@Override public void visitErrorNode(ErrorNode node) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterDrop_statement(@NotNull DDLParser.Drop_statementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitDrop_statement(@NotNull DDLParser.Drop_statementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterSchema_name(@NotNull DDLParser.Schema_nameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitSchema_name(@NotNull DDLParser.Schema_nameContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterCollate(@NotNull DDLParser.CollateContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitCollate(@NotNull DDLParser.CollateContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterInsert_statement(@NotNull DDLParser.Insert_statementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitInsert_statement(@NotNull DDLParser.Insert_statementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterFunction(@NotNull DDLParser.FunctionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitFunction(@NotNull DDLParser.FunctionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterNamespace(@NotNull DDLParser.NamespaceContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitNamespace(@NotNull DDLParser.NamespaceContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterCommit(@NotNull DDLParser.CommitContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitCommit(@NotNull DDLParser.CommitContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterPrimary(@NotNull DDLParser.PrimaryContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitPrimary(@NotNull DDLParser.PrimaryContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterValue(@NotNull DDLParser.ValueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitValue(@NotNull DDLParser.ValueContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterReference_option(@NotNull DDLParser.Reference_optionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitReference_option(@NotNull DDLParser.Reference_optionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterSql_statement(@NotNull DDLParser.Sql_statementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitSql_statement(@NotNull DDLParser.Sql_statementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterCreate_statement(@NotNull DDLParser.Create_statementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitCreate_statement(@NotNull DDLParser.Create_statementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterReference_definition(@NotNull DDLParser.Reference_definitionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitReference_definition(@NotNull DDLParser.Reference_definitionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterConsume_until_end(@NotNull DDLParser.Consume_until_endContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitConsume_until_end(@NotNull DDLParser.Consume_until_endContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterIndex(@NotNull DDLParser.IndexContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitIndex(@NotNull DDLParser.IndexContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterData_option(@NotNull DDLParser.Data_optionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitData_option(@NotNull DDLParser.Data_optionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterParNameList(@NotNull DDLParser.ParNameListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitParNameList(@NotNull DDLParser.ParNameListContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterUpdate_statement(@NotNull DDLParser.Update_statementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitUpdate_statement(@NotNull DDLParser.Update_statementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterValueList(@NotNull DDLParser.ValueListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitValueList(@NotNull DDLParser.ValueListContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterSpecial_char(@NotNull DDLParser.Special_charContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitSpecial_char(@NotNull DDLParser.Special_charContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterNumber(@NotNull DDLParser.NumberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitNumber(@NotNull DDLParser.NumberContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterEnum(@NotNull DDLParser.EnumContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitEnum(@NotNull DDLParser.EnumContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterTable(@NotNull DDLParser.TableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitTable(@NotNull DDLParser.TableContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterPl_sql(@NotNull DDLParser.Pl_sqlContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitPl_sql(@NotNull DDLParser.Pl_sqlContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterSize(@NotNull DDLParser.SizeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitSize(@NotNull DDLParser.SizeContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterQuoted_rest(@NotNull DDLParser.Quoted_restContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitQuoted_rest(@NotNull DDLParser.Quoted_restContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterAlter_constraint(@NotNull DDLParser.Alter_constraintContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitAlter_constraint(@NotNull DDLParser.Alter_constraintContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterStart(@NotNull DDLParser.StartContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitStart(@NotNull DDLParser.StartContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterRefs(@NotNull DDLParser.RefsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitRefs(@NotNull DDLParser.RefsContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterColumn(@NotNull DDLParser.ColumnContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitColumn(@NotNull DDLParser.ColumnContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterSet_type(@NotNull DDLParser.Set_typeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitSet_type(@NotNull DDLParser.Set_typeContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterView(@NotNull DDLParser.ViewContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitView(@NotNull DDLParser.ViewContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterNameList(@NotNull DDLParser.NameListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitNameList(@NotNull DDLParser.NameListContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterForeign(@NotNull DDLParser.ForeignContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitForeign(@NotNull DDLParser.ForeignContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterGeneric(@NotNull DDLParser.GenericContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitGeneric(@NotNull DDLParser.GenericContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterTable_constraint(@NotNull DDLParser.Table_constraintContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitTable_constraint(@NotNull DDLParser.Table_constraintContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterUnique(@NotNull DDLParser.UniqueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitUnique(@NotNull DDLParser.UniqueContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterSet(@NotNull DDLParser.SetContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitSet(@NotNull DDLParser.SetContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterCharset_name(@NotNull DDLParser.Charset_nameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitCharset_name(@NotNull DDLParser.Charset_nameContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterIndex_name(@NotNull DDLParser.Index_nameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitIndex_name(@NotNull DDLParser.Index_nameContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterTable_definition(@NotNull DDLParser.Table_definitionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitTable_definition(@NotNull DDLParser.Table_definitionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterIdent(@NotNull DDLParser.IdentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitIdent(@NotNull DDLParser.IdentContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterOrder(@NotNull DDLParser.OrderContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitOrder(@NotNull DDLParser.OrderContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterQuote(@NotNull DDLParser.QuoteContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitQuote(@NotNull DDLParser.QuoteContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterTable_name(@NotNull DDLParser.Table_nameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitTable_name(@NotNull DDLParser.Table_nameContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterTriger_name(@NotNull DDLParser.Triger_nameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitTriger_name(@NotNull DDLParser.Triger_nameContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterValuesList(@NotNull DDLParser.ValuesListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitValuesList(@NotNull DDLParser.ValuesListContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterOther_statement(@NotNull DDLParser.Other_statementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitOther_statement(@NotNull DDLParser.Other_statementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterIndex_key(@NotNull DDLParser.Index_keyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitIndex_key(@NotNull DDLParser.Index_keyContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterFulltext(@NotNull DDLParser.FulltextContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitFulltext(@NotNull DDLParser.FulltextContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterParValueList(@NotNull DDLParser.ParValueListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitParValueList(@NotNull DDLParser.ParValueListContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterCol_name(@NotNull DDLParser.Col_nameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitCol_name(@NotNull DDLParser.Col_nameContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterIndex_option(@NotNull DDLParser.Index_optionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitIndex_option(@NotNull DDLParser.Index_optionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterConsume_par(@NotNull DDLParser.Consume_parContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitConsume_par(@NotNull DDLParser.Consume_parContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterCheck(@NotNull DDLParser.CheckContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitCheck(@NotNull DDLParser.CheckContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterAlter_statement(@NotNull DDLParser.Alter_statementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitAlter_statement(@NotNull DDLParser.Alter_statementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterLine_constraint(@NotNull DDLParser.Line_constraintContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitLine_constraint(@NotNull DDLParser.Line_constraintContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterRestricted(@NotNull DDLParser.RestrictedContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitRestricted(@NotNull DDLParser.RestrictedContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterDatabase(@NotNull DDLParser.DatabaseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitDatabase(@NotNull DDLParser.DatabaseContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterReference(@NotNull DDLParser.ReferenceContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitReference(@NotNull DDLParser.ReferenceContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterTriger(@NotNull DDLParser.TrigerContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitTriger(@NotNull DDLParser.TrigerContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterDdl_statement(@NotNull DDLParser.Ddl_statementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitDdl_statement(@NotNull DDLParser.Ddl_statementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterConstr_name(@NotNull DDLParser.Constr_nameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitConstr_name(@NotNull DDLParser.Constr_nameContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterString(@NotNull DDLParser.StringContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitString(@NotNull DDLParser.StringContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterTable_option(@NotNull DDLParser.Table_optionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitTable_option(@NotNull DDLParser.Table_optionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterColumn_option(@NotNull DDLParser.Column_optionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitColumn_option(@NotNull DDLParser.Column_optionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterCollation_name(@NotNull DDLParser.Collation_nameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitCollation_name(@NotNull DDLParser.Collation_nameContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterChar_set(@NotNull DDLParser.Char_setContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitChar_set(@NotNull DDLParser.Char_setContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterIndex_type(@NotNull DDLParser.Index_typeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitIndex_type(@NotNull DDLParser.Index_typeContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterEveryRule(@NotNull ParserRuleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitEveryRule(@NotNull ParserRuleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void visitTerminal(@NotNull TerminalNode node) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void visitErrorNode(@NotNull ErrorNode node) { }
 }
