@@ -68,7 +68,7 @@ public class DiffWorker extends SwingWorker<DiffResult, Integer> {
 			Export.initMetrics(path);
 			for (int i = 0; i < list.length-1; i++) {
 				pm.setNote("Parsing " + list[i]);
-				Schema schema = HecateParser.parse(path + File.separator + list[i]);			
+				Schema schema = HecateParser.parse(path + File.separator + list[i]);
 				for (Entry<String, Table> e : schema.getTables().entrySet()) {
 					String tname = e.getKey();
 					int attrs = e.getValue().getSize();
@@ -77,7 +77,7 @@ public class DiffWorker extends SwingWorker<DiffResult, Integer> {
 				pm.setNote("Parsing " + list[i+1]);
 				Schema schema2 = HecateParser.parse(path + File.separator + list[i+1]);
 				if (i == list.length-2) {
-					for (Entry<String, Table> e : schema.getTables().entrySet()) {
+					for (Entry<String, Table> e : schema2.getTables().entrySet()) {
 						String tname = e.getKey();
 						int attrs = e.getValue().getSize();
 						res.tInfo.addTable(tname, i+1, attrs);
