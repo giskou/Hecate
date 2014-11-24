@@ -24,7 +24,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
  */
 public class HecateParser {
 	static Schema s;
-	
+
 	static class UnMach {
 		Table orT;
 		DDLParser.ForeignContext ctx;
@@ -34,7 +34,7 @@ public class HecateParser {
 			this.ctx = ctx;
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param filePath The path of the file to be parsed.
@@ -57,13 +57,13 @@ public class HecateParser {
 		SchemaLoader    loader = new SchemaLoader();
 		ParseTreeWalker walker = new ParseTreeWalker();
 		walker.walk(loader, root);
-		String[] path = filePath.split(File.separator);
-		s.setTitle(path[path.length-1]);
+		File file = new File(filePath);
+		s.setTitle(file.getName());
 		return s;
 	}
-	
+
 	private static class SchemaLoader extends DDLBaseListener {
-		
+
 		private Table t;
 		private Attribute a;
 		boolean foundTableConst = false;
@@ -71,7 +71,7 @@ public class HecateParser {
 		boolean foundLineConst = false;
 		String alteringTable = null;
 		List<UnMach> unMached = new ArrayList<HecateParser.UnMach>();
-		
+
 		public void enterStart (DDLParser.StartContext ctx) {
 //			System.out.println("Starting");
 			s = new Schema();
@@ -80,7 +80,7 @@ public class HecateParser {
 			processUnmached();
 //			System.out.println("\n\n\n" + s.print());
 		}
-		
+
 		public void enterTable (DDLParser.TableContext ctx) {
 			String tableName = removeQuotes(ctx.table_name().getText());
 			t = new Table(tableName);
@@ -88,46 +88,46 @@ public class HecateParser {
 		public void exitTable (DDLParser.TableContext ctx) {
 			s.addTable(t);
 		}
-		
+
 		public void enterColumn (DDLParser.ColumnContext ctx) {
 			String colName = removeQuotes(ctx.col_name().getText());
 			String colType = ctx.data_type().getText();
 			colType = colType.toUpperCase();
 			a = new Attribute(colName, colType);
 		}
-		
+
 		public void exitColumn (DDLParser.ColumnContext ctx) {
 			t.addAttribute(a);
 		}
-		
+
 		public void enterLine_constraint(DDLParser.Line_constraintContext ctx) {
 			foundLineConst = true;
 		}
 		public void exitLine_constraint(DDLParser.Line_constraintContext ctx) {
 			foundLineConst = false;
 		}
-		
+
 		public void enterAlter_statement(DDLParser.Alter_statementContext ctx) {
 			alteringTable = ctx.table_name().getText();
 		}
 		public void exitAlter_statement(DDLParser.Alter_statementContext ctx) {
 			alteringTable = null;
 		}
-		
+
 		public void enterTable_constraint(DDLParser.Table_constraintContext ctx) {
 			foundTableConst = true;
 		}
 		public void exitTable_constraint(DDLParser.Table_constraintContext ctx) {
 			foundTableConst = false;
 		}
-		
+
 		public void enterAlter_constraint(DDLParser.Alter_constraintContext ctx) {
 			foundAlterConst = true;
 		}
 		public void exitAlter_constraint(DDLParser.Alter_constraintContext ctx) {
 			foundAlterConst = true;
 		}
-		
+
 		public void enterPrimary (DDLParser.PrimaryContext ctx) {
 			if (foundTableConst) {
 				String todo = ctx.parNameList().getText();
@@ -143,7 +143,7 @@ public class HecateParser {
 				t.addAttrToPrimeKey(a);
 			} else {}
 		}
-		
+
 		public void enterForeign (DDLParser.ForeignContext ctx) {
 			Table orTable = null, reTable = null;
 			Attribute[] or, re;
@@ -177,7 +177,7 @@ public class HecateParser {
 				orTable.getfKey().addReference(or[i], re[i]);
 			}
 		}
-		
+
 		public void enterReference (DDLParser.ReferenceContext ctx) {
 			Table orTable = t;
 			Table reTable = s.getTables().get(ctx.reference_definition().table_name().getText());
@@ -185,7 +185,7 @@ public class HecateParser {
 			Attribute[] re = getNames(ctx.reference_definition().parNameList().getText(), reTable);
 			orTable.getfKey().addReference(or, re[0]);
 		}
-		
+
 		private void processUnmached() {
 			for (UnMach item : unMached) {
 				DDLParser.ForeignContext ctx = item.ctx;
@@ -208,7 +208,7 @@ public class HecateParser {
 				}
 			}
 		}
-		
+
 		private Attribute[] getNames(String s, Table table) {
 			s = s.substring(1, s.length()-1);
 			String[] names = s.split(",");
@@ -218,7 +218,7 @@ public class HecateParser {
 			}
 			return res;
 		}
-		
+
 		private boolean hasQuotes(String s) {
 			switch (s.charAt(0)) {
 				case '\'':
@@ -229,7 +229,7 @@ public class HecateParser {
 					return false;
 			}
 		}
-		
+
 		private String removeQuotes(String s) {
 			if (hasQuotes(s)) {
 				String res = null;
