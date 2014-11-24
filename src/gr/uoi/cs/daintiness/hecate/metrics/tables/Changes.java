@@ -25,23 +25,26 @@ public class Changes {
 	public int getDeletions() { return deletions; }
 	public int getKeyChange() { return keyChange; }
 	public int getAttrTypeChange() { return attrTypeChange; }
-	
+
 	public void addInsertion() { this.insertions++; }
 	public void addInsertion(int i) { this.insertions += i;	}
 	
 	public void addDeletion() { this.deletions++; }
 	public void addDeletion(int i) { this.deletions += i; }
-	
+
 	public void addKeyChange() { this.keyChange++; }
 	public void addKeyChange(int i) { this.keyChange += i; }
-	
+
 	public void addAttrTypeChange() { this.attrTypeChange++; }
 	public void addAttrTypeChange(int i) { this.attrTypeChange += i; }
-	
+
+	public int getTotal() {
+		return this.insertions + this.deletions +
+		       (this.keyChange > 0 ? 1 : 0) + this.attrTypeChange;
+	}
+
 	public String toString() {
-		return "I:" + this.insertions + "," +
-				"D:" + this.deletions + "," +
-				"T:" + this.attrTypeChange + "," +
-				"K:" + this.keyChange;
+		return this.insertions + "|" + this.deletions + "|" +
+		       this.attrTypeChange + "|" + this.keyChange;
 	}
 }

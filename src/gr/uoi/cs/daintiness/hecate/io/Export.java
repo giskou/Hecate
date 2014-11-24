@@ -21,10 +21,12 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
 public class Export {
-	
+
 	public static void xml(Transitions trs, String path) {
 		try {
-			JAXBContext jaxbContext = JAXBContext.newInstance(Update.class, Deletion.class, Insersion.class, TransitionList.class, Transitions.class);
+			JAXBContext jaxbContext = JAXBContext.newInstance(Update.class,
+					Deletion.class, Insersion.class,
+					TransitionList.class, Transitions.class);
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 			String filePath = getDir(path) + File.separator + "transitions.xml";
@@ -33,10 +35,12 @@ public class Export {
 			e.printStackTrace();
 		}
 	}
-	
-	public static void metrics(DiffResult res, String path) throws IOException {
+
+	public static void metrics(DiffResult res, String path)
+			throws IOException {
 		String filePath = getDir(path) + File.separator + "metrics.csv";
-		BufferedWriter metrics = new BufferedWriter(new FileWriter(filePath, true));
+		FileWriter fw = new FileWriter(filePath, true);
+		BufferedWriter metrics = new BufferedWriter(fw);
 		String name = res.met.getVersionNames()[1];
 		String time = name.substring(0, name.length()-4);
 		metrics.write(
@@ -59,7 +63,7 @@ public class Export {
 			);
 		metrics.close();
 	}
-	
+
 	public static void initMetrics(String path) throws IOException {
 		String filePath = getDir(path) + File.separator + "metrics.csv";
 		BufferedWriter metrics = new BufferedWriter(new FileWriter(filePath));
@@ -67,7 +71,7 @@ public class Export {
 				+ ";tIns;tDel;aIns;aDel;aTypeAlt;keyAlt;aTabIns;aTabDel\n");
 		metrics.close();
 	}
-	
+
 	public static String getDir(String path) {
 		String parrent = (new File(path)).getParent();
 		File dir = new File(parrent + File.separator + "results");
@@ -76,8 +80,8 @@ public class Export {
 		}
 		return dir.getPath();
 	}
-	
-	public static void tables(String path, int versions, TablesInfo tov) {
+
+	public static void tables(String path, int versions, TablesInfo ti) {
 		String slashedPath = Export.getDir(path) + File.separator;
 		String sTab = slashedPath + "tables.csv";
 		String sTabI = slashedPath + "table_ins.csv";
@@ -85,7 +89,8 @@ public class Export {
 		String sTabT = slashedPath + "table_type.csv";
 		String sTabK = slashedPath + "table_key.csv";
 		String sTabAll = slashedPath + "all.csv";
-		
+		String sTabSt = slashedPath + "table_stats.csv";
+
 		try {
 			BufferedWriter fTab = new BufferedWriter(new FileWriter(sTab));
 			BufferedWriter fTabI = new BufferedWriter(new FileWriter(sTabI));
@@ -93,36 +98,51 @@ public class Export {
 			BufferedWriter fTabT = new BufferedWriter(new FileWriter(sTabT));
 			BufferedWriter fTabK = new BufferedWriter(new FileWriter(sTabK));
 			BufferedWriter fTabAll = new BufferedWriter(new FileWriter(sTabAll));
-			
+			BufferedWriter fTabSt = new BufferedWriter(new FileWriter(sTabSt));
+
 			writeVersionsLine(fTab, versions);
 			writeVersionsLine(fTabI, versions);
 			writeVersionsLine(fTabD, versions);
 			writeVersionsLine(fTabT, versions);
 			writeVersionsLine(fTabK, versions);
 			writeVersionsLine(fTabAll, versions);
-			
-			for (String t : tov.getTables()){
+			fTabSt.write("table;dur;birth;death;chngs;s@s;s@e;sAvg\n");
+
+			for (String t : ti.getTables()){
 				fTab.write(t + ";");
 				fTabI.write(t + ";");
 				fTabD.write(t + ";");
 				fTabT.write(t + ";");
 				fTabK.write(t + ";");
 				fTabAll.write(t + ";");
+
+				fTabSt.write(t + ";");
+				MetricsOverVersion mov = ti.getTableMetrics(t);
+				fTabSt.write(mov.getLife() + ";");
+				fTabSt.write(mov.getBirth() + ";");
+
+				fTabSt.write((mov.getDeath()==versions-1 ? "-" : mov.getDeath())
+						+ ";");
+
+				fTabSt.write(mov.getTotalChanges().getTotal() + ";");
+				fTabSt.write(mov.getBirthSize() + ";");
+				fTabSt.write(mov.getDeathSize() + ";");
+
+				int sumSize = 0;
+				int v = 0;
 				for (int i = 0; i < versions; i++) {
-					MetricsOverVersion tm = tov.getTableMetrics(t);
-					if (tm != null && tm.containsKey(i)) {
-						fTab.write(tm.getSize(i) + ";");
-						Changes c = tm.getChanges(i);
+					if (mov != null && mov.containsKey(i)) {
+						fTab.write(mov.getSize(i) + ";");
+						Changes c = mov.getChanges(i);
 						fTabI.write(c.getInsertions() + ";");
 						fTabD.write(c.getDeletions() + ";");
 						fTabT.write(c.getAttrTypeChange() + ";");
 						fTabK.write(c.getKeyChange() + ";");
-						fTabAll.write(tm.getSize(i) + "|" +
-								      c.getInsertions() + "|" +
-								      c.getDeletions() + "|" +
-								      c.getAttrTypeChange() + "|" +
-								      c.getKeyChange() + ";");
-								      
+						fTabAll.write(mov.getSize(i) + "[" + c.toString() +
+								"]" + ";");
+						sumSize += mov.getSize(i);
+						v++;
+
 					} else {
 						fTab.write("0;");
 						fTabI.write("-;");
@@ -132,6 +152,9 @@ public class Export {
 						fTabAll.write("0|-|-|-|-;");
 					}
 				}
+				fTabSt.write(Float.toString((sumSize/(float)v)));
+				fTabSt.write("\n");
+
 				fTab.write("\n");
 				fTabI.write("\n");
 				fTabD.write("\n");
@@ -145,13 +168,15 @@ public class Export {
 			fTabT.close();
 			fTabK.close();
 			fTabAll.close();
+			fTabSt.close();
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Oups...",
 					                      JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	
-	private static void writeVersionsLine(BufferedWriter file, int versions) throws IOException {
+
+	private static void writeVersionsLine(BufferedWriter file, int versions)
+			throws IOException {
 		file.write(";");
 		for (int i = 0; i < versions; i++) {
 			file.write(i + ";");
