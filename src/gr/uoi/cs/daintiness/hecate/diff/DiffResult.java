@@ -25,7 +25,7 @@ public class DiffResult {
 		this.tInfo = new TablesInfo();
 	}
 	
-	public void setVersionNames(String newVersion, String oldVersion) {
+	public void setVersionNames(String oldVersion, String newVersion) {
 		this.tl.setVersionNames(oldVersion, newVersion);
 		this.met.setVersionNames(oldVersion, newVersion);
 	}
